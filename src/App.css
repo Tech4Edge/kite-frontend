@@ -1,0 +1,237 @@
+/* Aziz Group - Custom Styles */
+/* Note: Tailwind's preflight/reset handles margin, padding, box-sizing */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #222222;
+  background-color: #FFFFFF;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00AEEF;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0095CC;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #00AEEF;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #00AEEF;
+  color: white;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #00AEEF;
+  outline-offset: 2px;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  color: #222222;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  color: #666666;
+  line-height: 1.8;
+}
+
+another-paragraph-type{
+  color: #d0d0d0 !important;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Link styles within paragraphs */
+p a {
+  color: #00AEEF;
+  text-decoration: underline;
+  text-decoration-color: #00AEEF;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+p a:hover {
+  color: #0095CC;
+  text-decoration-color: #0095CC;
+}
+
+/* Button base styles */
+.btn-primary {
+  background-color: #00AEEF;
+  color: white;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: #0095CC;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #00AEEF;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: 2px solid #00AEEF;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #00AEEF;
+  color: white;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 2px solid #E0E0E0;
+}
+
+.card-hover:hover {
+  border-color: #FF8ACE;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Input field styles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #222222;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #00AEEF;
+  outline: none;
+}
+
+input:hover,
+textarea:hover {
+  border-color: #FF8ACE;
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Utility classes */
+.text-primary {
+  color: #222222;
+}
+
+.text-secondary {
+  color: #666666;
+}
+
+.text-accent {
+  color: #00AEEF;
+}
+
+.text-accent-magenta {
+  color: #ED028C;
+}
+
+.bg-accent {
+  background-color: #00AEEF;
+}
+
+.bg-accent-magenta {
+  background-color: #ED028C;
+}
+
+.bg-tint {
+  background-color: #FFEFF9;
+}
+
+/* Section spacing */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container max-width */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}

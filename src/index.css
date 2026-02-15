@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* Tailwind v4 - Inline theme configuration */
+@theme inline {
+  /* Colors */
+  --color-primary: #00aeef;
+  --color-primary-hover: #0095cc;
+  --color-accent: #ed028c;
+  --color-accent-light: #ff8ace;
+  --color-accent-tint: #ffeff9;
+  --color-text-primary: #222222;
+  --color-text-secondary: #666666;
+}
+
+/* Global base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
