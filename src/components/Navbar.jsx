@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
-import kiteLogo from '../assets/kite_logo.png';
+import kiteLogo1 from '../assets/kite_part1.png';
+import kiteLogo2 from '../assets/kite_part2.png';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,15 +67,20 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center active:border-0">
               <img 
-                src={kiteLogo} 
-                alt="Aziz Group Logo" 
-                className="w-24 h-auto"
+                src={kiteLogo1} 
+                alt="Aziz Group Logo Part 1" 
+                className="w-20! p-2 h-auto"
+              />
+              <img 
+                src={kiteLogo2} 
+                alt="Aziz Group Logo Part 2" 
+                className="w-20! h-auto"
               />
             </Link>
           </div>
@@ -90,7 +96,7 @@ const Navbar = () => {
               >
                 <Link
                   to={item.href}
-                  className={`text-base font-medium transition-colors duration-300 flex items-center gap-1 py-2 focus:outline-none ${
+                  className={`text-base font-medium transition-colors duration-300 flex items-center gap-1 py-1 focus:outline-none ${
                     isActive(item.href)
                       ? 'text-primary'
                       : 'text-text-primary hover:text-primary'
@@ -114,7 +120,7 @@ const Navbar = () => {
                               <li key={menuItem.name}>
                                 <Link
                                   to={menuItem.href}
-                                  className={`block text-sm px-3 py-2 rounded transition-all duration-200 focus:outline-none ${
+                                  className={`block text-sm px-3 py-1 rounded transition-all duration-200 focus:outline-none ${
                                     isActive(menuItem.href)
                                       ? 'text-primary bg-accent-tint font-semibold'
                                       : 'text-text-secondary hover:text-primary hover:bg-accent-tint'
@@ -138,7 +144,7 @@ const Navbar = () => {
                       <Link
                         key={dropdownItem.name}
                         to={dropdownItem.href}
-                        className={`block px-4 py-3 transition-all duration-200 focus:outline-none ${
+                        className={`block px-4 py-2 transition-all duration-200 focus:outline-none ${
                           isActive(dropdownItem.href)
                             ? 'text-primary bg-accent-tint font-semibold'
                             : 'text-text-primary hover:bg-accent-tint hover:text-primary'
@@ -157,7 +163,7 @@ const Navbar = () => {
           <div className="hidden md:block flex-shrink-0">
             <Link
               to="/contact"
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 shadow-md focus:outline-none ${
+              className={`px-6 py-1.5 rounded-full font-medium transition-all duration-300 shadow-md focus:outline-none ${
                 isActive('/contact')
                   ? 'bg-primary-600 text-text-white shadow-lg scale-95'
                   : 'bg-primary text-text-white hover:bg-primary-600 hover:shadow-lg active:scale-95'
@@ -172,7 +178,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-text-primary hover:text-primary transition-colors focus:outline-none">
-            >
+            
               {isMobileMenuOpen ? (
                 <FaTimes className="h-6 w-6" />
               ) : (
@@ -191,7 +197,7 @@ const Navbar = () => {
               <div key={item.name}>
                 <Link
                   to={item.href}
-                  className={`block px-3 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none ${
+                  className={`block px-3 py-1 rounded-lg font-medium transition-all duration-200 focus:outline-none ${
                     isActive(item.href)
                       ? 'text-primary bg-gray-100'
                       : 'text-text-primary hover:text-primary hover:bg-gray-100'
@@ -212,7 +218,7 @@ const Navbar = () => {
                             <Link
                               key={menuItem.name}
                               to={menuItem.href}
-                              className="block px-3 py-2 text-sm text-[#666666] hover:text-[#00AEEF] hover:bg-gray-100 rounded-lg transition-all duration-200 focus:outline-none"
+                              className="block px-3 py-1 text-sm text-[#666666] hover:text-[#00AEEF] hover:bg-gray-100 rounded-lg transition-all duration-200 focus:outline-none"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {menuItem.name}
@@ -229,7 +235,7 @@ const Navbar = () => {
                       <Link
                         key={dropdownItem.name}
                         to={dropdownItem.href}
-                        className="block px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-gray-100 rounded-lg transition-all duration-200 focus:outline-none"
+                        className="block px-3 py-1 text-sm text-text-secondary hover:text-primary hover:bg-gray-100 rounded-lg transition-all duration-200 focus:outline-none"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {dropdownItem.name}
@@ -241,7 +247,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className={`block w-full text-center px-6 py-2.5 rounded-full font-medium transition-all duration-300 mt-4 focus:outline-none ${
+              className={`block w-full text-center px-6 py-1.5 rounded-full font-medium transition-all duration-300 mt-4 focus:outline-none ${
                 isActive('/contact')
                   ? 'bg-primary-600 text-text-white shadow-lg'
                   : 'bg-primary text-text-white hover:bg-primary-600 active:scale-95'

@@ -25,7 +25,7 @@ const MatchMakingSection = () => {
       {/* Content */}
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
         <div className="max-w-3xl text-white">
-          <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+          <div className="inline-block bg-white/20 backdrop-blur-xs px-4 py-2 rounded-full mb-6">
             <span className="text-white font-semibold text-sm uppercase tracking-wide">
               Manufacturing Excellence
             </span>
@@ -41,15 +41,15 @@ const MatchMakingSection = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-[10px] rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">50+</h3>
               <p className="text-text-white-90 text-lg">Years of Excellence</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-[10px] rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">40+</h3>
               <p className="text-text-white-90 text-lg">Countries Served</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-[10px] rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">100%</h3>
               <p className="text-text-white-90 text-lg">Quality Assured</p>
             </div>

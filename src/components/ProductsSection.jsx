@@ -1,4 +1,7 @@
 import { FaFire, FaIndustry, FaTshirt, FaLayerGroup } from 'react-icons/fa';
+import premier_boards from "../assets/products/PremierFormicaBoards.jpeg"
+import BurqDetergent from "../assets/products/BurqDetergent.jpeg"
+import kite from "../assets/products/kite.jpeg"
 
 const ProductsSection = () => {
   const products = [
@@ -31,7 +34,7 @@ const ProductsSection = () => {
           note: 'Latest technology implementation'
         }
       ],
-      image: 'matches-products.jpg'
+      image: kite
     },
     {
       id: 'detergents',
@@ -58,7 +61,7 @@ const ProductsSection = () => {
         }
       ],
       services: 'Private labeling and toll manufacturing services available',
-      image: 'detergent-products.jpg'
+      image: BurqDetergent
     },
     {
       id: 'textile',
@@ -96,7 +99,7 @@ const ProductsSection = () => {
         'Custom specifications available'
       ],
       location: '92-E, Industrial Estate, Jamrud Road, Peshawar, Pakistan',
-      image: 'board-products.jpg'
+      image: premier_boards
     }
   ];
 
@@ -271,14 +274,9 @@ const ProductsSection = () => {
 
               {/* Image Placeholder */}
               <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <div className="relative h-96 bg-gray-500 rounded-2xl flex items-center justify-center border-2 border-gray-400 overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10 text-center p-8">
-                    {product.icon}
-                    <p className="text-white font-bold text-lg mt-4 mb-2">📷 Product Image</p>
-                    <p className="text-white/80 text-sm">{product.image}</p>
+                    <img src={product.image} alt={product.title} className="w-full h-full object-cover rounded-2xl" />
                   </div>
-                </div>
               </div>
             </div>
           </div>

@@ -1,0 +1,113 @@
+import { motion } from 'framer-motion';
+import { FaChevronDown } from 'react-icons/fa';
+
+const HeroSection = ({ backgroundImage }) => {
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight - 100,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Parallax Effect */}
+      <div 
+        className="absolute inset-0 bg- bg-cover bg-center bg-no-repeat transform scale-110"
+        // style={{ 
+        //   backgroundImage: `url(${backgroundImage})`,
+        //   filter: 'brightness(0.7)'
+        // }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#00AEEF] to-[#00AEEF]/80" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-[#00AEEF] font-semibold text-lg md:text-xl mb-4 tracking-wider uppercase"
+          >
+            Since 1950s
+          </motion.p>
+
+          {/* Main Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+          >
+            About{' '}
+            <span className="text-white text-transparent">
+              Aziz Group
+            </span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-12"
+          >
+            A long-established, well-reputed, and multi-diversified business concern of Pakistan
+          </motion.p>
+
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12"
+          >
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-[#00AEEF] mb-2">70+</div>
+              <div className="text-white/80 text-sm md:text-base">Years of Excellence</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-[#ED028C] mb-2">8</div>
+              <div className="text-white/80 text-sm md:text-base">Companies</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-[#FF8ACE] mb-2">$100M+</div>
+              <div className="text-white/80 text-sm md:text-base">Annual Sales</div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.button
+        onClick={scrollToContent}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white hover:text-[#00AEEF] transition-colors duration-300"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-sm uppercase tracking-wider">Scroll Down</span>
+          <FaChevronDown className="text-2xl" />
+        </motion.div>
+      </motion.button>
+
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/50 to-transparent" />
+    </section>
+  );
+};
+
+export default HeroSection;

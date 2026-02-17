@@ -66,7 +66,7 @@ const Footer = () => {
                 <img
                   src={company.logo}
                   alt={company.alt}
-                  className="h-40 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-15! opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}
