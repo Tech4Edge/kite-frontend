@@ -1,15 +1,81 @@
 @import "tailwindcss";
 
-/* Tailwind v4 - Inline theme configuration */
-@theme inline {
-  /* Colors */
+/* Tailwind v4 - Custom Theme Configuration */
+@theme {
+  /* ============================================
+     AZIZ GROUP DESIGN SYSTEM
+     ============================================
+     Change colors here and they apply everywhere!
+     Use: bg-primary, text-primary, border-primary, etc.
+  */
+  
+  /* PRIMARY COLORS - Main brand color (Cyan Blue) */
   --color-primary: #00aeef;
-  --color-primary-hover: #0095cc;
+  --color-primary-50: #e6f7fd;
+  --color-primary-100: #b3e7fa;
+  --color-primary-200: #80d7f7;
+  --color-primary-300: #4dc7f4;
+  --color-primary-400: #1ab7f1;
+  --color-primary-500: #00aeef;  /* Main */
+  --color-primary-600: #0095cc;  /* Hover state */
+  --color-primary-700: #007ba7;
+  --color-primary-800: #006182;
+  --color-primary-900: #00475d;
+
+  /* ACCENT COLORS - Secondary brand color (Magenta) */
   --color-accent: #ed028c;
-  --color-accent-light: #ff8ace;
-  --color-accent-tint: #ffeff9;
-  --color-text-primary: #222222;
-  --color-text-secondary: #666666;
+  --color-accent-50: #fef0f8;
+  --color-accent-100: #fcd1e9;
+  --color-accent-200: #fab2da;
+  --color-accent-300: #f893cb;
+  --color-accent-400: #f674bc;
+  --color-accent-500: #ed028c;    /* Main */
+  --color-accent-600: #d4027a;
+  --color-accent-700: #bb0268;
+  --color-accent-800: #a20156;
+  --color-accent-900: #890144;
+  --color-accent-light: #ff8ace;  /* Borders/highlights */
+  --color-accent-tint: #ffeff9;   /* Subtle backgrounds */
+
+  /* TEXT COLORS */
+  --color-text-primary: #222222;    /* Headings, main text */
+  --color-text-secondary: #666666;  /* Body text, descriptions */
+  --color-text-tertiary: #999999;   /* Muted text */
+  --color-text-white: #ffffff;      /* White text on dark backgrounds */
+  --color-text-white-90: rgba(255, 255, 255, 0.9);
+  --color-text-white-80: rgba(255, 255, 255, 0.8);
+  --color-text-black: #000000;      /* Pure black when needed */
+
+  /* BACKGROUND COLORS */
+  --color-bg-main: #ffffff;
+  --color-bg-light: #f9f9f9;
+  --color-bg-dark: #222222;
+  --color-bg-darker: #1a1a1a;
+  --color-bg-gray: #f3f4f6;
+
+  /* BORDER COLORS */
+  --color-border-light: #e0e0e0;
+  --color-border-gray: #d1d5db;
+  --color-border-dark: #374151;
+
+  /* SEMANTIC COLORS */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+}
+
+/* ============================================
+   CUSTOM UTILITY CLASSES
+   ============================================
+   Use these for common patterns
+*/
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-white-forced {
+  color: white !important;
 }
 
 /* Global base styles */

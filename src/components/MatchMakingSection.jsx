@@ -1,4 +1,5 @@
 import { FaPlay } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import match_making from '../assets/videos/match_making.mp4';
 
 const MatchMakingSection = () => {
@@ -34,7 +35,7 @@ const MatchMakingSection = () => {
             How Kite Matches Are Made
           </h2>
           
-          <p className="text-white/90! text-xl md:text-2xl mb-8 leading-relaxed">
+          <p className="text-text-white-90 text-xl md:text-2xl mb-8 leading-relaxed">
             Discover the precision, technology, and craftsmanship behind Pakistan's most trusted safety matches. 
             Over 50 years of manufacturing excellence.
           </p>
@@ -42,32 +43,32 @@ const MatchMakingSection = () => {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">50+</h3>
-              <p className="text-white/90! text-lg">Years of Excellence</p>
+              <p className="text-text-white-90 text-lg">Years of Excellence</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">40+</h3>
-              <p className="text-white/90! text-lg">Countries Served</p>
+              <p className="text-text-white-90 text-lg">Countries Served</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-3xl font-bold mb-2">100%</h3>
-              <p className="text-white/90! text-lg">Quality Assured</p>
+              <p className="text-text-white-90 text-lg">Quality Assured</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href="/products"
+            <Link
+              to="/products"
               className="bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2"
             >
               Explore Our Products
-            </a>
-            <a
-              href="/fmcg-division"
+            </Link>
+            <Link
+              to="/fmcg-division"
               className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95 inline-flex items-center gap-2"
             >
               <FaPlay className="text-sm" />
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

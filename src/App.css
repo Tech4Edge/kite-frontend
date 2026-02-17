@@ -51,7 +51,7 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  outline: 2px solid #00AEEF;
+  /* outline: 2px solid #00AEEF; */
   outline-offset: 2px;
 }
 
@@ -60,17 +60,43 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
+}
+
+/* Responsive image containers */
+.img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Mobile-specific image optimization */
+@media (max-width: 640px) {
+  img {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .hero-image {
+    max-height: 300px;
+  }
 }
 
 /* Typography enhancements */
-h1, h2, h3, h4, h5, h6 {
-  color: #222222;
+ h1, h2, h3, h4, h5, h6 {
+  /* color: #222222; */
   font-weight: 700;
   line-height: 1.2;
-}
+} 
 
 p {
-  color: #666666;
+  /* color: #666666; */
   line-height: 1.8;
 }
 
@@ -233,5 +259,39 @@ section {
 @media (min-width: 1024px) {
   .container {
     padding: 0 32px;
+  }
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  /* Reduce heading sizes on mobile */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Adjust padding and margins */
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Improve button spacing */
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 24px;
+    font-size: 0.875rem;
+  }
+  
+  /* Stack grid items on mobile */
+  .grid {
+    grid-template-columns: 1fr !important;
   }
 }

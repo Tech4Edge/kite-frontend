@@ -1,4 +1,5 @@
 import { FaGift, FaBoxOpen, FaTruck, FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const OffersPackagingSection = () => {
   const currentOffers = [
@@ -102,12 +103,12 @@ const OffersPackagingSection = () => {
                   </div>
                 </div>
 
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className="inline-block w-full bg-[#00AEEF] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0095CC] transition-all duration-300 active:scale-95"
                 >
                   Get This Offer
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -167,12 +168,12 @@ const OffersPackagingSection = () => {
               your product requirements and brand identity.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300"
               >
                 Request Quote
-              </a>
+              </Link>
               <a
                 href="tel:+92915202890"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300"

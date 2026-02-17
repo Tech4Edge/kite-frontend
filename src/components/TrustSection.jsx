@@ -1,4 +1,5 @@
 import { FaCheckCircle, FaHandshake, FaCertificate, FaGlobe } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const TrustSection = () => {
   const trustPoints = [
@@ -158,18 +159,18 @@ const TrustSection = () => {
             reliability, and innovation.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="bg-[#00AEEF] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0095CC] transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
             >
               Get in Touch
-            </a>
-            <a
-              href="#brands"
+            </Link>
+            <Link
+              to="/products"
               className="bg-transparent border-2 border-[#00AEEF] text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#00AEEF] hover:text-white transition-all duration-300 active:scale-95"
             >
               Explore Our Brands
-            </a>
+            </Link>
           </div>
         </div>
       </div>

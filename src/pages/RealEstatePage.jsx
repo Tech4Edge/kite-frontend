@@ -8,9 +8,9 @@ const RealEstatePage = () => {
       <section className="relative text-white py-20" style={{backgroundImage: `url(${textile_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">
-            <h1 className="text-white! text-4xl md:text-6xl font-bold mb-6">Real Estate Development</h1>
-            <p className="text-white! text-xl md:text-2xl mb-4">Building Tomorrow's Landmarks Today</p>
-            <p className="text-white! text-lg md:text-xl max-w-3xl mx-auto">
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">Real Estate Development</h1>
+            <p className="text-text-white text-xl md:text-2xl mb-4">Building Tomorrow's Landmarks Today</p>
+            <p className="text-text-white text-lg md:text-xl max-w-3xl mx-auto">
               Premium mixed-use developments with sustainable and innovative design
             </p>
           </div>
@@ -119,7 +119,7 @@ const RealEstatePage = () => {
                 </div>
                 <div className="bg-white/70 rounded-lg p-4">
                   <p className="text-sm font-semibold mb-2">Status: Completed & Operational</p>
-                  <p className="text-sm text-black!">
+                  <p className="text-sm text-black">
                     A landmark development in Islamabad's premium Gulberg Green area, offering world-class 
                     facilities for businesses and residents.
                   </p>
@@ -158,7 +158,7 @@ const RealEstatePage = () => {
                 </div>
                 <div className="bg-white/70 rounded-lg p-4">
                   <p className="text-sm font-semibold mb-2">Status: Under Development</p>
-                  <p className="text-sm text-black!">
+                  <p className="text-sm text-black">
                     Pakistan's first LEED certified office building, setting new standards for sustainable 
                     corporate architecture.
                   </p>

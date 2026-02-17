@@ -1,6 +1,6 @@
 import { FaGlobeAsia, FaShippingFast, FaCertificate, FaHandshake, FaFileContract, FaAward, FaCheckCircle } from 'react-icons/fa';
-import world_map_export_destinations from '../assets/export_map.jpg';
-import export_shipping_container from '../assets/export_container.jpg';
+import world_map_export_destinations from '../assets/fmcgForeignDestination.jpeg';
+import export_shipping_container from '../assets/delivery.jpeg';
 
 const ExportSection = () => {
   const exportCountries = {
@@ -108,8 +108,8 @@ const ExportSection = () => {
           </h3>
           
           {/* Map Placeholder */}
-          <div className="relative h-96 bg-gray-500 rounded-3xl border-2 border-gray-400 flex items-center justify-center mb-12 overflow-hidden group">
-            <img src={world_map_export_destinations} alt="Global Export Map" className="w-full h-full object-cover object-center" />
+          <div className="relative h-150 bg-gray-500 rounded-3xl flex items-center justify-center mb-12 overflow-hidden group">
+            <img src={world_map_export_destinations} alt="Global Export Map" className="w-full  object-contain" />
           </div>
 
           {/* Countries Grid */}
@@ -154,7 +154,7 @@ const ExportSection = () => {
                   </div>
                   <div>
                     <h4 className="text-2xl font-bold mb-3 drop-shadow-md">{service.title}</h4>
-                    <p className="text-white/95! leading-relaxed mb-4">{service.description}</p>
+                    <p className="text-text-white-90 leading-relaxed mb-4">{service.description}</p>
                   </div>
                 </div>
                 <ul className="space-y-2 pl-6">
@@ -195,7 +195,7 @@ const ExportSection = () => {
               <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
                 Ready to Start Exporting with Us?
               </h3>
-              <p className="text-white/95! text-lg leading-relaxed mb-8 drop-shadow-md">
+              <p className="text-text-white-90 text-lg leading-relaxed mb-8 drop-shadow-md">
                 Join our network of international partners and benefit from our extensive export 
                 experience, reliable logistics, and commitment to quality. We handle everything 
                 from documentation to delivery.
@@ -219,8 +219,8 @@ const ExportSection = () => {
             </div>
 
             {/* Image Placeholder */}
-            <div className="h-80 bg-gray-500 rounded-2xl flex items-center justify-center border-2 border-gray-400">
-              <img src={export_shipping_container} alt="Export Shipping Container" className="w-full h-full object-cover object-center" />
+            <div className="h-80 bg-gray-500 overflow-hidden rounded-2xl flex items-center justify-center ">
+              <img src={export_shipping_container} alt="Export Shipping Container" className="w-full h-full scale-155" />
               {/* <div className="text-center">
                 <FaShippingFast className="text-8xl text-white mx-auto mb-4 drop-shadow-lg" />
                 <p className="text-white font-medium text-lg mb-2">📷 Export Shipping Container Image</p>

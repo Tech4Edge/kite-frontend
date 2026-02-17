@@ -9,9 +9,9 @@ const FMCGDivisionPage = () => {
       <section className="relative text-white py-20" style={{backgroundImage: `url(${fmgc_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">
-            <h1 className="text-white! text-4xl md:text-6xl font-bold mb-6">FMCG Division</h1>
-            <p className="text-white! text-xl md:text-2xl mb-4">Pakistan's Largest Match Manufacturer</p>
-            <p className="text-white! text-lg md:text-xl max-w-3xl mx-auto">
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">FMCG Division</h1>
+            <p className="text-text-white text-xl md:text-2xl mb-4">Pakistan's Largest Match Manufacturer</p>
+            <p className="text-text-white text-lg md:text-xl max-w-3xl mx-auto">
               Exporting premium quality safety matches to over 40 countries worldwide
             </p>
           </div>
@@ -89,44 +89,44 @@ const FMCGDivisionPage = () => {
               Our Match Brands
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary to-primary-600 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">Kite</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Our flagship brand known for reliability and quality across international markets
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-[#0095CC] to-[#007BA7] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">Olympia</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Premium safety matches for discerning customers worldwide
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-[#0095CC] to-[#007BA7] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">Tanga</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Trusted quality matches for everyday use
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-[#007BA7] to-[#006688] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">Bird</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Reliable and affordable safety matches
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-[#007BA7] to-[#006688] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">Party</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Special occasion matches with premium quality
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-[#005577] to-[#004466] rounded-xl shadow-lg p-8 text-white">
+              <div className="bg-gradient-to-br from-primary-800 to-primary-900 rounded-xl shadow-lg p-8 text-text-white">
                 <h3 className="text-2xl font-bold mb-4">& More</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Wide range of brands for diverse market needs
                 </p>
               </div>
@@ -192,7 +192,7 @@ const FMCGDivisionPage = () => {
             </h2>
             <div className="max-w-3xl mx-auto text-center">
               <h3 className="text-2xl font-bold mb-4">Lighter Manufacturing Facility</h3>
-              <p className="text-lg leading-relaxed text-white!">
+              <p className="text-lg leading-relaxed text-text-white">
                 We are currently setting up a state-of-the-art lighter manufacturing facility to diversify our product 
                 portfolio and meet growing market demand. This expansion will further strengthen our position as a 
                 leading FMCG manufacturer in the region.
@@ -208,7 +208,7 @@ const FMCGDivisionPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Interested in Our FMCG Products?
           </h2>
-          <p className="text-xl text-white! mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-text-white mb-8 max-w-2xl mx-auto">
             Contact us to learn more about our match brands and export opportunities
           </p>
           <a

@@ -8,9 +8,9 @@ const BoardDivisionPage = () => {
       <section className="relative text-white py-20" style={{backgroundImage: `url(${textile_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">  
-            <h1 className="text-white! text-4xl md:text-6xl font-bold mb-6">Board Division</h1>
-            <p className="text-white! text-xl md:text-2xl mb-4">Premier Formica & Board Manufacturing</p>
-            <p className="text-white! text-lg md:text-xl max-w-3xl mx-auto">
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">Board Division</h1>
+            <p className="text-text-white text-xl md:text-2xl mb-4">Premier Formica & Board Manufacturing</p>
+            <p className="text-text-white text-lg md:text-xl max-w-3xl mx-auto">
               High-quality MDF, Particle Board, and Lamination solutions for diverse applications
             </p>
           </div>
@@ -252,14 +252,14 @@ const BoardDivisionPage = () => {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div>
                 <h3 className="text-xl font-bold mb-3">International Standards</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Our products meet international quality standards and are manufactured using advanced technology 
                   and best practices in the industry.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-3">Rigorous Testing</h3>
-                <p className="text-lg text-white!">
+                <p className="text-lg text-text-white">
                   Every product undergoes rigorous quality testing to ensure durability, strength, and performance 
                   in real-world applications.
                 </p>

@@ -9,32 +9,32 @@ const BriefPromotion = () => {
           <h2 className="text-white text-4xl md:text-5xl font-bold mb-4">
             Special Offers & Promotions
           </h2>
-          <p className="text-white/90! text-lg max-w-3xl mx-auto">
+          <p className="text-text-white-90 text-lg max-w-3xl mx-auto">
             Take advantage of our competitive pricing and special packages designed for your business needs
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaGift className="text-5xl text-white mx-auto mb-4" />
+            <FaGift className="text-5xl text-text-white mx-auto mb-4" />
             <h3 className="text-2xl font-bold mb-3">Bulk Orders</h3>
-            <p className="text-white/90!">
+            <p className="text-text-white-90">
               Special discounts available for large quantity orders. Perfect for wholesalers and distributors.
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaAward className="text-5xl text-white mx-auto mb-4" />
+            <FaAward className="text-5xl text-text-white mx-auto mb-4" />
             <h3 className="text-2xl font-bold mb-3">Premium Quality</h3>
-            <p className="text-white/90!">
+            <p className="text-text-white-90">
               Internationally certified products meeting the highest quality standards at competitive prices.
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaHandshake className="text-5xl text-white mx-auto mb-4" />
-            <h3 className=" text-2xl font-bold mb-3">Custom Solutions</h3>
-            <p className="text-white/90!">
+            <FaHandshake className="text-5xl text-text-white mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-3">Custom Solutions</h3>
+            <p className="text-text-white-90">
               Tailored packaging and private labeling services for your brand requirements.
             </p>
           </div>

@@ -9,6 +9,7 @@ import FMCGDivisionPage from './pages/FMCGDivisionPage';
 import BoardDivisionPage from './pages/BoardDivisionPage';
 import RealEstatePage from './pages/RealEstatePage';
 import ContactPage from './pages/ContactPage';
+import AboutUsPage from './pages/AboutUsPage';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutUsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/export" element={<ExportPage />} />
           <Route path="/textile-division" element={<TextileDivisionPage />} />

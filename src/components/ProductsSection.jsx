@@ -289,7 +289,7 @@ const ProductsSection = () => {
           <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
             Interested in Our Products?
           </h3>
-          <p className="text-white/95! text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
+          <p className="text-text-white-90 text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
             Contact us for product inquiries, bulk orders, private labeling services, or export opportunities.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

@@ -8,9 +8,9 @@ const TextileDivisionPage = () => {
       <section className="relative text-white py-20" style={{backgroundImage: `url(${textile_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">
-            <h1 className="text-white! text-4xl md:text-6xl font-bold mb-6">Textile Division</h1>
-            <h2 className="text-white! text-xl md:text-2xl mb-4">A.J Textile Mills Limited</h2>
-            <h3 className="text-white/90! text-lg md:text-xl max-w-3xl mx-auto">
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">Textile Division</h1>
+            <h2 className="text-text-white text-xl md:text-2xl mb-4">A.J Textile Mills Limited</h2>
+            <h3 className="text-text-white-90 text-lg md:text-xl max-w-3xl mx-auto">
               One of Pakistan's largest spinning mills with over 100,000 spindles
             </h3>
           </div>
@@ -211,7 +211,7 @@ const TextileDivisionPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Interested in Our Textile Products?
           </h2>
-          <p className="text-xl text-white! mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-text-white mb-8 max-w-2xl mx-auto">
             Contact us to learn more about our premium yarn and textile solutions
           </p>
           <a

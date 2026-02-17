@@ -124,14 +124,14 @@ const ContactPage = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">Textile Division</h3>
-                <p className="text-white/90! mb-3">A.J Textile Mills Limited</p>
+                <p className="text-white/90 mb-3">A.J Textile Mills Limited</p>
                 <div className="space-y-2">
                   <p className="flex items-center">
-                    <FaEnvelope className="text-white/90! mr-2" />
-                    <p className="text-white/90!">textile@azizgrp.com</p>
+                    <FaEnvelope className="text-white/90 mr-2" />
+                    <span className="text-white/90">textile@azizgrp.com</span>
                   </p>
-                  <p className="flex items-center text-white/90!">
-                    <FaPhone className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaPhone className="mr-2 text-white/90" />
                     +92 51 111 254 947 (Ext: 101)
                   </p>
                 </div>
@@ -139,14 +139,14 @@ const ContactPage = () => {
 
               <div className="bg-gradient-to-br from-[#0095CC] to-[#007BA7] rounded-xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">FMCG Division</h3>
-                <p className="text-white/90! mb-3">Match Manufacturing & Export</p>
+                <p className="text-white/90 mb-3">Match Manufacturing & Export</p>
                 <div className="space-y-2">
-                  <p className="flex items-center text-white/90!">
-                    <FaEnvelope className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaEnvelope className="mr-2 text-white/90" />
                     fmcg@azizgrp.com
                   </p>
-                  <p className="flex items-center text-white/90!">
-                    <FaPhone className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaPhone className="mr-2 text-white/90" />
                     +92 51 111 254 947 (Ext: 102)
                   </p>
                 </div>
@@ -154,14 +154,14 @@ const ContactPage = () => {
 
               <div className="bg-gradient-to-br from-[#0095CC] to-[#007BA7] rounded-xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">Board Division</h3>
-                <p className="mb-3 text-white/90!">MDF, Particle Board & Lamination</p>
+                <p className="mb-3 text-white/90">MDF, Particle Board & Lamination</p>
                 <div className="space-y-2">
-                  <p className="flex items-center text-white/90!">
-                    <FaEnvelope className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaEnvelope className="mr-2 text-white/90" />
                     board@azizgrp.com
                   </p>
-                  <p className="flex items-center text-white/90!">
-                    <FaPhone className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaPhone className="mr-2 text-white/90" />
                     +92 51 111 254 947 (Ext: 103)
                   </p>
                 </div>
@@ -169,14 +169,14 @@ const ContactPage = () => {
 
               <div className="bg-gradient-to-br from-[#007BA7] to-[#006688] rounded-xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">Real Estate Division</h3>
-                <p className="mb-3 text-white/90!">Property Development & Management</p>
+                <p className="mb-3 text-white/90">Property Development & Management</p>
                 <div className="space-y-2">
-                  <p className="flex items-center text-white/90!">
-                    <FaEnvelope className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaEnvelope className="mr-2 text-white/90" />
                     realestate@azizgrp.com
                   </p>
-                  <p className="flex items-center text-white/90!">
-                    <FaPhone className="mr-2 text-white/90!" />
+                  <p className="flex items-center text-white/90">
+                    <FaPhone className="mr-2 text-white/90" />
                     +92 51 111 254 947 (Ext: 104)
                   </p>
                 </div>
@@ -236,7 +236,7 @@ const ContactPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Connect?
           </h2>
-          <p className="text-xl text-white! mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-text-white mb-8 max-w-2xl mx-auto">
             We're here to answer your questions and discuss how we can help you
           </p>
           <div className="flex flex-wrap justify-center gap-4">

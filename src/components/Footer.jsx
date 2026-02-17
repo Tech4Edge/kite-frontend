@@ -1,34 +1,38 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import mohsin_enterprises from "../assets/mohsin_enterprises_logo.jpeg"
+import AJMatch from "../assets/divisions/ajmatch.png"
+import MohsinEnterprises from "../assets/divisions/MohsinEnterprises.png"
+import MohsinMatch from "../assets/divisions/MohsinMatch.png"
+import PremierBoards from "../assets/divisions/PremierBoards.png"
 
 const Footer = () => {
   const quickLinks = [
     { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
     { name: 'Products', href: '/products' },
     { name: 'Export', href: '/export' },
-    { name: 'About Us', href: '/#about' },
   ];
 
   const companyLogos = [
     {
-      name: 'Mohsin Match Factory',
-      logo: mohsin_enterprises,
+      name: 'A.J Match Factory',
+      logo: AJMatch,
       alt: 'Mohsin Match Factory'
     },
     {
-      name: 'Mohsin Enterprises',
-      logo: mohsin_enterprises,
+      name: 'Mohsin Enterprises - Hayatabad, Peshawar',
+      logo: MohsinEnterprises,
       alt: 'Mohsin Enterprises'
     },
     {
-      name: 'Kite Brand',
-      logo: mohsin_enterprises,
+      name: 'Mohsin Match Factory - Peshawar',
+      logo: MohsinMatch,
       alt: 'Kite Brand'
     },
     {
-      name: 'FMCG Division',
-      logo: mohsin_enterprises,
+      name: 'Premier Boards - Sheikhupura, Lahore',
+      logo: PremierBoards,
       alt: 'FMCG Division'
     },
   ];
@@ -57,12 +61,12 @@ const Footer = () => {
             {companyLogos.map((company, index) => (
               <div 
                 key={index}
-                className="bg-white/10 hover:bg-white/20 p-4 rounded-lg transition-all duration-300 w-full flex items-center justify-center"
+                className="bg-white hover:bg-white/60 p-4 rounded-lg transition-all duration-300 w-full flex items-center justify-center"
               >
                 <img
                   src={company.logo}
                   alt={company.alt}
-                  className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-40 w-auto opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}
@@ -124,7 +128,7 @@ const Footer = () => {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-all duration-300">
-                  <h4 className="text-white! font-bold mb-3">{info.title}</h4>
+                  <h4 className="text-white font-bold mb-3">{info.title}</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start">
                       <FaMapMarkerAlt className="text-[#00AEEF] mt-1 mr-3 flex-shrink-0" />
@@ -179,12 +183,12 @@ const Footer = () => {
               © {new Date().getFullYear()} Aziz Group of Industries. All Rights Reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-white/60 hover:text-[#00AEEF] text-sm transition-colors">
+              <Link to="/privacy" className="text-white/60 hover:text-[#00AEEF] text-sm transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-white/60 hover:text-[#00AEEF] text-sm transition-colors">
+              </Link>
+              <Link to="/terms" className="text-white/60 hover:text-[#00AEEF] text-sm transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
