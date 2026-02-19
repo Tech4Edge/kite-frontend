@@ -27,9 +27,9 @@ const TrustSection = () => {
 
   const achievements = [
     {
-      number: '100,000+',
-      label: 'Spindles Capacity',
-      highlight: 'Textile Division',
+      number: '50+',
+      label: 'Years Manufacturing',
+      highlight: 'Since 1974',
     },
     {
       number: '10,000+',
@@ -42,9 +42,9 @@ const TrustSection = () => {
       highlight: 'Global Presence',
     },
     {
-      number: '80+',
-      label: 'Years in Business',
-      highlight: 'Since 1940s',
+      number: '#1',
+      label: 'Match Exporter',
+      highlight: 'Pakistan',
     },
   ];
 
@@ -72,9 +72,8 @@ const TrustSection = () => {
           </h3>
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
           <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            The group is largely self-financed and has an impeccable record with the financial institutions 
-            of Pakistan. Our commitment to quality, innovation, and ethical business practices has made us 
-            a trusted partner for businesses worldwide.
+            Mohsin Match Factory and Kite brand - largely self-financed with an impeccable record. Our commitment to quality, 
+            innovation, and ethical business practices has made us a trusted partner for businesses and households worldwide.
           </p>
         </div>
 
@@ -155,8 +154,8 @@ const TrustSection = () => {
             Ready to Partner with Excellence?
           </h3>
           <p className="text-[#666666] text-lg mb-8 max-w-2xl mx-auto">
-            Join the growing list of satisfied partners who trust Aziz Group for quality, 
-            reliability, and innovation.
+            Join the growing list of satisfied partners who trust Kite brand for quality, 
+            reliability, and innovation in FMCG products.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

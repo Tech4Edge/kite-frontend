@@ -1,4 +1,4 @@
-import { FaFire, FaIndustry, FaTshirt, FaLayerGroup } from 'react-icons/fa';
+import { FaFire, FaLayerGroup } from 'react-icons/fa';
 import premier_boards from "../assets/products/PremierFormicaBoards.jpeg"
 import BurqDetergent from "../assets/products/BurqDetergent.jpeg"
 import kite from "../assets/products/kite.jpeg"
@@ -13,21 +13,56 @@ const ProductsSection = () => {
       products: [
         {
           name: 'Kite Glow',
-          tagline: 'Exceptional cleaning power, superior stain removal, fabric care',
-          description: 'Premium flagship brand launched in March 2025',
-          features: ['Triple enzyme technology', 'Long-lasting freshness', 'Fabric protection', 'Affordable pricing']
+          tagline: 'کائٹ گلو لائے... بہتر پروخوشبو، بہترین صفائی!',
+          description: 'Premium flagship brand launched in March 2025 with Triple Enzyme technology',
+          features: [
+            'شادی کی دھوئین و ضرورت آسانی سے (Tough stains removed easily)',
+            'کپڑوں کی نگہداشت کے لیے (Fabric care protection)',
+            'کپڑوں کے رنگوں کا تحفظ (Color protection)'
+          ],
+          skus: [
+            { size: '2 KG', packing: 6, price: 511.50 },
+            { size: '1 KG', packing: 12, price: 269.70 },
+            { size: '500 GM', packing: 24, price: 139.50 },
+            { size: 'RS.99', packing: 48, price: 92.07 },
+            { size: 'RS.50', packing: 96, price: 46.50 },
+            { size: 'RS.20', packing: 96, price: 18.60 },
+            { size: 'RS.10', packing: 144, price: 9.30 }
+          ]
         },
         {
           name: 'BURQ Action',
-          tagline: 'Color protection and deep cleaning',
-          description: 'Mid-tier segment with advanced powder technology',
-          features: ['Color protection', 'Skin safety formula', 'Minimal variation', 'Value for money']
+          tagline: 'دلچ کا صفائی یا صرف برق ایکشن لائیا',
+          description: 'Mid-tier segment with Colour Guard technology for color protection',
+          features: [
+            'رنگوں کی چمک پہلے (Color brightness maintained)',
+            'بامومبدگی جلد کے عمروں (Skin safety formula)',
+            'کپڑوں کے رنگوں کی حفاظت (Color protection)'
+          ],
+          skus: [
+            { size: '2.3 KG', packing: 6, price: 464.07 },
+            { size: '1 KG', packing: 12, price: 213.90 },
+            { size: 'RS.99', packing: 24, price: 92.07 },
+            { size: 'RS.50', packing: 48, price: 46.50 },
+            { size: 'RS.20', packing: 96, price: 18.60 },
+            { size: 'RS.10', packing: 204, price: 9.30 }
+          ]
         },
         {
           name: 'Kite Dish Wash Bar',
-          tagline: 'Premium fragrance that beats market leaders',
-          description: 'Rapid market growth with advanced cleaning formula',
-          features: ['Premium lemon fragrance', 'Slow water dissolution', 'Beats market leaders', 'Competitive pricing']
+          tagline: 'جہاں صفائی، وہاں کائٹ ڈش واش بار',
+          description: 'Premium lemon fragrance with slow dissolution - beats market leaders',
+          features: [
+            'لیموں کی خوشبو کی سانحہ (Premium lemon fragrance)',
+            'چکنائی کا دشمن (Tough on grease)',
+            'کم کے زیادہ چلے (Long lasting)'
+          ],
+          skus: [
+            { size: 'SUPER BAR', packing: 36, price: 44.63 },
+            { size: 'LONG BAR', packing: 36, price: 35.91 },
+            { size: 'LARGE BAR', packing: 36, price: 17.96 },
+            { size: 'REGULAR BAR', packing: 48, price: 8.98 }
+          ]
         }
       ],
       services: 'Private labeling and toll manufacturing services available with minimal variation',
@@ -39,12 +74,30 @@ const ProductsSection = () => {
       icon: <FaFire className="text-6xl text-[#ED028C]" />,
       description: 'Pakistan\'s largest safety match manufacturer and exporter since 1995. Over 50 years of manufacturing excellence with Kite brand leading exports to 40+ countries worldwide.',
       features: [
+        'بل میں روشن، دربیہ استعمال (Light in rain, reliable always)',
+        'نمی سے محفوظ (Damp proof)',
+        'بہترین برانڈ (Best brand)',
+        'اضافی تیلیاں (Extra sticks)',
         'Carborised and damp proof',
         'Different striking surfaces (Dotted, Full Brush Coated, Plain Strip)',
-        'International safety standards',
-        'Sizes: Small (26), Regular (32, 42), Classic (45), Large (56 sticks)'
+        'International safety standards'
       ],
-      brands: ['Kite (Premium)', 'Simba (Export)', 'Chinook (Export)', 'Helicopter (Export)', 'Olympia', 'Tanga', 'Bird', 'Party'],
+      brands: [
+        { name: 'Kite', category: 'Premium - Local Brand' },
+        { name: 'Olympia', category: 'Local Brand' },
+        { name: 'Party', category: 'Local Brand' },
+        { name: 'Bird', category: 'Local Brand' },
+        { name: 'Tanga', category: 'Local Brand' },
+        { name: 'Simba', category: 'Export Brand' },
+        { name: 'Chinook', category: 'Export Brand' },
+        { name: 'Helicopter', category: 'Export Brand' }
+      ],
+      sizes: [
+        { size: 'LARGE', avgSticks: 58 },
+        { size: 'CLASSIC', avgSticks: 45 },
+        { size: 'REGULAR', avgSticks: 42 },
+        { size: 'SMALL', avgSticks: 32 }
+      ],
       facilities: [
         {
           name: 'Mohsin Match Factory',
@@ -63,44 +116,6 @@ const ProductsSection = () => {
         }
       ],
       image: kite
-    },
-    {
-      id: 'textile',
-      title: 'A.J Textile Mills Limited',
-      icon: <FaTshirt className="text-6xl text-[#00AEEF]" />,
-      description: 'One of the largest spinning mills in Pakistan with over 100,000 spindles, utilizing state-of-the-art ring spinning and Murata vortex spinning technology.',
-      features: [
-        '100% Cotton Yarn',
-        'Combed & Carded Yarn',
-        'Melange Yarn',
-        'Compact Yarn',
-        'Ring spinning and Murata vortex spinning',
-        'Two doubling units'
-      ],
-      capacity: 'Over 100,000 spindles',
-      technology: 'Latest Murata vortex spinning technology with in-house facilities',
-      location: 'Plot No 209, Industrial Estate, Gadoon Amazai, Swabi, Pakistan',
-      image: 'textile-products.jpg'
-    },
-    {
-      id: 'board',
-      title: 'Premier Formica - Board Division',
-      icon: <FaIndustry className="text-6xl text-[#ED028C]" />,
-      description: 'High-quality MDF, particle board, and lamination products for diverse applications across Pakistan.',
-      products: [
-        'MDF Boards - Premium quality medium density fiberboard',
-        'Particle Board (Chipboard) - Cost-effective solutions',
-        'Laminated Boards - Fashionable range of colors',
-        'Custom Sizes - Tailored to your requirements'
-      ],
-      features: [
-        'Latest production technology',
-        'Diverse color options',
-        'Quality assurance',
-        'Custom specifications available'
-      ],
-      location: '92-E, Industrial Estate, Jamrud Road, Peshawar, Pakistan',
-      image: premier_boards
     }
   ];
 
@@ -149,7 +164,7 @@ const ProductsSection = () => {
                 {product.id === 'matches' && (
                   <>
                     <div className="mb-6">
-                      <h4 className="text-[#222222] text-xl font-bold mb-3">Product Specifications:</h4>
+                      <h4 className="text-[#222222] text-xl font-bold mb-3">Product Features:</h4>
                       <ul className="grid md:grid-cols-2 gap-3">
                         {product.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start text-[#666666]">
@@ -161,12 +176,35 @@ const ProductsSection = () => {
                     </div>
 
                     <div className="mb-6">
-                      <h4 className="text-[#222222] text-xl font-bold mb-3">Our Brands:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="text-[#222222] text-xl font-bold mb-3">Available Sizes:</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-gradient-to-r from-[#ED028C] to-[#d4027a] text-white">
+                            <tr>
+                              <th className="px-6 py-3 text-left">SIZE</th>
+                              <th className="px-6 py-3 text-center">AVG STICKS PER BOX</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {product.sizes.map((size, idx) => (
+                              <tr key={idx} className="border-b hover:bg-gray-50">
+                                <td className="px-6 py-3 font-bold text-[#222222]">{size.size}</td>
+                                <td className="px-6 py-3 text-center text-[#666666]">{size.avgSticks}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-[#222222] text-xl font-bold mb-3">Our Match Brands:</h4>
+                      <div className="grid md:grid-cols-2 gap-3">
                         {product.brands.map((brand, idx) => (
-                          <span key={idx} className="bg-[#00AEEF] text-white px-4 py-2 rounded-full font-semibold text-sm">
-                            {brand}
-                          </span>
+                          <div key={idx} className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-4 py-3 rounded-lg font-semibold">
+                            <span className="text-lg">{brand.name}</span>
+                            <span className="text-sm opacity-90 ml-2">({brand.category})</span>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -192,17 +230,47 @@ const ProductsSection = () => {
                         <div key={idx} className="bg-white p-6 rounded-xl border-2 border-[#E0E0E0] hover:border-[#FF8ACE] transition-all duration-300">
                           <h4 className="text-[#222222] text-2xl font-bold mb-2">{item.name}</h4>
                           {item.tagline && (
-                            <p className="text-[#00AEEF] font-semibold mb-2 italic">"{item.tagline}"</p>
+                            <p className="text-[#00AEEF] font-semibold mb-2 italic text-lg">{item.tagline}</p>
                           )}
                           <p className="text-[#666666] mb-3">{item.description}</p>
-                          <ul className="space-y-2">
-                            {item.features.map((feature, fidx) => (
-                              <li key={fidx} className="flex items-center text-[#666666]">
-                                <span className="w-2 h-2 bg-[#ED028C] rounded-full mr-3"></span>
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
+                          
+                          <div className="mb-4">
+                            <h5 className="text-[#222222] font-bold mb-2">Key Features:</h5>
+                            <ul className="space-y-2">
+                              {item.features.map((feature, fidx) => (
+                                <li key={fidx} className="flex items-center text-[#666666]">
+                                  <span className="w-2 h-2 bg-[#ED028C] rounded-full mr-3"></span>
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {item.skus && (
+                            <div className="mt-4">
+                              <h5 className="text-[#222222] font-bold mb-3">Available Sizes & Pricing:</h5>
+                              <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                  <thead className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white">
+                                    <tr>
+                                      <th className="px-4 py-2 text-left">SKU</th>
+                                      <th className="px-4 py-2 text-center">Packing/Flexi</th>
+                                      <th className="px-4 py-2 text-right">TP/Unit (Rs.)</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {item.skus.map((sku, sidx) => (
+                                      <tr key={sidx} className="border-b hover:bg-gray-50">
+                                        <td className="px-4 py-2 font-semibold text-[#222222]">{sku.size}</td>
+                                        <td className="px-4 py-2 text-center text-[#666666]">{sku.packing}</td>
+                                        <td className="px-4 py-2 text-right text-[#00AEEF] font-bold">{sku.price.toFixed(2)}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -210,65 +278,6 @@ const ProductsSection = () => {
                     <div className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white p-6 rounded-xl">
                       <p className="font-semibold text-lg">💼 {product.services}</p>
                     </div>
-                  </>
-                )}
-
-                {/* Textile Products */}
-                {product.id === 'textile' && (
-                  <>
-                    <div className="bg-gradient-to-br from-[#00AEEF]/10 to-[#FFEFF9] p-6 rounded-xl border-2 border-[#00AEEF] mb-6">
-                      <p className="text-[#222222] text-xl font-bold mb-2">Capacity: {product.capacity}</p>
-                      <p className="text-[#666666]">{product.technology}</p>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-[#222222] text-xl font-bold mb-3">Product Range:</h4>
-                      <ul className="grid md:grid-cols-2 gap-3">
-                        {product.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start text-[#666666]">
-                            <span className="w-2 h-2 bg-[#00AEEF] rounded-full mr-3 mt-2"></span>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <p className="text-[#666666]">
-                      <strong className="text-[#222222]">Location:</strong> {product.location}
-                    </p>
-                  </>
-                )}
-
-                {/* Board Products */}
-                {product.id === 'board' && (
-                  <>
-                    <div className="mb-6">
-                      <h4 className="text-[#222222] text-xl font-bold mb-3">Product Lines:</h4>
-                      <ul className="space-y-3">
-                        {product.products.map((item, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <span className="w-2 h-2 bg-[#ED028C] rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                            <span className="text-[#666666]">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-[#FFEFF9] to-white p-6 rounded-xl border-2 border-[#FF8ACE] mb-6">
-                      <h4 className="text-[#222222] text-xl font-bold mb-3">Key Features:</h4>
-                      <ul className="grid md:grid-cols-2 gap-3">
-                        {product.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-center text-[#666666]">
-                            <span className="w-2 h-2 bg-[#ED028C] rounded-full mr-3"></span>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <p className="text-[#666666]">
-                      <strong className="text-[#222222]">Location:</strong> {product.location}
-                    </p>
                   </>
                 )}
               </div>
