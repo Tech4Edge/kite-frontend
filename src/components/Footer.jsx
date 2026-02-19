@@ -39,16 +39,16 @@ const Footer = () => {
 
   const contactInfo = [
     {
-      title: 'Head Office',
+      title: 'FMCG Division - Kite Brand',
       address: 'Industrial Estate, Old Jamrud Road, Peshawar, Pakistan',
       phone: '+92-(0)91-5815056, 5815057',
       email: 'fd@kitematchpk.com'
     },
     {
-      title: 'A.J Textile Mills',
-      address: 'Plot No 209, Industrial Estate, Gadoon Amazai, Swabi, Pakistan',
-      phone: '+92-(0)938-270109',
-      email: 'ajtm.gdn@azizgrp.com'
+      title: 'A.J Match Factory',
+      address: 'Sheikhupura, Punjab, Pakistan',
+      phone: '+92-(0)423-7332711-12',
+      email: 'match.export@azizgrp.com'
     },
   ];
 
@@ -79,10 +79,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#00AEEF]">Aziz Group</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#00AEEF]">Kite Brand</h3>
             <p className="text-white/80 mb-6 leading-relaxed">
-              A long-established, multi-diversified business concern of Pakistan since the 1940s. 
-              Largest safety match exporter and one of the leading textile manufacturers.
+              Pakistan's most trusted FMCG brand under Mohsin Match Factory. Premium detergents, safety matches, 
+              and dish wash products - over 50 years of manufacturing excellence.
             </p>
             <div className="flex space-x-4">
               <a
@@ -180,7 +180,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-white/60 text-sm">
-              © {new Date().getFullYear()} Aziz Group of Industries. All Rights Reserved.
+              © {new Date().getFullYear()} Kite Brand - Aziz Group of Industries. All Rights Reserved.
             </p>
             <div className="flex space-x-6">
               <Link to="/privacy" className="text-white/60 hover:text-[#00AEEF] text-sm transition-colors">

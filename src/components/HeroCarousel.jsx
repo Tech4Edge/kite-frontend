@@ -17,50 +17,47 @@ const HeroCarousel = () => {
   const slides = [
     {
       id: 1,
-      title: "Textile Division",
-      subtitle: "A.J Textile Mills Ltd. - Over 100,000 Spindles",
+      title: "Kite Glow Detergent",
+      subtitle: "Premium Detergent with Triple Enzyme Technology",
       description:
-        "One of Pakistan's largest spinning mills with state-of-the-art ring spinning and Murata vortex spinning technology.",
-      image: textile_img,
-      link: "/textile-division",
-      gradient: "from-blue-900/80 via-indigo-800/60 to-transparent",
+        "Exceptional cleaning power with superior stain removal, fabric care, and long-lasting freshness. Setting the standard for excellence in the detergent industry.",
+      image: match_img,
+      link: "/products/kite-glow",
+      gradient: "from-blue-900/80 via-blue-700/60 to-transparent",
       accentColor: "#00AEEF",
     },
     {
       id: 2,
-      title: "FMCG Division",
-      subtitle:
-        "The group has the largest match manufacturing operation and also the largest exporter of safety matches.",
+      title: "Kite Safety Matches",
+      subtitle: "Pakistan's Most Trusted Match Brand",
       description:
-        "Premium quality safety matches manufactured with the latest technology. Brands: Kite, Olympia, Tanga, Bird, Party, and more.",
+        "Premium quality safety matches - carborised, damp-proof, and manufactured with the latest technology. Exporting to 40+ countries worldwide since 1995.",
       image: match_img,
-      link: "/fmcg-division",
+      link: "/products/kite-matches",
       gradient: "from-red-900/80 via-orange-800/60 to-transparent",
       accentColor: "#FF6B35",
     },
     {
       id: 3,
-      title: "Board Division",
-      subtitle:
-        "The group has a sizable production of MDF, Particle Board and Lamination of boards.",
+      title: "Kite Dish Wash Bar",
+      subtitle: "Premium Fragrance & Advanced Cleaning Formula",
       description:
-        "High-quality MDF, particle board, and lamination products for diverse applications across Pakistan.",
-      image: board_img,
-      link: "/board-division",
-      gradient: "from-amber-900/80 via-yellow-800/60 to-transparent",
-      accentColor: "#D4AF37",
+        "Lemon fragrance with slow dissolution for longevity. Beats market leaders while maintaining competitive pricing.",
+      image: match_img,
+      link: "/products/kite-dishwash",
+      gradient: "from-green-900/80 via-emerald-800/60 to-transparent",
+      accentColor: "#10B981",
     },
     {
       id: 4,
-      title: "Real Estate Division",
-      subtitle:
-        "The group has started a real estate project with the name of AJ Tower at Gulberg Green Islamabad.",
+      title: "FMCG Excellence",
+      subtitle: "50+ Years of Manufacturing Excellence - 40+ Countries",
       description:
-        "Premium mixed-use developments with sustainable and innovative design including AJ Towers and AJ Corporate Avenue.",
-      image: real_estate_img,
-      link: "/real-estate",
-      gradient: "from-teal-900/80 via-emerald-800/60 to-transparent",
-      accentColor: "#10B981",
+        "Mohsin Match Factory & FMCG Division - Over 10,000 employees delivering quality products trusted by households and businesses worldwide.",
+      image: match_img,
+      link: "/fmcg-division",
+      gradient: "from-purple-900/80 via-purple-700/60 to-transparent",
+      accentColor: "#8B5CF6",
     },
   ];
 
@@ -115,7 +112,7 @@ const HeroCarousel = () => {
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent animate-pulse"></div>
                     <span className="text-white text-sm font-bold tracking-[0.3em] uppercase">
-                      Excellence in Every Thread
+                      Quality You Can Trust
                     </span>
                   </div>
 

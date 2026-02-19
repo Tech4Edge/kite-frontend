@@ -7,35 +7,35 @@ const BriefPromotion = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            Special Offers & Promotions
+            Why Choose Kite Brand?
           </h2>
           <p className="text-text-white-90 text-lg max-w-3xl mx-auto">
-            Take advantage of our competitive pricing and special packages designed for your business needs
+            Premium quality products with competitive pricing - from detergents to matches and dish wash bars
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaGift className="text-5xl text-text-white mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-3">Bulk Orders</h3>
+            <FaAward className="text-5xl text-text-white mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-3">Premium Quality</h3>
             <p className="text-text-white-90">
-              Special discounts available for large quantity orders. Perfect for wholesalers and distributors.
+              Kite Glow with triple enzyme technology and Kite matches meeting international safety standards.
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaAward className="text-5xl text-text-white mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-3">Premium Quality</h3>
+            <FaGift className="text-5xl text-text-white mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-3">Value for Money</h3>
             <p className="text-text-white-90">
-              Internationally certified products meeting the highest quality standards at competitive prices.
+              Competitive pricing with bulk order discounts for wholesalers and distributors across Pakistan.
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
             <FaHandshake className="text-5xl text-text-white mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-3">Custom Solutions</h3>
+            <h3 className="text-2xl font-bold mb-3">Trusted Brand</h3>
             <p className="text-text-white-90">
-              Tailored packaging and private labeling services for your brand requirements.
+              50+ years of manufacturing excellence. Exporting to 40+ countries with proven reliability.
             </p>
           </div>
         </div>
@@ -45,7 +45,7 @@ const BriefPromotion = () => {
             to="/products"
             className="inline-block bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300 shadow-lg"
           >
-            View All Products & Offers
+            Explore Kite Products
           </Link>
         </div>
       </div>

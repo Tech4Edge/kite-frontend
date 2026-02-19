@@ -15,20 +15,12 @@ import MembershipAchievements from '../components/about/MembershipAchievements';
 
 const AboutUsPage = () => {
   const timeline = [
-    { year: '1950s', event: 'Started with trading of commodities' },
-    { year: '1960', event: 'Aziz Ice Factory and Cold Storage' },
     { year: '1974', event: 'Mohsin Match Factory - Earliest Private Sector Manufacturing plant in KPK' },
-    { year: '1981', event: 'Premier Formica' },
     { year: '1990', event: 'Mohsin Enterprises - Group 2nd Match Manufacturing Unit' },
-    { year: '1992', event: 'AJ Textile Started with 15,000 spindles' },
-    { year: '1997', event: 'Added 15,000 spindles' },
-    { year: '2003', event: 'Added 2,000 spindles & 5 MW Power Plant' },
-    { year: '2004', event: 'Premier Chipboard - Started particle board unit' },
+    { year: '1995', event: 'Started Exporting Safety Matches - Pakistan\'s Largest Exporter' },
     { year: '2006', event: 'AJ Match - Group 3rd Match Manufacturing unit in Sheikhupura' },
-    { year: '2016', event: '2 MVS Production Started & 10,000 Spindle added' },
-    { year: '2019', event: 'Addition of 20,000 spindles, 4.2 MW, 1 MW Solar & 2 MVS Machines' },
-    { year: '2019', event: 'Premier MDF - Purchased MDF Manufacturing Plant' },
-    { year: '2020', event: 'AJ Tower - Excavation Started' },
+    { year: '2025', event: 'Kite Glow Detergent Launch - Premium Detergent with Triple Enzyme Technology' },
+    { year: '2025', event: 'Kite Dish Wash Bar - Rapid Market Growth with Premium Formula' },
   ];
 
   const chairmanPositions = [
@@ -66,14 +58,14 @@ const AboutUsPage = () => {
   ];
 
   const companies = [
+    'Mohsin Match Factory (Pvt.) Limited - Est. 1974',
+    'Mohsin Enterprises (Pvt.) Limited - Est. 1990',
+    'A.J Match (Pvt.) Limited - Est. 2006',
+    'FMCG Division - Kite Brand (Detergents, Matches, Dish Wash)',
     'A.J Textile Mills Limited',
-    'Mohsin Match Factory (Pvt.) Limited',
-    'A.J Match (Pvt.) Limited',
     'Premier Formica Industries Limited',
     'Premier Chipboard Pvt Limited',
-    'Aziz Ice factory and Cold Storage',
-    'Premier MDF',
-    'A.J Towers'
+    'Premier MDF'
   ];
 
   const chairmanMessage = [
@@ -90,8 +82,8 @@ const AboutUsPage = () => {
 
   const managingDirectorMessage = [
     "Mr. Waleed brings with a strong academic background and over 20 years of hands-on experience in Marketing, Sales, and Distribution. He is a graduate of the University of Wisconsin–Madison and holds an MBA Degree from LUMS, where he was awarded the Bronze Medal. Mr. Waleed's professional journey includes valuable experience with Pakistan Tobacco Company, which played a key role in shaping the structured operations, brand building, and market execution.",
-    "For the past 10 years, Mr. Waleed is serving as Managing Director – FMCG Division, leading the business with a clear focus on consumer needs, product quality, and sustainable growth. Our FMCG portfolio, comprising safety matches, detergents, and dish wash soap bars, which is built on the principles of reliability, value for money, and consistent performance.",
-    "Mr. Waleed's strategic vision emphasizes that sustainable success in the FMCG sector is built on deep market understanding, operational excellence, and an uncompromising commitment to quality. Supported by a highly capable team and a robust distribution infrastructure, the company continues to strengthen its nationwide presence while consistently delivering trusted everyday products to households across the country."
+    "For the past 10 years, Mr. Waleed is serving as Managing Director – FMCG Division, leading the Kite brand with a clear focus on consumer needs, product quality, and sustainable growth. Our flagship Kite Glow detergent, launched in March 2025, has rapidly gained market recognition for its exceptional cleaning power. Kite Dish Wash Bar and Kite Safety Matches continue to strengthen our position as Pakistan's most trusted FMCG brand.",
+    "Mr. Waleed's strategic vision emphasizes that sustainable success in the FMCG sector is built on deep market understanding, operational excellence, and an uncompromising commitment to quality. With 10,000+ employees and presence in 40+ countries, the Kite brand continues to deliver trusted everyday products to households and businesses across Pakistan and internationally."
   ];
 
   return (

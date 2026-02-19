@@ -17,21 +17,19 @@ const Navbar = () => {
       href: '/products',
       megaMenu: [
         {
-          title: 'Safety Matches',
-          items: [
-            { name: 'Kite Matches', href: '/products/kite-matches' },
-            { name: 'Olympia', href: '/products/olympia' },
-            { name: 'Tanga', href: '/products/tanga' },
-            { name: 'Bird', href: '/products/bird' },
-            { name: 'Party', href: '/products/party' },
-          ],
-        },
-        {
-          title: 'Detergent Products',
+          title: 'Kite Detergents',
           items: [
             { name: 'Kite Glow', href: '/products/kite-glow' },
             { name: 'BURQ Action', href: '/products/burq-action' },
             { name: 'Vero Detergent', href: '/products/vero' },
+          ],
+        },
+        {
+          title: 'Kite Matches',
+          items: [
+            { name: 'Kite Matches', href: '/products/kite-matches' },
+            { name: 'Export Brands', href: '/products/simba' },
+            { name: 'Local Brands', href: '/products/olympia' },
           ],
         },
         {
@@ -41,21 +39,22 @@ const Navbar = () => {
           ],
         },
         {
-          title: 'Export Brands',
+          title: 'Other Brands',
           items: [
-            { name: 'Simba Matches', href: '/products/simba' },
-            { name: 'Chinook', href: '/products/chinook' },
-            { name: 'Helicopter', href: '/products/helicopter' },
+            { name: 'Olympia', href: '/products/olympia' },
+            { name: 'Tanga', href: '/products/tanga' },
+            { name: 'Bird', href: '/products/bird' },
+            { name: 'Party', href: '/products/party' },
           ],
         },
       ],
     },
     {
       name: 'Divisions',
-      href: '/textile-division',
+      href: '/fmcg-division',
       dropdown: [
+        { name: 'FMCG Division (Kite)', href: '/fmcg-division' },
         { name: 'Textile Division', href: '/textile-division' },
-        { name: 'FMCG Division', href: '/fmcg-division' },
         { name: 'Board Division', href: '/board-division' },
         { name: 'Real Estate', href: '/real-estate' },
       ],

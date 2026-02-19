@@ -9,10 +9,10 @@ const FMCGDivisionPage = () => {
       <section className="relative text-white py-20" style={{backgroundImage: `url(${fmgc_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">
-            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">FMCG Division</h1>
-            <p className="text-text-white text-xl md:text-2xl mb-4">Pakistan's Largest Match Manufacturer</p>
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">Kite Brand - FMCG Division</h1>
+            <p className="text-text-white text-xl md:text-2xl mb-4">Pakistan's Most Trusted FMCG Brand</p>
             <p className="text-text-white text-lg md:text-xl max-w-3xl mx-auto">
-              Exporting premium quality safety matches to over 40 countries worldwide
+              Premium detergents, safety matches, and dish wash products - 50+ years of manufacturing excellence
             </p>
           </div>
         </div>
@@ -24,18 +24,23 @@ const FMCGDivisionPage = () => {
           {/* Overview */}
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-6 text-center">
-              Leading Match Manufacturer & Exporter
+              Kite Brand - Quality You Can Trust
             </h2>
             <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
               <p className="text-lg text-[#666666] leading-relaxed mb-6">
-                The group has the largest match manufacturing operation and also the largest exporter of safety matches. 
-                With exports worth over $100 million annually, we supply premium quality safety matches to Europe, Asia, 
-                and Africa.
+                <strong className="text-[#00AEEF]">Kite</strong> is the flagship brand of Mohsin Match Factory (Pvt.) Limited, 
+                part of the prestigious Aziz Group. With over 50 years of manufacturing excellence, we have established ourselves 
+                as Pakistan's largest and most trusted FMCG manufacturer, employing over 10,000 people across the nation.
+              </p>
+              <p className="text-lg text-[#666666] leading-relaxed mb-6">
+                Our <strong className="text-[#00AEEF]">Kite Glow detergent</strong>, launched in March 2025, features triple enzyme 
+                technology for exceptional cleaning power and superior stain removal. <strong className="text-[#ED028C]">Kite Dish Wash Bar</strong> 
+                has rapidly captured market share with its premium lemon fragrance and advanced formula that beats market leaders.
               </p>
               <p className="text-lg text-[#666666] leading-relaxed">
-                Our commitment to quality and innovation has made us a trusted partner for retailers and distributors 
-                worldwide. We are also setting up a state-of-the-art lighter manufacturing facility to expand our product 
-                portfolio.
+                <strong className="text-[#00AEEF]">Kite Safety Matches</strong> are renowned worldwide, exporting to over 40 countries 
+                since 1995. Our matches are carborised, damp-proof, and manufactured with different striking surfaces to meet diverse 
+                customer needs. We also offer private labeling for toll manufacturing with minimal variation.
               </p>
             </div>
           </div>
@@ -44,11 +49,11 @@ const FMCGDivisionPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
               <div className="bg-[#00AEEF] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaDollarSign className="text-white text-2xl" />
+                <FaIndustry className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">$100M+ Exports</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">50+ Years</h3>
               <p className="text-[#666666]">
-                Annual export value to international markets
+                Manufacturing excellence since 1974
               </p>
             </div>
 
@@ -58,17 +63,17 @@ const FMCGDivisionPage = () => {
               </div>
               <h3 className="text-xl font-bold text-[#222222] mb-3">40+ Countries</h3>
               <p className="text-[#666666]">
-                Global presence across Europe, Asia & Africa
+                Global presence across continents
               </p>
             </div>
 
             <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
               <div className="bg-[#0095CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaIndustry className="text-white text-2xl" />
+                <FaDollarSign className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">Largest in Pakistan</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">#1 in Pakistan</h3>
               <p className="text-[#666666]">
-                Leading match manufacturing operation
+                Largest match manufacturer & exporter
               </p>
             </div>
 
@@ -76,9 +81,9 @@ const FMCGDivisionPage = () => {
               <div className="bg-[#00AEEF] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaFire className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">Premium Quality</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">10,000+ Staff</h3>
               <p className="text-[#666666]">
-                International safety and quality standards
+                Employees across the nation
               </p>
             </div>
           </div>
@@ -86,48 +91,60 @@ const FMCGDivisionPage = () => {
           {/* Product Brands */}
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-8 text-center">
-              Our Match Brands
+              Kite Product Portfolio
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-primary to-primary-600 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">Kite</h3>
-                <p className="text-lg text-text-white">
-                  Our flagship brand known for reliability and quality across international markets
+                <h3 className="text-2xl font-bold mb-4">Kite Glow Detergent</h3>
+                <p className="text-lg text-text-white mb-4">
+                  Premium detergent with triple enzyme technology for exceptional cleaning, superior stain removal, and fabric care
                 </p>
+                <ul className="text-sm space-y-2">
+                  <li>• Available: 2KG, 1KG, 500GM, RS.99, RS.50, RS.20, RS.10</li>
+                  <li>• Launched: March 2025</li>
+                </ul>
               </div>
 
               <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">Olympia</h3>
-                <p className="text-lg text-text-white">
-                  Premium safety matches for discerning customers worldwide
+                <h3 className="text-2xl font-bold mb-4">Kite Safety Matches</h3>
+                <p className="text-lg text-text-white mb-4">
+                  Pakistan's most trusted matches - carborised, damp-proof, and exported to 40+ countries
                 </p>
+                <ul className="text-sm space-y-2">
+                  <li>• Sizes: Large (58 sticks), Classic (45 sticks), Regular (42 sticks)</li>
+                  <li>• Different striking surfaces available</li>
+                </ul>
               </div>
 
               <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">Tanga</h3>
+                <h3 className="text-2xl font-bold mb-4">Kite Dish Wash Bar</h3>
+                <p className="text-lg text-text-white mb-4">
+                  Premium lemon fragrance with slow dissolution - beats market leaders at competitive prices
+                </p>
+                <ul className="text-sm space-y-2">
+                  <li>• Sizes: Super Bar, Long Bar, Large Bar, Regular Bar</li>
+                  <li>• Rapid market growth achieved</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl shadow-lg p-8 text-text-white">
+                <h3 className="text-2xl font-bold mb-4">BURQ Action</h3>
                 <p className="text-lg text-text-white">
-                  Trusted quality matches for everyday use
+                  Mid-tier detergent with advanced technology, color protection, and skin safety formula
                 </p>
               </div>
 
               <div className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">Bird</h3>
+                <h3 className="text-2xl font-bold mb-4">Export Match Brands</h3>
                 <p className="text-lg text-text-white">
-                  Reliable and affordable safety matches
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">Party</h3>
-                <p className="text-lg text-text-white">
-                  Special occasion matches with premium quality
+                  Simba, Chinook, Helicopter - Premium brands for international markets
                 </p>
               </div>
 
               <div className="bg-gradient-to-br from-primary-800 to-primary-900 rounded-xl shadow-lg p-8 text-text-white">
-                <h3 className="text-2xl font-bold mb-4">& More</h3>
+                <h3 className="text-2xl font-bold mb-4">Local Match Brands</h3>
                 <p className="text-lg text-text-white">
-                  Wide range of brands for diverse market needs
+                  Olympia, Tanga, Bird, Party - Quality matches for diverse domestic needs
                 </p>
               </div>
             </div>
@@ -140,45 +157,45 @@ const FMCGDivisionPage = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Advanced Technology</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">Detergent Manufacturing Unit</h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <span className="text-[#ED028C] mr-2 font-bold">▸</span>
-                    <span>State-of-the-art match manufacturing equipment</span>
+                    <span>State-of-the-art facility delivering high-performance cleaning solutions</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#ED028C] mr-2 font-bold">▸</span>
-                    <span>Automated production lines for consistency</span>
+                    <span>Triple enzyme technology in Kite Glow for superior stain removal</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#ED028C] mr-2 font-bold">▸</span>
-                    <span>Quality control at every production stage</span>
+                    <span>Advanced powder technology with minimal variation</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#ED028C] mr-2 font-bold">▸</span>
-                    <span>International safety standards compliance</span>
+                    <span>Private labeling available for toll manufacturing</span>
                   </li>
                 </ul>
               </div>
 
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Global Reach</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">Match Manufacturing Units</h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <span className="text-[#00AEEF] mr-2 font-bold">▸</span>
-                    <span>Export to Europe, Asia, and Africa</span>
+                    <span>Mohsin Match Factory (Peshawar) - Established 1974</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00AEEF] mr-2 font-bold">▸</span>
-                    <span>Established distribution networks worldwide</span>
+                    <span>Mohsin Enterprises (Peshawar) - Launched 1990</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00AEEF] mr-2 font-bold">▸</span>
-                    <span>Trusted by major retailers and distributors</span>
+                    <span>A.J Match Factory (Sheikhupura) - Started 2006</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#00AEEF] mr-2 font-bold">▸</span>
-                    <span>Continuous market expansion initiatives</span>
+                    <span>Carborised and damp-proof products with different striking surfaces</span>
                   </li>
                 </ul>
               </div>
@@ -188,14 +205,17 @@ const FMCGDivisionPage = () => {
           {/* Future Expansion */}
           <div className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-xl shadow-lg p-8 md:p-12 text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              Future Expansion
+              Our Commitment to Quality
             </h2>
             <div className="max-w-3xl mx-auto text-center">
-              <h3 className="text-2xl font-bold mb-4">Lighter Manufacturing Facility</h3>
+              <p className="text-lg leading-relaxed text-text-white mb-4">
+                Renowned for our commitment to quality and professionalism, Kite brand has rapidly gained market recognition 
+                for exceptional cleaning power, fabric care, and affordability. Our flagship brand, Kite Glow, launched in 
+                March 2025, has set new standards of excellence in the detergent industry.
+              </p>
               <p className="text-lg leading-relaxed text-text-white">
-                We are currently setting up a state-of-the-art lighter manufacturing facility to diversify our product 
-                portfolio and meet growing market demand. This expansion will further strengthen our position as a 
-                leading FMCG manufacturer in the region.
+                With over 50 years of manufacturing experience and exporting to 40+ countries, we continue to strengthen 
+                our position as Pakistan's most trusted FMCG brand, always maintaining our uncompromising commitment to quality.
               </p>
             </div>
           </div>
@@ -206,10 +226,10 @@ const FMCGDivisionPage = () => {
       <section className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Interested in Our FMCG Products?
+            Interested in Kite Brand Products?
           </h2>
           <p className="text-xl text-text-white mb-8 max-w-2xl mx-auto">
-            Contact us to learn more about our match brands and export opportunities
+            Contact us to learn more about Kite detergents, matches, dish wash bars, and export opportunities
           </p>
           <a
             href="/contact"

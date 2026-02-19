@@ -6,68 +6,69 @@ import kite from "../assets/products/kite.jpeg"
 const ProductsSection = () => {
   const products = [
     {
-      id: 'matches',
-      title: 'Match Manufacturing',
-      icon: <FaFire className="text-6xl text-[#ED028C]" />,
-      description: 'Pakistan\'s largest safety match exporter since 1995. Three state-of-the-art manufacturing facilities producing premium quality safety matches.',
-      features: [
-        'Sizes: Small, Regular, Classic, Large',
-        'Carborised and damp proof',
-        'Dotted with margins, fully tinted, or plain strip',
-        'In-house printing and packaging facilities'
+      id: 'detergents',
+      title: 'Kite Detergents - Premium Cleaning Solutions',
+      icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
+      description: 'Kite Glow detergent, launched in March 2025, features triple enzyme technology for exceptional cleaning power, superior stain removal, fabric care, and affordability - setting the standard for excellence in the detergent industry.',
+      products: [
+        {
+          name: 'Kite Glow',
+          tagline: 'Exceptional cleaning power, superior stain removal, fabric care',
+          description: 'Premium flagship brand launched in March 2025',
+          features: ['Triple enzyme technology', 'Long-lasting freshness', 'Fabric protection', 'Affordable pricing']
+        },
+        {
+          name: 'BURQ Action',
+          tagline: 'Color protection and deep cleaning',
+          description: 'Mid-tier segment with advanced powder technology',
+          features: ['Color protection', 'Skin safety formula', 'Minimal variation', 'Value for money']
+        },
+        {
+          name: 'Kite Dish Wash Bar',
+          tagline: 'Premium fragrance that beats market leaders',
+          description: 'Rapid market growth with advanced cleaning formula',
+          features: ['Premium lemon fragrance', 'Slow water dissolution', 'Beats market leaders', 'Competitive pricing']
+        }
       ],
-      brands: ['Kite', 'Olympia', 'Tanga', 'Bird', 'Party', 'Simba', 'Helicopter', 'Chinook'],
+      services: 'Private labeling and toll manufacturing services available with minimal variation',
+      image: BurqDetergent
+    },
+    {
+      id: 'matches',
+      title: 'Kite Safety Matches - Pakistan\'s #1 Brand',
+      icon: <FaFire className="text-6xl text-[#ED028C]" />,
+      description: 'Pakistan\'s largest safety match manufacturer and exporter since 1995. Over 50 years of manufacturing excellence with Kite brand leading exports to 40+ countries worldwide.',
+      features: [
+        'Carborised and damp proof',
+        'Different striking surfaces (Dotted, Full Brush Coated, Plain Strip)',
+        'International safety standards',
+        'Sizes: Small (26), Regular (32, 42), Classic (45), Large (56 sticks)'
+      ],
+      brands: ['Kite (Premium)', 'Simba (Export)', 'Chinook (Export)', 'Helicopter (Export)', 'Olympia', 'Tanga', 'Bird', 'Party'],
       facilities: [
         {
           name: 'Mohsin Match Factory',
-          location: 'Peshawar - Established 1975',
-          note: 'One of the first manufacturers in Pakistan'
-        },
-        {
-          name: 'A.J Match Factory',
-          location: 'Sheikhupura, Lahore',
-          note: 'Largest match facility in Pakistan'
+          location: 'Peshawar - Established 1974',
+          note: 'Earliest private sector match manufacturer in KPK'
         },
         {
           name: 'Mohsin Enterprises',
-          location: 'Hayatabad, Peshawar',
-          note: 'Latest technology implementation'
+          location: 'Hayatabad, Peshawar - Established 1990',
+          note: 'Group\'s 2nd match manufacturing unit'
+        },
+        {
+          name: 'A.J Match Factory',
+          location: 'Sheikhupura, Lahore - Established 2006',
+          note: 'Group\'s 3rd match manufacturing unit'
         }
       ],
       image: kite
     },
     {
-      id: 'detergents',
-      title: 'Detergent Manufacturing',
-      icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
-      description: 'Premium quality detergents with superior cleaning power. Launched with advanced formulas for all fabric types.',
-      products: [
-        {
-          name: 'Kite Glow',
-          tagline: 'Freshness you can see, softness you can feel',
-          description: 'Flagship brand launched in March 2025',
-          features: ['Superior whiteness', 'Long-lasting fragrance', 'Fabric protection']
-        },
-        {
-          name: 'BURQ Action',
-          tagline: 'Pure clean with colour protection',
-          description: 'Mid-tier segment for color fabrics',
-          features: ['Color protection', 'Deep cleaning', 'Value for money']
-        },
-        {
-          name: 'Kite Dish Wash Bar',
-          description: 'Premium dish washing solution',
-          features: ['Premium fragrance', 'Slow water dissolution', 'Tough on grease']
-        }
-      ],
-      services: 'Private labeling and toll manufacturing services available',
-      image: BurqDetergent
-    },
-    {
       id: 'textile',
       title: 'A.J Textile Mills Limited',
       icon: <FaTshirt className="text-6xl text-[#00AEEF]" />,
-      description: 'One of the largest spinning mills in Pakistan with over 100,000 spindles, utilizing state-of-the-art technology.',
+      description: 'One of the largest spinning mills in Pakistan with over 100,000 spindles, utilizing state-of-the-art ring spinning and Murata vortex spinning technology.',
       features: [
         '100% Cotton Yarn',
         'Combed & Carded Yarn',
@@ -85,7 +86,7 @@ const ProductsSection = () => {
       id: 'board',
       title: 'Premier Formica - Board Division',
       icon: <FaIndustry className="text-6xl text-[#ED028C]" />,
-      description: 'High-quality MDF, particle board, and lamination products for diverse applications.',
+      description: 'High-quality MDF, particle board, and lamination products for diverse applications across Pakistan.',
       products: [
         'MDF Boards - Premium quality medium density fiberboard',
         'Particle Board (Chipboard) - Cost-effective solutions',
@@ -112,12 +113,12 @@ const ProductsSection = () => {
             Our Products
           </h2>
           <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-            Quality Products Across Multiple Industries
+            Kite Brand - Quality Products You Can Trust
           </h3>
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
           <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            With decades of manufacturing excellence, we deliver premium products that meet international 
-            quality standards and serve diverse market needs across Pakistan and 40+ countries worldwide.
+            With over 50 years of manufacturing excellence, Kite brand delivers premium FMCG products that meet international 
+            quality standards. From detergents to safety matches and dish wash bars - trusted by households and businesses across Pakistan and 40+ countries worldwide.
           </p>
         </div>
 
@@ -285,10 +286,10 @@ const ProductsSection = () => {
         {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center">
           <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
-            Interested in Our Products?
+            Interested in Kite Brand Products?
           </h3>
           <p className="text-text-white-90 text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
-            Contact us for product inquiries, bulk orders, private labeling services, or export opportunities.
+            Contact us for product inquiries, bulk orders, private labeling services, or export opportunities for Kite detergents, matches, and dish wash products.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

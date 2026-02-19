@@ -40,8 +40,8 @@ const AboutSection = () => {
     },
     {
       icon: <FaIndustry className="text-5xl text-[#ED028C]" />,
-      number: '100,000+',
-      label: 'Spindles',
+      number: '#1',
+      label: 'Match Exporter',
     },
     {
       icon: <FaGlobeAsia className="text-5xl text-[#00AEEF]" />,
@@ -50,7 +50,7 @@ const AboutSection = () => {
     },
     {
       icon: <FaAward className="text-5xl text-[#ED028C]" />,
-      number: '80+',
+      number: '50+',
       label: 'Years Legacy',
     },
   ];
@@ -64,8 +64,11 @@ const AboutSection = () => {
             About Us
           </h2>
           <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-            Aziz Group of Industries
+            Kite - FMCG Excellence
           </h3>
+          <p className="text-[#666666] text-xl max-w-3xl mx-auto mb-4">
+            Part of Aziz Group of Industries
+          </p>
           <img src={aziz_group_logo} className='w-50 h-50 mx-auto mt-3 mb-6' alt="Aziz Group of Industries" />
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
         </div>
@@ -74,19 +77,25 @@ const AboutSection = () => {
         <div className="mb-16">
           <div className="bg-gradient-to-r from-[#FFEFF9] to-white p-8 md:p-12 rounded-2xl border-2 border-[#FF8ACE] shadow-lg hover:shadow-2xl transition-all duration-300">
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              Aziz Group is a <span className="font-bold text-[#00AEEF]">long-established, well-reputed, and multi-diversified</span> business 
-              concern of Pakistan. Started in the <span className="font-bold">1940s</span> with commodity trading, 
-              the group ventured into manufacturing in the early sixties by setting up an ice factory and cold storage.
+              <span className="font-bold text-[#00AEEF] text-2xl">Kite Brand</span> represents the pinnacle of FMCG excellence under 
+              <span className="font-bold text-[#ED028C]"> Mohsin Match Factory (Pvt.) Limited</span>, part of the Aziz Group of Industries. 
+              With <span className="font-bold">over 50 years of manufacturing excellence</span> since 1974, we have become 
+              <span className="font-bold text-[#ED028C]"> Pakistan's largest safety match manufacturer and exporter</span>.
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              The group now comprises a textile spinning mill with over <span className="font-bold text-[#00AEEF]">100,000 spindles</span>, 
-              the <span className="font-bold text-[#ED028C]">largest safety match manufacturing operation in Pakistan</span>, 
-              a laminated board division, a particle board unit, cold storage, and real estate projects in Islamabad.
+              Our <span className="font-bold text-[#00AEEF]">Kite Glow detergent</span>, launched in March 2025, has rapidly gained market recognition 
+              due to its <span className="font-bold">exceptional cleaning power, superior stain removal, and fabric care</span>. 
+              Complementing Kite Glow, <span className="font-bold text-[#ED028C]">BURQ Action</span> caters to our mid-tier market segment.
+            </p>
+            <p className="text-[#222222] text-lg leading-relaxed mb-6">
+              <span className="font-bold text-[#00AEEF]">Kite Dish Wash Bar</span> has rapidly achieved good market growth due to its 
+              <span className="font-bold">premium fragrance, advanced cleaning formulation, and slow water dissolution</span> that not only matches 
+              but beats market leaders while maintaining competitive pricing.
             </p>
             <p className="text-[#666666] text-lg leading-relaxed">
-              The group is largely self-financed and has an <span className="font-bold">impeccable record</span> with 
-              financial institutions of Pakistan. We are one of the largest employers in Khyber Pakhtunkhwa, 
-              with operations across three major cities.
+              We employ <span className="font-bold text-[#ED028C]">over 10,000 employees</span> across the nation and export to 
+              <span className="font-bold text-[#00AEEF]"> over 40 countries</span> since 1995. Our Kite brand matches are renowned 
+              for being <span className="font-bold">carborised and damp-proof</span>, meeting international safety standards.
             </p>
           </div>
         </div>
@@ -118,7 +127,7 @@ const AboutSection = () => {
               Our Leadership
             </h3>
             <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-              Meet the visionary leaders driving Aziz Group's success across multiple industries
+              Meet the visionary leaders driving Kite brand's success and FMCG excellence
             </p>
           </div>
 
@@ -160,10 +169,10 @@ const AboutSection = () => {
             Our Mission & Vision
           </h3>
           <p className="text-text-white-90 text-lg max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            We are committed to excellence in manufacturing and distribution, providing quality products and 
-            services while contributing to the economic development of Pakistan. Our vision is to remain a 
-            trusted partner for international brands and to continue expanding our presence across diverse 
-            industries, always maintaining our core values of integrity, innovation, and social responsibility.
+            We are committed to excellence in FMCG manufacturing and distribution, providing quality Kite brand products 
+            to households and businesses. Our vision is to make Kite the most trusted household brand in Pakistan and 
+            continue expanding our global presence, always maintaining our core values of quality, integrity, 
+            innovation, and customer satisfaction.
           </p>
         </div>
       </div>

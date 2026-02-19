@@ -12,11 +12,11 @@ const BriefExport = () => {
               Global Reach
             </h2>
             <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-              Exporting to 40+ Countries
+              Kite Matches - Exporting to 40+ Countries
             </h3>
             <p className="text-[#666666] text-lg leading-relaxed mb-8">
-              Since 1995, Aziz Group has been Pakistan's largest safety match exporter, serving markets 
-              across Europe, Asia, Africa, and the Middle East with premium quality products.
+              Since 1995, Mohsin Match Factory has been Pakistan's largest safety match exporter, delivering 
+              Kite brand matches across Europe, Asia, Africa, and the Middle East with uncompromising quality.
             </p>
 
             <div className="space-y-4 mb-8">
