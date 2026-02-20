@@ -20,12 +20,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/export" element={<ExportPage />} />
-          <Route path="/textile-division" element={<TextileDivisionPage />} />
+          {/* <Route path="/products" element={<ProductsPage />} /> */}
+          {/* <Route path="/export" element={<ExportPage />} /> */}
+          {/* <Route path="/textile-division" element={<TextileDivisionPage />} />
           <Route path="/fmcg-division" element={<FMCGDivisionPage />} />
           <Route path="/board-division" element={<BoardDivisionPage />} />
-          <Route path="/real-estate" element={<RealEstatePage />} />
+          <Route path="/real-estate" element={<RealEstatePage />} /> */}
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />

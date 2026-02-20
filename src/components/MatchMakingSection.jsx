@@ -5,7 +5,7 @@ import match_making from '../assets/videos/match_making.mp4';
 const MatchMakingSection = () => {
   return (
     <section className="relative h-[600px] md:h-[700px] overflow-hidden">
-      {/* Video Background - User will add their own video */}
+      {/* Video Background */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay

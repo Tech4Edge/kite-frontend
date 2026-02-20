@@ -91,33 +91,37 @@ const LeaderProfile = ({
             {/* Key Positions */}
             {positions && positions.length > 0 && (
               <>
-                <h3 className="text-xl font-bold text-[#222222] mb-4">Key Positions</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <h3 className="text-xl font-bold text-[#222222] mb-6">Key Positions</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8">
                   {positions.map((position, index) => {
-                    const Icon = position.icon;
                     return (
                       <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
-                        className="bg-gradient-to-br from-white to-gray-50 p-4 rounded-xl border border-gray-200 hover:shadow-md transition-all duration-300"
-                        style={{ 
-                          borderColor: inView ? accentColor : '#e5e7eb',
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.borderColor = accentColor}
-                        onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
+                        className="flex flex-col items-center text-center group"
                       >
-                        <div className="flex items-start gap-3">
-                          <Icon 
-                            className="text-xl flex-shrink-0 mt-1" 
-                            style={{ color: accentColor }}
+                        {/* Logo */}
+                        <div className="mb-3 h-20 md:h-24 flex items-center justify-center">
+                          <img
+                            src={position.logo}
+                            alt={position.title}
+                            className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
                           />
-                          <div>
-                            <h4 className="font-bold text-[#222222] text-sm mb-1">{position.title}</h4>
-                            <p className="text-xs text-[#666666] leading-relaxed">{position.description}</p>
-                          </div>
                         </div>
+                        
+                        {/* Title */}
+                        <h4 className="text-base md:text-lg font-bold text-[#222222] mb-1">
+                          {position.title}
+                        </h4>
+                        
+                        {/* Description */}
+                        {position.description && (
+                          <p className="text-xs text-[#666666] leading-relaxed">
+                            {position.description}
+                          </p>
+                        )}
                       </motion.div>
                     );
                   })}

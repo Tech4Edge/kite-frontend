@@ -1,8 +1,25 @@
-import { FaLinkedin, FaBuilding, FaUniversity, FaAward, FaChartLine, FaUsers, FaHandshake } from 'react-icons/fa';
 import chairmanImg from '../assets/people/chairman.png';
 import ceoImg from '../assets/people/ceo.png';
 import waleedImg from '../assets/people/waleed.jpg';
 import azizgrp from "../assets/azizgrp.jpg";
+
+// Import logos
+import senateImg from '../assets/logos/senate.png';
+import sbpImg from '../assets/logos/sbp.png';
+import hblImg from '../assets/logos/hbl.png';
+import pplImg from '../assets/logos/ppl.png';
+import pakpImg from '../assets/logos/pakp.png';
+import scciImg from '../assets/logos/scci.png';
+import aptmaImg from '../assets/logos/aptma.png';
+import lseImg from '../assets/logos/lse.png';
+import hcskImg from '../assets/logos/hcsk.png';
+import akcsImg from '../assets/logos/akcs.png';
+import ntuImg from '../assets/logos/ntu.png';
+import unicefImg from '../assets/logos/unicef.png';
+import eoImg from '../assets/logos/eo.png';
+import wisconsinImg from '../assets/logos/wisconsin.webp';
+import lumsImg from '../assets/logos/lums.png';
+import tobaccoImg from '../assets/logos/tobacco.png';
 
 // Import new components
 import HeroSection from '../components/about/HeroSection';
@@ -12,6 +29,7 @@ import MissionVisionValues from '../components/about/MissionVisionValues';
 import Timeline from '../components/about/Timeline';
 import LeaderProfile from '../components/about/LeaderProfile';
 import MembershipAchievements from '../components/about/MembershipAchievements';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 const AboutUsPage = () => {
   const timeline = [
@@ -24,37 +42,31 @@ const AboutUsPage = () => {
   ];
 
   const chairmanPositions = [
-    { icon: FaBuilding, title: 'Senate', description: 'Senator for two terms, Senate of Pakistan, the Upper House of the Parliament. (2021-2027 & 2015 to 2021)' },
-    { icon: FaBuilding, title: 'Senate Power Committee', description: 'Chairman Senate Standing Committee on Power' },
-    { icon: FaUniversity, title: 'State Bank of Pakistan', description: 'Board member of State Bank of Pakistan (2 terms)' },
-    { icon: FaBuilding, title: 'HBL', description: 'Board member of HBL' },
-    { icon: FaAward, title: 'APTMA', description: 'Chairman APTMA (2 terms)' },
-    { icon: FaBuilding, title: 'Provincial Assembly', description: 'Provincial Minister (Provincial Assembly Of Khyber Pakhtunkhwa) in 2002' },
-    { icon: FaBuilding, title: 'PPL', description: 'Board member Pakistan Petroleum Limited' },
-    { icon: FaBuilding, title: 'SCCI', description: 'President Sarhad Chamber of Commerce & Industry' },
+    { logo: senateImg, title: 'Senate', description: 'Senator for two terms, Senate of Pakistan, the Upper House of the Parliament. (2021-2027 & 2015 to 2021)' },
+    { logo: sbpImg, title: 'SBP', description: 'Board member of State Bank of Pakistan (2 terms)' },
+    { logo: hblImg, title: 'HBL', description: 'Board member of Habib Bank Limited' },
+    { logo: pplImg, title: 'PPL', description: 'Chairman Standing Committee of Petroleum.' },
+    { logo: pakpImg, title: 'PAKP', description: 'Provincial Minister (Provincial Assembly Of Khyber Pakhtunkhwa) in 2002.' },
+    { logo: pplImg, title: 'PPL', description: 'Board member Pakistan Petroleum Limited.' },
+    { logo: scciImg, title: 'SCCI', description: 'President Sarhad Chamber of Commerce & Industry.' },
+    { logo: aptmaImg, title: 'APTMA', description: 'Chairman All Pakistan Textile Mills Association (2 terms)' },
   ];
 
   const ceoPositions = [
-    { icon: FaUniversity, title: 'LSE', description: 'Graduate of the London School of Economics (with 1st class Honors)' },
-    { icon: FaBuilding, title: 'Honorary Consul', description: 'Honorary Consul of South Korea for KPK' },
-    { icon: FaAward, title: 'UNICEF', description: 'Member of the UNICEF Pakistan Advisory Council (UPAC)' },
-    { icon: FaBuilding, title: 'EO', description: 'President & Founding Member of EO (Entrepreneur Organization) Islamabad Chapter' },
-    { icon: FaBuilding, title: 'Agha Khan Cultural Service', description: 'Board Member of Agha Khan Cultural Service' },
-    { icon: FaAward, title: 'YPO', description: 'Member of Young Presidents Organization (YPO)' },
-    { icon: FaBuilding, title: 'SNGPL', description: 'Board member SNGPL' },
-    { icon: FaBuilding, title: 'SCCI', description: 'President Sarhad Chamber of Commerce & Industry' },
-    { icon: FaAward, title: 'APTMA', description: 'Vice-Chairman APTMA' },
-    { icon: FaUniversity, title: 'NTU', description: 'Board member National Textile University' },
-    { icon: FaUniversity, title: 'IM Sciences', description: 'Board member IM Sciences University Peshawar' },
+    { logo: lseImg, title: 'LSE', description: 'Graduate of the London School of Economics (with 1st class Honors)' },
+    { logo: hcskImg, title: 'HCSK - KPK', description: 'Honorary Consul of South Korea for KPK.' },
+    { logo: scciImg, title: 'SCCI', description: 'President Sarhad Chamber of Commerce & Industry' },
+    { logo: aptmaImg, title: 'APTMA', description: 'Vice-Chairman APTMA' },
+    { logo: akcsImg, title: 'AKCS-P', description: 'Director of Agha Khan Cultural Services Pakistan' },
+    { logo: ntuImg, title: 'NTU', description: 'Board member National Textile University.' },
+    { logo: unicefImg, title: 'UNICEF', description: 'Member of the UNICEF Pakistan Advisory Council (UPAC).' },
+    { logo: eoImg, title: 'EO', description: 'President & Founding Member of EO Islamabad Chapter' },
   ];
 
   const managingDirectorPositions = [
-    { icon: FaUniversity, title: 'University of Wisconsin-Madison', description: 'Graduate of the University of Wisconsin-Madison' },
-    { icon: FaUniversity, title: 'LUMS', description: 'MBA Degree from LUMS, awarded the Bronze Medal' },
-    { icon: FaBuilding, title: 'Pakistan Tobacco Company', description: 'Over 20 years of experience in Marketing, Sales, and Distribution' },
-    { icon: FaChartLine, title: 'FMCG Leadership', description: 'Leading FMCG Division with focus on consumer needs and sustainable growth' },
-    { icon: FaHandshake, title: 'Strategic Vision', description: 'Built business on deep market understanding and operational excellence' },
-    { icon: FaUsers, title: 'Quality Commitment', description: 'Uncompromising commitment to quality and consistent performance' },
+    { logo: wisconsinImg, title: 'University of Wisconsin', description: '' },
+    { logo: tobaccoImg, title: 'Pakistan Tobacco Company', description: '' },
+    { logo: lumsImg, title: 'LUMS', description: 'MBA Degree from LUMS, awarded the Bronze Medal' },
   ];
 
   const companies = [
@@ -118,7 +130,7 @@ const AboutUsPage = () => {
       {/* CEO Section */}
       <LeaderProfile
         name="Mr. Afan Aziz"
-        title="Chief Executive Officer"
+        title="CEO"
         image={ceoImg}
         message={ceoMessage}
         positions={ceoPositions}
@@ -130,7 +142,7 @@ const AboutUsPage = () => {
       {/* Managing Director FMCG Division Section */}
       <LeaderProfile
         name="Mr. Waleed Elahi"
-        title="Managing Director - FMCG Division"
+        title="MD"
         image={waleedImg}
         message={managingDirectorMessage}
         positions={managingDirectorPositions}
@@ -139,8 +151,11 @@ const AboutUsPage = () => {
         accentColor="#FF8ACE"
       />
 
-      {/* Membership & Achievements */}
-      <MembershipAchievements />
+      {/* Membership & Achievements - Commented Out */}
+      {/* <MembershipAchievements /> */}
+
+      {/* WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   );
 };

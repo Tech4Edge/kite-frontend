@@ -18,14 +18,14 @@ const MissionVisionValues = () => {
     {
       letter: 'V',
       title: 'Vision',
-      description: 'To be an agent of positive change for the stakeholders and community by pursuing ethical and sustainable values.',
+      description: 'To serve as a transformative agent of positive change for our stakeholders and the wider community by relentlessly pursuing ethical practices and sustainable values. We aim to redefine industry standards through a legacy of responsibility, ensuring that our long-term growth serves the greater good and inspires a more conscious, value-driven global marketplace.',
       gradient: 'from-[#ED028C] to-[#FF8ACE]',
       border: 'border-[#ED028C]'
     },
     {
       letter: 'V',
       title: 'Values',
-      description: 'Commitment, Integrity, Honesty, Nurture, Care, Respect, Innovate & Excel.',
+      description: 'Our foundation is built upon the pillars of Commitment, Integrity, and Honesty, which guide every decision we make. We believe in the power of Nurture and Care to foster a supportive environment, while Respect forms the basis of our interactions. By choosing to Innovate and Excel, we ensure that our collective efforts deliver exceptional results and lasting impact.',
       gradient: 'from-[#FF8ACE] to-[#FFEFF9]',
       border: 'border-[#FF8ACE]',
       textColor: 'text-[#ED028C]'

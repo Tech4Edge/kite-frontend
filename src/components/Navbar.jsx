@@ -49,16 +49,16 @@ const Navbar = () => {
         },
       ],
     },
-    {
-      name: 'Divisions',
-      href: '/fmcg-division',
-      dropdown: [
-        { name: 'FMCG Division (Kite)', href: '/fmcg-division' },
-        { name: 'Textile Division', href: '/textile-division' },
-        { name: 'Board Division', href: '/board-division' },
-        { name: 'Real Estate', href: '/real-estate' },
-      ],
-    },
+    // {
+    //   name: 'Divisions',
+    //   href: '/fmcg-division',
+    //   dropdown: [
+    //     { name: 'FMCG Division (Kite)', href: '/fmcg-division' },
+    //     { name: 'Textile Division', href: '/textile-division' },
+    //     { name: 'Board Division', href: '/board-division' },
+    //     { name: 'Real Estate', href: '/real-estate' },
+    //   ],
+    // },
     { name: 'Export', href: '/export' },
   ];
 
