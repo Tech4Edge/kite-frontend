@@ -257,7 +257,9 @@ const ContactPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+92915815056"
+              href="https://wa.me/+923018117666"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
             >
               <FaPhone className="inline mr-2" />

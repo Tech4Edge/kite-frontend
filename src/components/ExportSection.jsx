@@ -202,7 +202,7 @@ const ExportSection = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="mailto:fd@kitematchpk.com"
+                  href="mailto:match.export@azizgrp.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white text-[#ED028C] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300 shadow-lg active:scale-95"
@@ -210,7 +210,9 @@ const ExportSection = () => {
                   Email Us
                 </a>
                 <a
-                  href="tel:+92915815056"
+                  href="https://wa.me/+923008592829"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#ED028C] transition-all duration-300 active:scale-95"
                 >
                   Call Now
@@ -235,13 +237,10 @@ const ExportSection = () => {
           <h4 className="text-[#222222] text-2xl font-bold mb-6 text-center">Export Department Contact</h4>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <p className="text-[#666666]"><strong className="text-[#222222]">Email:</strong> fd@kitematchpk.com</p>
+              <p className="text-[#666666]"><strong className="text-[#222222]">Email:</strong> match.export@azizgrp.com</p>
             </div>
             <div>
-              <p className="text-[#666666]"><strong className="text-[#222222]">Phone:</strong> +92-(0)91-5815056, 5815057</p>
-            </div>
-            <div>
-              <p className="text-[#666666]"><strong className="text-[#222222]">Website:</strong> www.azizgrp.com</p>
+              <p className="text-[#666666]"><strong className="text-[#222222]">Phone:</strong> +92-(0)300-8592829</p>
             </div>
           </div>
         </div>

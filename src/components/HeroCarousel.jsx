@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,14 +13,14 @@ import hero4 from "../assets/hero4.jpg";
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const navigate = useNavigate();
   const slides = [
     {
       id: 1,
-      title: "Kite Safety Matches",
-      subtitle: "Pakistan's Most Trusted Match Brand - Over 50 Years",
+      title: "Safety Matches",
+      subtitle: "Pakistan's Most Trusted Match Brands - Over 50 Years of Excellence",
       description:
-        "Premium quality safety matches manufactured with the latest technology. Brands: Kite, Olympia, Tanga, Bird, Party, and more.",
+        "Export Brands: Shrimp, Helicopter, Sunflower, Chinook | Local Brands: Kite, Bird, Olympia, Party, Tanga - Premium quality safety matches manufactured with the latest technology.",
       image: hero2,
       link: "/products",
       gradient: "from-blue-900/50 via-blue-800/30 to-transparent",
@@ -28,28 +28,6 @@ const HeroCarousel = () => {
     },
     {
       id: 2,
-      title: "Kite Dishwash Bar",
-      subtitle: "Extra Strength - Sparkling Clean Dishes",
-      description:
-        "Powerful cleaning with natural lemon freshness. Gentle on hands, tough on grease. The perfect choice for sparkling dishes.",
-      image: hero3,
-      link: "/products",
-      gradient: "from-green-800/50 via-green-600/30 to-transparent",
-      accentColor: "#059669",
-    },
-    // {
-    //   id: 3,
-    //   title: "Kite Glow Detergent",
-    //   subtitle: "Triple Enzyme Technology - Long Lasting Fragrance",
-    //   description:
-    //     "Advanced cleaning power with triple enzyme formula. Removes toughest stains while keeping colors bright and fabrics soft.",
-    //   image: hero1,
-    //   link: "/products",
-    //   gradient: "from-blue-900/50 via-cyan-700/30 to-transparent",
-    //   accentColor: "#0891B2",
-    // },
-    {
-      id: 4,
       title: "Burq Detergent Action",
       subtitle: "Color Guard - Deep Clean with Powerful Action",
       description:
@@ -58,6 +36,17 @@ const HeroCarousel = () => {
       link: "/products",
       gradient: "from-orange-900/50 via-orange-700/30 to-transparent",
       accentColor: "#EA580C",
+    },
+    {
+      id: 3,
+      title: "Kite Dishwash Bar",
+      subtitle: "Extra Strength - Sparkling Clean Dishes",
+      description:
+        "Powerful cleaning with natural lemon freshness. Gentle on hands, tough on grease. The perfect choice for sparkling dishes.",
+      image: hero3,
+      link: "/products",
+      gradient: "from-green-800/50 via-green-600/30 to-transparent",
+      accentColor: "#059669",
     },
   ];
 
@@ -138,9 +127,10 @@ const HeroCarousel = () => {
                   </div>
 
                   {/* CTA Button with Premium Design */}
-                  <Link to={slide.link}>
                     <div className="flex flex-wrap gap-4 mt-8">
+                      
                       <button
+                        onClick={() => navigate(slide.link)}
                         className="group relative overflow-hidden bg-gradient-to-r from-primary to-blue-500 text-white px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-500 hover:shadow-primary/50 hover:scale-105 active:scale-95"
                         style={{
                           boxShadow: `0 10px 40px ${slide.accentColor}40`,
@@ -166,7 +156,11 @@ const HeroCarousel = () => {
                         </span>
                       </button>
 
-                      <button className="group backdrop-blur-md bg-white/10 border-2 border-white/30 text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 active:scale-95">
+                  
+                  
+                      <button
+                      onClick={() => navigate("/contact")}
+                      className="group backdrop-blur-md bg-white/10 border-2 border-white/30 text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 active:scale-95">
                         <span className="flex items-center gap-3">
                           Contact Us
                           <svg
@@ -185,7 +179,6 @@ const HeroCarousel = () => {
                         </span>
                       </button>
                     </div>
-                  </Link>
                 </div>
               </div>
 

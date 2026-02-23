@@ -29,7 +29,6 @@ import MissionVisionValues from '../components/about/MissionVisionValues';
 import Timeline from '../components/about/Timeline';
 import LeaderProfile from '../components/about/LeaderProfile';
 import MembershipAchievements from '../components/about/MembershipAchievements';
-import WhatsAppButton from '../components/WhatsAppButton';
 
 const AboutUsPage = () => {
   const timeline = [
@@ -153,9 +152,6 @@ const AboutUsPage = () => {
 
       {/* Membership & Achievements - Commented Out */}
       {/* <MembershipAchievements /> */}
-
-      {/* WhatsApp Button */}
-      <WhatsAppButton />
     </div>
   );
 };

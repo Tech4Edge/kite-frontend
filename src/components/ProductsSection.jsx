@@ -6,71 +6,8 @@ import kite from "../assets/products/kite.jpeg"
 const ProductsSection = () => {
   const products = [
     {
-      id: 'detergents',
-      title: 'Kite Detergents - Premium Cleaning Solutions',
-      icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
-      description: 'Kite Glow detergent, launched in March 2025, features triple enzyme technology for exceptional cleaning power, superior stain removal, fabric care, and affordability - setting the standard for excellence in the detergent industry.',
-      products: [
-        {
-          name: 'Kite Glow',
-          tagline: 'کائٹ گلو لائے... بہتر پروخوشبو، بہترین صفائی!',
-          description: 'Premium flagship brand launched in March 2025 with Triple Enzyme technology',
-          features: [
-            'شادی کی دھوئین و ضرورت آسانی سے (Tough stains removed easily)',
-            'کپڑوں کی نگہداشت کے لیے (Fabric care protection)',
-            'کپڑوں کے رنگوں کا تحفظ (Color protection)'
-          ],
-          skus: [
-            { size: '2 KG', packing: 6, price: 511.50 },
-            { size: '1 KG', packing: 12, price: 269.70 },
-            { size: '500 GM', packing: 24, price: 139.50 },
-            { size: 'RS.99', packing: 48, price: 92.07 },
-            { size: 'RS.50', packing: 96, price: 46.50 },
-            { size: 'RS.20', packing: 96, price: 18.60 },
-            { size: 'RS.10', packing: 144, price: 9.30 }
-          ]
-        },
-        {
-          name: 'BURQ Action',
-          tagline: 'دلچ کا صفائی یا صرف برق ایکشن لائیا',
-          description: 'Mid-tier segment with Colour Guard technology for color protection',
-          features: [
-            'رنگوں کی چمک پہلے (Color brightness maintained)',
-            'بامومبدگی جلد کے عمروں (Skin safety formula)',
-            'کپڑوں کے رنگوں کی حفاظت (Color protection)'
-          ],
-          skus: [
-            { size: '2.3 KG', packing: 6, price: 464.07 },
-            { size: '1 KG', packing: 12, price: 213.90 },
-            { size: 'RS.99', packing: 24, price: 92.07 },
-            { size: 'RS.50', packing: 48, price: 46.50 },
-            { size: 'RS.20', packing: 96, price: 18.60 },
-            { size: 'RS.10', packing: 204, price: 9.30 }
-          ]
-        },
-        {
-          name: 'Kite Dish Wash Bar',
-          tagline: 'جہاں صفائی، وہاں کائٹ ڈش واش بار',
-          description: 'Premium lemon fragrance with slow dissolution - beats market leaders',
-          features: [
-            'لیموں کی خوشبو کی سانحہ (Premium lemon fragrance)',
-            'چکنائی کا دشمن (Tough on grease)',
-            'کم کے زیادہ چلے (Long lasting)'
-          ],
-          skus: [
-            { size: 'SUPER BAR', packing: 36, price: 44.63 },
-            { size: 'LONG BAR', packing: 36, price: 35.91 },
-            { size: 'LARGE BAR', packing: 36, price: 17.96 },
-            { size: 'REGULAR BAR', packing: 48, price: 8.98 }
-          ]
-        }
-      ],
-      services: 'Private labeling and toll manufacturing services available with minimal variation',
-      image: BurqDetergent
-    },
-    {
       id: 'matches',
-      title: 'Kite Safety Matches - Pakistan\'s #1 Brand',
+      title: 'Safety Matches - Pakistan\'s #1 Brand',
       icon: <FaFire className="text-6xl text-[#ED028C]" />,
       description: 'Pakistan\'s largest safety match manufacturer and exporter since 1995. Over 50 years of manufacturing excellence with Kite brand leading exports to 40+ countries worldwide.',
       features: [
@@ -84,13 +21,14 @@ const ProductsSection = () => {
       ],
       brands: [
         { name: 'Kite', category: 'Premium - Local Brand' },
+        { name: 'Bird', category: 'Local Brand' },
         { name: 'Olympia', category: 'Local Brand' },
         { name: 'Party', category: 'Local Brand' },
-        { name: 'Bird', category: 'Local Brand' },
         { name: 'Tanga', category: 'Local Brand' },
-        { name: 'Simba', category: 'Export Brand' },
-        { name: 'Chinook', category: 'Export Brand' },
-        { name: 'Helicopter', category: 'Export Brand' }
+        { name: 'Shrimp', category: 'Export Brand' },
+        { name: 'Helicopter', category: 'Export Brand' },
+        { name: 'Sunflower', category: 'Export Brand' },
+        { name: 'Chinook', category: 'Export Brand' }
       ],
       sizes: [
         { size: 'LARGE', avgSticks: 58 },
@@ -116,6 +54,94 @@ const ProductsSection = () => {
         }
       ],
       image: kite
+    },
+    {
+      id: 'detergents',
+      title: 'Detergents - Premium Cleaning Solutions',
+      icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
+      description: 'Premium detergent brands featuring advanced cleaning technology. BURQ Action with Color Guard, Kite Glow with Triple Enzyme technology, and Vero with powerful stain removal - trusted by households across Pakistan.',
+      products: [
+        {
+          name: 'BURQ Action',
+          tagline: 'دلچ کا صفائی یا صرف برق ایکشن لائیا',
+          description: 'Premium detergent with Colour Guard technology for color protection',
+          features: [
+            'رنگوں کی چمک پہلے (Color brightness maintained)',
+            'بامومبدگی جلد کے عمروں (Skin safety formula)',
+            'کپڑوں کے رنگوں کی حفاظت (Color protection)'
+          ],
+          skus: [
+            { size: '2.3 KG', packing: 6, price: 464.07 },
+            { size: '1 KG', packing: 12, price: 213.90 },
+            { size: 'RS.99', packing: 24, price: 92.07 },
+            { size: 'RS.50', packing: 48, price: 46.50 },
+            { size: 'RS.20', packing: 96, price: 18.60 },
+            { size: 'RS.10', packing: 204, price: 9.30 }
+          ]
+        },
+        {
+          name: 'Kite Glow',
+          tagline: 'کائٹ گلو لائے... بہتر پروخوشبو، بہترین صفائی!',
+          description: 'Flagship brand launched in March 2025 with Triple Enzyme technology',
+          features: [
+            'شادی کی دھوئین و ضرورت آسانی سے (Tough stains removed easily)',
+            'کپڑوں کی نگہداشت کے لیے (Fabric care protection)',
+            'کپڑوں کے رنگوں کا تحفظ (Color protection)'
+          ],
+          skus: [
+            { size: '2 KG', packing: 6, price: 511.50 },
+            { size: '1 KG', packing: 12, price: 269.70 },
+            { size: '500 GM', packing: 24, price: 139.50 },
+            { size: 'RS.99', packing: 48, price: 92.07 },
+            { size: 'RS.50', packing: 96, price: 46.50 },
+            { size: 'RS.20', packing: 96, price: 18.60 },
+            { size: 'RS.10', packing: 144, price: 9.30 }
+          ]
+        },
+        {
+          name: 'Vero Detergent',
+          tagline: 'کپڑوں کو دین نئی نیک پہترین بحت کے ساتھ',
+          description: 'Premium cleaning powder with natural ingredients',
+          features: [
+            'بہترین صفائی (Excellent cleaning)',
+            'رنگین کے لیے محفوظ (Safe for colors)',
+            'کم کے زیادہ چلے (Long lasting)'
+          ],
+          skus: [
+            { size: '20 KG', packing: 4, price: null },
+            { size: '5 KG', packing: 4, price: null }
+          ]
+        }
+      ],
+      services: 'Private labeling and toll manufacturing services available with minimal variation',
+      image: BurqDetergent
+    },
+    {
+      id: 'dishwash',
+      title: 'Dish Wash Bar - Extra Strength',
+      icon: <FaLayerGroup className="text-6xl text-[#059669]" />,
+      description: 'Kite Dish Wash Bar with premium lemon fragrance and slow dissolution - beats market leaders. Perfect for sparkling clean dishes with powerful grease removal.',
+      products: [
+        {
+          name: 'Kite Dish Wash Bar',
+          tagline: 'جہاں صفائی، وہاں کائٹ ڈش واش بار',
+          description: 'Premium lemon fragrance with slow dissolution',
+          features: [
+            'لیموں کی خوشبو کی سانحہ (Premium lemon fragrance)',
+            'چکنائی کا دشمن (Tough on grease)',
+            'کم کے زیادہ چلے (Long lasting)',
+            'ہاتھوں کے لیے نرم (Gentle on hands)'
+          ],
+          skus: [
+            { size: 'SUPER BAR', packing: 36, price: 44.63 },
+            { size: 'LONG BAR', packing: 36, price: 35.91 },
+            { size: 'LARGE BAR', packing: 36, price: 17.96 },
+            { size: 'REGULAR BAR', packing: 48, price: 8.98 }
+          ]
+        }
+      ],
+      services: 'Bulk orders and private labeling available',
+      image: BurqDetergent
     }
   ];
 
@@ -222,8 +248,8 @@ const ProductsSection = () => {
                   </>
                 )}
 
-                {/* Detergent Products */}
-                {product.id === 'detergents' && (
+                {/* Detergent and Dish Wash Products */}
+                {(product.id === 'detergents' || product.id === 'dishwash') && (
                   <>
                     <div className="space-y-6 mb-6">
                       {product.products.map((item, idx) => (
@@ -263,7 +289,9 @@ const ProductsSection = () => {
                                       <tr key={sidx} className="border-b hover:bg-gray-50">
                                         <td className="px-4 py-2 font-semibold text-[#222222]">{sku.size}</td>
                                         <td className="px-4 py-2 text-center text-[#666666]">{sku.packing}</td>
-                                        <td className="px-4 py-2 text-right text-[#00AEEF] font-bold">{sku.price.toFixed(2)}</td>
+                                        <td className="px-4 py-2 text-right text-[#00AEEF] font-bold">
+                                          {sku.price ? sku.price.toFixed(2) : 'Contact for pricing'}
+                                        </td>
                                       </tr>
                                     ))}
                                   </tbody>

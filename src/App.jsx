@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ExportPage from './pages/ExportPage';
@@ -20,8 +21,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUsPage />} />
-          {/* <Route path="/products" element={<ProductsPage />} /> */}
-          {/* <Route path="/export" element={<ExportPage />} /> */}
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/export" element={<ExportPage />} />
+          
           {/* <Route path="/textile-division" element={<TextileDivisionPage />} />
           <Route path="/fmcg-division" element={<FMCGDivisionPage />} />
           <Route path="/board-division" element={<BoardDivisionPage />} />
@@ -29,6 +31,9 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
+        
+        {/* Global WhatsApp Button - Fixed on all pages */}
+        <WhatsAppButton />
       </div>
     </Router>
   );
