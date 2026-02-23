@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import kite_logo from "../assets/kite_logo.png";
+// import kite_logo from "../assets/kite_logo.png";
 import AJMatch from "../assets/divisions/ajmatch.png";
 import MohsinEnterprises from "../assets/divisions/MohsinEnterprises.png";
 import MohsinMatch from "../assets/divisions/MohsinMatch.png";
@@ -26,9 +26,9 @@ const Footer = () => {
 
   const companyLogos = [
     {
-      name: "kite logo",
-      logo: kite_logo,
-      alt: "FMCG Division",
+      name: "Mohsin Match Factory - Peshawar",
+      logo: MohsinMatch,
+      alt: "Kite Brand",
     },
     {
       name: "A.J Match Factory",
@@ -39,11 +39,6 @@ const Footer = () => {
       name: "Mohsin Enterprises - Hayatabad, Peshawar",
       logo: MohsinEnterprises,
       alt: "Mohsin Enterprises",
-    },
-    {
-      name: "Mohsin Match Factory - Peshawar",
-      logo: MohsinMatch,
-      alt: "Kite Brand",
     },
   ];
 

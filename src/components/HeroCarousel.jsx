@@ -6,10 +6,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import textile_img from "../assets/textile_hero.jpg";
-import match_img from "../assets/matches_hero.jpg";
-import real_estate_img from "../assets/real_estate_hero.jpeg";
-import board_img from "../assets/board_hero.jpeg";
+import hero1 from "../assets/hero1.jpg";
+import hero2 from "../assets/hero2.jpg";
+import hero3 from "../assets/hero3.jpg";
+import hero4 from "../assets/hero4.jpg";
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,50 +17,47 @@ const HeroCarousel = () => {
   const slides = [
     {
       id: 1,
-      title: "Textile Division",
-      subtitle: "A.J Textile Mills Ltd. - Over 100,000 Spindles",
+      title: "Kite Safety Matches",
+      subtitle: "Pakistan's Most Trusted Match Brand - Over 50 Years",
       description:
-        "One of Pakistan's largest spinning mills with state-of-the-art ring spinning and Murata vortex spinning technology.",
-      image: textile_img,
-      link: "/textile-division",
-      gradient: "from-blue-900/80 via-indigo-800/60 to-transparent",
-      accentColor: "#00AEEF",
+        "Premium quality safety matches manufactured with the latest technology. Brands: Kite, Olympia, Tanga, Bird, Party, and more.",
+      image: hero2,
+      link: "/products",
+      gradient: "from-blue-900/50 via-blue-800/30 to-transparent",
+      accentColor: "#1E3A8A",
     },
     {
       id: 2,
-      title: "FMCG Division",
-      subtitle:
-        "The group has the largest match manufacturing operation and also the largest exporter of safety matches.",
+      title: "Kite Dishwash Bar",
+      subtitle: "Extra Strength - Sparkling Clean Dishes",
       description:
-        "Premium quality safety matches manufactured with the latest technology. Brands: Kite, Olympia, Tanga, Bird, Party, and more.",
-      image: match_img,
-      link: "/fmcg-division",
-      gradient: "from-red-900/80 via-orange-800/60 to-transparent",
-      accentColor: "#FF6B35",
+        "Powerful cleaning with natural lemon freshness. Gentle on hands, tough on grease. The perfect choice for sparkling dishes.",
+      image: hero3,
+      link: "/products",
+      gradient: "from-green-800/50 via-green-600/30 to-transparent",
+      accentColor: "#059669",
     },
-    {
-      id: 3,
-      title: "Board Division",
-      subtitle:
-        "The group has a sizable production of MDF, Particle Board and Lamination of boards.",
-      description:
-        "High-quality MDF, particle board, and lamination products for diverse applications across Pakistan.",
-      image: board_img,
-      link: "/board-division",
-      gradient: "from-amber-900/80 via-yellow-800/60 to-transparent",
-      accentColor: "#D4AF37",
-    },
+    // {
+    //   id: 3,
+    //   title: "Kite Glow Detergent",
+    //   subtitle: "Triple Enzyme Technology - Long Lasting Fragrance",
+    //   description:
+    //     "Advanced cleaning power with triple enzyme formula. Removes toughest stains while keeping colors bright and fabrics soft.",
+    //   image: hero1,
+    //   link: "/products",
+    //   gradient: "from-blue-900/50 via-cyan-700/30 to-transparent",
+    //   accentColor: "#0891B2",
+    // },
     {
       id: 4,
-      title: "Real Estate Division",
-      subtitle:
-        "The group has started a real estate project with the name of AJ Tower at Gulberg Green Islamabad.",
+      title: "Burq Detergent Action",
+      subtitle: "Color Guard - Deep Clean with Powerful Action",
       description:
-        "Premium mixed-use developments with sustainable and innovative design including AJ Towers and AJ Corporate Avenue.",
-      image: real_estate_img,
-      link: "/real-estate",
-      gradient: "from-teal-900/80 via-emerald-800/60 to-transparent",
-      accentColor: "#10B981",
+        "Powerful stain removal with color protection technology. Keeps your clothes looking new, wash after wash.",
+      image: hero4,
+      link: "/products",
+      gradient: "from-orange-900/50 via-orange-700/30 to-transparent",
+      accentColor: "#EA580C",
     },
   ];
 
@@ -89,24 +86,24 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-screen min-h-[600px] max-h-[900px] w-full overflow-hidden">
-              {/* Background Image with Ken Burns Effect */}
+            <div className="relative min-h-[470px] w-full overflow-hidden">
+              {/* Background Image - Full Cover */}
               <div className="absolute inset-0 hero-image-container">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transform scale-110 animate-ken-burns"
-                  style={{ backgroundImage: `url(${slide.image})` }}
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
-                {/* Multi-layer Gradient Overlay */}
+                {/* Subtle Gradient Overlay for Text Readability */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${slide.gradient}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
 
-              {/* Decorative Elements */}
-              <div className="absolute top-20 right-10 w-64 h-64 border-2 border-white/10 rounded-full animate-spin-slow"></div>
-              <div className="absolute bottom-32 left-10 w-48 h-48 border-2 border-white/10 rounded-full animate-spin-slow-reverse"></div>
+              {/* Decorative Elements - Hidden for cleaner look */}
+              {/* <div className="absolute top-20 right-10 w-64 h-64 border-2 border-white/10 rounded-full animate-spin-slow"></div>
+              <div className="absolute bottom-32 left-10 w-48 h-48 border-2 border-white/10 rounded-full animate-spin-slow-reverse"></div> */}
 
               {/* Content */}
               <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center z-20">
@@ -114,8 +111,8 @@ const HeroCarousel = () => {
                   {/* Decorative Line */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent animate-pulse"></div>
-                    <span className="text-white text-sm font-bold tracking-[0.3em] uppercase">
-                      Excellence in Every Thread
+                    <span className="text-white text-sm font-bold tracking-[0.3em] uppercase drop-shadow-lg">
+                      Trusted Quality Since 1975
                     </span>
                   </div>
 
@@ -152,7 +149,7 @@ const HeroCarousel = () => {
                         {/* Button Shine Effect */}
                         <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
                         <span className="relative flex items-center gap-3">
-                          Explore Division
+                          View Products
                           <svg
                             className="w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300"
                             fill="none"

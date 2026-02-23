@@ -4,10 +4,11 @@ import match_making from '../assets/videos/match_making.mp4';
 
 const MatchMakingSection = () => {
   return (
-    <section className="relative h-[600px] md:h-[700px] overflow-hidden">
-      {/* Video Background */}
+    <section className="relative h-screen min-h-[600px] overflow-hidden">
+      {/* Video Background - Full Screen Fit */}
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ objectFit: 'cover' }}
         autoPlay
         loop
         muted
