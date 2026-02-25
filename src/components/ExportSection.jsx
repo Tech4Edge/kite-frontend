@@ -1,110 +1,151 @@
-import { FaGlobeAsia, FaShippingFast, FaCertificate, FaHandshake, FaFileContract, FaAward, FaCheckCircle } from 'react-icons/fa';
-import world_map_export_destinations from '../assets/fmcgForeignDestination.jpeg';
-import export_shipping_container from '../assets/delivery.jpeg';
+import {
+  FaGlobeAsia,
+  FaShippingFast,
+  FaCertificate,
+  FaHandshake,
+  FaFileContract,
+  FaAward,
+  FaCheckCircle,
+} from "react-icons/fa";
+import world_map_export_destinations from "../assets/fmcgForeignDestination.jpeg";
+import export_shipping_container from "../assets/delivery.jpeg";
 
 // Import match images
-import simba from '../assets/export/simba.jpg';
-import football from '../assets/export/football.jpg';
-import alMoallam from '../assets/export/al_moallam.jpg';
-import redMac from '../assets/export/red_mac.jpg';
-import woodFlower from '../assets/export/wood_flower.jpg';
-import alKarama from '../assets/export/al_karama.jpg';
-import theGosse from '../assets/export/the_gosse.jpg';
-import ziynat from '../assets/export/ziynat.jpg';
-import alFelaij from '../assets/export/al_felaij.jpg';
-import magiaBunicii from '../assets/export/magia_bunicii.jpg';
-import zebra from '../assets/export/zebra.jpg';
-import zippy from '../assets/export/zippy.jpg';
+import simba from "../assets/export/simba.jpg";
+import football from "../assets/export/football.jpg";
+import alMoallam from "../assets/export/al_moallam.jpg";
+import redMac from "../assets/export/red_mac.jpg";
+import woodFlower from "../assets/export/wood_flower.jpg";
+import alKarama from "../assets/export/al_karama.jpg";
+import theGosse from "../assets/export/the_gosse.jpg";
+import ziynat from "../assets/export/ziynat.jpg";
+import alFelaij from "../assets/export/al_felaij.jpg";
+import magiaBunicii from "../assets/export/magia_bunicii.jpg";
+import zebra from "../assets/export/zebra.jpg";
+import zippy from "../assets/export/zippy.jpg";
 
 const ExportSection = () => {
   const safetyMatches = [
-    { brand: 'Simba', country: 'Congo', image: simba, flag: '🇨🇩' },
-    { brand: 'Football', country: 'Saudi Arabia', image: football, flag: '🇸🇦' },
-    { brand: 'Al Moallam', country: 'Sudan', image: alMoallam, flag: '🇸🇩' },
-    { brand: 'ReD Mac', country: 'Ukraine', image: redMac, flag: '🇺🇦' },
-    { brand: 'Wood Flower', country: 'Romania', image: woodFlower, flag: '🇷🇴' },
-    { brand: 'Al Karama', country: 'Sudan', image: alKarama, flag: '🇸🇩' },
-    { brand: 'The Gosse', country: 'Nigeria', image: theGosse, flag: '🇳🇬' },
-    { brand: 'Ziynat', country: 'Uzbekistan', image: ziynat, flag: '🇺🇿' },
-    { brand: 'Al Felaij', country: 'UAE', image: alFelaij, flag: '🇦🇪' },
-    { brand: 'Magia bunicii', country: 'Romania', image: magiaBunicii, flag: '🇷🇴' },
-    { brand: 'Zebra', country: 'Lebanon', image: zebra, flag: '🇱🇧' },
-    { brand: 'Zippy', country: 'South Africa', image: zippy, flag: '🇿🇦' }
+    { brand: "Simba", country: "Congo", image: simba, flag: "🇨🇩" },
+    { brand: "Football", country: "Saudi Arabia", image: football, flag: "🇸🇦" },
+    { brand: "Al Moallam", country: "Sudan", image: alMoallam, flag: "🇸🇩" },
+    { brand: "ReD Mac", country: "Ukraine", image: redMac, flag: "🇺🇦" },
+    { brand: "Wood Flower", country: "Romania", image: woodFlower, flag: "🇷🇴" },
+    { brand: "Al Karama", country: "Sudan", image: alKarama, flag: "🇸🇩" },
+    { brand: "The Gosse", country: "Nigeria", image: theGosse, flag: "🇳🇬" },
+    { brand: "Ziynat", country: "Uzbekistan", image: ziynat, flag: "🇺🇿" },
+    { brand: "Al Felaij", country: "UAE", image: alFelaij, flag: "🇦🇪" },
+    {
+      brand: "Magia bunicii",
+      country: "Romania",
+      image: magiaBunicii,
+      flag: "🇷🇴",
+    },
+    { brand: "Zebra", country: "Lebanon", image: zebra, flag: "🇱🇧" },
+    { brand: "Zippy", country: "South Africa", image: zippy, flag: "🇿🇦" },
   ];
 
   const woodenSplints = [
-    { country: 'Kenya', flag: '🇰🇪', color: '#00AEEF' },
-    { country: 'Hungary', flag: '🇭🇺', color: '#ED028C' },
-    { country: 'Honduras', flag: '🇭🇳', color: '#00AEEF' },
-    { country: 'Ethiopia', flag: '🇪🇹', color: '#ED028C' },
-    { country: 'Egypt', flag: '🇪🇬', color: '#00AEEF' },
-    { country: 'Tanzania', flag: '🇹🇿', color: '#ED028C' }
+    { country: "Kenya", flag: "🇰🇪", color: "#00AEEF" },
+    { country: "Hungary", flag: "🇭🇺", color: "#ED028C" },
+    { country: "Honduras", flag: "🇭🇳", color: "#00AEEF" },
+    { country: "Ethiopia", flag: "🇪🇹", color: "#ED028C" },
+    { country: "Egypt", flag: "🇪🇬", color: "#00AEEF" },
+    { country: "Tanzania", flag: "🇹🇿", color: "#ED028C" },
   ];
 
   const exportCountries = {
-    'Europe': {
-      countries: ['Germany', 'France', 'Spain', 'Italy', 'Greece'],
-      icon: '🇪🇺',
-      color: '#00AEEF'
+    Europe: {
+      countries: ["Germany", "France", "Spain", "Italy", "Greece"],
+      icon: "🇪🇺",
+      color: "#00AEEF",
     },
-    'Middle East': {
-      countries: ['Saudi Arabia', 'Turkey', 'Egypt'],
-      icon: '🕌',
-      color: '#ED028C'
+    "Middle East": {
+      countries: ["Saudi Arabia", "Turkey", "Egypt"],
+      icon: "🕌",
+      color: "#ED028C",
     },
-    'Africa': {
-      countries: ['South Africa', 'Kazakhstan'],
-      icon: '🌍',
-      color: '#00AEEF'
+    Africa: {
+      countries: ["South Africa", "Kazakhstan"],
+      icon: "🌍",
+      color: "#00AEEF",
     },
-    'Asia': {
-      countries: ['Afghanistan', 'and more...'],
-      icon: '🌏',
-      color: '#ED028C'
-    }
+    Asia: {
+      countries: ["Afghanistan", "and more..."],
+      icon: "🌏",
+      color: "#ED028C",
+    },
   };
 
   const exportServices = [
     {
       icon: <FaShippingFast className="text-5xl text-white" />,
-      title: 'Complete Logistics',
-      description: 'End-to-end shipping solutions including container booking, cargo handling, and delivery tracking to over 40 countries.',
-      points: ['Sea freight management', 'Air cargo services', 'Door-to-door delivery', 'Real-time tracking']
+      title: "Complete Logistics",
+      description:
+        "End-to-end shipping solutions including container booking, cargo handling, and delivery tracking to over 40 countries.",
+      points: [
+        "Sea freight management",
+        "Air cargo services",
+        "Door-to-door delivery",
+        "Real-time tracking",
+      ],
     },
     {
       icon: <FaFileContract className="text-5xl text-white" />,
-      title: 'Documentation Support',
-      description: 'Full assistance with export documentation, permits, certificates of origin, and regulatory compliance.',
-      points: ['Export licenses', 'Customs clearance', 'Certificate of origin', 'Phytosanitary certificates']
+      title: "Documentation Support",
+      description:
+        "Full assistance with export documentation, permits, certificates of origin, and regulatory compliance.",
+      points: [
+        "Export licenses",
+        "Customs clearance",
+        "Certificate of origin",
+        "Phytosanitary certificates",
+      ],
     },
     {
       icon: <FaCertificate className="text-5xl text-white" />,
-      title: 'Quality Certifications',
-      description: 'All products come with international quality certifications meeting global standards and buyer requirements.',
-      points: ['ISO certified', 'Lab test reports', 'Quality assurance', 'Compliance certificates']
+      title: "Quality Certifications",
+      description:
+        "All products come with international quality certifications meeting global standards and buyer requirements.",
+      points: [
+        "ISO certified",
+        "Lab test reports",
+        "Quality assurance",
+        "Compliance certificates",
+      ],
     },
     {
       icon: <FaHandshake className="text-5xl text-white" />,
-      title: 'Partnership Programs',
-      description: 'Long-term partnerships with dedicated account managers, competitive pricing, and flexible payment terms.',
-      points: ['Dedicated support', 'Flexible terms', 'Volume discounts', 'Private labeling']
-    }
+      title: "Partnership Programs",
+      description:
+        "Long-term partnerships with dedicated account managers, competitive pricing, and flexible payment terms.",
+      points: [
+        "Dedicated support",
+        "Flexible terms",
+        "Volume discounts",
+        "Private labeling",
+      ],
+    },
   ];
 
   const statistics = [
-    { number: '40+', label: 'Export Countries', sublabel: 'Global Reach' },
-    { number: '30+', label: 'Years Experience', sublabel: 'Since 1995' },
-    { number: '#1', label: 'Match Exporter', sublabel: 'In Pakistan' },
-    { number: '100%', label: 'Quality Assured', sublabel: 'Certified Products' }
+    { number: "40+", label: "Export Countries", sublabel: "Global Reach" },
+    { number: "30+", label: "Years Experience", sublabel: "Since 1995" },
+    { number: "#1", label: "Match Exporter", sublabel: "In Pakistan" },
+    {
+      number: "100%",
+      label: "Quality Assured",
+      sublabel: "Certified Products",
+    },
   ];
 
   const achievements = [
-    'Pakistan\'s largest safety match exporter',
-    'Exporting since 1995 with established presence',
-    'Premium quality products trusted internationally',
-    'State-of-the-art manufacturing facilities',
-    'Comprehensive export support services',
-    'Competitive pricing with flexible terms'
+    "Pakistan's largest safety match exporter",
+    "Exporting since 1995 with established presence",
+    "Premium quality products trusted internationally",
+    "State-of-the-art manufacturing facilities",
+    "Comprehensive export support services",
+    "Competitive pricing with flexible terms",
   ];
 
   return (
@@ -120,8 +161,9 @@ const ExportSection = () => {
           </h3>
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
           <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            Since 1995, Aziz Group has been Pakistan's largest safety match exporter, serving markets 
-            across Europe, Asia, Africa, and the Middle East with premium quality products.
+            Since 1995, Aziz Group has been Pakistan's largest safety match
+            exporter, serving markets across Europe, Asia, Africa, and the
+            Middle East with premium quality products.
           </p>
         </div>
 
@@ -132,7 +174,9 @@ const ExportSection = () => {
               key={index}
               className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] p-8 rounded-2xl text-center text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">{stat.number}</div>
+              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+                {stat.number}
+              </div>
               <div className="text-lg font-semibold mb-1">{stat.label}</div>
               <div className="text-sm text-white/80">{stat.sublabel}</div>
             </div>
@@ -147,7 +191,7 @@ const ExportSection = () => {
           <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
             Premium quality safety matches exported to countries worldwide
           </p>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {safetyMatches.map((match, index) => (
               <div
@@ -155,14 +199,16 @@ const ExportSection = () => {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF]"
               >
                 <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
-                  <img 
-                    src={match.image} 
-                    alt={match.brand} 
+                  <img
+                    src={match.image}
+                    alt={match.brand}
                     className="w-full h-full object-contain p-4"
                   />
                 </div>
                 <div className="p-4 text-center border-t-2 border-[#E0E0E0]">
-                  <h4 className="text-[#222222] font-bold text-lg mb-2">{match.brand}</h4>
+                  <h4 className="text-[#222222] font-bold text-lg mb-2">
+                    {match.brand}
+                  </h4>
                   <div className="flex items-center justify-center gap-2 text-[#666666]">
                     <span className="text-2xl">{match.flag}</span>
                     <span className="font-medium">{match.country}</span>
@@ -179,7 +225,8 @@ const ExportSection = () => {
             Wooden Splints Export
           </h3>
           <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
-            High-quality wooden splints delivered to multiple countries across Africa, Europe, and Central America
+            High-quality wooden splints delivered to multiple countries across
+            Africa, Europe, and Central America
           </p>
 
           <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 shadow-2xl">
@@ -189,16 +236,20 @@ const ExportSection = () => {
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-white/30">
                   <div className="text-center mb-6">
                     <div className="text-6xl mb-4">🌍</div>
-                    <h4 className="text-white text-2xl font-bold drop-shadow-lg">Global Splint Distribution</h4>
+                    <h4 className="text-white text-2xl font-bold drop-shadow-lg">
+                      Global Splint Distribution
+                    </h4>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     {woodenSplints.map((splint, index) => (
-                      <div 
+                      <div
                         key={index}
                         className="bg-white rounded-xl p-4 text-center hover:scale-105 transition-all duration-300 shadow-lg"
                       >
                         <div className="text-4xl mb-2">{splint.flag}</div>
-                        <div className="text-[#222222] font-semibold">{splint.country}</div>
+                        <div className="text-[#222222] font-semibold">
+                          {splint.country}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -206,32 +257,47 @@ const ExportSection = () => {
               </div>
 
               <div className="text-white">
-                <h4 className="text-3xl font-bold mb-6 drop-shadow-lg">Premium Wooden Splints</h4>
+                <h4 className="text-3xl font-bold mb-6 drop-shadow-lg">
+                  Premium Wooden Splints
+                </h4>
                 <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                  We export high-quality wooden splints to our partners across multiple continents. 
-                  Our splints meet international standards and are trusted by manufacturers worldwide.
+                  We export high-quality wooden splints to our partners across
+                  multiple continents. Our splints meet international standards
+                  and are trusted by manufacturers worldwide.
                 </p>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <FaCheckCircle className="text-2xl flex-shrink-0 mt-1" />
                     <div>
-                      <h5 className="font-semibold text-lg mb-1">Quality Assured</h5>
-                      <p className="text-white/80">Premium wood selection and processing</p>
+                      <h5 className="font-semibold text-lg mb-1">
+                        Quality Assured
+                      </h5>
+                      <p className="text-white/80">
+                        Premium wood selection and processing
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FaCheckCircle className="text-2xl flex-shrink-0 mt-1" />
                     <div>
-                      <h5 className="font-semibold text-lg mb-1">Reliable Supply</h5>
-                      <p className="text-white/80">Consistent delivery to 6+ countries</p>
+                      <h5 className="font-semibold text-lg mb-1">
+                        Reliable Supply
+                      </h5>
+                      <p className="text-white/80">
+                        Consistent delivery to 6+ countries
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FaCheckCircle className="text-2xl flex-shrink-0 mt-1" />
                     <div>
-                      <h5 className="font-semibold text-lg mb-1">Global Standards</h5>
-                      <p className="text-white/80">Meets international quality requirements</p>
+                      <h5 className="font-semibold text-lg mb-1">
+                        Global Standards
+                      </h5>
+                      <p className="text-white/80">
+                        Meets international quality requirements
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -245,10 +311,14 @@ const ExportSection = () => {
           <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
             Our Global Presence
           </h3>
-          
+
           {/* Map Placeholder */}
           <div className="relative bg-gray-500 rounded-3xl flex items-center justify-center mb-12 overflow-hidden group">
-            <img src={world_map_export_destinations} alt="Global Export Map" className="w-full  object-cover" />
+            <img
+              src={world_map_export_destinations}
+              alt="Global Export Map"
+              className="w-full  object-cover"
+            />
           </div>
 
           {/* Countries Grid */}
@@ -259,13 +329,19 @@ const ExportSection = () => {
                 className="bg-white p-6 rounded-xl border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-xl transition-all duration-300"
               >
                 <div className="text-5xl mb-4 text-center">{data.icon}</div>
-                <h4 className="text-[#222222] text-xl font-bold mb-4 text-center" style={{color: data.color}}>
+                <h4
+                  className="text-[#222222] text-xl font-bold mb-4 text-center"
+                  style={{ color: data.color }}
+                >
                   {region}
                 </h4>
                 <ul className="space-y-2">
                   {data.countries.map((country, idx) => (
                     <li key={idx} className="flex items-center text-[#666666]">
-                      <span className="w-2 h-2 rounded-full mr-3" style={{backgroundColor: data.color}}></span>
+                      <span
+                        className="w-2 h-2 rounded-full mr-3"
+                        style={{ backgroundColor: data.color }}
+                      ></span>
                       {country}
                     </li>
                   ))}
@@ -288,12 +364,14 @@ const ExportSection = () => {
                 className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-white hover:shadow-2xl hover:scale-105 transition-all duration-300"
               >
                 <div className="flex items-start gap-6 mb-6">
-                  <div className="flex-shrink-0">
-                    {service.icon}
-                  </div>
+                  <div className="flex-shrink-0">{service.icon}</div>
                   <div>
-                    <h4 className="text-2xl font-bold mb-3 drop-shadow-md">{service.title}</h4>
-                    <p className="text-text-white-90 leading-relaxed mb-4">{service.description}</p>
+                    <h4 className="text-2xl font-bold mb-3 drop-shadow-md">
+                      {service.title}
+                    </h4>
+                    <p className="text-text-white-90 leading-relaxed mb-4">
+                      {service.description}
+                    </p>
                   </div>
                 </div>
                 <ul className="space-y-2 pl-6">
@@ -314,7 +392,7 @@ const ExportSection = () => {
           <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
             Why Choose Aziz Group for Export?
           </h3>
-          
+
           <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] p-8 md:p-12">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {achievements.map((achievement, index) => (
@@ -335,9 +413,9 @@ const ExportSection = () => {
                 Ready to Start Exporting with Us?
               </h3>
               <p className="text-text-white-90 text-lg leading-relaxed mb-8 drop-shadow-md">
-                Join our network of international partners and benefit from our extensive export 
-                experience, reliable logistics, and commitment to quality. We handle everything 
-                from documentation to delivery.
+                Join our network of international partners and benefit from our
+                extensive export experience, reliable logistics, and commitment
+                to quality. We handle everything from documentation to delivery.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
@@ -361,7 +439,11 @@ const ExportSection = () => {
 
             {/* Image Placeholder */}
             <div className="h-80 bg-gray-500 overflow-hidden rounded-2xl flex items-center justify-center ">
-              <img src={export_shipping_container} alt="Export Shipping Container" className="w-full h-full scale-155" />
+              <img
+                src={export_shipping_container}
+                alt="Export Shipping Container"
+                className="w-full h-full scale-155"
+              />
               {/* <div className="text-center">
                 <FaShippingFast className="text-8xl text-white mx-auto mb-4 drop-shadow-lg" />
                 <p className="text-white font-medium text-lg mb-2">📷 Export Shipping Container Image</p>
@@ -373,13 +455,21 @@ const ExportSection = () => {
 
         {/* Contact Information */}
         <div className="mt-16 bg-white rounded-2xl border-2 border-[#E0E0E0] p-8">
-          <h4 className="text-[#222222] text-2xl font-bold mb-6 text-center">Export Department Contact</h4>
+          <h4 className="text-[#222222] text-2xl font-bold mb-6 text-center">
+            Export Department Contact
+          </h4>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <p className="text-[#666666]"><strong className="text-[#222222]">Email:</strong> match.export@azizgrp.com</p>
+              <p className="text-[#666666]">
+                <strong className="text-[#222222]">Email:</strong>{" "}
+                match.export@azizgrp.com
+              </p>
             </div>
             <div>
-              <p className="text-[#666666]"><strong className="text-[#222222]">Phone:</strong> +92-(0)300-8592829</p>
+              <p className="text-[#666666]">
+                <strong className="text-[#222222]">Phone:</strong>{" "}
+                +92-(0)300-8592829
+              </p>
             </div>
           </div>
         </div>

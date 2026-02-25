@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const FounderSection = () => {
+const FounderSection = ({ founder }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -35,7 +35,7 @@ const FounderSection = () => {
           >
             <div className="relative max-w-md mx-auto">
               {/* Placeholder - Replace with actual founder image */}
-              <div className="aspect-[3/4] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl shadow-xl flex items-center justify-center">
+              {/* <div className="aspect-[3/4] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl shadow-xl flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="w-24 h-24 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -45,9 +45,10 @@ const FounderSection = () => {
                   <p className="text-gray-600 font-semibold">Founder Image</p>
                   <p className="text-sm text-gray-500 mt-2">Placeholder</p>
                 </div>
-              </div>
+              </div>*/}
               {/* Decorative Border */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-[#00AEEF] rounded-2xl -z-10"></div>
+              {/* <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-[#00AEEF] rounded-2xl -z-10"></div>  */}
+              <img src={founder} alt="Founder" className="w-full h-full object-cover rounded-2xl shadow-xl" />
             </div>
           </motion.div>
         </div>

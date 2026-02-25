@@ -2,6 +2,7 @@ import chairmanImg from '../assets/people/chairman.png';
 import ceoImg from '../assets/people/ceo.jpeg';
 import waleedImg from '../assets/people/waleed.jpg';
 import azizgrp from "../assets/azizgrp.jpg";
+import founder from "../assets/people/founder.jpeg"
 
 // Import logos
 import senateImg from '../assets/logos/senate.png';
@@ -106,7 +107,7 @@ const AboutUsPage = () => {
       <CompanyOverview companies={companies} />
 
       {/* Founder Section */}
-      <FounderSection />
+      <FounderSection founder={founder} />
 
       {/* Mission & Vision */}
       <MissionVisionValues />
