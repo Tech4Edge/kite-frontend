@@ -16,7 +16,7 @@ const BriefPromotion = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
+          <div className="relative bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 border-4 border-transparent hover:border-[#ED028C] hover:scale-110 hover:z-10 group">
             <FaAward className="text-5xl text-[#ED028C] mx-auto mb-4 group-hover:text-[#00AEEF]" />
             <h3 className="text-2xl font-bold mb-3">Premium Quality</h3>
             <p className="text-black">
@@ -25,8 +25,8 @@ const BriefPromotion = () => {
             </p>
           </div>
 
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
-            <FaGift className="text-5xl text-[#00AEEF] mx-auto mb-4 group-hover:text-[#ED028C]" />
+          <div className="relative bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 border-4 border-transparent hover:border-[#ED028C] hover:scale-110 hover:z-10 group">
+            <FaGift className="text-5xl text-[#ED028C] mx-auto mb-4 group-hover:text-[#ED028C]" />
             <h3 className="text-2xl font-bold mb-3">Value for Money</h3>
             <p className="text-black">
               Competitive pricing with bulk order discounts for wholesalers and
@@ -34,7 +34,7 @@ const BriefPromotion = () => {
             </p>
           </div>
 
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
+          <div className="relative bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 border-4 border-transparent hover:border-[#ED028C] hover:scale-110 hover:z-10 group">
             <FaHandshake className="text-5xl text-[#ED028C] mx-auto mb-4 group-hover:text-[#00AEEF]" />
             <h3 className="text-2xl font-bold mb-3">Trusted Brand</h3>
             <p className="text-black">
