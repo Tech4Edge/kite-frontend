@@ -1,6 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade, EffectCube, EffectCreative, EffectCards } from "swiper/modules";
-import { useNavigate } from "react-router-dom";
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectFade,
+  EffectCube,
+  EffectCreative,
+  EffectCards,
+} from "swiper/modules";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,7 +16,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import hero2 from "../assets/hero2.jpg";
 import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpeg";
+import hero4 from "../assets/hero4.jpg";
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,7 +25,8 @@ const HeroCarousel = () => {
     {
       id: 1,
       title: "Safety Matches",
-      subtitle: "Pakistan's Most Trusted Match Brands - Over 50 Years of Excellence",
+      subtitle:
+        "Pakistan's Most Trusted Match Brands - Over 50 Years of Excellence",
       description:
         "Export Brands: Shrimp, Helicopter, Sunflower, Chinook | Local Brands: Kite, Bird, Olympia, Party, Tanga - Premium quality safety matches manufactured with the latest technology.",
       image: hero2,
@@ -52,14 +61,26 @@ const HeroCarousel = () => {
   return (
     <section id="home" className="relative overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         <div className="absolute top-0 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+      </div> */}
 
       <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectFade,EffectCards]}
-        effect="cards"
+        modules={[Autoplay, Pagination, Navigation, EffectCreative]}
+        effect="creative"
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: ["-120%", 0, -500],
+            rotate: [0, 0, -15],
+          },
+          next: {
+            shadow: true,
+            translate: ["120%", 0, -500],
+            rotate: [0, 0, 15],
+          },
+        }}
         spaceBetween={0}
         slidesPerView={1}
         navigation
@@ -69,19 +90,22 @@ const HeroCarousel = () => {
           disableOnInteraction: false,
         }}
         loop={true}
+        speed={1000}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="hero-swiper"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative min-h-[470px] w-full overflow-hidden">
+            <div className="relative h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] w-full overflow-hidden">
               {/* Background Image - Full Cover */}
-              <div className="absolute inset-0 hero-image-container">
+              <div className="absolute inset-0">
+                <Link to={slide.link} className="block w-full h-full">
                 <img
                   src={slide.image}
                   alt={slide.title}
                   className="absolute inset-0 w-full h-full object-cover object-center"
-                />
+                  />
+                  </Link>
                 {/* Subtle Gradient Overlay for Text Readability */}
                 {/* <div
                   className={`absolute inset-0 bg-gradient-to-r ${slide.gradient}`}
@@ -126,7 +150,7 @@ const HeroCarousel = () => {
                   </div> */}
 
                   {/* CTA Button with Premium Design */}
-                    {/* <div className="flex flex-wrap gap-4 mt-8">
+                  {/* <div className="flex flex-wrap gap-4 mt-8">
                       
                       <button
                         onClick={() => navigate(slide.link)}
@@ -135,8 +159,8 @@ const HeroCarousel = () => {
                           boxShadow: `0 10px 40px ${slide.accentColor}40`,
                         }}
                       > */}
-                        {/* Button Shine Effect */}
-                        {/* <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                  {/* Button Shine Effect */}
+                  {/* <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
                         <span className="relative flex items-center gap-3">
                           View Products
                           <svg
@@ -182,10 +206,10 @@ const HeroCarousel = () => {
               </div>
 
               {/* Bottom Accent Line */}
-              <div
+              {/* <div
                 className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"
                 style={{ backgroundColor: slide.accentColor }}
-              ></div>
+              ></div> */}
             </div>
           </SwiperSlide>
         ))}
@@ -293,7 +317,8 @@ const HeroCarousel = () => {
 
         /* Pagination - Modern Glass Design */
         .hero-swiper :global(.swiper-pagination) {
-          bottom: 40px !important;
+          bottom: 20px !important;
+          z-index: 30;
         }
 
         .hero-swiper :global(.swiper-pagination-bullet) {
