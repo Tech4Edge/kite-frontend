@@ -108,7 +108,7 @@ const CertificationsSlider = () => {
                   <img
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-48! object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
