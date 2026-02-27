@@ -15,9 +15,9 @@ const BriefPromotion = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12 group">
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300">
-            <FaAward className="text-5xl text-[#00AEEF] mx-auto mb-4 group-hover:text-black" />
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
+            <FaAward className="text-5xl text-[#ED028C] mx-auto mb-4 group-hover:text-[#00AEEF]" />
             <h3 className="text-2xl font-bold mb-3">Premium Quality</h3>
             <p className="text-black">
               Kite Matches meeting international safety standards. Kite Glow
@@ -25,8 +25,8 @@ const BriefPromotion = () => {
             </p>
           </div>
 
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 group">
-            <FaGift className="text-5xl text-[#00AEEF] mx-auto mb-4 group-hover:text-black" />
+          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
+            <FaGift className="text-5xl text-[#00AEEF] mx-auto mb-4 group-hover:text-[#ED028C]" />
             <h3 className="text-2xl font-bold mb-3">Value for Money</h3>
             <p className="text-black">
               Competitive pricing with bulk order discounts for wholesalers and
@@ -34,8 +34,8 @@ const BriefPromotion = () => {
             </p>
           </div>
 
-          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 group">
-            <FaHandshake className="text-5xl text-[#00AEEF] mx-auto mb-4 group-hover:text-black" />
+          <div className="bg-white backdrop-blur-sm rounded-2xl p-8 text-center transition-all duration-500 hover:border-4 hover:scale-110 border-[#ED028C]  group">
+            <FaHandshake className="text-5xl text-[#ED028C] mx-auto mb-4 group-hover:text-[#00AEEF]" />
             <h3 className="text-2xl font-bold mb-3">Trusted Brand</h3>
             <p className="text-black">
               50+ years of manufacturing excellence. Exporting to 40+ countries
