@@ -5,6 +5,7 @@ import match_making from "../assets/videos/match_making.mp4";
 
 const MatchMakingSection = () => {
   const videoRef = useRef(null);
+  const expandedVideoRef = useRef(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleVideoClick = () => {
@@ -19,6 +20,18 @@ const MatchMakingSection = () => {
     setIsExpanded(false);
     if (videoRef.current) {
       videoRef.current.muted = true;
+    }
+  };
+
+  const handleExpandedVideoPause = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+    }
+  };
+
+  const handleExpandedVideoPlay = () => {
+    if (videoRef.current && isExpanded) {
+      videoRef.current.muted = false;
     }
   };
 
@@ -135,11 +148,14 @@ const MatchMakingSection = () => {
               {/* Expanded Video */}
               <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
                 <video
-                  className="w-full h-[90vh] rounded-2xl object-cover"
+                  ref={expandedVideoRef}
+                  className="w-full h-[90vh] rounded-2xl "
                   autoPlay
                   loop
                   playsInline
                   controls
+                  onPause={handleExpandedVideoPause}
+                  onPlay={handleExpandedVideoPlay}
                 >
                   <source src={match_making} type="video/mp4" />
                   Your browser does not support the video tag.
