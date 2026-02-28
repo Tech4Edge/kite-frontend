@@ -8,7 +8,6 @@ const ContactPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Information</h1>
-            <p className="text-xl md:text-2xl">Kite Brand - FMCG Division & Match Manufacturing</p>
           </div>
         </div>
       </section>
@@ -19,7 +18,7 @@ const ContactPage = () => {
           {/* FMCG Division Head Office */}
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-8 text-center">
-              FMCG Division & Match Manufacturing Facilities
+              FMCG Division
             </h2>
             
             {/* FMCG Division Head Office */}
@@ -29,7 +28,7 @@ const ContactPage = () => {
                   <FaBuilding className="text-white text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3">FMCG Division Head Office</h3>
+                  <h3 className="text-2xl font-bold text-white mb-3">FMCG Head Office</h3>
                   <div className="text-white/95 space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0" />
@@ -52,7 +51,7 @@ const ContactPage = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-[#222222] mb-3">Mohsin Match Factory Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Established 1974 - Earliest Private Sector Match Manufacturer in KPK</p>
+                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Earliest Private Sector Match Manufacturer in KPK</p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
@@ -79,7 +78,7 @@ const ContactPage = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-[#222222] mb-3">A.J Match Factory Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#0095CC] font-semibold mb-3">Established 2006 - Sheikhupura Manufacturing Unit</p>
+                  <p className="text-sm text-[#0095CC] font-semibold mb-3">Sheikhupura Manufacturing Unit</p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
@@ -108,7 +107,7 @@ const ContactPage = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-[#222222] mb-3">Mohsin Enterprises Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Established 1990 - Group's 2nd Match Manufacturing Unit</p>
+                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Detergent and DishWash Bar Manufacturing Unit</p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />

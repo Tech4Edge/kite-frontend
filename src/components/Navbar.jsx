@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    
     {
       name: "Products",
       href: "/products",
@@ -86,6 +86,7 @@ const Navbar = () => {
     //   ],
     // },
     { name: "Export", href: "/export" },
+    { name: "About", href: "/about" },
   ];
 
   const isActive = (href) => location.pathname === href;

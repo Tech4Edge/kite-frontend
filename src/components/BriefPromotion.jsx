@@ -49,7 +49,7 @@ const BriefPromotion = () => {
             to="/products"
             className="inline-block bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300 shadow-lg"
           >
-            Explore Kite Products
+            Explore Products
           </Link>
         </div>
       </div>
