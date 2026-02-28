@@ -38,7 +38,7 @@ const MatchMakingSection = () => {
   return (
     <>
       <section className="relative h-screen min-h-[600px] overflow-hidden border-t-8 border-b-8 border-[#00AEEF]">
-        <div className="relative h-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 h-full items-center">
             {/* Left Content */}
             <div className="text-black z-10">
