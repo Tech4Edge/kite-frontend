@@ -1,11 +1,31 @@
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaTimes, FaExpand } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 import match_making from "../assets/videos/match_making.mp4";
 
 const MatchMakingSection = () => {
+  const videoRef = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleVideoClick = () => {
+    setIsExpanded(true);
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+    }
+  };
+
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setIsExpanded(false);
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+    }
+  };
+
   return (
+    <>
     <section className="relative h-screen min-h-[600px] overflow-hidden border-t-8 border-b-8 border-[#00AEEF]">
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative h-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 h-full items-center">
           {/* Left Content */}
           <div className="text-black z-10">
@@ -65,14 +85,56 @@ const MatchMakingSection = () => {
 
           {/* Right Video */}
           <div className="relative h-full flex items-center justify-center py-8">
-            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl group">
               <video
-                className="w-full h-auto rounded-2xl"
+                ref={videoRef}
+                className="w-full h-auto rounded-2xl cursor-pointer"
                 autoPlay
                 loop
                 muted
                 playsInline
                 poster={match_making}
+                onClick={handleVideoClick}
+              >
+                <source src={match_making} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Expand Indicator */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 pointer-events-none">
+                <div className="bg-white/90 p-4 rounded-full">
+                  <FaExpand className="text-2xl text-[#00AEEF]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Expanded Video Overlay */}
+      {isExpanded && (
+        <div 
+          className="fixed inset-0 top-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center px-8 py-12 md:px-12 md:py-16"
+          onClick={handleClose}
+        >
+          <div className="relative w-full max-w-7xl" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute -top-6 right-0 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10 cursor-pointer"
+              aria-label="Close video"
+            >
+              <FaTimes className="text-xl" />
+            </button>
+            
+            {/* Expanded Video */}
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                className="w-full h-[90vh] rounded-2xl object-cover"
+                autoPlay
+                loop
+                playsInline
+                controls
               >
                 <source src={match_making} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -80,7 +142,7 @@ const MatchMakingSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Manufacturing Process Steps */}
       {/* <div className="absolute -bottom-4 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8 z-20">
@@ -110,6 +172,7 @@ const MatchMakingSection = () => {
         </div>
       </div> */}
     </section>
+    </>
   );
 };
 

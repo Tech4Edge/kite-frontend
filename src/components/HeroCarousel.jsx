@@ -16,7 +16,8 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import hero2 from "../assets/hero2.jpg";
 import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpg";
+import hero4 from "../assets/hero4.jpeg";
+import hero1 from "../assets/delivery.jpeg"
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -56,6 +57,17 @@ const HeroCarousel = () => {
       gradient: "from-green-800/50 via-green-600/30 to-transparent",
       accentColor: "#059669",
     },
+    {
+      id: 4,
+      title: "Swift Delivery Services",
+      subtitle: "Fast, Reliable, and Nationwide Coverage",
+      description:
+        "Experience the speed and reliability of Swift Delivery Services. We ensure your packages reach their destination on time, every time, with our extensive nationwide coverage.",
+      image: hero1,
+      link: "/services",
+      gradient: "from-purple-900/50 via-purple-700/30 to-transparent",
+      accentColor: "#7C3AED",
+    }
   ];
 
   return (
@@ -96,7 +108,7 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] w-full overflow-hidden">
+            <div className="relative h-[600px] w-full overflow-hidden">
               {/* Background Image - Full Cover */}
               <div className="absolute inset-0">
                 <Link to={slide.link} className="block w-full h-full">
