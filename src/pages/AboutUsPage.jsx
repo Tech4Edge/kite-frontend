@@ -223,6 +223,7 @@ const AboutUsPage = () => {
       <LeaderProfile
         name="Mr. Mohsin Aziz"
         title="Chairman"
+        stitle="Chairman"
         image={chairmanImg}
         message={chairmanMessage}
         positions={chairmanPositions}
@@ -234,25 +235,27 @@ const AboutUsPage = () => {
       {/* CEO Section */}
       <LeaderProfile
         name="Mr. Afan Aziz"
-        title="CEO"
+        title="Chief Executive Officer"
+        stitle="CEO"
         image={ceoImg}
         message={ceoMessage}
         positions={ceoPositions}
         backgroundColor="bg-gray-50"
         imagePosition="right"
-        accentColor="#ED028C"
+        accentColor="#00AEEF"
       />
 
       {/* Managing Director FMCG Division Section */}
       <LeaderProfile
         name="Mr. Waleed Elahi"
-        title="MD"
+        title="Managing Director"
+        stitle="MD"
         image={waleedImg}
         message={managingDirectorMessage}
         positions={managingDirectorPositions}
         backgroundColor="bg-white"
         imagePosition="left"
-        accentColor="#FF8ACE"
+        accentColor="#00AEEF"
       />
 
       {/* Membership & Achievements - Commented Out */}

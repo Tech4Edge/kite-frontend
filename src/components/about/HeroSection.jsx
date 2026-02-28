@@ -74,14 +74,6 @@ const HeroSection = () => {
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">70+</div>
               <div className="text-white/80 text-sm md:text-base">Years of Excellence</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">8</div>
-              <div className="text-white/80 text-sm md:text-base">Companies</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">$100M+</div>
-              <div className="text-white/80 text-sm md:text-base">Annual Sales</div>
-            </div>
           </motion.div>
         </motion.div>
       </div>

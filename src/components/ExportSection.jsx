@@ -185,7 +185,7 @@ const ExportSection = () => {
         {/* Safety Matches Export Menu */}
         <div className="mb-20">
           <h3 className="text-[#222222] text-3xl font-bold text-center mb-4">
-            Our Safety Match Brands
+            Our Export Brands
           </h3>
           <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
             Premium quality safety matches exported to countries worldwide

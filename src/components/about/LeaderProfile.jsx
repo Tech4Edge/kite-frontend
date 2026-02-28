@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 const LeaderProfile = ({ 
   name, 
   title, 
+  stitle,
   image, 
   message, 
   positions, 
@@ -40,7 +41,7 @@ const LeaderProfile = ({
                 className={`absolute -bottom-4 ${isLeft ? '-right-4' : '-left-4'} text-white px-6 py-3 rounded-xl shadow-lg`}
                 style={{ background: `linear-gradient(to bottom right, ${accentColor}, ${accentColor}dd)` }}
               >
-                <p className="font-bold">{title}</p>
+                <p className="font-bold">{stitle}</p>
               </div>
             </div>
 

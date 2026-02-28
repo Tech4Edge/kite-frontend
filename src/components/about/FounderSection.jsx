@@ -22,7 +22,7 @@ const FounderSection = ({ founder }) => {
               Our Founder
             </h2>
             <p className="text-lg text-[#666666] leading-relaxed">
-              Our founder late <strong className="text-[#222222]">Haji Aziz-ur-rehman</strong>, or (Aziz Jan) as he was popularly known, was a man of great virtue, character and principle. His teachings, to this date, are a guiding principle of our group.
+              Our founder late <strong className="text-[#222222]">Haji Aziz-Ur-Rehman</strong>, or (Aziz Jan) as he was popularly known, was a man of great virtue, character and principle. His teachings, to this date, are a guiding principle of our group.
             </p>
           </motion.div>
 

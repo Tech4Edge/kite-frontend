@@ -37,8 +37,7 @@ const CompanyOverview = ({ companies }) => {
               </p>
               <p>
                 The group is largely self-financed and has an impeccable record
-                with the financial institutions of Pakistan with sales over USD
-                100 million, exporting to Europe, Asia & Africa.
+                with the financial institutions of Pakistan, exporting to Europe, Asia & Africa.
               </p>
             </div>
           </motion.div>
@@ -54,7 +53,7 @@ const CompanyOverview = ({ companies }) => {
               <img
                 src={azizGroupLogo}
                 alt="Aziz Group"
-                className="h-12 md:h-16 object-contain"
+                className="h-12! md:h-16! object-contain"
               />
             </div>
 

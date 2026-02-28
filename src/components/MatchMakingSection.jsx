@@ -43,7 +43,7 @@ const MatchMakingSection = () => {
             {/* Left Content */}
             <div className="text-black z-10">
               <div className="inline-block bg-[#00AEEF] backdrop-blur-xs px-4 py-2 rounded-full mb-6">
-                <span className="text-black font-semibold text-sm uppercase tracking-wide">
+                <span className="text-white font-semibold text-sm uppercase tracking-wide">
                   Manufacturing Excellence
                 </span>
               </div>
