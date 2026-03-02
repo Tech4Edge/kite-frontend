@@ -197,9 +197,9 @@ const AboutUsPage = () => {
   ];
 
   const managingDirectorMessage = [
-    "Mr. Waleed brings with a strong academic background and over 20 years of hands-on experience in Marketing, Sales, and Distribution. He is a graduate of the University of Wisconsin–Madison and holds an MBA Degree from LUMS, where he was awarded the Bronze Medal. Mr. Waleed's professional journey includes valuable experience with Pakistan Tobacco Company, which played a key role in shaping the structured operations, brand building, and market execution.",
-    "For the past 10 years, Mr. Waleed is serving as Managing Director – FMCG Division, leading the Kite brand with a clear focus on consumer needs, product quality, and sustainable growth. Our flagship Kite Glow detergent, launched in March 2025, has rapidly gained market recognition for its exceptional cleaning power. Kite Dish Wash Bar and Kite Safety Matches continue to strengthen our position as Pakistan's most trusted FMCG brand.",
-    "Mr. Waleed's strategic vision emphasizes that sustainable success in the FMCG sector is built on deep market understanding, operational excellence, and an uncompromising commitment to quality. With 10,000+ employees and presence in 40+ countries, the Kite brand continues to deliver trusted everyday products to households and businesses across Pakistan and internationally.",
+    "Mr. Waleed brings over 20 years of experience in Marketing, Sales, and Distribution. A graduate of the University of Wisconsin–Madison and LUMS (Bronze Medal), his professional journey includes valuable experience with Pakistan Tobacco Company, shaping his expertise in structured operations and brand building.",
+    "As Managing Director – FMCG Division for the past decade, Mr. Waleed leads the Kite brand with a focus on consumer needs and quality. Our flagship Kite Glow detergent (launched March 2025) has gained rapid market recognition, while Kite Dish Wash Bar and Kite Safety Matches strengthen our position as Pakistan's most trusted FMCG brand.",
+    "With 10,000+ employees and presence in 40+ countries, the Kite brand continues delivering trusted everyday products to households across Pakistan and internationally.",
   ];
 
   return (
@@ -250,6 +250,7 @@ const AboutUsPage = () => {
         name="Mr. Waleed Elahi"
         title="Managing Director"
         stitle="MD"
+        imgcls="object-[center_30%]!"
         image={waleedImg}
         message={managingDirectorMessage}
         positions={managingDirectorPositions}

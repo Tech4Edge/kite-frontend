@@ -72,19 +72,19 @@ const BriefExport = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-center text-white">
+            <div className="bg-gradient-to-br card-hover from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-center text-white">
               <div className="text-5xl font-bold mb-2">40+</div>
               <div className="text-lg">Export Countries</div>
             </div>
-            <div className="bg-gradient-to-br from-[#ED028C] to-[#d4027a] rounded-2xl p-8 text-center text-white">
+            <div className="bg-gradient-to-br card-hover from-[#ED028C] to-[#d4027a] rounded-2xl p-8 text-center text-white">
               <div className="text-5xl font-bold mb-2">30+</div>
               <div className="text-lg">Years Experience</div>
             </div>
-            <div className="bg-gradient-to-br from-[#ED028C] to-[#d4027a] rounded-2xl p-8 text-center text-white">
+            <div className="bg-gradient-to-br card-hover from-[#ED028C] to-[#d4027a] rounded-2xl p-8 text-center text-white">
               <div className="text-5xl font-bold mb-2">#1</div>
               <div className="text-lg">Match Exporter</div>
             </div>
-            <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-center text-white">
+            <div className="bg-gradient-to-br card-hover from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-center text-white">
               <div className="text-5xl font-bold mb-2">100%</div>
               <div className="text-lg">Quality Assured</div>
             </div>

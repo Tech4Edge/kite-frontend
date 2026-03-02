@@ -1,57 +1,60 @@
-import { FaUsers, FaIndustry, FaGlobeAsia, FaAward } from 'react-icons/fa';
-import chairman from "../assets/people/chairman.png"
-import ceo from "../assets/people/ceo.jpeg"
-import aziz_group_logo from "../assets/ajlogo.png"
-import waleed from "../assets/people/waleed.jpg"
+import { FaUsers, FaIndustry, FaGlobeAsia, FaAward } from "react-icons/fa";
+import chairman from "../assets/people/chairman.png";
+import ceo from "../assets/people/ceo.jpeg";
+import aziz_group_logo from "../assets/ajlogo.png";
+import waleed from "../assets/people/waleed.jpg";
 
 const AboutSection = () => {
   const leaders = [
     {
       id: 1,
-      name: 'Mr. Mohsin Aziz',
-      title: 'Chairman',
+      name: "Mr. Mohsin Aziz",
+      title: "Chairman",
       image: chairman,
-      className: "h-120! scale-110! group-hover:scale-120! transition-transform duration-500! object-[20%_55%]!",
-      bio: 'Senator in the Senate of Pakistan (2021-2027 & 2015-2021). Chairman of the Senate Standing Committee on Power. Former Director on the Board of the State Bank of Pakistan (2 terms), board member at HBL and PPL. Chairman of APTMA (2 terms) and President of Sarhad Chamber of Commerce & Industry.',
+      className:
+        "h-120! scale-110! group-hover:scale-120! transition-transform duration-500! object-[20%_55%]!",
+      bio: "Senator in the Senate of Pakistan (2021-2027 & 2015-2021). Chairman of the Senate Standing Committee on Power. Former Director on the Board of the State Bank of Pakistan (2 terms), board member at HBL and PPL. Chairman of APTMA (2 terms) and President of Sarhad Chamber of Commerce & Industry.",
     },
     {
       id: 2,
-      name: 'Mr. Afan Aziz',
-      title: 'CEO',
+      name: "Mr. Afan Aziz",
+      title: "CEO",
       image: ceo,
-      className: "h-120! scale-120! group-hover:scale-130! transition-transform duration-500! object-[20%_5%]!",
-      bio: 'Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.',
+      className:
+        "h-120! scale-120! group-hover:scale-130! transition-transform duration-500! object-[20%_5%]!",
+      bio: "Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.",
     },
     {
       id: 3,
-      name: 'Mr. Waleed Elahi',
-      title: 'Managing Director - FMCG',
+      name: "Mr. Waleed Elahi",
+      title: "Managing Director - FMCG",
       image: waleed,
-      className: "h-120! scale-155! group-hover:scale-165! transition-transform duration-500! object-[50%_20%]!",
-      bio: 'Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.',
+      className:
+        "h-120! scale-155! group-hover:scale-165! transition-transform duration-500! object-[50%_20%]!",
+      bio: "Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.",
     },
   ];
 
   const stats = [
     {
       icon: <FaAward className="text-5xl text-[#ED028C]" />,
-      number: '50+',
-      label: 'Years Legacy',
+      number: "50+",
+      label: "Years Legacy",
     },
     {
       icon: <FaUsers className="text-5xl text-[#00AEEF]" />,
-      number: '10,000+',
-      label: 'Employees',
+      number: "10,000+",
+      label: "Employees",
     },
     {
       icon: <FaIndustry className="text-5xl text-[#ED028C]" />,
-      number: '#1',
-      label: 'Match Exporter',
+      number: "#1",
+      label: "Match Exporter",
     },
     {
       icon: <FaGlobeAsia className="text-5xl text-[#00AEEF]" />,
-      number: '40+',
-      label: 'Export Countries',
+      number: "40+",
+      label: "Export Countries",
     },
   ];
 
@@ -69,7 +72,11 @@ const AboutSection = () => {
           <p className="text-[#666666] text-xl max-w-3xl mx-auto mb-4">
             Part of Aziz Group of Industries
           </p>
-          <img src={aziz_group_logo} className='w-50 h-50 mx-auto mt-3 mb-6' alt="Aziz Group of Industries" />
+          <img
+            src={aziz_group_logo}
+            className="w-50 h-50 mx-auto mt-3 mb-6"
+            alt="Aziz Group of Industries"
+          />
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
         </div>
 
@@ -77,25 +84,66 @@ const AboutSection = () => {
         <div className="mb-16">
           <div className="bg-gradient-to-r from-[#FFEFF9] to-white p-8 md:p-12 rounded-2xl border-2 border-[#FF8ACE] shadow-lg hover:shadow-2xl transition-all duration-300">
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              <span className="font-bold text-[#00AEEF] text-2xl">Kite Brand</span> represents the pinnacle of FMCG excellence under 
-              <span className="font-bold text-[#ED028C]"> Mohsin Match Factory (Pvt.) Limited</span>, part of the Aziz Group of Industries. 
-              With <span className="font-bold">over 50 years of manufacturing excellence</span> since 1974, we have become 
-              <span className="font-bold text-[#ED028C]"> Pakistan's largest safety match manufacturer and exporter</span>.
+              <span className="font-bold text-[#00AEEF] text-2xl">
+                Kite Brand
+              </span>{" "}
+              represents the pinnacle of FMCG excellence under
+              <span className="font-bold text-[#ED028C]">
+                {" "}
+                Mohsin Match Factory (Pvt.) Limited
+              </span>
+              , part of the Aziz Group of Industries. With{" "}
+              <span className="font-bold">
+                over 50 years of manufacturing excellence
+              </span>{" "}
+              since 1974, we have become
+              <span className="font-bold text-[#ED028C]">
+                {" "}
+                Pakistan's largest safety match manufacturer and exporter
+              </span>
+              .
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              Our <span className="font-bold text-[#00AEEF]">Kite Glow detergent</span>, launched in March 2025, has rapidly gained market recognition 
-              due to its <span className="font-bold">exceptional cleaning power, superior stain removal, and fabric care</span>. 
-              Complementing Kite Glow, <span className="font-bold text-[#ED028C]">BURQ Action</span> caters to our mid-tier market segment.
+              Our{" "}
+              <span className="font-bold text-[#00AEEF]">
+                Kite Glow detergent
+              </span>
+              , launched in March 2025, has rapidly gained market recognition
+              due to its{" "}
+              <span className="font-bold">
+                exceptional cleaning power, superior stain removal, and fabric
+                care
+              </span>
+              . Complementing Kite Glow,{" "}
+              <span className="font-bold text-[#ED028C]">BURQ Action</span>{" "}
+              caters to our mid-tier market segment.
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              <span className="font-bold text-[#00AEEF]">Kite Dish Wash Bar</span> has rapidly achieved good market growth due to its 
-              <span className="font-bold"> premium fragrance, advanced cleaning formulation, and slow water dissolution</span> that not only matches 
-              but beats market leaders while maintaining competitive pricing.
+              <span className="font-bold text-[#00AEEF]">
+                Kite Dish Wash Bar
+              </span>{" "}
+              has rapidly achieved good market growth due to its
+              <span className="font-bold">
+                {" "}
+                premium fragrance, advanced cleaning formulation, and slow water
+                dissolution
+              </span>{" "}
+              that not only matches but beats market leaders while maintaining
+              competitive pricing.
             </p>
             <p className="text-[#666666] text-lg leading-relaxed">
-              We employ <span className="font-bold text-[#ED028C]">over 10,000 employees</span> across the nation and export to 
-              <span className="font-bold text-[#00AEEF]"> over 40 countries</span> since 1995. Our Kite brand matches are renowned 
-              for being <span className="font-bold">carborised and damp-proof</span>, meeting international safety standards.
+              We employ{" "}
+              <span className="font-bold text-[#ED028C]">
+                over 10,000 employees
+              </span>{" "}
+              across the nation and export to
+              <span className="font-bold text-[#00AEEF]">
+                {" "}
+                over 40 countries
+              </span>{" "}
+              since 1995. Our Kite brand matches are renowned for being{" "}
+              <span className="font-bold">carborised and damp-proof</span>,
+              meeting international safety standards.
             </p>
           </div>
         </div>
@@ -105,7 +153,7 @@ const AboutSection = () => {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-xl border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-xl transition-all duration-300 text-center group"
+              className="card-hover bg-white p-8 rounded-xl border-2 border-[#E0E0E0] text-center group"
             >
               <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}
@@ -127,7 +175,8 @@ const AboutSection = () => {
               Our Leadership
             </h3>
             <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-              Meet the visionary leaders driving our brand's success and FMCG excellence
+              Meet the visionary leaders driving our brand's success and FMCG
+              excellence
             </p>
           </div>
 
@@ -135,7 +184,7 @@ const AboutSection = () => {
             {leaders.map((leader) => (
               <div
                 key={leader.id}
-                className="bg-white rounded-2xl overflow-hidden border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-2xl transition-all duration-300 group"
+                className="card-hover bg-white rounded-2xl overflow-hidden border-2 border-[#E0E0E0] group"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -154,9 +203,7 @@ const AboutSection = () => {
                   </div>
                 </div>
                 <div className="h-full text-justify p-6 bg-gradient-to-br from-white to-[#FFEFF9]">
-                  <p className="text-[#666666] leading-relaxed">
-                    {leader.bio}
-                  </p>
+                  <p className="text-[#666666] leading-relaxed">{leader.bio}</p>
                 </div>
               </div>
             ))}
@@ -169,9 +216,11 @@ const AboutSection = () => {
             Our Mission & Vision
           </h3>
           <p className="text-text-white-90 text-lg max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            We are committed to excellence in FMCG manufacturing and distribution, providing quality Kite brand products 
-            to households and businesses. Our vision is to make Kite the most trusted household brand in Pakistan and 
-            continue expanding our global presence, always maintaining our core values of quality, integrity, 
+            We are committed to excellence in FMCG manufacturing and
+            distribution, providing quality Kite brand products to households
+            and businesses. Our vision is to make Kite the most trusted
+            household brand in Pakistan and continue expanding our global
+            presence, always maintaining our core values of quality, integrity,
             innovation, and customer satisfaction.
           </p>
         </div>

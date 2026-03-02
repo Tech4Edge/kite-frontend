@@ -26,23 +26,22 @@ import zippy from "../assets/export/zippy.jpg";
 
 const ExportSection = () => {
   const safetyMatches = [
-    { brand: "Simba", country: "Congo", image: simba, },
-    { brand: "Wood Flower", country: "Romania", image: woodFlower,  },
-    { brand: "Al Felaij", country: "UAE", image: alFelaij, },
-    { brand: "The Gosse", country: "Nigeria", image: theGosse,  },
-    { brand: "Football", country: "Saudi Arabia", image: football,  },
+    { brand: "Simba", country: "Congo", image: simba },
+    { brand: "Wood Flower", country: "Romania", image: woodFlower },
+    { brand: "Al Felaij", country: "UAE", image: alFelaij },
+    { brand: "The Gosse", country: "Nigeria", image: theGosse },
+    { brand: "Football", country: "Saudi Arabia", image: football },
     {
       brand: "Magia bunicii",
       country: "Romania",
       image: magiaBunicii,
-      
     },
-    { brand: "Zebra", country: "Lebanon", image: zebra, },
-    { brand: "Zippy", country: "South Africa", image: zippy, },
-    { brand: "Al Karama", country: "Sudan", image: alKarama, },
-    { brand: "Al Moallam", country: "Sudan", image: alMoallam,},
-    { brand: "Ziynat", country: "Uzbekistan", image: ziynat,  },
-    { brand: "ReD Mac", country: "Ukraine", image: redMac,  },
+    { brand: "Zebra", country: "Lebanon", image: zebra },
+    { brand: "Zippy", country: "South Africa", image: zippy },
+    { brand: "Al Karama", country: "Sudan", image: alKarama },
+    { brand: "Al Moallam", country: "Sudan", image: alMoallam },
+    { brand: "Ziynat", country: "Uzbekistan", image: ziynat },
+    { brand: "ReD Mac", country: "Ukraine", image: redMac },
   ];
 
   const woodenSplints = [
@@ -95,11 +94,7 @@ const ExportSection = () => {
       title: "Documentation Support",
       description:
         "Full assistance with export documentation, permits, certificates of origin, and regulatory compliance.",
-      points: [
-        "Export licenses",
-        "Customs clearance",
-        "Certificate of origin",
-      ],
+      points: ["Export licenses", "Customs clearance", "Certificate of origin"],
     },
     {
       icon: <FaCertificate className="text-5xl" />,
@@ -171,7 +166,7 @@ const ExportSection = () => {
           {statistics.map((stat, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] p-8 rounded-2xl text-center text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="card-hover bg-gradient-to-br from-[#00AEEF] to-[#0095CC] p-8 rounded-2xl text-center text-white shadow-xl"
             >
               <div className="text-5xl font-bold mb-2 drop-shadow-lg">
                 {stat.number}
@@ -195,7 +190,7 @@ const ExportSection = () => {
             {safetyMatches.map((match, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF]"
+                className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-[#E0E0E0]"
               >
                 <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
                   <img
@@ -243,12 +238,14 @@ const ExportSection = () => {
                     {woodenSplints.map((splint, index) => (
                       <div
                         key={index}
-                        className="bg-white hover:border-[#ED028C] border-4 border-transparent rounded-xl p-4 text-center hover:scale-105 transition-all duration-300 shadow-lg"
+                        className="card-hover bg-white rounded-xl p-4 text-center shadow-lg border-4 border-transparent"
                       >
                         <div className="text-[#222222] text-lg font-semibold">
                           {splint.country}
                         </div>
-                        <div className="text-4xl mb-2 text-md!">{splint.flag}</div>
+                        <div className="text-4xl mb-2 text-md!">
+                          {splint.flag}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -360,10 +357,12 @@ const ExportSection = () => {
             {exportServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br group from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-white hover:shadow-2xl hover:border-[#ED028C] border-4 border-transparent hover:scale-102 transition-all duration-300"
+                className="card-hover bg-gradient-to-br group from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 text-white border-4 border-transparent"
               >
                 <div className="flex items-start gap-6 mb-6">
-                  <div className="flex-shrink-0 text-white group-hover:text-[#ED028C]">{service.icon}</div>
+                  <div className="flex-shrink-0 text-white group-hover:text-[#ED028C]">
+                    {service.icon}
+                  </div>
                   <div>
                     <h4 className="text-2xl font-bold mb-3 drop-shadow-md">
                       {service.title}

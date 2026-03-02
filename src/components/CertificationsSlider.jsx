@@ -103,7 +103,7 @@ const CertificationsSlider = () => {
         >
           {certifications.map((cert) => (
             <SwiperSlide key={cert.id}>
-              <div className="relative bg-white rounded-xl overflow-x-hidden border border-gray-200 hover:border-[#00AEEF] hover:shadow-xl transition-all duration-300 group h-full">
+              <div className="card-hover relative bg-white rounded-xl overflow-x-hidden border border-gray-200 group h-full">
                 <div className="relative overflow-hidden bg-white p-8">
                   <img
                     src={cert.image}

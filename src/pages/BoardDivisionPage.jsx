@@ -1,17 +1,34 @@
-import { FaLayerGroup, FaCubes, FaPalette, FaCheckCircle } from 'react-icons/fa';
-import textile_img from "../assets/textile_hero.jpg"
+import {
+  FaLayerGroup,
+  FaCubes,
+  FaPalette,
+  FaCheckCircle,
+} from "react-icons/fa";
+import textile_img from "../assets/textile_hero.jpg";
 
 const BoardDivisionPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative text-white py-20" style={{backgroundImage: `url(${textile_img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <section
+        className="relative text-white py-20"
+        style={{
+          backgroundImage: `url(${textile_img})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">  
-            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">Board Division</h1>
-            <p className="text-text-white text-xl md:text-2xl mb-4">Premier Formica & Board Manufacturing</p>
+          <div className="text-center bg-black/50 p-4 filter backdrop-blur-xs rounded-xl">
+            <h1 className="text-text-white text-4xl md:text-6xl font-bold mb-6">
+              Board Division
+            </h1>
+            <p className="text-text-white text-xl md:text-2xl mb-4">
+              Premier Formica & Board Manufacturing
+            </p>
             <p className="text-text-white text-lg md:text-xl max-w-3xl mx-auto">
-              High-quality MDF, Particle Board, and Lamination solutions for diverse applications
+              High-quality MDF, Particle Board, and Lamination solutions for
+              diverse applications
             </p>
           </div>
         </div>
@@ -27,13 +44,16 @@ const BoardDivisionPage = () => {
             </h2>
             <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
               <p className="text-lg text-[#666666] leading-relaxed mb-6">
-                The group has a sizable production of MDF, Particle Board, and Lamination of boards. Our board division 
-                comprises state-of-the-art manufacturing facilities that produce premium quality boards for furniture, 
-                interior design, and construction applications.
+                The group has a sizable production of MDF, Particle Board, and
+                Lamination of boards. Our board division comprises
+                state-of-the-art manufacturing facilities that produce premium
+                quality boards for furniture, interior design, and construction
+                applications.
               </p>
               <p className="text-lg text-[#666666] leading-relaxed">
-                With advanced technology and stringent quality control measures, we deliver products that meet 
-                international standards and cater to both domestic and export markets.
+                With advanced technology and stringent quality control measures,
+                we deliver products that meet international standards and cater
+                to both domestic and export markets.
               </p>
             </div>
           </div>
@@ -44,27 +64,33 @@ const BoardDivisionPage = () => {
               <div className="bg-[#00AEEF] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaLayerGroup className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">MDF Boards</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">
+                MDF Boards
+              </h3>
               <p className="text-[#666666]">
                 Medium Density Fiberboard for superior finish and durability
               </p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
+            <div className="card-hover bg-white rounded-xl shadow-lg p-8 text-center">
               <div className="bg-[#0095CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaCubes className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">Particle Board</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">
+                Particle Board
+              </h3>
               <p className="text-[#666666]">
                 Engineered wood products for versatile applications
               </p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
+            <div className="card-hover bg-white rounded-xl shadow-lg p-8 text-center">
               <div className="bg-[#00AEEF] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaPalette className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl font-bold text-[#222222] mb-3">Lamination</h3>
+              <h3 className="text-xl font-bold text-[#222222] mb-3">
+                Lamination
+              </h3>
               <p className="text-[#666666]">
                 Premium laminated boards with aesthetic finishes
               </p>
@@ -102,7 +128,9 @@ const BoardDivisionPage = () => {
 
               <div className="bg-gradient-to-br from-[#0095CC] to-[#007BA7] rounded-xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">Premier Chipboard</h3>
-                <p className="text-lg mb-4">Quality particle board production</p>
+                <p className="text-lg mb-4">
+                  Quality particle board production
+                </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <span className="text-[#FFD700] mr-2">▸</span>
@@ -155,7 +183,9 @@ const BoardDivisionPage = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Furniture Industry</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                  Furniture Industry
+                </h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <FaCheckCircle className="text-[#00AEEF] mr-2 mt-1 flex-shrink-0" />
@@ -177,7 +207,9 @@ const BoardDivisionPage = () => {
               </div>
 
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Interior Design</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                  Interior Design
+                </h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <FaCheckCircle className="text-[#ED028C] mr-2 mt-1 flex-shrink-0" />
@@ -199,7 +231,9 @@ const BoardDivisionPage = () => {
               </div>
 
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Construction</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                  Construction
+                </h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <FaCheckCircle className="text-[#00AEEF] mr-2 mt-1 flex-shrink-0" />
@@ -221,7 +255,9 @@ const BoardDivisionPage = () => {
               </div>
 
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-[#222222] mb-4">Industrial Uses</h3>
+                <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                  Industrial Uses
+                </h3>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start">
                     <FaCheckCircle className="text-[#ED028C] mr-2 mt-1 flex-shrink-0" />
@@ -251,17 +287,21 @@ const BoardDivisionPage = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div>
-                <h3 className="text-xl font-bold mb-3">International Standards</h3>
+                <h3 className="text-xl font-bold mb-3">
+                  International Standards
+                </h3>
                 <p className="text-lg text-text-white">
-                  Our products meet international quality standards and are manufactured using advanced technology 
-                  and best practices in the industry.
+                  Our products meet international quality standards and are
+                  manufactured using advanced technology and best practices in
+                  the industry.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-3">Rigorous Testing</h3>
                 <p className="text-lg text-text-white">
-                  Every product undergoes rigorous quality testing to ensure durability, strength, and performance 
-                  in real-world applications.
+                  Every product undergoes rigorous quality testing to ensure
+                  durability, strength, and performance in real-world
+                  applications.
                 </p>
               </div>
             </div>
@@ -276,7 +316,8 @@ const BoardDivisionPage = () => {
             Interested in Our Board Products?
           </h2>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Contact us to learn more about our MDF, Particle Board, and Lamination solutions
+            Contact us to learn more about our MDF, Particle Board, and
+            Lamination solutions
           </p>
           <a
             href="/contact"

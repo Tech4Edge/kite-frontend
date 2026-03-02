@@ -1,54 +1,61 @@
-import { FaGift, FaBoxOpen, FaTruck, FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaGift, FaBoxOpen, FaTruck, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const OffersPackagingSection = () => {
   const currentOffers = [
     {
       id: 1,
-      title: 'Bulk Order Discount',
-      discount: 'Up to 20% Off',
-      description: 'Special pricing for large quantity orders. Perfect for wholesalers and distributors.',
+      title: "Bulk Order Discount",
+      discount: "Up to 20% Off",
+      description:
+        "Special pricing for large quantity orders. Perfect for wholesalers and distributors.",
       icon: <FaGift className="text-4xl text-[#ED028C]" />,
-      image: 'bulk-order-offer.jpg', // Placeholder
+      image: "bulk-order-offer.jpg", // Placeholder
     },
     {
       id: 2,
-      title: 'Export Packages',
-      discount: 'Competitive Rates',
-      description: 'Customized export packaging solutions with international shipping support.',
+      title: "Export Packages",
+      discount: "Competitive Rates",
+      description:
+        "Customized export packaging solutions with international shipping support.",
       icon: <FaTruck className="text-4xl text-[#00AEEF]" />,
-      image: 'export-package-offer.jpg', // Placeholder
+      image: "export-package-offer.jpg", // Placeholder
     },
     {
       id: 3,
-      title: 'Premium Quality',
-      discount: 'Best Value',
-      description: 'Get premium certified products at competitive prices with quality assurance.',
+      title: "Premium Quality",
+      discount: "Best Value",
+      description:
+        "Get premium certified products at competitive prices with quality assurance.",
       icon: <FaStar className="text-4xl text-[#ED028C]" />,
-      image: 'premium-quality-offer.jpg', // Placeholder
+      image: "premium-quality-offer.jpg", // Placeholder
     },
   ];
 
   const packagingSolutions = [
     {
-      title: 'Custom Packaging',
-      description: 'Tailored packaging solutions to meet your specific requirements and branding needs.',
-      image: 'custom-packaging.jpg',
+      title: "Custom Packaging",
+      description:
+        "Tailored packaging solutions to meet your specific requirements and branding needs.",
+      image: "custom-packaging.jpg",
     },
     {
-      title: 'Bulk Packaging',
-      description: 'Efficient bulk packaging for large orders with secure and cost-effective solutions.',
-      image: 'bulk-packaging.jpg',
+      title: "Bulk Packaging",
+      description:
+        "Efficient bulk packaging for large orders with secure and cost-effective solutions.",
+      image: "bulk-packaging.jpg",
     },
     {
-      title: 'Export Packaging',
-      description: 'International standard packaging ensuring safe delivery across borders.',
-      image: 'export-packaging.jpg',
+      title: "Export Packaging",
+      description:
+        "International standard packaging ensuring safe delivery across borders.",
+      image: "export-packaging.jpg",
     },
     {
-      title: 'Retail Packaging',
-      description: 'Eye-catching retail packaging designed to enhance product appeal and shelf presence.',
-      image: 'retail-packaging.jpg',
+      title: "Retail Packaging",
+      description:
+        "Eye-catching retail packaging designed to enhance product appeal and shelf presence.",
+      image: "retail-packaging.jpg",
     },
   ];
 
@@ -66,8 +73,8 @@ const OffersPackagingSection = () => {
             </h3>
             <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
             <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-              Take advantage of our limited-time offers and special pricing packages designed 
-              to deliver maximum value for your business.
+              Take advantage of our limited-time offers and special pricing
+              packages designed to deliver maximum value for your business.
             </p>
           </div>
 
@@ -76,7 +83,7 @@ const OffersPackagingSection = () => {
             {currentOffers.map((offer) => (
               <div
                 key={offer.id}
-                className="bg-gradient-to-br from-white to-[#FFEFF9] rounded-2xl p-8 border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-2xl transition-all duration-300 text-center group"
+                className="card-hover bg-gradient-to-br from-white to-[#FFEFF9] rounded-2xl p-8 border-2 border-[#E0E0E0] text-center group"
               >
                 {/* Icon */}
                 <div className="flex justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -125,8 +132,9 @@ const OffersPackagingSection = () => {
             </h3>
             <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
             <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-              Professional packaging solutions tailored to your needs, ensuring product safety, 
-              compliance with international standards, and enhanced brand presentation.
+              Professional packaging solutions tailored to your needs, ensuring
+              product safety, compliance with international standards, and
+              enhanced brand presentation.
             </p>
           </div>
 
@@ -135,14 +143,16 @@ const OffersPackagingSection = () => {
             {packagingSolutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-xl transition-all duration-300 group"
+                className="card-hover bg-white rounded-xl overflow-hidden border-2 border-[#E0E0E0] group"
               >
                 {/* Image Placeholder */}
                 <div className="h-48 bg-gray-500 flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10 text-center">
                     <FaBoxOpen className="text-4xl text-white mx-auto mb-2" />
-                    <p className="text-xs text-white px-4">📷 {solution.image}</p>
+                    <p className="text-xs text-white px-4">
+                      📷 {solution.image}
+                    </p>
                   </div>
                 </div>
 
@@ -164,8 +174,8 @@ const OffersPackagingSection = () => {
               Need Custom Packaging Solutions?
             </h3>
             <p className="text-white/90 text-lg mb-8 max-w-3xl mx-auto">
-              Our expert team can design and deliver packaging solutions that perfectly match 
-              your product requirements and brand identity.
+              Our expert team can design and deliver packaging solutions that
+              perfectly match your product requirements and brand identity.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

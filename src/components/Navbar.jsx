@@ -7,7 +7,6 @@ import kiteLogo2 from "../assets/kite_part2.png";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [hoveredSubmenu, setHoveredSubmenu] = useState(null);
   const [expandedMobileCategories, setExpandedMobileCategories] = useState({});
   const location = useLocation();
 
@@ -116,10 +115,7 @@ const Navbar = () => {
                   <div
                     className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-[700px] bg-white rounded-lg shadow-xl border border-gray-200 overflow-visible z-50"
                     onMouseEnter={() => setOpenDropdown(item.name)}
-                    onMouseLeave={() => {
-                      setOpenDropdown(null);
-                      setHoveredSubmenu(null);
-                    }}
+                    onMouseLeave={() => setOpenDropdown(null)}
                   >
                     <div className="grid grid-cols-3 gap-8 p-8">
                       {item.megaMenu.map((category) => (

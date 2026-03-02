@@ -8,7 +8,7 @@
      Change colors here and they apply everywhere!
      Use: bg-primary, text-primary, border-primary, etc.
   */
-  
+
   /* PRIMARY COLORS - Main brand color (Cyan Blue) */
   --color-primary: #00aeef;
   --color-primary-50: #e6f7fd;
@@ -16,8 +16,8 @@
   --color-primary-200: #80d7f7;
   --color-primary-300: #4dc7f4;
   --color-primary-400: #1ab7f1;
-  --color-primary-500: #00aeef;  /* Main */
-  --color-primary-600: #0095cc;  /* Hover state */
+  --color-primary-500: #00aeef; /* Main */
+  --color-primary-600: #0095cc; /* Hover state */
   --color-primary-700: #007ba7;
   --color-primary-800: #006182;
   --color-primary-900: #00475d;
@@ -29,22 +29,22 @@
   --color-accent-200: #fab2da;
   --color-accent-300: #f893cb;
   --color-accent-400: #f674bc;
-  --color-accent-500: #ed028c;    /* Main */
+  --color-accent-500: #ed028c; /* Main */
   --color-accent-600: #d4027a;
   --color-accent-700: #bb0268;
   --color-accent-800: #a20156;
   --color-accent-900: #890144;
-  --color-accent-light: #ff8ace;  /* Borders/highlights */
-  --color-accent-tint: #ffeff9;   /* Subtle backgrounds */
+  --color-accent-light: #ff8ace; /* Borders/highlights */
+  --color-accent-tint: #ffeff9; /* Subtle backgrounds */
 
   /* TEXT COLORS */
-  --color-text-primary: #222222;    /* Headings, main text */
-  --color-text-secondary: #666666;  /* Body text, descriptions */
-  --color-text-tertiary: #999999;   /* Muted text */
-  --color-text-white: #ffffff;      /* White text on dark backgrounds */
+  --color-text-primary: #222222; /* Headings, main text */
+  --color-text-secondary: #666666; /* Body text, descriptions */
+  --color-text-tertiary: #999999; /* Muted text */
+  --color-text-white: #ffffff; /* White text on dark backgrounds */
   --color-text-white-90: rgba(255, 255, 255, 0.9);
   --color-text-white-80: rgba(255, 255, 255, 0.8);
-  --color-text-black: #000000;      /* Pure black when needed */
+  --color-text-black: #000000; /* Pure black when needed */
 
   /* BACKGROUND COLORS */
   --color-bg-main: #ffffff;
@@ -78,13 +78,66 @@
   color: white !important;
 }
 
+/* ============================================
+   UNIVERSAL CARD HOVER EFFECT
+   ============================================
+   Super awesome card hover - use on all cards!
+*/
+.card-hover {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px -12px rgba(0, 174, 239, 0.2),
+    0 10px 20px -8px rgba(237, 2, 140, 0.15),
+    0 0 0 1px rgba(0, 174, 239, 0.1);
+}
+
+.card-hover:hover::before {
+  opacity: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 174, 239, 0.3) 0%,
+    rgba(237, 2, 140, 0.3) 50%,
+    rgba(255, 138, 206, 0.3) 100%
+  );
+}
+
+.card-hover:active {
+  transform: translateY(-4px) scale(1.01);
+  transition-duration: 0.1s;
+}
+
 /* Global base styles */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   color: var(--color-text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;

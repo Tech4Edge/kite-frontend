@@ -1,62 +1,94 @@
-import { FaCheckCircle, FaHandshake, FaCertificate, FaGlobe } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import {
+  FaCheckCircle,
+  FaHandshake,
+  FaCertificate,
+  FaGlobe,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TrustSection = () => {
   const trustPoints = [
     {
       icon: <FaCheckCircle className="text-5xl text-[#00AEEF]" />,
-      title: 'Over 50 Years of Excellence',
-      description: 'Manufacturing excellence since the 1970s with a proven track record of quality and reliability.',
+      title: "Over 50 Years of Excellence",
+      description:
+        "Manufacturing excellence since the 1970s with a proven track record of quality and reliability.",
     },
     {
       icon: <FaHandshake className="text-5xl text-[#ED028C]" />,
-      title: 'Trusted Partnerships',
-      description: 'Long-standing relationships with international brands and financial institutions across the globe.',
+      title: "Trusted Partnerships",
+      description:
+        "Long-standing relationships with international brands and financial institutions across the globe.",
     },
     {
       icon: <FaCertificate className="text-5xl text-[#00AEEF]" />,
-      title: 'Internationally Certified',
-      description: 'Multiple certification including ISO 9001, UKAS, IAF',
+      title: "Internationally Certified",
+      description: "Multiple certification including ISO 9001, UKAS, IAF",
     },
     {
       icon: <FaGlobe className="text-5xl text-[#ED028C]" />,
-      title: 'Global Reach',
-      description: 'Exporting to over 40 countries across Europe, Asia, and Africa.',
+      title: "Global Reach",
+      description:
+        "Exporting to over 40 countries across Europe, Asia, and Africa.",
     },
   ];
 
   const achievements = [
     {
-      number: '50+',
-      label: 'Years Manufacturing',
-      highlight: 'Since 1974',
+      number: "50+",
+      label: "Years Manufacturing",
+      highlight: "Since 1974",
     },
     {
-      number: '10,000+',
-      label: 'Employees',
-      highlight: 'Nationwide',
+      number: "10,000+",
+      label: "Employees",
+      highlight: "Nationwide",
     },
     {
-      number: '40+',
-      label: 'Export Countries',
-      highlight: 'Global Presence',
+      number: "40+",
+      label: "Export Countries",
+      highlight: "Global Presence",
     },
     {
-      number: '#1',
-      label: 'Match Exporter',
-      highlight: 'Pakistan',
+      number: "#1",
+      label: "Match Exporter",
+      highlight: "Pakistan",
     },
   ];
 
   const clients = [
-    { name: 'Angel', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=ANGEL' },
-    { name: 'Blédina', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=BLEDINA' },
-    { name: 'Colgate', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=COLGATE' },
-    { name: 'Danone', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=DANONE' },
-    { name: 'Johnson & Johnson', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=J&J' },
-    { name: 'SC Johnson', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=SC+JOHNSON' },
-    { name: 'Tiger Head', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=TIGER+HEAD' },
-    { name: 'Compal', logo: 'https://via.placeholder.com/150x80/FFFFFF/666666?text=COMPAL' },
+    {
+      name: "Angel",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=ANGEL",
+    },
+    {
+      name: "Blédina",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=BLEDINA",
+    },
+    {
+      name: "Colgate",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=COLGATE",
+    },
+    {
+      name: "Danone",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=DANONE",
+    },
+    {
+      name: "Johnson & Johnson",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=J&J",
+    },
+    {
+      name: "SC Johnson",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=SC+JOHNSON",
+    },
+    {
+      name: "Tiger Head",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=TIGER+HEAD",
+    },
+    {
+      name: "Compal",
+      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=COMPAL",
+    },
   ];
 
   return (
@@ -72,8 +104,10 @@ const TrustSection = () => {
           </h3>
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
           <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            Mohsin Match Factory and Kite brand - largely self-financed with an impeccable record. Our commitment to quality, 
-            innovation, and ethical business practices has made us a trusted partner for businesses and households worldwide.
+            Mohsin Match Factory and Kite brand - largely self-financed with an
+            impeccable record. Our commitment to quality, innovation, and
+            ethical business practices has made us a trusted partner for
+            businesses and households worldwide.
           </p>
         </div>
 
@@ -82,7 +116,7 @@ const TrustSection = () => {
           {trustPoints.map((point, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-white to-[#FFEFF9] p-8 rounded-2xl border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-xl transition-all duration-300 text-center group"
+              className="card-hover bg-gradient-to-br from-white to-[#FFEFF9] p-8 rounded-2xl border-2 border-[#E0E0E0] text-center group"
             >
               <div className="flex justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 {point.icon}
@@ -131,8 +165,8 @@ const TrustSection = () => {
             </p>
           </div> */}
 
-          {/* Client Logos Grid */}
-          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Client Logos Grid */}
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {clients.map((client, index) => (
               <div
                 key={index}
@@ -145,7 +179,7 @@ const TrustSection = () => {
                 />
               </div>
             ))} */}
-          {/* </div>  */}
+        {/* </div>  */}
         {/* </div> */}
 
         {/* Call to Action */}
@@ -154,8 +188,8 @@ const TrustSection = () => {
             Ready to Partner with Excellence?
           </h3>
           <p className="text-[#666666] text-lg mb-8 max-w-2xl mx-auto">
-            Join the growing list of satisfied partners who trust Kite brand for quality, 
-            reliability, and innovation in FMCG products.
+            Join the growing list of satisfied partners who trust Kite brand for
+            quality, reliability, and innovation in FMCG products.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
