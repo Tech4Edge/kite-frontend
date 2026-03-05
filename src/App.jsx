@@ -5,7 +5,8 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
-import ExportPage from "./pages/ExportPage";
+import SafetyMatchesPage from "./pages/SafetyMatchesPage";
+import WoodenSplintsPage from "./pages/WoodenSplintsPage";
 import ContactPage from "./pages/ContactPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import "./App.css";
@@ -20,7 +21,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/export" element={<ExportPage />} />
+          <Route
+            path="/export/safety-matches"
+            element={<SafetyMatchesPage />}
+          />
+          <Route
+            path="/export/wooden-splints"
+            element={<WoodenSplintsPage />}
+          />
 
           <Route path="/contact" element={<ContactPage />} />
         </Routes>

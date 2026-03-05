@@ -59,7 +59,14 @@ const Navbar = () => {
     //     { name: 'Real Estate', href: '/real-estate' },
     //   ],
     // },
-    { name: "Export", href: "/export" },
+    {
+      name: "Export",
+      href: "/export/safety-matches",
+      dropdown: [
+        { name: "Safety Matches", href: "/export/safety-matches" },
+        { name: "Wooden Splints", href: "/export/wooden-splints" },
+      ],
+    },
     { name: "About", href: "/about" },
   ];
 
