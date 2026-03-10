@@ -110,9 +110,9 @@ const WoodenSplintsExport = () => {
       description:
         "Need a specific size? We can manufacture custom dimensions:",
       options: [
-        "Custom length specifications",
-        "Custom width specifications",
-        "Custom thickness specifications",
+        "Custom length",
+        "Custom width",
+        "Custom thickness",
         "Volume-based custom orders",
       ],
     },
