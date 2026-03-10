@@ -77,7 +77,7 @@ const BriefProductsSection = () => {
         </div>
 
         {/* Products Slider */}
-        <div className="mb-8 relative px-12 md:px-16">
+        <div className="mb-8 relative px-12 md:px-22">
           <Swiper
             modules={[Autoplay, Pagination, Navigation]}
             spaceBetween={30}
@@ -113,7 +113,7 @@ const BriefProductsSection = () => {
               <SwiperSlide key={product.id}>
                 <Link
                   to={`/products/${product.id}`}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-1 block h-full"
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden  border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-1 block h-full"
                 >
                   {/* Product Image */}
                   <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
@@ -194,7 +194,7 @@ const BriefProductsSection = () => {
         }
 
         .products-swiper :global(.swiper-button-prev) {
-          left: -60px;
+          left: 60px;
         }
 
         @media (max-width: 1024px) {

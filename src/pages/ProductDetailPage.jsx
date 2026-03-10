@@ -19,13 +19,11 @@ const ProductDetailPage = () => {
       image: kite_img,
       color: "#ED028C",
       features: [
-        "پل میں روشن دیر پہ شعلہ (Light in rain, reliable always)",
-        "نمی سے محفوظ (Damp proof)",
-        "بہترین برانڈ (Best brand)",
-        "اضافی تیلیاں (Extra sticks)",
+        "Light in rain, reliable always",
+        "Damp proof",
+        "Best brand",
+        "Extra sticks",
         "Carborised and damp proof",
-        "Different striking surfaces (Dotted, Full Brush Coated, Plain Strip)",
-        "International safety standards",
       ],
       brands: [
         { name: "Kite", category: "Premium - Local Brand" },
@@ -33,39 +31,39 @@ const ProductDetailPage = () => {
         { name: "Olympia", category: "Local Brand" },
         { name: "Party", category: "Local Brand" },
         { name: "Tanga", category: "Local Brand" },
-        { name: "Simba", category: "Export Brand" },
-        { name: "Football", category: "Export Brand" },
-        { name: "Al Moallam", category: "Export Brand" },
-        { name: "ReD MaC", category: "Export Brand" },
-        { name: "T-Match", category: "Export Brand" },
-        { name: "Wood Flower", category: "Export Brand" },
-        { name: "Al Karama", category: "Export Brand" },
-        { name: "The Goose", category: "Export Brand" },
-        { name: "Ziynat", category: "Export Brand" },
-        { name: "Al Felaji", category: "Export Brand" },
-        { name: "Magia bunicii", category: "Export Brand" },
-        { name: "Zebra", category: "Export Brand" },
-        { name: "Zippy", category: "Export Brand" },
+        // { name: "Simba", category: "Export Brand" },
+        // { name: "Football", category: "Export Brand" },
+        // { name: "Al Moallam", category: "Export Brand" },
+        // { name: "ReD MaC", category: "Export Brand" },
+        // { name: "T-Match", category: "Export Brand" },
+        // { name: "Wood Flower", category: "Export Brand" },
+        // { name: "Al Karama", category: "Export Brand" },
+        // { name: "The Goose", category: "Export Brand" },
+        // { name: "Ziynat", category: "Export Brand" },
+        // { name: "Al Felaji", category: "Export Brand" },
+        // { name: "Magia bunicii", category: "Export Brand" },
+        // { name: "Zebra", category: "Export Brand" },
+        // { name: "Zippy", category: "Export Brand" },
       ],
       sizes: [
-        { size: "LARGE", avgSticks: 58 },
-        { size: "CLASSIC", avgSticks: 45 },
-        { size: "REGULAR", avgSticks: 42 },
-        { size: "SMALL", avgSticks: 32 },
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
       ],
       facilities: [
         {
-          name: "Mohsin Match Factory",
-          location: "Peshawar - Established 1974",
+          name: "Mohsin Match Factory Private Limited",
+          location: "Hayatabad, Peshawar - Established 1974",
           note: "Earliest private sector match manufacturer in KPK",
         },
         {
-          name: "Mohsin Enterprises",
+          name: "Mohsin Enterprises Private Limited",
           location: "Hayatabad, Peshawar - Established 1990",
           note: "Group's 2nd match manufacturing unit",
         },
         {
-          name: "A.J Match Factory",
+          name: "A.J Match Factory Private Limited",
           location: "Sheikhupura, Lahore - Established 2006",
           note: "Group's 3rd match manufacturing unit",
         },
@@ -301,6 +299,7 @@ const ProductDetailPage = () => {
                         <>
                           <th className="px-6 py-4 text-left">SIZE</th>
                           <th className="px-6 py-4 text-center">AVG STICKS PER BOX</th>
+                          <th className="px-6 py-4 text-center">MATCHES PER COTTON</th>
                         </>
                       ) : (
                         <>
@@ -322,6 +321,9 @@ const ProductDetailPage = () => {
                         </td>
                         <td className="px-6 py-4 text-center text-[#666666]">
                           {size.avgSticks}
+                        </td>
+                        <td className="px-6 py-4 text-center text-[#666666]">
+                          {size.matchesPerCotton}
                         </td>
                       </tr>
                     ))}

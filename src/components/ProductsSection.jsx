@@ -20,13 +20,11 @@ const ProductsSection = () => {
       image: kite_img,
       color: "#ED028C",
       features: [
-        "پل میں روشن دیر پہ شعلہ (Light in rain, reliable always)",
-        "نمی سے محفوظ (Damp proof)",
-        "بہترین برانڈ (Best brand)",
-        "اضافی تیلیاں (Extra sticks)",
+        "Light in rain, reliable always",
+        "Damp proof",
+        "Best brand",
+        "Extra sticks",
         "Carborised and damp proof",
-        "Different striking surfaces",
-        "International safety standards",
       ],
       brands: [
         { name: "Kite", category: "Premium - Local Brand" },
@@ -49,11 +47,12 @@ const ProductsSection = () => {
         { name: "Zippy", category: "Export Brand" },
       ],
       sizes: [
-        { size: "LARGE", avgSticks: 58 },
-        { size: "CLASSIC", avgSticks: 45 },
-        { size: "REGULAR", avgSticks: 42 },
-        { size: "SMALL", avgSticks: 32 },
-      ],
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
+      ]
+      ,
       facilities: [
         {
           name: "Mohsin Match Factory",
@@ -85,9 +84,9 @@ const ProductsSection = () => {
       color: "#00AEEF",
       tagline: "کائٹ گلو لائے... بہتر پروخوشبو، بہترین صفائی!",
       features: [
-        "شادی کی دھوئین و ضرورت آسانی سے (Tough stains removed easily)",
-        "کپڑوں کی نگہداشت کے لیے (Fabric care protection)",
-        "کپڑوں کے رنگوں کا تحفظ (Color protection)",
+        "Tough stains removed easily)",
+        "Fabric care protection)",
+        "Color protection)",
       ],
       skus: [
         { size: "2 KG", packing: 6, price: 511.5 },

@@ -14,7 +14,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import hero2 from "../assets/hero2.jpg";
+import hero2 from "../assets/hero2.jpeg";
 import hero3 from "../assets/hero3.jpg";
 import hero4 from "../assets/hero4.jpeg";
 import hero1 from "../assets/delivery.jpeg"
@@ -108,14 +108,14 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-[600px] w-full overflow-hidden">
+            <div className="relative min-h-[90vh] w-full overflow-hidden">
               {/* Background Image - Full Cover */}
               <div className="absolute inset-0">
                 <Link to={slide.link} className="block w-full h-full">
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    className="absolute inset-0 w-full h-full object-fill"
                   />
                 </Link>
                 {/* Subtle Gradient Overlay for Text Readability */}
