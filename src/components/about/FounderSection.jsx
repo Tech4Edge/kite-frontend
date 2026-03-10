@@ -79,11 +79,17 @@ const FounderSection = ({ founder }) => {
               </div>*/}
               {/* Decorative Border */}
               {/* <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-[#00AEEF] rounded-2xl -z-10"></div>  */}
+              
               <img
                 src={founder}
                 alt="Founder"
                 className="w-full h-full object-cover rounded-2xl shadow-xl"
               />
+              <div
+                className={`absolute -bottom-4 right-4 text-white px-6 py-3 rounded-xl shadow-lg bg-[#00AEEF]`}
+              >
+                <p className="font-bold">Founder</p>
+              </div>
             </div>
           </motion.div>
         </div>

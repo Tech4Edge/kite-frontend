@@ -1,8 +1,13 @@
 import { useParams, Link } from "react-router-dom";
-import { FaFire, FaLayerGroup, FaArrowLeft, FaCheckCircle } from "react-icons/fa";
-import kite_img from "../assets/products/kite.jpeg"
-import burq_img from "../assets/products/BurqDetergent.jpeg"
-import glow_img from "../assets/kiteglow.jpg"
+import {
+  FaFire,
+  FaLayerGroup,
+  FaArrowLeft,
+  FaCheckCircle,
+} from "react-icons/fa";
+import kite_img from "../assets/products/kite.jpeg";
+import burq_img from "../assets/products/BurqDetergent.jpeg";
+import glow_img from "../assets/kiteglow.jpg";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -31,25 +36,12 @@ const ProductDetailPage = () => {
         { name: "Olympia", category: "Local Brand" },
         { name: "Party", category: "Local Brand" },
         { name: "Tanga", category: "Local Brand" },
-        // { name: "Simba", category: "Export Brand" },
-        // { name: "Football", category: "Export Brand" },
-        // { name: "Al Moallam", category: "Export Brand" },
-        // { name: "ReD MaC", category: "Export Brand" },
-        // { name: "T-Match", category: "Export Brand" },
-        // { name: "Wood Flower", category: "Export Brand" },
-        // { name: "Al Karama", category: "Export Brand" },
-        // { name: "The Goose", category: "Export Brand" },
-        // { name: "Ziynat", category: "Export Brand" },
-        // { name: "Al Felaji", category: "Export Brand" },
-        // { name: "Magia bunicii", category: "Export Brand" },
-        // { name: "Zebra", category: "Export Brand" },
-        // { name: "Zippy", category: "Export Brand" },
       ],
       sizes: [
-        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
-        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
-        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
-        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
+        { size: "LARGE", avgSticks: 58, matchesPerCotton: 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton: 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton: 1000 },
+        { size: "SMALL", avgSticks: 32, matchesPerCotton: 1000 },
       ],
       facilities: [
         {
@@ -87,13 +79,13 @@ const ProductDetailPage = () => {
         "Long-lasting freshness",
       ],
       skus: [
-        { size: "2 KG", packing: 6, price: 511.5 },
-        { size: "1 KG", packing: 12, price: 269.7 },
-        { size: "500 GM", packing: 24, price: 139.5 },
-        { size: "RS.99", packing: 48, price: 92.07 },
-        { size: "RS.50", packing: 96, price: 46.5 },
-        { size: "RS.20", packing: 96, price: 18.6 },
-        { size: "RS.10", packing: 144, price: 9.3 },
+        { size: "2 KG", gramage: "2000 g", packing: 6, price: 550 },
+        { size: "1 KG", gramage: "1000 g", packing: 12, price: 300 },
+        { size: "500 GM", gramage: "500 g", packing: 24, price: 150 },
+        { size: "RS.99", gramage: "370 g", packing: 48, price: 99 },
+        { size: "RS.50", gramage: "175 g", packing: 96, price: 50 },
+        { size: "RS.20", gramage: "60 g", packing: 96, price: 20 },
+        { size: "RS.10", gramage: "30 g", packing: 144, price: 10 },
       ],
       services:
         "Private labeling and toll manufacturing services available with minimal variation",
@@ -116,12 +108,12 @@ const ProductDetailPage = () => {
         "Powerful stain removal",
       ],
       skus: [
-        { size: "2.3 KG", packing: 6, price: 464.07 },
-        { size: "1 KG", packing: 12, price: 213.9 },
-        { size: "RS.99", packing: 24, price: 92.07 },
-        { size: "RS.50", packing: 48, price: 46.5 },
-        { size: "RS.20", packing: 96, price: 18.6 },
-        { size: "RS.10", packing: 204, price: 9.3 },
+        { size: "2.3 KG", gramage: "2300 g", packing: 6, price: 499 },
+        { size: "1 KG", gramage: "1000 g", packing: 12, price: 230 },
+        { size: "RS.99", gramage: "430 g", packing: 24, price: 99 },
+        { size: "RS.50", gramage: "215 g", packing: 48, price: 50 },
+        { size: "RS.20", gramage: "75 g", packing: 96, price: 20 },
+        { size: "RS.10", gramage: "40 g", packing: 204, price: 10 },
       ],
       services:
         "Private labeling and toll manufacturing services available with minimal variation",
@@ -133,7 +125,8 @@ const ProductDetailPage = () => {
       icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
       description:
         "Premium cleaning powder with natural ingredients. Excellent cleaning power that's safe for colors and long-lasting. Trusted by households across Pakistan.",
-      image: "https://via.placeholder.com/600x700/00AEEF/FFFFFF?text=Vero+Detergent",
+      image:
+        "https://via.placeholder.com/600x700/00AEEF/FFFFFF?text=Vero+Detergent",
       color: "#00AEEF",
       tagline: "کپڑوں کو دین نئی نیک پہترین بحت کے ساتھ",
       features: [
@@ -144,8 +137,8 @@ const ProductDetailPage = () => {
         "Cost-effective solution",
       ],
       skus: [
-        { size: "20 KG", packing: 4, price: null },
-        { size: "5 KG", packing: 4, price: null },
+        { size: "20 KG", gramage: "20000 g", packing: 4, price: null },
+        { size: "5 KG", gramage: "5000 g", packing: 4, price: null },
       ],
       services:
         "Private labeling and toll manufacturing services available with minimal variation",
@@ -157,7 +150,8 @@ const ProductDetailPage = () => {
       icon: <FaLayerGroup className="text-6xl text-[#059669]" />,
       description:
         "Premium lemon fragrance with slow dissolution - beats market leaders. Perfect for sparkling clean dishes with powerful grease removal. Gentle on hands while tough on grease.",
-      image: "https://via.placeholder.com/600x700/059669/FFFFFF?text=Dish+Wash+Bar",
+      image:
+        "https://via.placeholder.com/600x700/059669/FFFFFF?text=Dish+Wash+Bar",
       color: "#059669",
       tagline: "جہاں صفائی، وہاں کائٹ ڈش واش بار",
       features: [
@@ -168,10 +162,10 @@ const ProductDetailPage = () => {
         "Slow dissolution technology",
       ],
       skus: [
-        { size: "SUPER BAR", packing: 36, price: 44.63 },
-        { size: "LONG BAR", packing: 36, price: 35.91 },
-        { size: "LARGE BAR", packing: 36, price: 17.96 },
-        { size: "REGULAR BAR", packing: 48, price: 8.98 },
+        { size: "SUPER BAR", gramage: "240 g", packing: 36, price: 60 },
+        { size: "LONG BAR", gramage: "230 g", packing: 36, price: 50 },
+        { size: "LARGE BAR", gramage: "110 g" packing: 36, price: 20 },
+        { size: "REGULAR BAR",gramage: "55 g" packing: 48, price: 10 },
       ],
       services: "Bulk orders and private labeling available",
     },
@@ -183,7 +177,9 @@ const ProductDetailPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-[#222222] mb-4">Product Not Found</h2>
+          <h2 className="text-3xl font-bold text-[#222222] mb-4">
+            Product Not Found
+          </h2>
           <Link
             to="/products"
             className="text-[#00AEEF] hover:text-[#ED028C] font-semibold"
@@ -262,7 +258,9 @@ const ProductDetailPage = () => {
 
             {/* Features */}
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-[#222222] mb-4">Key Features</h3>
+              <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                Key Features
+              </h3>
               <ul className="space-y-3">
                 {product.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start">
@@ -284,7 +282,9 @@ const ProductDetailPage = () => {
           {(product.sizes || product.skus) && (
             <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
               <h3 className="text-2xl font-bold text-[#222222] mb-6">
-                {product.sizes ? "Available Sizes" : "Available Sizes & Pricing"}
+                {product.sizes
+                  ? "Available Sizes"
+                  : "Available Sizes & Pricing"}
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -298,14 +298,23 @@ const ProductDetailPage = () => {
                       {product.sizes ? (
                         <>
                           <th className="px-6 py-4 text-left">SIZE</th>
-                          <th className="px-6 py-4 text-center">AVG STICKS PER BOX</th>
-                          <th className="px-6 py-4 text-center">MATCHES PER COTTON</th>
+                          <th className="px-6 py-4 text-center">
+                            AVG STICKS PER BOX
+                          </th>
+                          <th className="px-6 py-4 text-center">
+                            MATCHES PER COTTON
+                          </th>
                         </>
                       ) : (
                         <>
                           <th className="px-6 py-4 text-left">SKU</th>
-                          <th className="px-6 py-4 text-center">Packing/Flexi</th>
-                          <th className="px-6 py-4 text-right">Retail Price (Rs.)</th>
+                          <th className="px-6 py-4 text-left">GRAMAGE</th>
+                          <th className="px-6 py-4 text-center">
+                            Packing/Flexi
+                          </th>
+                          <th className="px-6 py-4 text-right">
+                            Retail Price (Rs.)
+                          </th>
                         </>
                       )}
                     </tr>
@@ -335,11 +344,19 @@ const ProductDetailPage = () => {
                         <td className="px-6 py-4 font-bold text-[#222222]">
                           {sku.size}
                         </td>
+                        <td className="px-6 py-4 text-[#666666]">
+                          {sku.gramage}
+                        </td>
                         <td className="px-6 py-4 text-center text-[#666666]">
                           {sku.packing}
                         </td>
-                        <td className="px-6 py-4 text-right font-bold" style={{ color: product.color }}>
-                          {sku.price ? `Rs. ${sku.price.toFixed(2)}` : "Contact for pricing"}
+                        <td
+                          className="px-6 py-4 text-right font-bold"
+                          style={{ color: product.color }}
+                        >
+                          {sku.price
+                            ? `Rs. ${sku.price.toFixed(2)}`
+                            : "Contact for pricing"}
                         </td>
                       </tr>
                     ))}
@@ -352,7 +369,9 @@ const ProductDetailPage = () => {
           {/* Brands (for matches) */}
           {product.brands && (
             <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
-              <h3 className="text-2xl font-bold text-[#222222] mb-6">Our Match Brands</h3>
+              <h3 className="text-2xl font-bold text-[#222222] mb-6">
+                Our Match Brands
+              </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {product.brands.map((brand, idx) => (
                   <div
@@ -379,12 +398,17 @@ const ProductDetailPage = () => {
               </h3>
               <div className="space-y-4">
                 {product.facilities.map((facility, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-xl border border-[#E0E0E0]">
+                  <div
+                    key={idx}
+                    className="bg-white p-6 rounded-xl border border-[#E0E0E0]"
+                  >
                     <p className="text-[#222222] font-bold text-lg mb-2">
                       {facility.name}
                     </p>
                     <p className="text-[#666666] mb-1">{facility.location}</p>
-                    <p className="text-[#00AEEF] text-sm italic">{facility.note}</p>
+                    <p className="text-[#00AEEF] text-sm italic">
+                      {facility.note}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -411,8 +435,8 @@ const ProductDetailPage = () => {
             Interested in {product.title}?
           </h3>
           <p className="text-white/90 text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
-            Contact us for product inquiries, bulk orders, private labeling services, or
-            export opportunities.
+            Contact us for product inquiries, bulk orders, private labeling
+            services, or export opportunities.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

@@ -36,11 +36,11 @@ const AboutUsPage = () => {
     {
       year: "1974",
       event:
-        "Mohsin Match Factory - Earliest Private Sector Manufacturing plant in KPK",
+        "Mohsin Match Factory Pvt. Ltd.",
     },
     {
       year: "1990",
-      event: "Mohsin Enterprises - Group 2nd Match Manufacturing Unit",
+      event: "Mohsin Enterprises Pvt. Ltd.",
     },
     {
       year: "1995",
@@ -48,16 +48,16 @@ const AboutUsPage = () => {
     },
     {
       year: "2006",
-      event: "AJ Match - Group 3rd Match Manufacturing unit in Sheikhupura",
+      event: "AJ Match Factory Pvt. Ltd.",
+    },
+    {
+      year: "2024",
+      event: "Kite Dish Wash Bar - Rapid Market Growth with Premium Formula",
     },
     {
       year: "2025",
       event:
         "Kite Glow Detergent Launch - Premium Detergent with Triple Enzyme Technology",
-    },
-    {
-      year: "2025",
-      event: "Kite Dish Wash Bar - Rapid Market Growth with Premium Formula",
     },
   ];
 
