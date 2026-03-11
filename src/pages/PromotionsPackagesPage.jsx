@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import ProductsSection from '../components/ProductsSection';
+import PromotionsPackagesSection from '../components/PromotionsPackagesSection';
 
-const ProductsPage = () => {
+const PromotionsPackagesPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       <div className="relative overflow-hidden">
@@ -15,7 +15,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.8 }}
               className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl"
             >
-              Our Premium Products
+              Promotions & Packages
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg"
             >
-              Quality FMCG products trusted by households and businesses worldwide
+              Special offers and bulk packages designed to save you money
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
@@ -36,9 +36,9 @@ const ProductsPage = () => {
           </div>
         </div>
       </div>
-      <ProductsSection />
+      <PromotionsPackagesSection />
     </div>
   );
 };
 
-export default ProductsPage;
+export default PromotionsPackagesPage;

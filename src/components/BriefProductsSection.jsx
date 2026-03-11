@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { FaFire, FaLayerGroup, FaArrowRight } from "react-icons/fa";
@@ -10,12 +12,52 @@ import burq_img from "../assets/products/BurqDetergent.jpeg";
 import glow_img from "../assets/kiteglow.jpg";
 
 const BriefProductsSection = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
   const featuredProducts = [
     {
-      id: "safety-matches",
-      title: "Safety Matches",
+      id: "kite-matches",
+      title: "Kite Safety Matches",
       shortDescription:
         "Pakistan's #1 safety match brand with over 50 years of excellence. Damp-proof technology and international safety standards.",
+      image: kite_img,
+      color: "#ED028C",
+      icon: <FaFire className="text-4xl" />,
+    },
+    {
+      id: "olympia",
+      title: "Olympia Safety Matches",
+      shortDescription:
+        "Trusted local brand of safety matches with premium quality standards. Damp-proof technology ensures reliable performance.",
+      image: kite_img,
+      color: "#ED028C",
+      icon: <FaFire className="text-4xl" />,
+    },
+    {
+      id: "party",
+      title: "Party Safety Matches",
+      shortDescription:
+        "Popular local brand known for reliable performance and quality. Consistent ignition in all weather conditions.",
+      image: kite_img,
+      color: "#ED028C",
+      icon: <FaFire className="text-4xl" />,
+    },
+    {
+      id: "tanga",
+      title: "Tanga Safety Matches",
+      shortDescription:
+        "Trusted local brand manufactured with premium quality standards. Known for reliable performance across all sizes.",
+      image: kite_img,
+      color: "#ED028C",
+      icon: <FaFire className="text-4xl" />,
+    },
+    {
+      id: "bird",
+      title: "Bird Safety Matches",
+      shortDescription:
+        "Trusted local brand known for quality and reliability. Manufactured with premium standards ensuring consistent performance.",
       image: kite_img,
       color: "#ED028C",
       icon: <FaFire className="text-4xl" />,
@@ -39,7 +81,7 @@ const BriefProductsSection = () => {
       icon: <FaLayerGroup className="text-4xl" />,
     },
     {
-      id: "vero-detergent",
+      id: "vero",
       title: "Vero Detergent",
       shortDescription:
         "Natural ingredients for excellent cleaning and color safety. Long-lasting and cost-effective solution.",
@@ -59,10 +101,15 @@ const BriefProductsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-[#F9F9F9]">
+    <section ref={ref} className="py-16 bg-gradient-to-b from-white to-[#F9F9F9]">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
             Our Products
           </h2>
@@ -74,7 +121,7 @@ const BriefProductsSection = () => {
             Discover our range of premium FMCG products trusted by households and
             businesses across Pakistan and 40+ countries worldwide.
           </p>
-        </div>
+        </motion.div>
 
         {/* Products Slider */}
         <div className="mb-8 relative px-12 md:px-22">
@@ -101,7 +148,7 @@ const BriefProductsSection = () => {
               },
             }}
             navigation
-            pagination={{ clickable: true }}
+            // pagination={{ clickable: true }}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -126,7 +173,11 @@ const BriefProductsSection = () => {
                       className="absolute top-3 right-3 px-2 py-1 rounded-full text-white text-xs font-semibold shadow-lg"
                       style={{ backgroundColor: product.color }}
                     >
-                      {product.id === "safety-matches"
+                      {product.id === "kite-matches" || 
+                       product.id === "olympia" || 
+                       product.id === "party" || 
+                       product.id === "tanga" || 
+                       product.id === "bird"
                         ? "Matches"
                         : product.id === "dish-wash-bar"
                         ? "Dish Wash"
@@ -162,7 +213,12 @@ const BriefProductsSection = () => {
         </div>
 
         {/* View All Products Button */}
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
+        >
           <Link
             to="/products"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
@@ -170,7 +226,7 @@ const BriefProductsSection = () => {
             <span>View All Products</span>
             <FaArrowRight className="transform group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       <style jsx>{`

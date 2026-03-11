@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { FaFire, FaLayerGroup, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import kite_img from "../assets/products/kite.jpeg"
@@ -6,17 +8,21 @@ import glow_img from "../assets/kiteglow.jpg"
 
 
 const ProductsSection = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
   // Flatten products to show individual items
   const allProducts = [
     {
-      id: "safety-matches",
+      id: "kite-matches",
       category: "Safety Matches",
-      title: "Safety Matches - Pakistan's #1 Brand",
+      title: "Kite Safety Matches - Premium Brand",
       icon: <FaFire className="text-5xl text-[#ED028C]" />,
       description:
-        "Pakistan's largest safety match manufacturer and exporter since 1995. Over 50 years of manufacturing excellence with Kite brand leading exports to 40+ countries worldwide.",
+        "Kite is Pakistan's #1 premium safety match brand with over 50 years of manufacturing excellence. Leading exports to 40+ countries worldwide with damp-proof technology and international safety standards.",
       shortDescription:
-        "Premium quality safety matches with damp-proof technology and international safety standards.",
+        "Pakistan's #1 premium safety match brand with over 50 years of excellence.",
       image: kite_img,
       color: "#ED028C",
       features: [
@@ -26,33 +32,12 @@ const ProductsSection = () => {
         "Extra sticks",
         "Carborised and damp proof",
       ],
-      brands: [
-        { name: "Kite", category: "Premium - Local Brand" },
-        { name: "Bird", category: "Local Brand" },
-        { name: "Olympia", category: "Local Brand" },
-        { name: "Party", category: "Local Brand" },
-        { name: "Tanga", category: "Local Brand" },
-        { name: "Simba", category: "Export Brand" },
-        { name: "Football", category: "Export Brand" },
-        { name: "Al Moallam", category: "Export Brand" },
-        { name: "ReD MaC", category: "Export Brand" },
-        { name: "T-Match", category: "Export Brand" },
-        { name: "Wood Flower", category: "Export Brand" },
-        { name: "Al Karama", category: "Export Brand" },
-        { name: "The Goose", category: "Export Brand" },
-        { name: "Ziynat", category: "Export Brand" },
-        { name: "Al Felaji", category: "Export Brand" },
-        { name: "Magia bunicii", category: "Export Brand" },
-        { name: "Zebra", category: "Export Brand" },
-        { name: "Zippy", category: "Export Brand" },
-      ],
       sizes: [
         { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
         { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
         { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
         { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
-      ]
-      ,
+      ],
       facilities: [
         {
           name: "Mohsin Match Factory",
@@ -69,6 +54,106 @@ const ProductsSection = () => {
           location: "Sheikhupura, Lahore - Established 2006",
           note: "Group's 3rd match manufacturing unit",
         },
+      ],
+    },
+    {
+      id: "olympia",
+      category: "Safety Matches",
+      title: "Olympia Safety Matches",
+      icon: <FaFire className="text-5xl text-[#ED028C]" />,
+      description:
+        "Olympia is a trusted local brand of safety matches, manufactured with the same premium quality standards as our flagship Kite brand. Damp-proof technology ensures reliable performance in all conditions.",
+      shortDescription:
+        "Trusted local brand with premium quality standards and damp-proof technology.",
+      image: kite_img,
+      color: "#ED028C",
+      features: [
+        "Damp proof technology",
+        "Reliable ignition",
+        "Premium quality",
+        "Extra sticks per box",
+        "Carborised and damp proof",
+      ],
+      sizes: [
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
+      ],
+    },
+    {
+      id: "party",
+      category: "Safety Matches",
+      title: "Party Safety Matches",
+      icon: <FaFire className="text-5xl text-[#ED028C]" />,
+      description:
+        "Party is a popular local brand of safety matches, known for reliable performance and quality. Manufactured with damp-proof technology to ensure consistent ignition in all weather conditions.",
+      shortDescription:
+        "Popular local brand known for reliable performance and consistent quality.",
+      image: kite_img,
+      color: "#ED028C",
+      features: [
+        "Damp proof technology",
+        "Reliable ignition",
+        "Quality construction",
+        "Extra sticks per box",
+        "Carborised and damp proof",
+      ],
+      sizes: [
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
+      ],
+    },
+    {
+      id: "tanga",
+      category: "Safety Matches",
+      title: "Tanga Safety Matches",
+      icon: <FaFire className="text-5xl text-[#ED028C]" />,
+      description:
+        "Tanga is a trusted local brand of safety matches, manufactured with premium quality standards. Known for reliable performance and consistent quality across all sizes.",
+      shortDescription:
+        "Trusted local brand with premium quality standards and reliable performance.",
+      image: kite_img,
+      color: "#ED028C",
+      features: [
+        "Damp proof technology",
+        "Reliable ignition",
+        "Premium quality",
+        "Extra sticks per box",
+        "Carborised and damp proof",
+      ],
+      sizes: [
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
+      ],
+    },
+    {
+      id: "bird",
+      category: "Safety Matches",
+      title: "Bird Safety Matches",
+      icon: <FaFire className="text-5xl text-[#ED028C]" />,
+      description:
+        "Bird is a trusted local brand of safety matches, known for quality and reliability. Manufactured with the same premium standards as our flagship brands, ensuring consistent performance.",
+      shortDescription:
+        "Trusted local brand known for quality, reliability, and consistent performance.",
+      image: kite_img,
+      color: "#ED028C",
+      features: [
+        "Damp proof technology",
+        "Reliable ignition",
+        "Quality construction",
+        "Extra sticks per box",
+        "Carborised and damp proof",
+      ],
+      sizes: [
+        { size: "LARGE", avgSticks: 58, matchesPerCotton : 500 },
+        { size: "CLASSIC", avgSticks: 45, matchesPerCotton : 500 },
+        { size: "REGULAR", avgSticks: 42, matchesPerCotton : 1000 },
+        { size: "SMALL", avgSticks: 32 ,matchesPerCotton: 1000 },
       ],
     },
     {
@@ -125,7 +210,7 @@ const ProductsSection = () => {
       ],
     },
     {
-      id: "vero-detergent",
+      id: "vero",
       category: "Detergents",
       title: "Vero Detergent",
       icon: <FaLayerGroup className="text-5xl text-[#00AEEF]" />,
@@ -174,10 +259,15 @@ const ProductsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+    <section ref={ref} className="py-20 bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
             Our Products
           </h2>
@@ -192,16 +282,21 @@ const ProductsSection = () => {
             households and businesses across Pakistan and 40+ countries
             worldwide.
           </p>
-        </div>
+        </motion.div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {allProducts.map((product) => (
-            <Link
+          {allProducts.map((product, index) => (
+            <motion.div
               key={product.id}
-              to={`/products/${product.id}`}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
+              <Link
+                to={`/products/${product.id}`}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2 block"
+              >
               {/* Product Image */}
               <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                 <img
@@ -258,12 +353,18 @@ const ProductsSection = () => {
                   <FaArrowRight className="transform group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center shadow-2xl"
+        >
           <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
             Interested in Kite Brand Products?
           </h3>
@@ -288,7 +389,7 @@ const ProductsSection = () => {
               Call Us Now
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

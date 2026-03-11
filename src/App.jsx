@@ -11,6 +11,12 @@ import SafetyMatchesPage from "./pages/SafetyMatchesPage";
 import WoodenSplintsPage from "./pages/WoodenSplintsPage";
 import ContactPage from "./pages/ContactPage";
 import AboutUsPage from "./pages/AboutUsPage";
+import PromotionsPackagesPage from "./pages/PromotionsPackagesPage";
+import KiteMatchesPage from "./pages/KiteMatchesPage";
+import OlympiaMatchesPage from "./pages/OlympiaMatchesPage";
+import PartyMatchesPage from "./pages/PartyMatchesPage";
+import TangaMatchesPage from "./pages/TangaMatchesPage";
+import BirdMatchesPage from "./pages/BirdMatchesPage";
 import "./App.css";
 
 function App() {
@@ -24,6 +30,12 @@ function App() {
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
+          <Route path="/products/olympia" element={<OlympiaMatchesPage />} />
+          <Route path="/products/party" element={<PartyMatchesPage />} />
+          <Route path="/products/tanga" element={<TangaMatchesPage />} />
+          <Route path="/products/bird" element={<BirdMatchesPage />} />
+          <Route path="/promotions-packages" element={<PromotionsPackagesPage />} />
           <Route path="/export" element={<ExportPage />} />
           <Route
             path="/export/safety-matches"

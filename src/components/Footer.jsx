@@ -194,7 +194,7 @@ const Footer = () => {
                           {info.phone}
                         </a>
                       </li>
-                      <li className="flex items-center">
+                      {/* <li className="flex items-center">
                         <FaEnvelope className="text-[#00AEEF] mr-3 flex-shrink-0" />
                         <a
                           href={`mailto:${info.email}`}
@@ -202,7 +202,7 @@ const Footer = () => {
                         >
                           {info.email}
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 ))}
@@ -243,7 +243,7 @@ const Footer = () => {
                           <span className="text-white/80">Fax: {info.fax}</span>
                         </li>
                       )} */}
-                    <li className="flex items-center">
+                    {/* <li className="flex items-center">
                       <FaEnvelope className="text-[#00AEEF] mr-2 flex-shrink-0 text-xs" />
                       <a
                         href={`mailto:${info.email}`}
@@ -251,7 +251,7 @@ const Footer = () => {
                       >
                         {info.email}
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               ))}

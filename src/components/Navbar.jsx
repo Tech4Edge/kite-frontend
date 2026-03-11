@@ -49,6 +49,10 @@ const Navbar = () => {
         },
       ],
     },
+    {
+      name: "Promotions & Packages",
+      href: "/promotions-packages",
+    },
     // {
     //   name: 'Divisions',
     //   href: '/fmcg-division',

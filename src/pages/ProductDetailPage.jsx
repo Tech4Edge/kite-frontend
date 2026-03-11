@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { useParams, Link } from "react-router-dom";
 import {
   FaFire,
@@ -11,6 +13,10 @@ import glow_img from "../assets/kiteglow.jpg";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   // Product data - same structure as ProductsSection
   const productsData = {
@@ -118,8 +124,8 @@ const ProductDetailPage = () => {
       services:
         "Private labeling and toll manufacturing services available with minimal variation",
     },
-    "vero-detergent": {
-      id: "vero-detergent",
+    "vero": {
+      id: "vero",
       category: "Detergents",
       title: "Vero Detergent",
       icon: <FaLayerGroup className="text-6xl text-[#00AEEF]" />,
@@ -164,8 +170,8 @@ const ProductDetailPage = () => {
       skus: [
         { size: "SUPER BAR", gramage: "240 g", packing: 36, price: 60 },
         { size: "LONG BAR", gramage: "230 g", packing: 36, price: 50 },
-        { size: "LARGE BAR", gramage: "110 g" packing: 36, price: 20 },
-        { size: "REGULAR BAR",gramage: "55 g" packing: 48, price: 10 },
+        { size: "LARGE BAR", gramage: "110 g", packing: 36, price: 20 },
+        { size: "REGULAR BAR", gramage: "55 g", packing: 48, price: 10 },
       ],
       services: "Bulk orders and private labeling available",
     },
@@ -211,10 +217,15 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Product Image */}
-          <div className="sticky top-24 h-fit">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="sticky top-24 h-fit"
+          >
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
               <img
                 src={product.image}
@@ -222,10 +233,14 @@ const ProductDetailPage = () => {
                 className="w-full h-auto object-cover"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Product Details */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <div className="flex items-center mb-6">
               <div className="mr-4" style={{ color: product.color }}>
                 {product.icon}
@@ -273,11 +288,16 @@ const ProductDetailPage = () => {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Additional Information Sections */}
-        <div className="space-y-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="space-y-12"
+        >
           {/* Sizes/SKUs Table */}
           {(product.sizes || product.skus) && (
             <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
@@ -427,10 +447,15 @@ const ProductDetailPage = () => {
               <p className="text-lg">{product.services}</p>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-16 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center shadow-2xl"
+        >
           <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
             Interested in {product.title}?
           </h3>
@@ -454,7 +479,7 @@ const ProductDetailPage = () => {
               Call Us Now
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
