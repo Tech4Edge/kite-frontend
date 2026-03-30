@@ -176,7 +176,9 @@ const ExportSection = () => {
                   <img
                     src={match.image}
                     alt={match.brand}
-                    className="w-full h-full object-contain p-4"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-contain p-3 md:p-4"
                   />
                 </div>
                 <div className="p-4 text-center border-t-2 border-[#E0E0E0]">
@@ -289,10 +291,12 @@ const ExportSection = () => {
           </h3>
 
           {/* Map Placeholder */}
-          <div className="relative bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-3xl flex items-center justify-center mb-12 overflow-hidden group h-96">
+          <div className="relative bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-3xl flex items-center justify-center mb-12 overflow-hidden group h-64 sm:h-80 md:h-96">
             <img
               src="https://via.placeholder.com/1200x600/00AEEF/FFFFFF?text=Global+Export+Map"
               alt="Global Export Map"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           </div>
@@ -416,11 +420,13 @@ const ExportSection = () => {
             </div>
 
             {/* Image Placeholder */}
-            <div className="h-80 bg-gradient-to-br from-[#ED028C] to-[#d4027a] overflow-hidden rounded-2xl flex items-center justify-center">
+            <div className="h-56 sm:h-72 md:h-80 bg-gradient-to-br from-[#ED028C] to-[#d4027a] overflow-hidden rounded-2xl flex items-center justify-center">
               <img
                 src="https://via.placeholder.com/800x600/ED028C/FFFFFF?text=Export+Shipping+Container"
                 alt="Export Shipping Container"
-                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>

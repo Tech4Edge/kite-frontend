@@ -77,16 +77,18 @@ const Footer = () => {
       {/* Company Logos Section */}
       <div className="bg-[#1a1a1a] border-b border-white/10 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 items-center justify-center justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 items-center justify-center justify-items-center">
             {companyLogos.map((company, index) => (
               <div
                 key={index}
-                className="bg-white hover:bg-white/60 p-4 rounded-lg transition-all duration-300 w-full flex items-center justify-center"
+                className="bg-white hover:bg-white/60 p-3 md:p-4 rounded-lg transition-all duration-300 w-full flex items-center justify-center min-h-[74px] md:min-h-[88px]"
               >
                 <img
                   src={company.logo}
                   alt={company.alt}
-                  className="h-15! opacity-90 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-10 sm:h-12 md:h-14 w-auto max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}

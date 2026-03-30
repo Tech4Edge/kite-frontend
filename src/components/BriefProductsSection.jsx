@@ -4,101 +4,40 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { FaFire, FaLayerGroup, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import kite_img from "../assets/products/kite.jpeg";
-import burq_img from "../assets/products/BurqDetergent.jpeg";
-import glow_img from "../assets/kiteglow.jpg";
+import { getProducts } from "../services/api";
+
+const placeholderImage = "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
 
 const BriefProductsSection = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-  const featuredProducts = [
-    {
-      id: "kite-matches",
-      title: "Kite Safety Matches",
-      shortDescription:
-        "Pakistan's #1 safety match brand with over 50 years of excellence. Damp-proof technology and international safety standards.",
-      image: kite_img,
-      color: "#ED028C",
-      icon: <FaFire className="text-4xl" />,
-    },
-    {
-      id: "olympia",
-      title: "Olympia Safety Matches",
-      shortDescription:
-        "Trusted local brand of safety matches with premium quality standards. Damp-proof technology ensures reliable performance.",
-      image: kite_img,
-      color: "#ED028C",
-      icon: <FaFire className="text-4xl" />,
-    },
-    {
-      id: "party",
-      title: "Party Safety Matches",
-      shortDescription:
-        "Popular local brand known for reliable performance and quality. Consistent ignition in all weather conditions.",
-      image: kite_img,
-      color: "#ED028C",
-      icon: <FaFire className="text-4xl" />,
-    },
-    {
-      id: "tanga",
-      title: "Tanga Safety Matches",
-      shortDescription:
-        "Trusted local brand manufactured with premium quality standards. Known for reliable performance across all sizes.",
-      image: kite_img,
-      color: "#ED028C",
-      icon: <FaFire className="text-4xl" />,
-    },
-    {
-      id: "bird",
-      title: "Bird Safety Matches",
-      shortDescription:
-        "Trusted local brand known for quality and reliability. Manufactured with premium standards ensuring consistent performance.",
-      image: kite_img,
-      color: "#ED028C",
-      icon: <FaFire className="text-4xl" />,
-    },
-    {
-      id: "kite-glow",
-      title: "Kite Glow Detergent",
-      shortDescription:
-        "Triple Enzyme technology for tough stain removal and color protection. Premium cleaning power.",
-      image: glow_img,
-      color: "#00AEEF",
-      icon: <FaLayerGroup className="text-4xl" />,
-    },
-    {
-      id: "burq-action",
-      title: "BURQ Action Detergent",
-      shortDescription:
-        "Colour Guard technology for vibrant colors and powerful cleaning. Safe for skin and fabrics.",
-      image: burq_img,
-      color: "#00AEEF",
-      icon: <FaLayerGroup className="text-4xl" />,
-    },
-    {
-      id: "vero",
-      title: "Vero Detergent",
-      shortDescription:
-        "Natural ingredients for excellent cleaning and color safety. Long-lasting and cost-effective solution.",
-      image: "https://via.placeholder.com/400x500/00AEEF/FFFFFF?text=Vero+Detergent",
-      color: "#00AEEF",
-      icon: <FaLayerGroup className="text-4xl" />,
-    },
-    {
-      id: "dish-wash-bar",
-      title: "Kite Dish Wash Bar",
-      shortDescription:
-        "Extra strength dish wash bar with premium lemon fragrance. Gentle on hands, tough on grease.",
-      image: "https://via.placeholder.com/400x500/059669/FFFFFF?text=Dish+Wash+Bar",
-      color: "#059669",
-      icon: <FaLayerGroup className="text-4xl" />,
-    },
-  ];
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await getProducts();
+        const visible = data
+          .filter((p) => p.showOnLanding !== false)
+          .sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0));
+        setFeaturedProducts(visible);
+      } catch {
+        setFeaturedProducts([]);
+      }
+    };
+    load();
+  }, []);
+
+  const getIcon = (product) => {
+    if (product.iconType === "fire") return <FaFire className="text-4xl" />;
+    return <FaLayerGroup className="text-4xl" />;
+  };
 
   return (
     <section ref={ref} className="py-16 bg-gradient-to-b from-white to-[#F9F9F9]">
@@ -124,7 +63,7 @@ const BriefProductsSection = () => {
         </motion.div>
 
         {/* Products Slider */}
-        <div className="mb-8 relative px-12 md:px-22">
+        <div className="mb-8 relative px-0 md:px-14">
           <Swiper
             modules={[Autoplay, Pagination, Navigation]}
             spaceBetween={30}
@@ -165,7 +104,7 @@ const BriefProductsSection = () => {
                   {/* Product Image */}
                   <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                     <img
-                      src={product.image}
+                      src={product.image || product.images?.[0] || placeholderImage}
                       alt={product.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
@@ -173,15 +112,7 @@ const BriefProductsSection = () => {
                       className="absolute top-3 right-3 px-2 py-1 rounded-full text-white text-xs font-semibold shadow-lg"
                       style={{ backgroundColor: product.color }}
                     >
-                      {product.id === "kite-matches" || 
-                       product.id === "olympia" || 
-                       product.id === "party" || 
-                       product.id === "tanga" || 
-                       product.id === "bird"
-                        ? "Matches"
-                        : product.id === "dish-wash-bar"
-                        ? "Dish Wash"
-                        : "Detergent"}
+                      {product.category || product.productType || "Product"}
                     </div>
                   </div>
 
@@ -189,7 +120,7 @@ const BriefProductsSection = () => {
                   <div className="p-5">
                     <div className="flex items-center mb-3">
                       <div className="mr-3" style={{ color: product.color }}>
-                        {product.icon}
+                        {getIcon(product)}
                       </div>
                       <h4 className="text-[#222222] text-lg font-bold group-hover:text-[#00AEEF] transition-colors line-clamp-1">
                         {product.title}
@@ -197,7 +128,7 @@ const BriefProductsSection = () => {
                     </div>
 
                     <p className="text-[#666666] text-sm mb-4 line-clamp-2">
-                      {product.shortDescription}
+                      {product.description}
                     </p>
 
                     {/* View Details Link */}
@@ -246,20 +177,20 @@ const BriefProductsSection = () => {
         }
 
         .products-swiper :global(.swiper-button-next) {
-          right: -60px;
+          right: 8px;
         }
 
         .products-swiper :global(.swiper-button-prev) {
-          left: 60px;
+          left: 8px;
         }
 
         @media (max-width: 1024px) {
           .products-swiper :global(.swiper-button-next) {
-            right: -50px;
+            right: 8px;
           }
 
           .products-swiper :global(.swiper-button-prev) {
-            left: -50px;
+            left: 8px;
           }
         }
 

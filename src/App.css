@@ -95,7 +95,7 @@ img {
   line-height: 1.2;
 } 
 
-p {
+body:not(.admin-route) p {
   /* color: #666666; */
   line-height: 1.8;
 }
@@ -168,10 +168,10 @@ p a:hover {
 }
 
 /* Input field styles */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
+body:not(.admin-route) input[type="text"],
+body:not(.admin-route) input[type="email"],
+body:not(.admin-route) input[type="tel"],
+body:not(.admin-route) textarea {
   width: 100%;
   padding: 12px 16px;
   border: 2px solid #E0E0E0;
@@ -181,14 +181,14 @@ textarea {
   transition: all 0.3s ease;
 }
 
-input:focus,
-textarea:focus {
+body:not(.admin-route) input:focus,
+body:not(.admin-route) textarea:focus {
   border-color: #00AEEF;
   outline: none;
 }
 
-input:hover,
-textarea:hover {
+body:not(.admin-route) input:hover,
+body:not(.admin-route) textarea:hover {
   border-color: #FF8ACE;
 }
 
@@ -240,7 +240,6 @@ textarea:hover {
 /* Section spacing */
 section {
   position: relative;
-  overflow: hidden;
 }
 
 /* Container max-width */
@@ -265,20 +264,20 @@ section {
 /* Mobile responsiveness improvements */
 @media (max-width: 768px) {
   /* Reduce heading sizes on mobile */
-  h1 {
+  body:not(.admin-route) h1 {
     font-size: 2rem !important;
   }
   
-  h2 {
+  body:not(.admin-route) h2 {
     font-size: 1.75rem !important;
   }
   
-  h3 {
+  body:not(.admin-route) h3 {
     font-size: 1.5rem !important;
   }
   
   /* Adjust padding and margins */
-  section {
+  body:not(.admin-route) section {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
@@ -290,8 +289,5 @@ section {
     font-size: 0.875rem;
   }
   
-  /* Stack grid items on mobile */
-  .grid {
-    grid-template-columns: 1fr !important;
-  }
+  /* Keep grid behavior controlled by per-component Tailwind breakpoints */
 }

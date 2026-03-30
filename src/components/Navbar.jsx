@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 import kiteLogo1 from "../assets/kite_part1.png";
 import kiteLogo2 from "../assets/kite_part2.png";
+import { getProducts } from "../services/api";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [expandedMobileCategories, setExpandedMobileCategories] = useState({});
+  const [navProducts, setNavProducts] = useState([]);
   const location = useLocation();
 
   const toggleMobileCategory = (categoryTitle) => {
@@ -17,37 +19,47 @@ const Navbar = () => {
     }));
   };
 
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await getProducts();
+        setNavProducts(data.filter((p) => p.showInNavbar !== false));
+      } catch {
+        setNavProducts([]);
+      }
+    };
+    load();
+  }, []);
+
+  const dynamicMegaMenu = useMemo(() => {
+    const groups = new Map();
+    const preferredOrder = ["Safety Matches", "Detergents", "Dish Wash"];
+    navProducts
+      .slice()
+      .sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0))
+      .forEach((p) => {
+        const title = p.navGroup || p.category || "Products";
+        if (!groups.has(title)) groups.set(title, []);
+        groups.get(title).push({ name: p.title, href: `/products/${p.id}` });
+      });
+    return Array.from(groups.entries())
+      .map(([title, items]) => ({ title, items }))
+      .sort((a, b) => {
+        const ai = preferredOrder.indexOf(a.title);
+        const bi = preferredOrder.indexOf(b.title);
+        const aRank = ai === -1 ? Number.MAX_SAFE_INTEGER : ai;
+        const bRank = bi === -1 ? Number.MAX_SAFE_INTEGER : bi;
+        if (aRank !== bRank) return aRank - bRank;
+        return a.title.localeCompare(b.title);
+      });
+  }, [navProducts]);
+
   const navItems = [
     { name: "Home", href: "/" },
     {
       name: "Products",
       href: "/products",
-      megaMenu: [
-        {
-          title: "Safety Matches",
-          items: [
-            { name: "Kite", href: "/products/kite-matches" },
-            { name: "Olympia", href: "/products/olympia" },
-            { name: "Party", href: "/products/party" },
-            { name: "Tanga", href: "/products/tanga" },
-            { name: "Bird", href: "/products/bird" },
-          ],
-        },
-        {
-          title: "Detergents",
-          items: [
-            { name: "Kite Glow", href: "/products/kite-glow" },
-            { name: "BURQ Action", href: "/products/burq-action" },
-            { name: "Vero Detergent", href: "/products/vero" },
-          ],
-        },
-        {
-          title: "Dish Wash",
-          items: [
-            { name: "Kite Dishwash Bar", href: "/products/kite-dishwash" },
-          ],
-        },
-      ],
+      megaMenu: dynamicMegaMenu,
     },
     {
       name: "Promotions & Packages",
@@ -103,7 +115,7 @@ const Navbar = () => {
                 key={item.name}
                 className="relative group"
                 onMouseEnter={() =>
-                  (item.dropdown || item.megaMenu) && setOpenDropdown(item.name)
+                  (item.dropdown?.length || item.megaMenu?.length) && setOpenDropdown(item.name)
                 }
                 onMouseLeave={() => setOpenDropdown(null)}
               >
@@ -116,19 +128,22 @@ const Navbar = () => {
                   }`}
                 >
                   {item.name}
-                  {(item.dropdown || item.megaMenu) && (
+                  {(item.dropdown?.length || item.megaMenu?.length) && (
                     <FaChevronDown className="text-xs" />
                   )}
                 </Link>
 
                 {/* Mega Menu */}
-                {item.megaMenu && openDropdown === item.name && (
+                {item.megaMenu?.length > 0 && openDropdown === item.name && (
                   <div
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-[700px] bg-white rounded-lg shadow-xl border border-gray-200 overflow-visible z-50"
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-[min(92vw,900px)] bg-white rounded-lg shadow-xl border border-gray-200 overflow-visible z-50"
                     onMouseEnter={() => setOpenDropdown(item.name)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
-                    <div className="grid grid-cols-3 gap-8 p-8">
+                    <div
+                      className="grid gap-8 p-8"
+                      style={{ gridTemplateColumns: `repeat(${Math.min(3, Math.max(1, item.megaMenu.length))}, minmax(0, 1fr))` }}
+                    >
                       {item.megaMenu.map((category) => (
                         <div key={category.title}>
                           <h3 className="text-sm font-bold text-primary mb-3 uppercase tracking-wide">
@@ -159,7 +174,7 @@ const Navbar = () => {
                 )}
 
                 {/* Regular Dropdown Menu */}
-                {item.dropdown && openDropdown === item.name && (
+                {item.dropdown?.length > 0 && openDropdown === item.name && (
                   <div className="absolute left-0 -mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
                     {item.dropdown.map((dropdownItem) => (
                       <Link
@@ -224,13 +239,13 @@ const Navbar = () => {
                       : "text-text-primary hover:text-primary hover:bg-gray-100"
                   }`}
                   onClick={() =>
-                    !(item.dropdown || item.megaMenu) &&
+                    !(item.dropdown?.length || item.megaMenu?.length) &&
                     setIsMobileMenuOpen(false)
                   }
                 >
                   {item.name}
                 </Link>
-                {item.megaMenu && (
+                {item.megaMenu?.length > 0 && (
                   <div className="pl-4 space-y-2 mt-2">
                     {item.megaMenu.map((category) => (
                       <div key={category.title}>
@@ -269,7 +284,7 @@ const Navbar = () => {
                     ))}
                   </div>
                 )}
-                {item.dropdown && (
+                {item.dropdown?.length > 0 && (
                   <div className="pl-4 space-y-1">
                     {item.dropdown.map((dropdownItem) => (
                       <Link

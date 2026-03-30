@@ -10,7 +10,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[55svh] sm:min-h-[62svh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
       <div 
         className="absolute inset-0 bg- bg-cover bg-center bg-no-repeat transform scale-110"
@@ -45,7 +45,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           >
             About{' '}
             <span className="text-white text-transparent">
@@ -58,7 +58,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-lg md:text-xl lg:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-12"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-10 md:mb-12"
           >
             A long-established, well-reputed, and multi-diversified business concern of Pakistan
           </motion.p>

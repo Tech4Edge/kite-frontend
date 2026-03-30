@@ -108,7 +108,9 @@ const CertificationsSlider = () => {
                   <img
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-40 sm:h-44 md:h-48 object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
@@ -158,6 +160,19 @@ const CertificationsSlider = () => {
             opacity: 1;
             width: 30px;
             border-radius: 5px;
+          }
+
+          @media (max-width: 768px) {
+            .certifications-swiper :global(.swiper-button-next),
+            .certifications-swiper :global(.swiper-button-prev) {
+              width: 36px;
+              height: 36px;
+            }
+
+            .certifications-swiper :global(.swiper-button-next:after),
+            .certifications-swiper :global(.swiper-button-prev:after) {
+              font-size: 14px;
+            }
           }
         `}</style>
       </div>

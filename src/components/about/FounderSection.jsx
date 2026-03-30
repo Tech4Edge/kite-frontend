@@ -64,7 +64,7 @@ const FounderSection = ({ founder }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-1 md:order-2"
           >
-            <div className="relative max-w-md mx-auto">
+            <div className="relative max-w-sm sm:max-w-md mx-auto">
               {/* Placeholder - Replace with actual founder image */}
               {/* <div className="aspect-[3/4] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl shadow-xl flex items-center justify-center">
                 <div className="text-center p-8">
@@ -83,10 +83,12 @@ const FounderSection = ({ founder }) => {
               <img
                 src={founder}
                 alt="Founder"
-                className="w-full h-full object-cover rounded-2xl shadow-xl"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[3/4] object-cover object-top rounded-2xl shadow-xl"
               />
               <div
-                className={`absolute -bottom-4 right-4 text-white px-6 py-3 rounded-xl shadow-lg bg-[#00AEEF]`}
+                className="absolute -bottom-3 right-3 md:-bottom-4 md:right-4 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl shadow-lg bg-[#00AEEF]"
               >
                 <p className="font-bold">Founder</p>
               </div>

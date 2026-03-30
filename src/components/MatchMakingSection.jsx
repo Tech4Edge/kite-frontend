@@ -21,9 +21,9 @@ const MatchMakingSection = () => {
 
   return (
     <>
-      <section className="relative h-screen min-h-[600px] overflow-hidden border-t-8 border-b-8 border-[#00AEEF]">
+      <section className="relative min-h-[70svh] md:min-h-[600px] overflow-hidden border-t-8 border-b-8 border-[#00AEEF]">
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 h-full items-center">
+          <div className="grid md:grid-cols-2 gap-8 h-full items-center py-10 md:py-0">
             {/* Left Content */}
             <div className="text-black z-10">
               <div className="inline-block bg-[#00AEEF] backdrop-blur-xs px-4 py-2 rounded-full mb-6">
@@ -42,7 +42,7 @@ const MatchMakingSection = () => {
                 manufacturing excellence.
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white/20 backdrop-blur-[10px] rounded-lg p-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-1">50+</h3>
                   <p className="text-black/90 text-sm md:text-base">
@@ -87,12 +87,12 @@ const MatchMakingSection = () => {
               <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl group">
                 <video
                   ref={videoRef}
-                  className="w-full h-auto rounded-2xl cursor-pointer"
+                  className="w-full aspect-video object-cover rounded-2xl cursor-pointer"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  poster={match_making}
+                  preload="metadata"
                   onClick={handleVideoClick}
                 >
                   <source src={match_making} type="video/mp4" />
@@ -113,7 +113,7 @@ const MatchMakingSection = () => {
         {/* Expanded Video Overlay */}
         {isExpanded && (
           <div
-            className="fixed inset-0 top-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center px-8 py-12 md:px-12 md:py-16"
+            className="fixed inset-0 top-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center px-4 py-8 md:px-12 md:py-16"
             onClick={handleClose}
           >
             <div
@@ -133,10 +133,11 @@ const MatchMakingSection = () => {
               <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
                 <video
                   ref={expandedVideoRef}
-                  className="w-full h-[90vh] rounded-2xl "
+                  className="w-full h-[70svh] md:h-[90vh] object-contain rounded-2xl "
                   autoPlay
                   loop
                   playsInline
+                  preload="metadata"
                   controls
                 >
                   <source src={match_making} type="video/mp4" />

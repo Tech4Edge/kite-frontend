@@ -1,185 +1,30 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaShoppingCart, FaCheckCircle, FaGift } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { getPromotions } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const PromotionsPackagesSection = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  const packages = [
-    {
-      id: "pkg-long-bar",
-      title: "Long Bar Carton",
-      category: "Bulk Cartons",
-      image: null, // Add image path here, e.g., "../assets/packages/long-bar-carton.jpg"
-      items: [
-        {
-          product: "Kite Dish Wash Long Bar Carton (36 pcs)",
-          quantity: 1,
-          price: 1440,
-        },
-      ],
-      totalQuantity: 1,
-      totalPrice: 1440,
-    },
-    {
-      id: "pkg-super-bar",
-      title: "Super Bar Carton",
-      category: "Bulk Cartons",
-      image: null, // Add image path here, e.g., "../assets/packages/super-bar-carton.jpg"
-      items: [
-        {
-          product: "Kite Dish Wash Super Bar Carton (36 pcs)",
-          quantity: 1,
-          price: 1800,
-        },
-      ],
-      totalQuantity: 1,
-      totalPrice: 1800,
-    },
-    {
-      id: "pkg-safety-match",
-      title: "Safety Match Carton",
-      category: "Bulk Cartons",
-      image: null, // Add image path here, e.g., "../assets/packages/safety-match-carton.jpg"
-      items: [
-        {
-          product: "Kite Safety Match Large Size Carton (500 match boxes)",
-          quantity: 1,
-          price: 3500,
-        },
-      ],
-      totalQuantity: 1,
-      totalPrice: 3500,
-    },
-    {
-      id: "pkg-economical",
-      title: "Economical Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/economical-package.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 kg",
-          quantity: 2,
-          price: 290,
-        },
-        {
-          product: "Kite Super Bar",
-          quantity: 1,
-          price: 60,
-        },
-      ],
-      totalQuantity: 3,
-      totalPrice: 640,
-    },
-    {
-      id: "pkg-saafai",
-      title: "Saafai Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/saafai-package.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 kg",
-          quantity: 3,
-          price: 290,
-        },
-        {
-          product: "Kite Super Bar",
-          quantity: 2,
-          price: 50,
-        },
-      ],
-      totalQuantity: 5,
-      totalPrice: 970,
-    },
-    {
-      id: "pkg-monthly-rashan",
-      title: "Monthly Rashan Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/monthly-rashan-package.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 Kg",
-          quantity: 3,
-          price: 290,
-        },
-        {
-          product: "Kite Super Bar",
-          quantity: 2,
-          price: 50,
-        },
-        {
-          product: "Kite Large Gross",
-          quantity: 1,
-          price: 350,
-        },
-      ],
-      totalQuantity: 6,
-      totalPrice: 1320,
-    },
-    {
-      id: "pkg-detergent-super-saver",
-      title: "Detergent Super Saver Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/detergent-super-saver.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 Kg",
-          quantity: 5,
-          price: 290,
-        },
-      ],
-      totalQuantity: 5,
-      totalPrice: 1450,
-    },
-    {
-      id: "pkg-supar-saafai",
-      title: "Supar Saafai Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/supar-saafai-package.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 Kg",
-          quantity: 5,
-          price: 290,
-        },
-        {
-          product: "Kite Super Bar",
-          quantity: 2,
-          price: 50,
-        },
-      ],
-      totalQuantity: 7,
-      totalPrice: 1550,
-    },
-    {
-      id: "pkg-family-saver",
-      title: "Family Saver Package",
-      category: "Combo Packages",
-      image: null, // Add image path here, e.g., "../assets/packages/family-saver-package.jpg"
-      items: [
-        {
-          product: "Kite Glow 1 Kg",
-          quantity: 5,
-          price: 290,
-        },
-        {
-          product: "Kite Super Bar",
-          quantity: 2,
-          price: 60,
-        },
-        {
-          product: "Kite Large Gross",
-          quantity: 1,
-          price: 350,
-        },
-      ],
-      totalQuantity: 8,
-      totalPrice: 1920,
-    },
-  ];
+  const [packages, setPackages] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await getPromotions();
+        setPackages(data || []);
+      } catch {
+        setPackages([]);
+      }
+    };
+    load();
+  }, []);
 
 
   const formatPrice = (price) => {
@@ -188,6 +33,38 @@ const PromotionsPackagesSection = () => {
       currency: "PKR",
       minimumFractionDigits: 0,
     }).format(price);
+  };
+
+  const getComputedTotals = (pkg) => {
+    const items = pkg.items || [];
+    const totalQuantity = items.reduce(
+      (sum, item) => sum + (Number(item?.quantity) || 0),
+      0
+    );
+    const totalPrice = items.reduce(
+      (sum, item) =>
+        sum + ((Number(item?.quantity) || 0) * (Number(item?.price) || 0)),
+      0
+    );
+    return {
+      totalQuantity: totalQuantity || Number(pkg.totalQuantity) || 0,
+      totalPrice: totalPrice || Number(pkg.totalPrice) || 0,
+    };
+  };
+
+  const handleBuyPromotion = (pkg) => {
+    const totals = getComputedTotals(pkg);
+    navigate("/checkout", {
+      state: {
+        orderContext: {
+          type: "promotion",
+          id: pkg.id,
+          title: pkg.title,
+          selectedOption: "",
+          totalPrice: totals.totalPrice,
+        },
+      },
+    });
   };
 
   return (
@@ -225,6 +102,9 @@ const PromotionsPackagesSection = () => {
         {/* Packages - Clean Sections */}
         <div className="space-y-16">
           {packages.map((pkg, index) => (
+            (() => {
+              const totals = getComputedTotals(pkg);
+              return (
             <motion.div
               key={pkg.id}
               initial={{ opacity: 0, y: 40 }}
@@ -264,7 +144,7 @@ const PromotionsPackagesSection = () => {
                   <div className="mb-8">
                     <h4 className="text-lg font-semibold text-[#222222] mb-5">What's Included:</h4>
                     <div className="space-y-4">
-                      {pkg.items.map((item, itemIndex) => (
+                      {(pkg.items || []).map((item, itemIndex) => (
                         <div
                           key={itemIndex}
                           className="flex items-start gap-4 p-3 rounded-lg bg-[#F9F9F9] hover:bg-[#F5F5F5] transition-colors"
@@ -292,17 +172,20 @@ const PromotionsPackagesSection = () => {
                         <div className="mb-3">
                           <span className="text-[#666666] text-base">Total Items: </span>
                           <span className="text-[#222222] font-bold text-lg">
-                            {pkg.totalQuantity} {pkg.totalQuantity === 1 ? 'item' : 'items'}
+                            {totals.totalQuantity} {totals.totalQuantity === 1 ? 'item' : 'items'}
                           </span>
                         </div>
                         <div>
                           <span className="text-[#666666] text-base">Package Price: </span>
                           <span className="text-[#00AEEF] text-3xl font-bold">
-                            {formatPrice(pkg.totalPrice)}
+                            {formatPrice(totals.totalPrice)}
                           </span>
                         </div>
                       </div>
-                      <button className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#00AEEF]/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
+                      <button
+                        onClick={() => handleBuyPromotion(pkg)}
+                        className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-6 md:px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#00AEEF]/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                      >
                         <FaShoppingCart className="text-sm" />
                         <span>Order Now</span>
                       </button>
@@ -316,6 +199,8 @@ const PromotionsPackagesSection = () => {
                 <div className="mt-16 pt-16 border-t border-[#E0E0E0]"></div>
               )}
             </motion.div>
+              );
+            })()
           ))}
         </div>
       </div>
