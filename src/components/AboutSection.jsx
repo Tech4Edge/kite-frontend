@@ -12,7 +12,7 @@ const AboutSection = () => {
       title: "Chairman",
       image: chairman,
       className:
-        "h-84! scale-100! group-hover:scale-105! transition-transform duration-500! object-[20%_5%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-100! group-hover:scale-105! transition-transform duration-500! object-[20%_5%]!",
       bio: "Senator in the Senate of Pakistan (2021-2027 & 2015-2021). Chairman of the Senate Standing Committee on Power. Former Director on the Board of the State Bank of Pakistan (2 terms), board member at HBL and PPL. Chairman of APTMA (2 terms) and President of Sarhad Chamber of Commerce & Industry.",
     },
     {
@@ -21,7 +21,7 @@ const AboutSection = () => {
       title: "CEO",
       image: ceo,
       className:
-        "h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[20%_5%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[20%_5%]!",
       bio: "Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.",
     },
     {
@@ -30,7 +30,7 @@ const AboutSection = () => {
       title: "Managing Director - FMCG",
       image: waleed,
       className:
-        "h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[50%_20%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[50%_20%]!",
       bio: "Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.",
     },
   ];

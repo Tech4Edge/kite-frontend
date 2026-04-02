@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
@@ -46,6 +47,10 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route
+          path="/products/tanga-matches"
+          element={<Navigate to="/products/tanga" replace />}
+        />
         <Route path="/products/:id" element={<ProductDetailPage />} />
         {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
         <Route path="/products/olympia" element={<OlympiaMatchesPage />} />

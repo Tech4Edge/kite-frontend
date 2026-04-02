@@ -108,7 +108,7 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative min-h-[55vh] sm:min-h-[70vh] md:min-h-[90vh] w-full overflow-hidden">
+            <div className="relative min-h-[68vh] sm:min-h-[78vh] md:min-h-[88vh] lg:min-h-[90vh] w-full overflow-hidden">
               {/* Background Image - Full Cover */}
               <div className="absolute inset-0 bg-white">
                 <Link to={slide.link} className="block w-full h-full">
@@ -118,7 +118,7 @@ const HeroCarousel = () => {
                     loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
                     fetchpriority={index === 0 ? "high" : "auto"}
-                    className="absolute inset-0 w-full h-full object-contain object-center"
+                    className="absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
                   />
                 </Link>
                 {/* Subtle Gradient Overlay for Text Readability */}
@@ -358,6 +358,13 @@ const HeroCarousel = () => {
         .hero-swiper :global(.swiper-pagination-bullet:hover) {
           transform: scale(1.2);
           border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 1024px) {
+          .hero-swiper :global(.swiper-button-next),
+          .hero-swiper :global(.swiper-button-prev) {
+            display: none !important;
+          }
         }
 
         @media (max-width: 768px) {

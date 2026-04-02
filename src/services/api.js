@@ -130,7 +130,18 @@ export async function getProducts() {
 }
 
 export async function getProduct(id) {
-  const res = await fetch(`${API_BASE_URL}/products/${id}`);
+  const productIdAliases = {
+    "tanga-matches": "tanga",
+  };
+
+  const primaryId = productIdAliases[id] || id;
+  let res = await fetch(`${API_BASE_URL}/products/${primaryId}`);
+  if (res.ok) return handleResponse(res);
+
+  // Fallback to raw id in case alias map is stale.
+  if (primaryId !== id) {
+    res = await fetch(`${API_BASE_URL}/products/${id}`);
+  }
   return handleResponse(res);
 }
 
