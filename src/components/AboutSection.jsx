@@ -12,7 +12,7 @@ const AboutSection = () => {
       title: "Chairman",
       image: chairman,
       className:
-        "h-120! scale-110! group-hover:scale-120! transition-transform duration-500! object-[20%_55%]!",
+        "h-84! scale-100! group-hover:scale-105! transition-transform duration-500! object-[20%_5%]!",
       bio: "Senator in the Senate of Pakistan (2021-2027 & 2015-2021). Chairman of the Senate Standing Committee on Power. Former Director on the Board of the State Bank of Pakistan (2 terms), board member at HBL and PPL. Chairman of APTMA (2 terms) and President of Sarhad Chamber of Commerce & Industry.",
     },
     {
@@ -21,7 +21,7 @@ const AboutSection = () => {
       title: "CEO",
       image: ceo,
       className:
-        "h-120! scale-120! group-hover:scale-130! transition-transform duration-500! object-[20%_5%]!",
+        "h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[20%_5%]!",
       bio: "Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.",
     },
     {
@@ -30,7 +30,7 @@ const AboutSection = () => {
       title: "Managing Director - FMCG",
       image: waleed,
       className:
-        "h-120! scale-155! group-hover:scale-165! transition-transform duration-500! object-[50%_20%]!",
+        "h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[50%_20%]!",
       bio: "Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.",
     },
   ];
@@ -74,7 +74,7 @@ const AboutSection = () => {
           </p>
           <img
             src={aziz_group_logo}
-            className="w-50 h-50 mx-auto mt-3 mb-6"
+            className="w-44 h-32 md:w-48 md:h-36 mx-auto mt-3 mb-6"
             alt="Aziz Group of Industries"
           />
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
@@ -84,11 +84,11 @@ const AboutSection = () => {
         <div className="mb-16">
           <div className="bg-gradient-to-r from-[#FFEFF9] to-white p-8 md:p-12 rounded-2xl border-2 border-[#FF8ACE] shadow-lg hover:shadow-2xl transition-all duration-300">
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              <span className="font-bold text-[#00AEEF] text-2xl">
+              <span className="font-bold text-[#222222] text-2xl">
                 Kite Brand
               </span>{" "}
               represents the pinnacle of FMCG excellence under
-              <span className="font-bold text-[#ED028C]">
+              <span className="font-bold text-[#222222]">
                 {" "}
                 Mohsin Match Factory (Pvt.) Limited
               </span>
@@ -97,7 +97,7 @@ const AboutSection = () => {
                 over 50 years of manufacturing excellence
               </span>{" "}
               since 1974, we have become
-              <span className="font-bold text-[#ED028C]">
+              <span className="font-bold text-[#222222]">
                 {" "}
                 Pakistan's largest safety match manufacturer and exporter
               </span>
@@ -105,7 +105,7 @@ const AboutSection = () => {
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
               Our{" "}
-              <span className="font-bold text-[#00AEEF]">
+              <span className="font-bold text-[#222222]">
                 Kite Glow detergent
               </span>
               , launched in March 2025, has rapidly gained market recognition
@@ -115,11 +115,11 @@ const AboutSection = () => {
                 care
               </span>
               . Complementing Kite Glow,{" "}
-              <span className="font-bold text-[#ED028C]">BURQ Action</span>{" "}
+              <span className="font-bold text-[#222222]">BURQ Action</span>{" "}
               caters to our mid-tier market segment.
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
-              <span className="font-bold text-[#00AEEF]">
+              <span className="font-bold text-[#222222]">
                 Kite Dish Wash Bar
               </span>{" "}
               has rapidly achieved good market growth due to its
@@ -131,13 +131,13 @@ const AboutSection = () => {
               that not only matches but beats market leaders while maintaining
               competitive pricing.
             </p>
-            <p className="text-[#666666] text-lg leading-relaxed">
+            <p className="text-[#222222] text-lg leading-relaxed">
               We employ{" "}
-              <span className="font-bold text-[#ED028C]">
+              <span className="font-bold text-[#222222]">
                 over 10,000 employees
               </span>{" "}
               across the nation and export to
-              <span className="font-bold text-[#00AEEF]">
+              <span className="font-bold text-[#222222]">
                 {" "}
                 over 40 countries
               </span>{" "}
@@ -211,7 +211,7 @@ const AboutSection = () => {
         </div>
 
         {/* Mission Statement */}
-        <div className="mt-20 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 md:p-12 text-center">
+        {/* <div className="mt-20 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-2xl p-8 md:p-12 text-center">
           <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
             Our Mission & Vision
           </h3>
@@ -223,7 +223,7 @@ const AboutSection = () => {
             presence, always maintaining our core values of quality, integrity,
             innovation, and customer satisfaction.
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -35,7 +40,7 @@ function AppRoutes() {
   }, [isAdminRoute]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white app-page-compact">
       {!isAdminRoute && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -47,17 +52,14 @@ function AppRoutes() {
         <Route path="/products/party" element={<PartyMatchesPage />} />
         <Route path="/products/tanga" element={<TangaMatchesPage />} />
         <Route path="/products/bird" element={<BirdMatchesPage />} /> */}
-        <Route path="/promotions-packages" element={<PromotionsPackagesPage />} />
+        <Route
+          path="/promotions-packages"
+          element={<PromotionsPackagesPage />}
+        />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/export" element={<ExportPage />} />
-        <Route
-          path="/export/safety-matches"
-          element={<SafetyMatchesPage />}
-        />
-        <Route
-          path="/export/wooden-splints"
-          element={<WoodenSplintsPage />}
-        />
+        <Route path="/export/safety-matches" element={<SafetyMatchesPage />} />
+        <Route path="/export/wooden-splints" element={<WoodenSplintsPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
         <Route path="/admin/login" element={<AdminLoginPage />} />

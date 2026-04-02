@@ -1,25 +1,7 @@
-import HeroCarousel from '../components/HeroCarousel';
-import BriefProductsSection from '../components/BriefProductsSection';
-import AboutSection from '../components/AboutSection';
-import BriefPromotion from '../components/BriefPromotion';
-import BriefExport from '../components/BriefExport';
-import MatchMakingSection from '../components/MatchMakingSection';
-import CertificationsSlider from '../components/CertificationsSlider';
-import TrustSection from '../components/TrustSection';
+import HomePageContent from "../components/HomePageContent";
 
 const HomePage = () => {
-  return (
-    <>
-      <HeroCarousel />
-      <BriefProductsSection />
-      <AboutSection />
-      <BriefPromotion />
-      <BriefExport />
-      <MatchMakingSection />
-      <CertificationsSlider />
-      <TrustSection />
-    </>
-  );
+  return <HomePageContent />;
 };
 
 export default HomePage;

@@ -22,8 +22,8 @@ const MatchMakingSection = () => {
   return (
     <>
       <section className="relative min-h-[70svh] md:min-h-[600px] overflow-hidden border-t-8 border-b-8 border-[#00AEEF]">
-        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 h-full items-center py-10 md:py-0">
+        <div className="relative h-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 h-full items-center py-10 md:py-5">
             {/* Left Content */}
             <div className="text-black z-10">
               <div className="inline-block bg-[#00AEEF] backdrop-blur-xs px-4 py-2 rounded-full mb-6">
@@ -42,7 +42,7 @@ const MatchMakingSection = () => {
                 manufacturing excellence.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 justify-items-start sm:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white/20 backdrop-blur-[10px] rounded-lg p-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-1">50+</h3>
                   <p className="text-black/90 text-sm md:text-base">
@@ -68,13 +68,13 @@ const MatchMakingSection = () => {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/products"
-                  className="bg-[#00AEEF] text-white px-8 py-4 rounded-full font-semibold hover:text-black hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2"
+                  className="bg-[#00AEEF] text-white px-8 py-2 rounded-full font-semibold hover:text-black hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2"
                 >
                   Explore Our Products
                 </Link>
                 <Link
                   to="/fmcg-division"
-                  className="bg-transparent border-2 border-[#00AEEF] text-black px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95 inline-flex items-center gap-2"
+                  className="bg-transparent border-2 border-[#00AEEF] text-black px-8 py-2 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95 inline-flex items-center gap-2"
                 >
                   <FaPlay className="text-sm" />
                   Learn More

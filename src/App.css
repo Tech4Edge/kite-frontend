@@ -6,9 +6,11 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   color: #222222;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   line-height: 1.6;
 }
 
@@ -22,27 +24,28 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00AEEF;
+  background: #00aeef;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0095CC;
+  background: #0095cc;
 }
 
 /* Selection colors */
 ::selection {
-  background-color: #00AEEF;
+  background-color: #00aeef;
   color: white;
 }
 
 ::-moz-selection {
-  background-color: #00AEEF;
+  background-color: #00aeef;
   color: white;
 }
 
 /* Smooth transitions for all interactive elements */
-a, button {
+a,
+button {
   transition: all 0.3s ease;
 }
 
@@ -82,25 +85,30 @@ img {
     max-height: 400px;
     object-fit: cover;
   }
-  
+
   .hero-image {
     max-height: 300px;
   }
 }
 
 /* Typography enhancements */
- h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   /* color: #222222; */
   font-weight: 700;
   line-height: 1.2;
-} 
+}
 
 body:not(.admin-route) p {
   /* color: #666666; */
   line-height: 1.8;
 }
 
-another-paragraph-type{
+another-paragraph-type {
   color: #d0d0d0 !important;
   font-weight: 400;
   line-height: 1.2;
@@ -108,21 +116,21 @@ another-paragraph-type{
 
 /* Link styles within paragraphs */
 p a {
-  color: #00AEEF;
+  color: #00aeef;
   text-decoration: underline;
-  text-decoration-color: #00AEEF;
+  text-decoration-color: #00aeef;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
 
 p a:hover {
-  color: #0095CC;
-  text-decoration-color: #0095CC;
+  color: #0095cc;
+  text-decoration-color: #0095cc;
 }
 
 /* Button base styles */
 .btn-primary {
-  background-color: #00AEEF;
+  background-color: #00aeef;
   color: white;
   padding: 12px 32px;
   border-radius: 9999px;
@@ -135,16 +143,16 @@ p a:hover {
 }
 
 .btn-primary:hover {
-  background-color: #0095CC;
+  background-color: #0095cc;
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: #00AEEF;
+  color: #00aeef;
   padding: 12px 32px;
   border-radius: 9999px;
   font-weight: 600;
-  border: 2px solid #00AEEF;
+  border: 2px solid #00aeef;
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -152,19 +160,21 @@ p a:hover {
 }
 
 .btn-secondary:hover {
-  background-color: #00AEEF;
+  background-color: #00aeef;
   color: white;
 }
 
 /* Card hover effects */
 .card-hover {
   transition: all 0.3s ease;
-  border: 2px solid #E0E0E0;
+  border: 2px solid #e0e0e0;
 }
 
 .card-hover:hover {
-  border-color: #FF8ACE;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #ff8ace;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Input field styles */
@@ -174,7 +184,7 @@ body:not(.admin-route) input[type="tel"],
 body:not(.admin-route) textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #E0E0E0;
+  border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 16px;
   color: #222222;
@@ -183,13 +193,13 @@ body:not(.admin-route) textarea {
 
 body:not(.admin-route) input:focus,
 body:not(.admin-route) textarea:focus {
-  border-color: #00AEEF;
+  border-color: #00aeef;
   outline: none;
 }
 
 body:not(.admin-route) input:hover,
 body:not(.admin-route) textarea:hover {
-  border-color: #FF8ACE;
+  border-color: #ff8ace;
 }
 
 /* Loading animation */
@@ -218,28 +228,42 @@ body:not(.admin-route) textarea:hover {
 }
 
 .text-accent {
-  color: #00AEEF;
+  color: #00aeef;
 }
 
 .text-accent-magenta {
-  color: #ED028C;
+  color: #ed028c;
 }
 
 .bg-accent {
-  background-color: #00AEEF;
+  background-color: #00aeef;
 }
 
 .bg-accent-magenta {
-  background-color: #ED028C;
+  background-color: #ed028c;
 }
 
 .bg-tint {
-  background-color: #FFEFF9;
+  background-color: #ffeff9;
 }
 
 /* Section spacing */
 section {
   position: relative;
+}
+
+/* Make all app pages smaller so more content is visible vertically */
+.app-page-compact {
+  --home-scale: 0.75;
+  zoom: var(--home-scale);
+}
+
+@supports not (zoom: 1) {
+  .app-page-compact {
+    transform: scale(var(--home-scale));
+    transform-origin: top center;
+    width: calc(100% / var(--home-scale));
+  }
 }
 
 /* Container max-width */
@@ -267,27 +291,27 @@ section {
   body:not(.admin-route) h1 {
     font-size: 2rem !important;
   }
-  
+
   body:not(.admin-route) h2 {
     font-size: 1.75rem !important;
   }
-  
+
   body:not(.admin-route) h3 {
     font-size: 1.5rem !important;
   }
-  
+
   /* Adjust padding and margins */
   body:not(.admin-route) section {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+
   /* Improve button spacing */
   .btn-primary,
   .btn-secondary {
     padding: 10px 24px;
     font-size: 0.875rem;
   }
-  
+
   /* Keep grid behavior controlled by per-component Tailwind breakpoints */
 }
