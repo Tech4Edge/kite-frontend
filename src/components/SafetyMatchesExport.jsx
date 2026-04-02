@@ -11,18 +11,18 @@ import world_map_export_destinations from "../assets/fmcgForeignDestination.jpeg
 import export_shipping_container from "../assets/delivery.jpeg";
 
 // Import match images
-import simba from "../assets/export/simba.jpg";
-import football from "../assets/export/football.jpg";
-import alMoallam from "../assets/export/al_moallam.jpg";
-import redMac from "../assets/export/red_mac.jpg";
-import woodFlower from "../assets/export/wood_flower.jpg";
-import alKarama from "../assets/export/al_karama.jpg";
-import theGosse from "../assets/export/the_gosse.jpg";
-import ziynat from "../assets/export/ziynat.jpg";
-import alFelaij from "../assets/export/al_felaij.jpg";
-import magiaBunicii from "../assets/export/magia_bunicii.jpg";
-import zebra from "../assets/export/zebra.jpg";
-import zippy from "../assets/export/zippy.jpg";
+import simba from "../assets/export/simba.png";
+import football from "../assets/export/football.png";
+import alMoallam from "../assets/export/al_moallam.png";
+import redMac from "../assets/export/red_mac.png";
+import woodFlower from "../assets/export/wood_flower.png";
+import alKarama from "../assets/export/al_karama.png";
+import theGosse from "../assets/export/the_gosse.png";
+import ziynat from "../assets/export/ziynat.png";
+import alFelaij from "../assets/export/al_felaij.png";
+import magiaBunicii from "../assets/export/magia_bunicii.png";
+import zebra from "../assets/export/zebra.png";
+import zippy from "../assets/export/zippy.png";
 
 const SafetyMatchesExport = () => {
   const safetyMatches = [
@@ -359,7 +359,7 @@ const SafetyMatchesExport = () => {
               <img
                 src={export_shipping_container}
                 alt="Export Shipping Container"
-                className="w-full h-full scale-155"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
