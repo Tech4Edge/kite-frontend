@@ -18,15 +18,19 @@ const BriefProductsSection = () => {
     threshold: 0.1,
   });
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const canLoop = featuredProducts.length > 4;
+  const canNavigate = featuredProducts.length > 1;
 
   useEffect(() => {
     const load = async () => {
       try {
         const data = await getProducts();
-        const visible = data
-          .filter((p) => p.showOnLanding !== false)
-          .sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0));
-        setFeaturedProducts(visible);
+        const allProducts = [...data].sort((a, b) => {
+          const aTime = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const bTime = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return aTime - bTime; // oldest first -> latest last
+        });
+        setFeaturedProducts(allProducts);
       } catch {
         setFeaturedProducts([]);
       }
@@ -86,13 +90,17 @@ const BriefProductsSection = () => {
                 spaceBetween: 30,
               },
             }}
-            navigation
+            navigation={canNavigate}
             // pagination={{ clickable: true }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
+            autoplay={
+              canNavigate
+                ? {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }
+                : false
+            }
+            loop={canLoop}
             className="products-swiper"
           >
             {featuredProducts.map((product) => (
@@ -196,7 +204,7 @@ const BriefProductsSection = () => {
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .products-swiper :global(.swiper-button-next),
           .products-swiper :global(.swiper-button-prev) {
             display: none;
