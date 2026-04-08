@@ -67,7 +67,15 @@ function buildProductFormData(data = {}) {
     }
   });
 
-  ["features", "variants", "brands", "sizes", "skus", "facilities", "images"].forEach((key) => {
+  [
+    "features",
+    "variants",
+    "brands",
+    "sizes",
+    "skus",
+    "facilities",
+    "images",
+  ].forEach((key) => {
     if (data[key] !== undefined && data[key] !== null) {
       fd.append(key, JSON.stringify(data[key]));
     }
@@ -129,17 +137,40 @@ export async function getProducts() {
   return handleResponse(res);
 }
 
+function normalizeIdentifier(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export async function getProduct(id) {
   const productIdAliases = {
     "tanga-matches": "tanga",
   };
 
-  const primaryId = productIdAliases[id] || id;
-  let res = await fetch(`${API_BASE_URL}/products/${primaryId}`);
+  const requestedId = productIdAliases[id] || id;
+  const normalizedRequested = normalizeIdentifier(requestedId);
+
+  // Prefer list endpoint lookup because it already works across pages.
+  const products = await getProducts();
+  const matched = products.find((item) => {
+    const byId = normalizeIdentifier(item?.id) === normalizedRequested;
+    const bySlug = normalizeIdentifier(item?.slug) === normalizedRequested;
+    const byTitle = normalizeIdentifier(item?.title) === normalizedRequested;
+    return byId || bySlug || byTitle;
+  });
+
+  if (matched) {
+    return matched;
+  }
+
+  let res = await fetch(`${API_BASE_URL}/products/${requestedId}`);
   if (res.ok) return handleResponse(res);
 
   // Fallback to raw id in case alias map is stale.
-  if (primaryId !== id) {
+  if (requestedId !== id) {
     res = await fetch(`${API_BASE_URL}/products/${id}`);
   }
   return handleResponse(res);
