@@ -13,6 +13,8 @@ import export_shipping_container from "../assets/delivery.jpeg";
 import splints from "../assets/splints.jpg";
 import splints_2 from "../assets/splints_2.jpg";
 
+import shipment from '../assets/heroCarousel/1280x640shipment.jpg';
+
 const WoodenSplintsExport = () => {
   const woodenSplints = [
     { country: "Kenya", flag: "🇰🇪", size: "40x2.05x2.05 mm" },
@@ -352,13 +354,13 @@ const WoodenSplintsExport = () => {
               </div>
             </div>
 
-            <div className="h-80 bg-gray-500 overflow-hidden rounded-2xl flex items-center justify-center">
-              <img
-                src={export_shipping_container}
-                alt="Export Shipping"
-                className="w-full h-full scale-155"
-              />
-            </div>
+            <div className=" overflow-hidden rounded-2xl flex items-center justify-center">
+                          <img
+                            src={shipment}
+                            alt="Export Shipping Container"
+                            className="w-full object-cover"
+                          />
+                        </div>
           </div>
         </div>
 

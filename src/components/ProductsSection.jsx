@@ -20,7 +20,7 @@ const ProductsSection = () => {
         const data = await getProducts();
         const visible = data
           .filter((p) => p.showInProductsPage !== false)
-          .sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0));
+          .sort((a, b) => (b.displayOrder ?? 0) - (a.displayOrder ?? 0));
         setAllProducts(visible);
       } catch {
         setAllProducts([]);
@@ -62,7 +62,7 @@ const ProductsSection = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {allProducts.map((product, index) => (
+          {[...allProducts].reverse().map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 30 }}

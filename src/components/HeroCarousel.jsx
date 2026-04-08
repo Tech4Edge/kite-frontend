@@ -4,70 +4,113 @@ import {
   Pagination,
   Navigation,
   EffectFade,
-  EffectCube,
-  EffectCreative,
-  EffectCards,
 } from "swiper/modules";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import hero2 from "../assets/hero2.jpg";
-import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpeg";
-import hero1 from "../assets/delivery.jpeg"
+import carousel1 from "../assets/heroCarousel/1920x640allproducts.jpg";
+import carousel2 from "../assets/heroCarousel/1920x640allmatches.webp";
+import carousel3 from "../assets/heroCarousel/1920x640burq.jpg";
+import carousel4 from "../assets/heroCarousel/1920x640glow.jpg";
+import carousel5 from "../assets/heroCarousel/1920x640dishwash.jpg";
+import carousel6 from "../assets/heroCarousel/1920x640vero.jpg";
+import carousel7 from "../assets/heroCarousel/1920x640shipment.jpg";
+
+import carousel1Mobile from "../assets/heroCarousel/640x640kite.jpg";
+import carousel2Mobile from "../assets/heroCarousel/640x640glow.jpg";
+import carousel3Mobile from "../assets/heroCarousel/640x640burq.jpg";
+import carousel4Mobile from "../assets/heroCarousel/640x640dishwash.jpg";
+import carousel5Mobile from "../assets/heroCarousel/640x640vero.jpg";
 
 const HeroCarousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const navigate = useNavigate();
+  const [, setActiveIndex] = useState(0);
   const slides = [
     {
       id: 1,
-      title: "Safety Matches",
-      subtitle:
-        "Pakistan's Most Trusted Match Brands - Over 50 Years of Excellence",
+      title: "Complete Product Portfolio",
+      subtitle: "Discover all categories in one place",
       description:
-        "Export Brands: Shrimp, Helicopter, Sunflower, Chinook | Local Brands: Kite, Bird, Olympia, Party, Tanga - Premium quality safety matches manufactured with the latest technology.",
-      image: hero2,
-      link: "/products/safety-matches",
+        "Explore safety matches, household essentials, and FMCG lines designed for quality, consistency, and value.",
+      image: carousel1,
+      mobileImage: carousel1Mobile,
+      link: "/products",
       gradient: "from-blue-900/50 via-blue-800/30 to-transparent",
       accentColor: "#1E3A8A",
     },
     {
       id: 2,
-      title: "Burq Detergent Action",
-      subtitle: "Color Guard - Deep Clean with Powerful Action",
+      title: "Premium Safety Matches",
+      subtitle: "Trusted brands for every market",
       description:
-        "Powerful stain removal with color protection technology. Keeps your clothes looking new, wash after wash.",
-      image: hero4,
-      link: "/products/burq-action",
+        "From local favorites to export-ready lines, our safety matches deliver reliable ignition and consistent quality.",
+      image: carousel2,
+      mobileImage: carousel1Mobile,
+      link: "/products/safety-matches",
       gradient: "from-orange-900/50 via-orange-700/30 to-transparent",
       accentColor: "#EA580C",
     },
     {
       id: 3,
-      title: "Kite Dishwash Bar",
-      subtitle: "Extra Strength - Sparkling Clean Dishes",
+      title: "Burq Detergent Action",
+      subtitle: "Color guard with deep cleaning power",
       description:
-        "Powerful cleaning with natural lemon freshness. Gentle on hands, tough on grease. The perfect choice for sparkling dishes.",
-      image: hero3,
-      link: "/products/dish-wash-bar",
+        "Advanced stain removal and color protection technology to keep fabrics fresh and bright, wash after wash.",
+      image: carousel3,
+      mobileImage: carousel3Mobile,
+      link: "/products/burq-action",
       gradient: "from-green-800/50 via-green-600/30 to-transparent",
       accentColor: "#059669",
     },
     {
       id: 4,
+      title: "Glow Product Range",
+      subtitle: "Everyday care with trusted quality",
+      description:
+        "A dependable household range built for routine performance, consistent results, and customer satisfaction.",
+      image: carousel4,
+      mobileImage: carousel2Mobile,
+      link: "/products",
+      gradient: "from-purple-900/50 via-purple-700/30 to-transparent",
+      accentColor: "#7C3AED",
+    },
+    {
+      id: 5,
+      title: "Kite Dishwash Bar",
+      subtitle: "Extra strength for sparkling dishes",
+      description:
+        "Cuts through grease with ease, offers lemon freshness, and stays gentle on hands for everyday dish care.",
+      image: carousel5,
+      mobileImage: carousel4Mobile,
+      link: "/products/dish-wash-bar",
+      gradient: "from-emerald-900/50 via-emerald-700/30 to-transparent",
+      accentColor: "#047857",
+    },
+    {
+      id: 6,
+      title: "Vero Care Essentials",
+      subtitle: "Reliable quality for modern homes",
+      description:
+        "Built for practical daily use, Vero products combine performance, quality control, and dependable value.",
+      image: carousel6,
+      mobileImage: carousel5Mobile,
+      link: "/products",
+      gradient: "from-cyan-900/50 via-cyan-700/30 to-transparent",
+      accentColor: "#0E7490",
+    },
+    {
+      id: 7,
       title: "Swift Delivery Services",
       subtitle: "Fast, Reliable, and Nationwide Coverage",
       description:
         "Experience the speed and reliability of Swift Delivery Services. We ensure your packages reach their destination on time, every time, with our extensive nationwide coverage.",
-      image: hero1,
+      image: carousel7,
       link: "/export",
       gradient: "from-purple-900/50 via-purple-700/30 to-transparent",
       accentColor: "#7C3AED",
-    }
+    },
   ];
 
   return (
@@ -79,20 +122,9 @@ const HeroCarousel = () => {
       </div> */}
 
       <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectCreative]}
-        effect="creative"
-        creativeEffect={{
-          prev: {
-            shadow: true,
-            translate: ["-120%", 0, -500],
-            rotate: [0, 0, -15],
-          },
-          next: {
-            shadow: true,
-            translate: ["120%", 0, -500],
-            rotate: [0, 0, 15],
-          },
-        }}
+        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         spaceBetween={0}
         slidesPerView={1}
         navigation
@@ -102,7 +134,7 @@ const HeroCarousel = () => {
           disableOnInteraction: false,
         }}
         loop={true}
-        speed={1000}
+        speed={700}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="hero-swiper"
       >
@@ -112,14 +144,20 @@ const HeroCarousel = () => {
               {/* Background Image - Full Cover */}
               <div className="absolute inset-0 bg-white">
                 <Link to={slide.link} className="block w-full h-full">
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    decoding="async"
-                    fetchpriority={index === 0 ? "high" : "auto"}
-                    className="absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
-                  />
+                  <picture className="block w-full h-full">
+                    <source
+                      media="(max-width: 768px)"
+                      srcSet={slide.mobileImage || slide.image}
+                    />
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      className="absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
+                    />
+                  </picture>
                 </Link>
                 {/* Subtle Gradient Overlay for Text Readability */}
                 {/* <div

@@ -8,6 +8,8 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
+import shipment from '../assets/heroCarousel/1920x640shipment.jpg';
+
 const ExportSection = () => {
   const safetyMatches = [
     { brand: "Simba", country: "Congo", flag: "🇨🇬", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Simba" },
@@ -422,7 +424,7 @@ const ExportSection = () => {
             {/* Image Placeholder */}
             <div className="h-56 sm:h-72 md:h-80 bg-gradient-to-br from-[#ED028C] to-[#d4027a] overflow-hidden rounded-2xl flex items-center justify-center">
               <img
-                src="https://via.placeholder.com/800x600/ED028C/FFFFFF?text=Export+Shipping+Container"
+                src={shipment}
                 alt="Export Shipping Container"
                 loading="lazy"
                 decoding="async"

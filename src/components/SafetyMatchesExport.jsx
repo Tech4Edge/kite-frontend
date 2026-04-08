@@ -24,6 +24,8 @@ import magiaBunicii from "../assets/export/magia_bunicii.png";
 import zebra from "../assets/export/zebra.png";
 import zippy from "../assets/export/zippy.png";
 
+import shipment from '../assets/heroCarousel/1280x640shipment.jpg';
+
 const SafetyMatchesExport = () => {
   const safetyMatches = [
     { brand: "Simba", country: "Congo", image: simba },
@@ -355,11 +357,11 @@ const SafetyMatchesExport = () => {
               </div>
             </div>
 
-            <div className="h-80 bg-gray-500 overflow-hidden rounded-2xl flex items-center justify-center">
+            <div className=" overflow-hidden rounded-2xl flex items-center justify-center">
               <img
-                src={export_shipping_container}
+                src={shipment}
                 alt="Export Shipping Container"
-                className="w-full h-full object-cover object-center"
+                className="w-full object-cover"
               />
             </div>
           </div>

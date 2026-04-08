@@ -1,8 +1,8 @@
 import HeroCarousel from "./HeroCarousel";
 import BriefProductsSection from "./BriefProductsSection";
 import AboutSection from "./AboutSection";
-import BriefPromotion from "./BriefPromotion";
 import BriefExport from "./BriefExport";
+import BrandsShowcaseSection from "./BrandsShowcaseSection";
 import MatchMakingSection from "./MatchMakingSection";
 import CertificationsSlider from "./CertificationsSlider";
 import TrustSection from "./TrustSection";
@@ -13,8 +13,8 @@ const HomePageContent = () => {
       <HeroCarousel />
       <BriefProductsSection />
       <AboutSection />
-      {/* <BriefPromotion /> */}
       <BriefExport />
+      <BrandsShowcaseSection />
       <MatchMakingSection />
       <CertificationsSlider />
       <TrustSection />
