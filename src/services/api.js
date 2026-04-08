@@ -44,23 +44,43 @@ function normalizeApiUrlForHttps(url) {
 function normalizeAssetUrlForHttps(url) {
   if (typeof url !== "string") return url;
   if (typeof window === "undefined") return url;
-  if (window.location.protocol !== "https:" || !/^http:\/\//i.test(url)) {
-    return url;
+  const trimmed = url.trim();
+  if (!trimmed) return trimmed;
+
+  // Convert relative upload paths from API payload to absolute backend URLs.
+  const isRelativeUploadPath =
+    /^\/?uploads\//i.test(trimmed) || /^\.\/?uploads\//i.test(trimmed);
+  if (isRelativeUploadPath) {
+    try {
+      const apiOrigin = new URL(API_BASE_URL).origin;
+      const normalizedPath = `/${trimmed.replace(/^\.?\/?/, "").replace(/\\/g, "/")}`;
+      return `${apiOrigin}${normalizedPath}`;
+    } catch {
+      return trimmed;
+    }
+  }
+
+  if (!/^http:\/\//i.test(trimmed)) {
+    return trimmed;
   }
 
   try {
-    const parsed = new URL(url);
+    const parsed = new URL(trimmed);
     const isLocalHost =
       parsed.hostname === "localhost" ||
       parsed.hostname === "127.0.0.1" ||
       parsed.hostname === "::1";
     if (isLocalHost) {
-      return url;
+      return parsed.toString();
     }
-    parsed.protocol = "https:";
+    if (window.location.protocol === "https:") {
+      parsed.protocol = "https:";
+    }
     return parsed.toString();
   } catch {
-    return url.replace(/^http:\/\//i, "https://");
+    return window.location.protocol === "https:"
+      ? trimmed.replace(/^http:\/\//i, "https://")
+      : trimmed;
   }
 }
 
