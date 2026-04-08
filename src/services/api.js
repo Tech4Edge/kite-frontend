@@ -1,7 +1,7 @@
 function resolveApiBaseUrl() {
   const envBase = (import.meta.env.VITE_API_BASE_URL || "").trim();
   if (envBase) {
-    return envBase.replace(/\/+$/, "");
+    return normalizeApiUrlForHttps(envBase.replace(/\/+$/, ""));
   }
 
   const host = window.location.hostname;
@@ -19,6 +19,78 @@ function resolveApiBaseUrl() {
   return `${window.location.origin}/api`;
 }
 
+function normalizeApiUrlForHttps(url) {
+  if (typeof window === "undefined") return url;
+  if (window.location.protocol !== "https:" || !/^http:\/\//i.test(url)) {
+    return url;
+  }
+
+  try {
+    const parsed = new URL(url);
+    const isLocalHost =
+      parsed.hostname === "localhost" ||
+      parsed.hostname === "127.0.0.1" ||
+      parsed.hostname === "::1";
+    if (isLocalHost) {
+      return url;
+    }
+    parsed.protocol = "https:";
+    return parsed.toString().replace(/\/+$/, "");
+  } catch {
+    return url.replace(/^http:\/\//i, "https://");
+  }
+}
+
+function normalizeAssetUrlForHttps(url) {
+  if (typeof url !== "string") return url;
+  if (typeof window === "undefined") return url;
+  if (window.location.protocol !== "https:" || !/^http:\/\//i.test(url)) {
+    return url;
+  }
+
+  try {
+    const parsed = new URL(url);
+    const isLocalHost =
+      parsed.hostname === "localhost" ||
+      parsed.hostname === "127.0.0.1" ||
+      parsed.hostname === "::1";
+    if (isLocalHost) {
+      return url;
+    }
+    parsed.protocol = "https:";
+    return parsed.toString();
+  } catch {
+    return url.replace(/^http:\/\//i, "https://");
+  }
+}
+
+function sanitizePayloadUrls(payload) {
+  if (Array.isArray(payload)) {
+    return payload.map((item) => sanitizePayloadUrls(item));
+  }
+
+  if (!payload || typeof payload !== "object") {
+    return payload;
+  }
+
+  const next = { ...payload };
+  if (typeof next.image === "string") {
+    next.image = normalizeAssetUrlForHttps(next.image);
+  }
+  if (Array.isArray(next.images)) {
+    next.images = next.images.map((item) => normalizeAssetUrlForHttps(item));
+  }
+
+  Object.keys(next).forEach((key) => {
+    const value = next[key];
+    if (value && typeof value === "object") {
+      next[key] = sanitizePayloadUrls(value);
+    }
+  });
+
+  return next;
+}
+
 const API_BASE_URL = resolveApiBaseUrl();
 
 async function handleResponse(res) {
@@ -32,7 +104,8 @@ async function handleResponse(res) {
     }
     throw new Error(message);
   }
-  return res.json();
+  const data = await res.json();
+  return sanitizePayloadUrls(data);
 }
 
 function getAuthHeaders() {
