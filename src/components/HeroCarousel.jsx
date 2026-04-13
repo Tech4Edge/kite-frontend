@@ -142,7 +142,7 @@ const HeroCarousel = () => {
           <SwiperSlide key={slide.id}>
             <div className="relative min-h-[68vh] sm:min-h-[78vh] md:min-h-[88vh] lg:min-h-[90vh] w-full overflow-hidden">
               {/* Background Image - Full Cover */}
-              <div className="absolute inset-0 bg-white">
+              <div className="absolute inset-0 bg-white aspect-6/6 sm:aspect-auto">
                 <Link to={slide.link} className="block w-full h-full">
                   <picture className="block w-full h-full">
                     <source
@@ -155,7 +155,7 @@ const HeroCarousel = () => {
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
                       fetchpriority={index === 0 ? "high" : "auto"}
-                      className="absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
+                      className="absolute inset-0 w-full h-full object-left object-contain sm:object-center p-2 sm:p-3 md:p-0"
                     />
                   </picture>
                 </Link>

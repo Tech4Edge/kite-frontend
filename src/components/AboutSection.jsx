@@ -1,5 +1,5 @@
 import { FaUsers, FaIndustry, FaGlobeAsia, FaAward } from "react-icons/fa";
-import chairman from "../assets/people/chairman.png";
+import chairman from "../assets/people/chairman.jpeg";
 import ceo from "../assets/people/ceo.jpeg";
 import aziz_group_logo from "../assets/ajlogo.png";
 import waleed from "../assets/people/waleed.jpg";

@@ -7,8 +7,7 @@ import {
   FaCheckCircle,
   FaCog,
 } from "react-icons/fa";
-import world_map_export_destinations from "../assets/fmcgForeignDestination.jpeg";
-import export_shipping_container from "../assets/delivery.jpeg";
+import world_map_export_destinations from "../assets/worldmap.jpeg";
 
 // Import match images
 import simba from "../assets/export/simba.png";
