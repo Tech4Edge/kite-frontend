@@ -7,7 +7,6 @@ import {
   FaCheckCircle,
   FaCog,
 } from "react-icons/fa";
-import export_shipping_container from "../assets/delivery.jpeg";
 
 // Import splints images
 import splints from "../assets/splints.jpg";

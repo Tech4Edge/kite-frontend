@@ -1,4 +1,4 @@
-import chairmanImg from "../assets/people/chairman.png";
+import chairmanImg from "../assets/people/chairman.jpeg";
 import ceoImg from "../assets/people/ceo.jpeg";
 import waleedImg from "../assets/people/waleed.jpg";
 import azizgrp from "../assets/azizgrp.jpg";

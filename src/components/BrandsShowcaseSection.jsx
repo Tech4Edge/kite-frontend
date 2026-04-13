@@ -90,13 +90,13 @@ const BrandsShowcaseSection = () => {
                   index % 2 === 0 ? "sm:order-2" : "sm:order-1"
                 }`}
               >
-                <div className="aspect-16/10 sm:aspect-16/7">
+                <div className="aspect-18/10 sm:aspect-16/8">
                   <img
                     src={brand.desktopImage}
                     alt={brand.desktopAlt}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover  transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
               </Link>
