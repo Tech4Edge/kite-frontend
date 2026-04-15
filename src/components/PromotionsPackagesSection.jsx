@@ -123,7 +123,7 @@ const PromotionsPackagesSection = () => {
               <div className="flex flex-col lg:flex-row gap-10">
                 {/* Image Section - Left */}
                 <div className="lg:w-2/5">
-                  <div className="relative h-72 lg:h-80 bg-gradient-to-br from-[#F9F9F9] to-[#F0F0F0] rounded-lg overflow-hidden border border-[#E0E0E0]">
+                  <div className="relative aspect-square h-72 lg:h-120 bg-gradient-to-br from-[#F9F9F9] to-[#F0F0F0] rounded-lg overflow-hidden border border-[#E0E0E0]">
                     {pkg.image ? (
                       <img
                         src={pkg.image}
