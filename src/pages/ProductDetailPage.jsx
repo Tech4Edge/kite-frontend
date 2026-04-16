@@ -134,7 +134,7 @@ const ProductDetailPage = () => {
               <img
                 src={product.image || product.images?.[0] || "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product"}
                 alt={product.title}
-                className="w-[600px] h-[700px] object-fit"
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>
