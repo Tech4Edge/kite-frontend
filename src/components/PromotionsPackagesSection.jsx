@@ -101,7 +101,7 @@ const PromotionsPackagesSection = () => {
 
         {/* Packages - Clean Sections */}
         <div className="space-y-16">
-          {packages.map((pkg, index) => (
+          {[...packages].reverse().map((pkg, index) => (
             (() => {
               const totals = getComputedTotals(pkg);
               return (

@@ -20,6 +20,7 @@ import ContactPage from "./pages/ContactPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import PromotionsPackagesPage from "./pages/PromotionsPackagesPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import NotFoundPage from "./pages/NotFoundPage";
 // import KiteMatchesPage from "./pages/KiteMatchesPage";
 // import OlympiaMatchesPage from "./pages/OlympiaMatchesPage";
 // import PartyMatchesPage from "./pages/PartyMatchesPage";
@@ -71,6 +72,7 @@ function AppRoutes() {
         <Route path="/admin/products" element={<AdminProductsPage />} />
         <Route path="/admin/promotions" element={<AdminPromotionsPage />} />
         <Route path="/admin/orders" element={<AdminOrdersPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <WhatsAppButton />}
