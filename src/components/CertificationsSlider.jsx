@@ -162,16 +162,10 @@ const CertificationsSlider = () => {
             border-radius: 5px;
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 1024px) {
             .certifications-swiper :global(.swiper-button-next),
             .certifications-swiper :global(.swiper-button-prev) {
-              width: 36px;
-              height: 36px;
-            }
-
-            .certifications-swiper :global(.swiper-button-next:after),
-            .certifications-swiper :global(.swiper-button-prev:after) {
-              font-size: 14px;
+              display: none !important;
             }
           }
         `}</style>

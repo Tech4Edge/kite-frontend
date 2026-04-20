@@ -240,7 +240,7 @@ function normalizeIdentifier(value) {
 
 export async function getProduct(id) {
   const productIdAliases = {
-    "tanga-matches": "tanga",
+    tanga: "tanga-matches",
   };
 
   const requestedId = productIdAliases[id] || id;

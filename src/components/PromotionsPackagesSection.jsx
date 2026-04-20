@@ -75,8 +75,17 @@ const PromotionsPackagesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="relative text-center mb-16 pt-6"
         >
+          <div className="pointer-events-none absolute -top-2 right-0 sm:right-2 z-10">
+            <div className="relative inline-flex items-center bg-gradient-to-r from-[#ED028C] via-[#FF4DB2] to-[#D8017E] text-white px-4 sm:px-5 py-2 rounded-md shadow-xl shadow-[#ED028C]/35 rotate-20">
+              <span className="absolute -bottom-2 right-2 w-4 h-4 bg-[#8F0054]/50 rotate-45 rounded-sm" />
+              <FaGift className="text-xs sm:text-sm mr-1.5" />
+              <span className="text-[10px] sm:text-xs tracking-[0.16em] font-bold uppercase whitespace-nowrap">
+                Promotion & Packages
+              </span>
+            </div>
+          </div>
           <div className="inline-flex items-center justify-center gap-2 mb-4">
             <FaGift className="text-[#ED028C] text-2xl" />
             <h2 className="text-[#00AEEF] text-lg font-semibold uppercase tracking-wider">

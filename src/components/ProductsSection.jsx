@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
 import { FaFire, FaLayerGroup, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/api";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const placeholderImage = "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
 
@@ -13,6 +17,8 @@ const ProductsSection = () => {
     threshold: 0.1,
   });
   const [allProducts, setAllProducts] = useState([]);
+  const canNavigate = allProducts.length > 1;
+  const canLoop = allProducts.length > 3;
 
   useEffect(() => {
     const load = async () => {
@@ -60,81 +66,113 @@ const ProductsSection = () => {
           </p>
         </motion.div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {[...allProducts].reverse().map((product, index) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link
-                to={`/products/${product.id}`}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2 block"
-              >
-              {/* Product Image */}
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                <img
-                  src={product.image || product.images?.[0] || placeholderImage}
-                  alt={product.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                />
-                <div
-                  className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm font-semibold shadow-lg"
-                  style={{ backgroundColor: product.color }}
+        {/* Products Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-16"
+        >
+          <Swiper
+            modules={[Autoplay, Navigation]}
+            slidesPerView={1}
+            spaceBetween={20}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 28,
+              },
+            }}
+            navigation={canNavigate}
+            autoplay={
+              canNavigate
+                ? {
+                    delay: 3200,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }
+                : false
+            }
+            loop={canLoop}
+            speed={900}
+            grabCursor={canNavigate}
+            className="products-page-swiper px-1 md:px-14 py-2"
+          >
+            {[...allProducts].reverse().map((product) => (
+              <SwiperSlide key={product.id} className="h-auto">
+                <Link
+                  to={`/products/${product.id}`}
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2 block h-[500px] sm:h-[520px] flex flex-col"
                 >
-                  {product.category}
-                </div>
-              </div>
-
-              {/* Product Content */}
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="mr-4" style={{ color: product.color }}>
-                    {getIcon(product)}
+                  {/* Product Image */}
+                  <div className="relative h-56 sm:h-60 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                    <img
+                      src={product.image || product.images?.[0] || placeholderImage}
+                      alt={product.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div
+                      className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm font-semibold shadow-lg"
+                      style={{ backgroundColor: product.color }}
+                    >
+                      {product.category || product.productType || "Product"}
+                    </div>
                   </div>
-                  <h3 className="text-[#222222] text-xl font-bold group-hover:text-[#00AEEF] transition-colors">
-                    {product.title}
-                  </h3>
-                </div>
 
-                <p className="text-[#666666] text-sm mb-4 line-clamp-3">
-                  {product.description}
-                </p>
+                  {/* Product Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-center mb-4">
+                      <div className="mr-4" style={{ color: product.color }}>
+                        {getIcon(product)}
+                      </div>
+                      <h3 className="text-[#222222] text-xl font-bold group-hover:text-[#00AEEF] transition-colors line-clamp-2">
+                        {product.title}
+                      </h3>
+                    </div>
 
-                {/* Features Preview */}
-                {product.features && product.features.length > 0 && (
-                  <div className="mb-4">
-                    <ul className="space-y-1">
-                      {product.features.slice(0, 2).map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start text-[#666666] text-xs"
-                        >
-                          <span
-                            className="w-1.5 h-1.5 rounded-full mr-2 mt-1.5 flex-shrink-0"
-                            style={{ backgroundColor: product.color }}
-                          ></span>
-                          <span className="line-clamp-1">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="text-[#666666] text-sm mb-4 line-clamp-3 min-h-[60px]">
+                      {product.description}
+                    </p>
+
+                    {/* Features Preview */}
+                    {product.features && product.features.length > 0 && (
+                      <div className="mb-4 min-h-[52px]">
+                        <ul className="space-y-1">
+                          {product.features.slice(0, 2).map((feature, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start text-[#666666] text-xs"
+                            >
+                              <span
+                                className="w-1.5 h-1.5 rounded-full mr-2 mt-1.5 flex-shrink-0"
+                                style={{ backgroundColor: product.color }}
+                              ></span>
+                              <span className="line-clamp-1">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="mt-auto">
+                      {/* View Details Button */}
+                      <div className="flex items-center text-[#00AEEF] font-semibold group-hover:text-[#ED028C] transition-colors">
+                        <span className="mr-2">View Details</span>
+                        <FaArrowRight className="transform group-hover:translate-x-2 transition-transform" />
+                      </div>
+                    </div>
                   </div>
-                )}
-
-                {/* View Details Button */}
-                <div className="flex items-center text-[#00AEEF] font-semibold group-hover:text-[#ED028C] transition-colors">
-                  <span className="mr-2">View Details</span>
-                  <FaArrowRight className="transform group-hover:translate-x-2 transition-transform" />
-                </div>
-              </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
 
         {/* CTA Section */}
         <motion.div
@@ -169,6 +207,40 @@ const ProductsSection = () => {
           </div>
         </motion.div>
       </div>
+      <style jsx>{`
+        .products-page-swiper :global(.swiper-button-next),
+        .products-page-swiper :global(.swiper-button-prev) {
+          color: #00aeef;
+          background: white;
+          border: 2px solid #e0e0e0;
+          width: 46px;
+          height: 46px;
+          border-radius: 9999px;
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+          transition: all 0.3s ease;
+        }
+
+        .products-page-swiper :global(.swiper-button-next:hover),
+        .products-page-swiper :global(.swiper-button-prev:hover) {
+          background: #00aeef;
+          border-color: #00aeef;
+          color: #ffffff;
+          transform: scale(1.08);
+        }
+
+        .products-page-swiper :global(.swiper-button-next:after),
+        .products-page-swiper :global(.swiper-button-prev:after) {
+          font-size: 18px;
+          font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+          .products-page-swiper :global(.swiper-button-next),
+          .products-page-swiper :global(.swiper-button-prev) {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

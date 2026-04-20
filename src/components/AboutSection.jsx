@@ -21,7 +21,7 @@ const AboutSection = () => {
       title: "CEO",
       image: ceo,
       className:
-        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[20%_5%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[20%_4%]!",
       bio: "Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.",
     },
     {
@@ -30,7 +30,7 @@ const AboutSection = () => {
       title: "Managing Director - FMCG",
       image: waleed,
       className:
-        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[50%_20%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[50%_25%]!",
       bio: "Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.",
     },
   ];
