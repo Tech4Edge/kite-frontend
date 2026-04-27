@@ -163,6 +163,7 @@ function buildProductFormData(data = {}) {
   [
     "features",
     "variants",
+    "variantImages",
     "brands",
     "sizes",
     "skus",
@@ -181,6 +182,11 @@ function buildProductFormData(data = {}) {
     if (Array.isArray(data.galleryFiles)) {
       data.galleryFiles.forEach((file) => fd.append("images", file));
     }
+  }
+  if (Array.isArray(data.variantImageFiles)) {
+    data.variantImageFiles.forEach((file, index) => {
+      if (file) fd.append(`variantImageFile_${index}`, file);
+    });
   }
   return fd;
 }

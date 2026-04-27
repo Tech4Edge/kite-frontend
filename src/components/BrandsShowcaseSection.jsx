@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import carousel2 from "../assets/heroCarousel/1280x640allmatches.jpg.jpg";
-import carousel3 from "../assets/heroCarousel/1280x640burq.jpg";
-import carousel4 from "../assets/heroCarousel/1280x640glow.jpg";
-import carousel5 from "../assets/heroCarousel/1280x640dishwash.jpg";
-import carousel6 from "../assets/heroCarousel/1280x640vero.jpg";
+import carousel2 from "../assets/heroCarousel/AllMatches-1280x640.jpeg";
+import carousel3 from "../assets/heroCarousel/burqaction-1280x640.jpeg";
+import carousel4 from "../assets/heroCarousel/kite-detergents-1280x640.jpeg";
+import carousel5 from "../assets/heroCarousel/DWB-1280x640.jpeg";
+import carousel6 from "../assets/heroCarousel/vero-1280x640.jpeg";
 
 import carousel1Mobile from "../assets/heroCarousel/640x640kite.jpg";
 import carousel2Mobile from "../assets/heroCarousel/640x640glow.jpg";

@@ -29,6 +29,7 @@ const ProductDetailPage = () => {
         setProduct(data);
         const firstVariant =
           data?.variants?.[0]?.name ||
+          data?.variantImages?.[0]?.name ||
           data?.sizes?.[0]?.size ||
           data?.skus?.[0]?.size ||
           "";
@@ -75,9 +76,23 @@ const ProductDetailPage = () => {
 
   const sizeOrSkuOptions = [
     ...(product.variants || []).map((v) => v.name),
+    ...(product.variantImages || []).map((v) => v.name),
     ...(product.sizes || []).map((s) => s.size),
     ...(product.skus || []).map((s) => s.size),
   ].filter(Boolean);
+  const uniqueOptions = Array.from(new Set(sizeOrSkuOptions));
+  const variantImageByName = (product.variantImages || []).reduce((acc, item) => {
+    const key = String(item?.name || "").trim().toLowerCase();
+    if (key && item?.image) acc[key] = item.image;
+    return acc;
+  }, {});
+  const selectedVariantImage =
+    variantImageByName[String(selectedVariant || "").trim().toLowerCase()] || "";
+  const displayImage =
+    selectedVariantImage ||
+    product.image ||
+    product.images?.[0] ||
+    "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product";
 
   const getSelectedPrice = () => {
     const variant = (product.variants || []).find((v) => v.name === selectedVariant);
@@ -130,12 +145,17 @@ const ProductDetailPage = () => {
             transition={{ duration: 0.8 }}
             className="sticky top-24 h-fit"
           >
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
+            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
               <img
-                src={product.image || product.images?.[0] || "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product"}
+                src={displayImage}
                 alt={product.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full max-w-[640px] max-h-[640px] object-cover"
               />
+              {selectedVariant && (
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold bg-[#00AEEF]/95 shadow-lg">
+                  {selectedVariant}
+                </span>
+              )}
             </div>
           </motion.div>
 
@@ -197,7 +217,7 @@ const ProductDetailPage = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-[#222222] mb-3">Select Variant</h3>
                 <div className="flex flex-wrap gap-2">
-                  {sizeOrSkuOptions.map((opt) => (
+                  {uniqueOptions.map((opt) => (
                     <button
                       key={opt}
                       type="button"

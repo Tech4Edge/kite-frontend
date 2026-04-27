@@ -28,6 +28,7 @@ const emptyForm = {
   showInNavbar: true,
   features: [""],
   variants: [{ name: "", detail: "", packing: "", price: "" }],
+  variantImages: [{ name: "", image: "" }],
   facilities: [{ name: "", location: "", note: "" }],
   imageUrls: [""],
 };
@@ -57,6 +58,13 @@ function sanitizeFacilities(list = []) {
     .filter((f) => f.name || f.location || f.note);
 }
 
+function normalizeVariantImages(list = []) {
+  return (list || []).map((item) => ({
+    name: String(item?.name || "").trim(),
+    image: String(item?.image || "").trim(),
+  }));
+}
+
 const AdminProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +73,7 @@ const AdminProductsPage = () => {
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [productImages, setProductImages] = useState([]);
+  const [variantImageFiles, setVariantImageFiles] = useState({});
 
   const load = async () => {
     try {
@@ -82,6 +91,34 @@ const AdminProductsPage = () => {
   useEffect(() => {
     load();
   }, []);
+
+  useEffect(() => {
+    setForm((prev) => {
+      const variantNames = (prev.variants || [])
+        .map((variant) => String(variant?.name || "").trim())
+        .filter(Boolean);
+      if (!variantNames.length) return prev;
+
+      const nextVariantImages = [...(prev.variantImages || [])];
+      let changed = false;
+
+      variantNames.forEach((name, index) => {
+        const current = nextVariantImages[index];
+        if (!current) {
+          nextVariantImages[index] = { name, image: "" };
+          changed = true;
+          return;
+        }
+        if (!String(current.name || "").trim()) {
+          nextVariantImages[index] = { ...current, name };
+          changed = true;
+        }
+      });
+
+      if (!changed) return prev;
+      return { ...prev, variantImages: nextVariantImages };
+    });
+  }, [form.variants]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -115,6 +152,42 @@ const AdminProductsPage = () => {
   const removeVariant = (index) =>
     setForm((prev) => ({ ...prev, variants: prev.variants.filter((_, i) => i !== index) }));
 
+  const updateVariantImage = (index, key, value) => {
+    setForm((prev) => {
+      const next = [...prev.variantImages];
+      next[index] = { ...(next[index] || { name: "", image: "" }), [key]: value };
+      return { ...prev, variantImages: next };
+    });
+  };
+  const addVariantImage = () =>
+    setForm((prev) => ({
+      ...prev,
+      variantImages: [...prev.variantImages, { name: "", image: "" }],
+    }));
+  const removeVariantImage = (index) => {
+    setForm((prev) => ({
+      ...prev,
+      variantImages: prev.variantImages.filter((_, i) => i !== index),
+    }));
+    setVariantImageFiles((prev) => {
+      const next = {};
+      Object.entries(prev).forEach(([key, file]) => {
+        const numericKey = Number(key);
+        if (numericKey < index) next[numericKey] = file;
+        if (numericKey > index) next[numericKey - 1] = file;
+      });
+      return next;
+    });
+  };
+  const updateVariantImageFile = (index, file) => {
+    setVariantImageFiles((prev) => {
+      const next = { ...prev };
+      if (file) next[index] = file;
+      else delete next[index];
+      return next;
+    });
+  };
+
   const updateFacility = (index, key, value) => {
     setForm((prev) => {
       const next = [...prev.facilities];
@@ -146,6 +219,27 @@ const AdminProductsPage = () => {
     setSaving(true);
     setError("");
     try {
+      const normalizedVariantImages = normalizeVariantImages(form.variantImages);
+      const syncedVariantImages = normalizedVariantImages.map((entry, index) => ({
+        ...entry,
+      }));
+      const hasVariantFileAtIndex = (index) => Boolean(variantImageFiles[index]);
+      const activeVariantIndexes = syncedVariantImages
+        .map((entry, index) => ({
+          index,
+          keep: entry.name || entry.image || hasVariantFileAtIndex(index),
+        }))
+        .filter((entry) => entry.keep)
+        .map((entry) => entry.index);
+
+      const compactVariantImages = activeVariantIndexes.map(
+        (index) => syncedVariantImages[index],
+      );
+      const compactVariantImageFiles = compactVariantImages.map((_, compactIndex) => {
+        const originalIndex = activeVariantIndexes[compactIndex];
+        return variantImageFiles[originalIndex] || null;
+      });
+
       const payload = {
         id: form.id,
         title: form.title,
@@ -166,8 +260,10 @@ const AdminProductsPage = () => {
         showInNavbar: form.showInNavbar,
         features: sanitizeStringList(form.features),
         variants: sanitizeVariants(form.variants),
+        variantImages: compactVariantImages,
         facilities: sanitizeFacilities(form.facilities),
         productImages,
+        variantImageFiles: compactVariantImageFiles,
       };
 
       if (editingId) {
@@ -178,6 +274,7 @@ const AdminProductsPage = () => {
       setForm(emptyForm);
       setEditingId(null);
       setProductImages([]);
+      setVariantImageFiles({});
       await load();
     } catch (err) {
       setError(err.message || "Failed to save product");
@@ -210,10 +307,17 @@ const AdminProductsPage = () => {
       variants: p.variants?.length
         ? p.variants.map((v) => ({ ...v, price: v.price ?? "" }))
         : [{ name: "", detail: "", packing: "", price: "" }],
+      variantImages: p.variantImages?.length
+        ? p.variantImages.map((v) => ({
+            name: v.name ?? "",
+            image: v.image ?? "",
+          }))
+        : [{ name: "", image: "" }],
       facilities: p.facilities?.length ? p.facilities : [{ name: "", location: "", note: "" }],
       imageUrls: p.images?.length ? p.images : [""],
     });
     setProductImages([]);
+    setVariantImageFiles({});
   };
 
   const handleDelete = async (id) => {
@@ -538,6 +642,59 @@ const AdminProductsPage = () => {
               </div>
 
               <div className="md:col-span-2">
+                <label className="block mb-1.5 font-medium">
+                  Variant Images (Name + Image)
+                </label>
+                <p className="text-xs text-[#666666] mb-2">
+                  Add labels like 1 KG / 500 G and upload or paste image URL for each.
+                </p>
+                <div className="space-y-2">
+                  {form.variantImages.map((variantImage, idx) => (
+                    <div key={`vi-${idx}`} className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                      <input
+                        placeholder="Name (e.g. 1 KG)"
+                        value={variantImage.name}
+                        onChange={(e) =>
+                          updateVariantImage(idx, "name", e.target.value)
+                        }
+                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                      />
+                      <input
+                        placeholder="Image URL (optional)"
+                        value={variantImage.image}
+                        onChange={(e) =>
+                          updateVariantImage(idx, "image", e.target.value)
+                        }
+                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) =>
+                          updateVariantImageFile(idx, e.target.files?.[0] || null)
+                        }
+                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeVariantImage(idx)}
+                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addVariantImage}
+                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                  >
+                    Add Variant Image
+                  </button>
+                </div>
+              </div>
+
+              <div className="md:col-span-2">
                 <label className="block mb-1.5 font-medium">Facilities</label>
                 <div className="space-y-2">
                   {form.facilities.map((facility, idx) => (
@@ -624,6 +781,7 @@ const AdminProductsPage = () => {
                       setEditingId(null);
                       setForm(emptyForm);
                       setProductImages([]);
+                      setVariantImageFiles({});
                     }}
                     className="px-5 py-2 rounded-lg text-sm font-semibold border border-[#E0E0E0] hover:bg-[#F9F9F9]"
                   >
