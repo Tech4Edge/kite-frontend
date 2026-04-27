@@ -9,7 +9,8 @@ import { getProducts } from "../services/api";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const placeholderImage = "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
+const placeholderImage =
+  "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
 
 const ProductsSection = () => {
   const [ref, inView] = useInView({
@@ -18,7 +19,7 @@ const ProductsSection = () => {
   });
   const [allProducts, setAllProducts] = useState([]);
   const canNavigate = allProducts.length > 1;
-  const canLoop = allProducts.length > 3;
+  const canLoop = allProducts.length > 1;
 
   useEffect(() => {
     const load = async () => {
@@ -41,7 +42,10 @@ const ProductsSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+    <section
+      ref={ref}
+      className="py-20 bg-gradient-to-b from-white via-[#F9F9F9] to-white"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -88,15 +92,11 @@ const ProductsSection = () => {
               },
             }}
             navigation={canNavigate}
-            autoplay={
-              canNavigate
-                ? {
-                    delay: 3200,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                  }
-                : false
-            }
+            autoplay={{
+              delay: 1500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             loop={canLoop}
             speed={900}
             grabCursor={canNavigate}
@@ -111,7 +111,9 @@ const ProductsSection = () => {
                   {/* Product Image */}
                   <div className="relative h-56 sm:h-60 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                     <img
-                      src={product.image || product.images?.[0] || placeholderImage}
+                      src={
+                        product.image || product.images?.[0] || placeholderImage
+                      }
                       alt={product.title}
                       loading="lazy"
                       decoding="async"
@@ -220,23 +222,23 @@ const ProductsSection = () => {
           transition: all 0.3s ease;
         }
 
-        .products-page-swiper :global(.swiper-button-next:hover),
-        .products-page-swiper :global(.swiper-button-prev:hover) {
+        .products-page-swiper .swiper-button-next:hover,
+        .products-page-swiper .swiper-button-prev:hover {
           background: #00aeef;
           border-color: #00aeef;
           color: #ffffff;
           transform: scale(1.08);
         }
 
-        .products-page-swiper :global(.swiper-button-next:after),
-        .products-page-swiper :global(.swiper-button-prev:after) {
+        .products-page-swiper .swiper-button-next:after,
+        .products-page-swiper .swiper-button-prev:after {
           font-size: 18px;
           font-weight: 700;
         }
 
         @media (max-width: 1024px) {
-          .products-page-swiper :global(.swiper-button-next),
-          .products-page-swiper :global(.swiper-button-prev) {
+          .products-page-swiper .swiper-button-next,
+          .products-page-swiper .swiper-button-prev {
             display: none !important;
           }
         }
