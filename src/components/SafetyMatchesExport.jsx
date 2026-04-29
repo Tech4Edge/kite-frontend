@@ -117,8 +117,8 @@ const SafetyMatchesExport = () => {
         // "Custom formulations available",
         "Lines Striking surface",
         "Dotted Striking surface",
-        "Plain strip striking",
-        "VIP Patti striking"
+        "Plain strip striking surface",
+        "VIP Patti striking surface"
       ],
     },
     {
