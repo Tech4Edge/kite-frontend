@@ -23,7 +23,8 @@ import magiaBunicii from "../assets/export/magia_bunicii.png";
 import zebra from "../assets/export/zebra.png";
 import zippy from "../assets/export/zippy.png";
 
-import shipment from '../assets/heroCarousel/1280x640shipment.jpg';
+import hero from "../assets/heroCarousel/1280x640shipment.jpg";
+import shipment from '../assets/delivery.jpeg';
 
 const SafetyMatchesExport = () => {
   const safetyMatches = [
@@ -111,9 +112,13 @@ const SafetyMatchesExport = () => {
     {
       title: "Custom Striking Surface",
       options: [
-        "Red phosphorus striking surface",
-        "Standard striking surface",
-        "Custom formulations available",
+        // "Red phosphorus striking surface",
+        // "Standard striking surface",
+        // "Custom formulations available",
+        "Lines Striking surface",
+        "Dotted Striking surface",
+        "Plain strip striking",
+        "VIP Patti striking"
       ],
     },
     {
@@ -146,7 +151,12 @@ const SafetyMatchesExport = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-[#F9F9F9]">
+    <section className="pt-5 pb-20 bg-gradient-to-b from-white to-[#F9F9F9]">
+
+        <div className="w-full min-h-[68vh] sm:min-h-[78vh] md:min-h-[88vh] lg:min-h-[90vh] aspect-6/6 sm:aspect-auto object-cover mb-10">
+          <img src={hero} alt="hero" className="w-full h-full object-cover  p-2 sm:p-3 md:p-0 object-left object-contain" />
+          </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

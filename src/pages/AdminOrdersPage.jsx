@@ -57,6 +57,7 @@ const AdminOrdersPage = () => {
       o.productId,
       o.promotionId,
       o.selectedSkuOrSize,
+      o.quantity,
       o.customerName,
       o.phone,
       o.email,
@@ -143,6 +144,7 @@ const AdminOrdersPage = () => {
                           {o.type === "product" && o.productId && <span>Product: {o.productId}</span>}
                           {o.type === "promotion" && o.promotionId && <span>Promotion: {o.promotionId}</span>}
                           {o.selectedSkuOrSize && <span className="block">Variant: {o.selectedSkuOrSize}</span>}
+                          <span className="block">Quantity: {o.quantity || 1}</span>
                           {o.email && <span className="block">Email: {o.email}</span>}
                           <span className="block">Address: {o.address}</span>
                           {o.note && <span className="block">Note: {o.note}</span>}

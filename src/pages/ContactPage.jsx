@@ -90,7 +90,7 @@ const ContactPage = () => {
                     </p>
                     <p className="flex items-center">
                       <FaEnvelope className="text-[#ED028C] mr-3 flex-shrink-0" />
-                      <a href="mailto:aj.match@azizgrp.com" className="hover:text-[#00AEEF] transition-colors">
+                      <a href="mailto:aj.match@azizgrp.com" className="hover:text-[#00AEEF] transition-colors underline-none!">
                         E-Mail: aj.match@azizgrp.com
                       </a>
                     </p>

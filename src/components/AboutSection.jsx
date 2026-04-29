@@ -1,5 +1,5 @@
 import { FaUsers, FaIndustry, FaGlobeAsia, FaAward } from "react-icons/fa";
-import chairman from "../assets/people/chairman.jpeg";
+import chairman from "../assets/people/chairman.jpg";
 import ceo from "../assets/people/ceo.jpeg";
 import aziz_group_logo from "../assets/ajlogo.png";
 import waleed from "../assets/people/waleed.jpg";
@@ -108,14 +108,14 @@ const AboutSection = () => {
               <span className="font-bold text-[#222222]">
                 Kite Glow detergent
               </span>
-              , launched in March 2025, has rapidly gained market recognition
+              , launched in 2025, has rapidly gained market recognition
               due to its{" "}
               <span className="font-bold">
                 exceptional cleaning power, superior stain removal, and fabric
                 care
               </span>
-              . Complementing Kite Glow,{" "}
-              <span className="font-bold text-[#222222]">BURQ Action</span>{" "}
+              . Complementing <span className="font-bold text-[#222222]">Kite Glow</span>,{" "}
+              <span className="text-[#222222]">BURQ Action</span>{" "}
               caters to our mid-tier market segment.
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">

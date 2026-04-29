@@ -21,6 +21,14 @@ const brandRows = [
     link: "/products/safety-matches",
   },
   {
+    id: 3,
+    desktopImage: carousel4,
+    squareImage: carousel2Mobile,
+    desktopAlt: "Glow product range",
+    squareAlt: "Glow logo",
+    link: "/products",
+  },
+  {
     id: 2,
     desktopImage: carousel3,
     squareImage: carousel3Mobile,
@@ -29,11 +37,11 @@ const brandRows = [
     link: "/products/burq-action",
   },
   {
-    id: 3,
-    desktopImage: carousel4,
-    squareImage: carousel2Mobile,
-    desktopAlt: "Glow product range",
-    squareAlt: "Glow logo",
+    id: 5,
+    desktopImage: carousel6,
+    squareImage: carousel5Mobile,
+    desktopAlt: "Vero care essentials",
+    squareAlt: "Vero logo",
     link: "/products",
   },
   {
@@ -43,14 +51,6 @@ const brandRows = [
     desktopAlt: "Kite dishwash bar",
     squareAlt: "Dishwash logo",
     link: "/products/dish-wash-bar",
-  },
-  {
-    id: 5,
-    desktopImage: carousel6,
-    squareImage: carousel5Mobile,
-    desktopAlt: "Vero care essentials",
-    squareAlt: "Vero logo",
-    link: "/products",
   },
 ];
 

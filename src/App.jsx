@@ -24,7 +24,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 // import KiteMatchesPage from "./pages/KiteMatchesPage";
 // import OlympiaMatchesPage from "./pages/OlympiaMatchesPage";
 // import PartyMatchesPage from "./pages/PartyMatchesPage";
-import TangaMatchesPage from "./pages/TangaMatchesPage";
+// import TangaMatchesPage from "./pages/TangaMatchesPage";
 // import BirdMatchesPage from "./pages/BirdMatchesPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminProductsPage from "./pages/AdminProductsPage";
@@ -52,7 +52,7 @@ function AppRoutes() {
           path="/products/tanga-matches"
           element={<Navigate to="/products/tanga" replace />}
         />
-        <Route path="/products/tanga" element={<TangaMatchesPage />} />
+        {/* <Route path="/products/tanga" element={<TangaMatchesPage />} /> */}
         <Route path="/products/:id" element={<ProductDetailPage />} />
         {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
         <Route path="/products/olympia" element={<OlympiaMatchesPage />} />

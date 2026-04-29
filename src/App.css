@@ -117,10 +117,11 @@ another-paragraph-type {
 /* Link styles within paragraphs */
 p a {
   color: #00aeef;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   text-decoration-color: #00aeef;
   text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+  /* text-underline-offset: 3px; */
+  /* appearance: none; */
 }
 
 p a:hover {

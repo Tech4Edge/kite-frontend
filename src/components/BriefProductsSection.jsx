@@ -18,7 +18,7 @@ const BriefProductsSection = () => {
     threshold: 0.1,
   });
   const [featuredProducts, setFeaturedProducts] = useState([]);
-  const canLoop = featuredProducts.length > 4;
+  const canLoop = featuredProducts.length > 1;
   const canNavigate = featuredProducts.length > 1;
 
   useEffect(() => {
@@ -93,12 +93,7 @@ const BriefProductsSection = () => {
             navigation={canNavigate}
             // pagination={{ clickable: true }}
             autoplay={
-              canNavigate
-                ? {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                  }
-                : false
+              {delay: 1500, disableOnInteraction: false, pauseOnMouseEnter: true}
             }
             loop={canLoop}
             className="products-swiper"

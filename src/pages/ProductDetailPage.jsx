@@ -16,6 +16,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -102,13 +103,26 @@ const ProductDetailPage = () => {
     return 0;
   };
 
+  const decreaseQuantity = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
+  };
+
+  const increaseQuantity = () => {
+    setQuantity((prev) => Math.min(1000, prev + 1));
+  };
+
   const handleBuyNow = () => {
+    const safeQuantity = Number.isInteger(Number(quantity)) && Number(quantity) > 0
+      ? Number(quantity)
+      : 1;
+
     navigate("/checkout", {
       state: {
         orderContext: {
           type: "product",
           id: product.id,
           title: product.title,
+          quantity: safeQuantity,
           selectedOption: selectedVariant,
           totalPrice: getSelectedPrice(),
         },
@@ -238,9 +252,37 @@ const ProductDetailPage = () => {
             <div className="flex flex-wrap items-center gap-4">
               {getSelectedPrice() > 0 && (
                 <p className="text-2xl font-bold text-[#00AEEF]">
-                  Rs {getSelectedPrice().toLocaleString()}
+                  Rs {(getSelectedPrice() * quantity).toLocaleString()}
                 </p>
               )}
+              <div className="flex items-center gap-2">
+                <label htmlFor="quantity" className="text-sm font-semibold text-[#222222]">
+                  Qty
+                </label>
+                <div id="quantity" className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={decreaseQuantity}
+                    disabled={quantity <= 1}
+                    className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                    aria-label="Decrease quantity"
+                  >
+                    -
+                  </button>
+                  <span className="w-12 text-center text-sm font-semibold text-[#222222]">
+                    {quantity}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={increaseQuantity}
+                    disabled={quantity >= 1000}
+                    className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
               <button
                 type="button"
                 onClick={handleBuyNow}

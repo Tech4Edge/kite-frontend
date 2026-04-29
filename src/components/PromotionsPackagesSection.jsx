@@ -60,6 +60,7 @@ const PromotionsPackagesSection = () => {
           type: "promotion",
           id: pkg.id,
           title: pkg.title,
+          quantity: 1,
           selectedOption: "",
           totalPrice: totals.totalPrice,
         },
