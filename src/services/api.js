@@ -148,6 +148,7 @@ function buildProductFormData(data = {}) {
     "tagline",
     "services",
     "displayOrder",
+    "carouselOrder",
     "isActive",
     "showOnLanding",
     "showInProductsPage",

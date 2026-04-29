@@ -12,6 +12,12 @@ import "swiper/css/navigation";
 const placeholderImage =
   "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
 
+const getOrderValue = (product) => {
+  if (typeof product?.carouselOrder === "number") return product.carouselOrder;
+  if (typeof product?.displayOrder === "number") return product.displayOrder;
+  return 0;
+};
+
 const ProductsSection = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -27,7 +33,13 @@ const ProductsSection = () => {
         const data = await getProducts();
         const visible = data
           .filter((p) => p.showInProductsPage !== false)
-          .sort((a, b) => (b.displayOrder ?? 0) - (a.displayOrder ?? 0));
+          .sort((a, b) => {
+            const byOrder = getOrderValue(a) - getOrderValue(b);
+            if (byOrder !== 0) return byOrder;
+            const aTime = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const bTime = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return aTime - bTime;
+          });
         setAllProducts(visible);
       } catch {
         setAllProducts([]);
@@ -102,7 +114,7 @@ const ProductsSection = () => {
             grabCursor={canNavigate}
             className="products-page-swiper px-1 md:px-14 py-2"
           >
-            {[...allProducts].reverse().map((product) => (
+            {allProducts.map((product) => (
               <SwiperSlide key={product.id} className="h-auto">
                 <Link
                   to={`/products/${product.id}`}

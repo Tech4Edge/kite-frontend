@@ -21,7 +21,7 @@ const Footer = () => {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Products", href: "/products" },
-    { name: "Export", href: "/export" },
+    { name: "Export", href: "/export/safety-matches" },
   ];
 
   const companyLogos = [
@@ -61,7 +61,7 @@ const Footer = () => {
       title: "A.J Match Factory Pvt. Ltd.",
       address:
         "Mill Address: 26 KM Lahore Sheikhupura Road, Distt Sheikhupura Pakistan",
-      phone: "042 37332711-12",
+      phone: "+92 42 37332711-12",
       email: "aj.match@azizgrp.com",
     },
     {

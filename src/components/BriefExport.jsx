@@ -63,7 +63,7 @@ const BriefExport = () => {
             </div>
 
             <Link
-              to="/export"
+              to="/export/safety-matches"
               className="inline-block bg-[#00AEEF] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0095CC] transition-all duration-300 shadow-lg"
             >
               Explore Export Services

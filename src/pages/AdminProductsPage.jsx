@@ -22,6 +22,7 @@ const emptyForm = {
   tagline: "",
   services: "",
   displayOrder: 0,
+  carouselOrder: 0,
   isActive: true,
   showOnLanding: true,
   showInProductsPage: true,
@@ -254,6 +255,7 @@ const AdminProductsPage = () => {
         tagline: form.tagline,
         services: form.services,
         displayOrder: Number(form.displayOrder) || 0,
+        carouselOrder: Number(form.carouselOrder) || 0,
         isActive: form.isActive,
         showOnLanding: form.showOnLanding,
         showInProductsPage: form.showInProductsPage,
@@ -299,6 +301,7 @@ const AdminProductsPage = () => {
       tagline: p.tagline ?? "",
       services: p.services ?? "",
       displayOrder: p.displayOrder ?? 0,
+      carouselOrder: p.carouselOrder ?? p.displayOrder ?? 0,
       isActive: p.isActive ?? true,
       showOnLanding: p.showOnLanding ?? true,
       showInProductsPage: p.showInProductsPage ?? true,
@@ -510,6 +513,16 @@ const AdminProductsPage = () => {
                   name="displayOrder"
                   type="number"
                   value={form.displayOrder}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF]"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 font-medium">Carousel Order</label>
+                <input
+                  name="carouselOrder"
+                  type="number"
+                  value={form.carouselOrder}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF]"
                 />

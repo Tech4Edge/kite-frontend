@@ -12,6 +12,12 @@ import { getProducts } from "../services/api";
 
 const placeholderImage = "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
 
+const getOrderValue = (product) => {
+  if (typeof product?.carouselOrder === "number") return product.carouselOrder;
+  if (typeof product?.displayOrder === "number") return product.displayOrder;
+  return 0;
+};
+
 const BriefProductsSection = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -25,11 +31,15 @@ const BriefProductsSection = () => {
     const load = async () => {
       try {
         const data = await getProducts();
-        const allProducts = [...data].sort((a, b) => {
-          const aTime = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-          const bTime = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-          return aTime - bTime; // oldest first -> latest last
-        });
+        const allProducts = data
+          .filter((p) => p.showOnLanding !== false)
+          .sort((a, b) => {
+            const byOrder = getOrderValue(a) - getOrderValue(b);
+            if (byOrder !== 0) return byOrder;
+            const aTime = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const bTime = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return aTime - bTime;
+          });
         setFeaturedProducts(allProducts);
       } catch {
         setFeaturedProducts([]);

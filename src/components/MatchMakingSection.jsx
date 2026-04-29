@@ -72,13 +72,13 @@ const MatchMakingSection = () => {
                 >
                   Explore Our Products
                 </Link>
-                <Link
+                {/* <Link
                   to="/fmcg-division"
                   className="bg-transparent border-2 border-[#00AEEF] text-black px-8 py-2 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95 inline-flex items-center gap-2"
                 >
                   <FaPlay className="text-sm" />
                   Learn More
-                </Link>
+                </Link> */}
               </div>
             </div>
 
