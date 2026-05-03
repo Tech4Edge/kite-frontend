@@ -51,7 +51,10 @@ const AdminPromotionsPage = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const updateItem = (index, key, value) => {
@@ -62,9 +65,15 @@ const AdminPromotionsPage = () => {
     });
   };
   const addItem = () =>
-    setForm((prev) => ({ ...prev, items: [...prev.items, { product: "", quantity: 1, price: "" }] }));
+    setForm((prev) => ({
+      ...prev,
+      items: [...prev.items, { product: "", quantity: 1, price: "" }],
+    }));
   const removeItem = (index) =>
-    setForm((prev) => ({ ...prev, items: prev.items.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      items: prev.items.filter((_, i) => i !== index),
+    }));
 
   const updateImageUrl = (index, value) => {
     setForm((prev) => {
@@ -73,9 +82,13 @@ const AdminPromotionsPage = () => {
       return { ...prev, imageUrls: next };
     });
   };
-  const addImageUrl = () => setForm((prev) => ({ ...prev, imageUrls: [...prev.imageUrls, ""] }));
+  const addImageUrl = () =>
+    setForm((prev) => ({ ...prev, imageUrls: [...prev.imageUrls, ""] }));
   const removeImageUrl = (index) =>
-    setForm((prev) => ({ ...prev, imageUrls: prev.imageUrls.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      imageUrls: prev.imageUrls.filter((_, i) => i !== index),
+    }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,10 +102,13 @@ const AdminPromotionsPage = () => {
       }))
       .filter((item) => item.product);
 
-    const totalQuantity = cleanedItems.reduce((sum, i) => sum + (Number(i.quantity) || 0), 0);
+    const totalQuantity = cleanedItems.reduce(
+      (sum, i) => sum + (Number(i.quantity) || 0),
+      0,
+    );
     const totalPrice = cleanedItems.reduce(
-      (sum, i) => sum + ((Number(i.quantity) || 0) * (Number(i.price) || 0)),
-      0
+      (sum, i) => sum + (Number(i.quantity) || 0) * (Number(i.price) || 0),
+      0,
     );
 
     const payload = {
@@ -135,7 +151,9 @@ const AdminPromotionsPage = () => {
       description: p.description || "",
       image: p.image || "",
       imageUrls: p.images?.length ? p.images : [""],
-      items: p.items?.length ? p.items : [{ product: "", quantity: 1, price: "" }],
+      items: p.items?.length
+        ? p.items
+        : [{ product: "", quantity: 1, price: "" }],
       totalQuantity: p.totalQuantity ?? 0,
       totalPrice: p.totalPrice ?? 0,
       displayOrder: p.displayOrder ?? 0,
@@ -159,11 +177,18 @@ const AdminPromotionsPage = () => {
       <AdminLayout>
         <div className="flex flex-col gap-8">
           <div>
-            <h1 className="text-2xl font-bold" style={{ color: colors.text.primary }}>
+            <h1
+              className="text-2xl font-bold"
+              style={{ color: colors.text.primary }}
+            >
               Promotions & Packages
             </h1>
-            <p className="mt-1 text-sm" style={{ color: colors.text.secondary }}>
-              Create, update, and delete promotions with easy item and image fields.
+            <p
+              className="mt-1 text-sm"
+              style={{ color: colors.text.secondary }}
+            >
+              Create, update, and delete promotions with easy item and image
+              fields.
             </p>
           </div>
 
@@ -172,64 +197,133 @@ const AdminPromotionsPage = () => {
               Loading promotions...
             </div>
           ) : (
-            <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6 overflow-x-auto">
-              <table className="min-w-full text-sm">
-                <thead>
-                  <tr className="border-b border-[#E0E0E0]">
-                    <th className="text-left py-3 pr-4">ID</th>
-                    <th className="text-left py-3 pr-4">Title</th>
-                    <th className="text-left py-3 pr-4">Category</th>
-                    <th className="text-left py-3 pr-4">Total Qty</th>
-                    <th className="text-left py-3 pr-4">Total Price</th>
-                    <th className="text-left py-3 pr-4">Updated</th>
-                    <th className="text-right py-3 pl-4">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {promos.map((p) => (
-                    <tr key={p.id} className="border-b border-[#F0F0F0]">
-                      <td className="py-3 pr-4 font-mono text-xs">{p.id}</td>
-                      <td className="py-3 pr-4">{p.title}</td>
-                      <td className="py-3 pr-4">{p.category}</td>
-                      <td className="py-3 pr-4">{p.totalQuantity ?? "-"}</td>
-                      <td className="py-3 pr-4">{p.totalPrice != null ? p.totalPrice : "-"}</td>
-                      <td className="py-3 pr-4 text-xs text-[#666666]">
-                        {p.updatedAt ? new Date(p.updatedAt).toLocaleString() : "-"}
-                      </td>
-                      <td className="py-3 pl-4 text-right space-x-2">
-                        <button
-                          onClick={() => handleEdit(p)}
-                          className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(p.id)}
-                          className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
-                        >
-                          Delete
-                        </button>
-                      </td>
+            <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6">
+              <div className="hidden md:block overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-[#E0E0E0]">
+                      <th className="text-left py-3 pr-4">ID</th>
+                      <th className="text-left py-3 pr-4">Title</th>
+                      <th className="text-left py-3 pr-4">Category</th>
+                      <th className="text-left py-3 pr-4">Total Qty</th>
+                      <th className="text-left py-3 pr-4">Total Price</th>
+                      <th className="text-left py-3 pr-4">Updated</th>
+                      <th className="text-right py-3 pl-4">Actions</th>
                     </tr>
-                  ))}
-                  {promos.length === 0 && (
-                    <tr>
-                      <td className="py-6 text-center text-[#666666]" colSpan={7}>
-                        No promotions yet. Use the form below to add one.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {promos.map((p) => (
+                      <tr key={p.id} className="border-b border-[#F0F0F0]">
+                        <td className="py-3 pr-4 font-mono text-xs">{p.id}</td>
+                        <td className="py-3 pr-4">{p.title}</td>
+                        <td className="py-3 pr-4">{p.category}</td>
+                        <td className="py-3 pr-4">{p.totalQuantity ?? "-"}</td>
+                        <td className="py-3 pr-4">
+                          {p.totalPrice != null ? p.totalPrice : "-"}
+                        </td>
+                        <td className="py-3 pr-4 text-xs text-[#666666]">
+                          {p.updatedAt
+                            ? new Date(p.updatedAt).toLocaleString()
+                            : "-"}
+                        </td>
+                        <td className="py-3 pl-4 text-right space-x-2">
+                          <button
+                            onClick={() => handleEdit(p)}
+                            className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(p.id)}
+                            className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                    {promos.length === 0 && (
+                      <tr>
+                        <td
+                          className="py-6 text-center text-[#666666]"
+                          colSpan={7}
+                        >
+                          No promotions yet. Use the form below to add one.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="md:hidden space-y-4">
+                {promos.map((p) => (
+                  <div
+                    key={p.id}
+                    className="border border-[#E0E0E0] rounded-xl p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold">{p.title}</p>
+                        <p className="text-xs text-[#666666]">
+                          {p.category || "-"}
+                        </p>
+                      </div>
+                      <span className="text-xs font-mono text-[#666666]">
+                        {p.id}
+                      </span>
+                    </div>
+                    <div className="mt-3 text-xs text-[#666666] space-y-1">
+                      <span className="block">
+                        Total Qty: {p.totalQuantity ?? "-"}
+                      </span>
+                      <span className="block">
+                        Total Price: {p.totalPrice != null ? p.totalPrice : "-"}
+                      </span>
+                      <span className="block">
+                        Updated:{" "}
+                        {p.updatedAt
+                          ? new Date(p.updatedAt).toLocaleString()
+                          : "-"}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <button
+                        onClick={() => handleEdit(p)}
+                        className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(p.id)}
+                        className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                {promos.length === 0 && (
+                  <p className="text-center text-sm text-[#666666] py-6">
+                    No promotions yet. Use the form below to add one.
+                  </p>
+                )}
+              </div>
             </div>
           )}
 
           <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6">
-            <h2 className="text-lg font-semibold mb-4" style={{ color: colors.text.primary }}>
+            <h2
+              className="text-lg font-semibold mb-4"
+              style={{ color: colors.text.primary }}
+            >
               {editingId ? "Edit Promotion" : "Add New Promotion"}
             </h2>
             {error && <p className="text-sm text-red-600 mb-4">{error}</p>}
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm"
+            >
               <div>
                 <label className="block mb-1.5 font-medium">ID (slug)</label>
                 <input
@@ -262,7 +356,9 @@ const AdminPromotionsPage = () => {
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Description (optional)</label>
+                <label className="block mb-1.5 font-medium">
+                  Description (optional)
+                </label>
                 <textarea
                   name="description"
                   value={form.description}
@@ -272,7 +368,9 @@ const AdminPromotionsPage = () => {
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Primary Image URL (optional)</label>
+                <label className="block mb-1.5 font-medium">
+                  Primary Image URL (optional)
+                </label>
                 <input
                   name="image"
                   value={form.image}
@@ -281,12 +379,16 @@ const AdminPromotionsPage = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Upload Promotion Image(s)</label>
+                <label className="block mb-1.5 font-medium">
+                  Upload Promotion Image(s)
+                </label>
                 <input
                   type="file"
                   multiple
                   accept="image/*"
-                  onChange={(e) => setPromotionImages(Array.from(e.target.files || []))}
+                  onChange={(e) =>
+                    setPromotionImages(Array.from(e.target.files || []))
+                  }
                   className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg"
                 />
                 <p className="text-xs text-[#666666] mt-1">
@@ -294,7 +396,9 @@ const AdminPromotionsPage = () => {
                 </p>
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Display Order</label>
+                <label className="block mb-1.5 font-medium">
+                  Display Order
+                </label>
                 <input
                   name="displayOrder"
                   value={form.displayOrder}
@@ -306,13 +410,20 @@ const AdminPromotionsPage = () => {
               </div>
               <div>
                 <label className="inline-flex items-center gap-2 mt-8">
-                  <input type="checkbox" name="isActive" checked={form.isActive} onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="isActive"
+                    checked={form.isActive}
+                    onChange={handleChange}
+                  />
                   Active
                 </label>
               </div>
 
               <div className="md:col-span-3">
-                <label className="block mb-1.5 font-medium">Extra Image URLs</label>
+                <label className="block mb-1.5 font-medium">
+                  Extra Image URLs
+                </label>
                 <div className="space-y-2">
                   {form.imageUrls.map((url, idx) => (
                     <div key={`u-${idx}`} className="flex gap-2">
@@ -322,25 +433,40 @@ const AdminPromotionsPage = () => {
                         placeholder="https://..."
                         className="flex-1 px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
-                      <button type="button" onClick={() => removeImageUrl(idx)} className="px-3 py-2 rounded-lg border border-red-200 text-red-600">
+                      <button
+                        type="button"
+                        onClick={() => removeImageUrl(idx)}
+                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                      >
                         Remove
                       </button>
                     </div>
                   ))}
-                  <button type="button" onClick={addImageUrl} className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]">
+                  <button
+                    type="button"
+                    onClick={addImageUrl}
+                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                  >
                     Add URL
                   </button>
                 </div>
               </div>
 
               <div className="md:col-span-3">
-                <label className="block mb-1.5 font-medium">Promotion Items</label>
+                <label className="block mb-1.5 font-medium">
+                  Promotion Items
+                </label>
                 <div className="space-y-2">
                   {form.items.map((item, idx) => (
-                    <div key={`i-${idx}`} className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div
+                      key={`i-${idx}`}
+                      className="grid grid-cols-1 md:grid-cols-4 gap-2"
+                    >
                       <input
                         value={item.product}
-                        onChange={(e) => updateItem(idx, "product", e.target.value)}
+                        onChange={(e) =>
+                          updateItem(idx, "product", e.target.value)
+                        }
                         placeholder="Product name"
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
@@ -348,7 +474,9 @@ const AdminPromotionsPage = () => {
                         value={item.quantity}
                         type="number"
                         min="1"
-                        onChange={(e) => updateItem(idx, "quantity", e.target.value)}
+                        onChange={(e) =>
+                          updateItem(idx, "quantity", e.target.value)
+                        }
                         placeholder="Quantity"
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
@@ -357,16 +485,26 @@ const AdminPromotionsPage = () => {
                         type="number"
                         min="0"
                         step="0.01"
-                        onChange={(e) => updateItem(idx, "price", e.target.value)}
+                        onChange={(e) =>
+                          updateItem(idx, "price", e.target.value)
+                        }
                         placeholder="Price"
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
-                      <button type="button" onClick={() => removeItem(idx)} className="px-3 py-2 rounded-lg border border-red-200 text-red-600">
+                      <button
+                        type="button"
+                        onClick={() => removeItem(idx)}
+                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                      >
                         Remove
                       </button>
                     </div>
                   ))}
-                  <button type="button" onClick={addItem} className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]">
+                  <button
+                    type="button"
+                    onClick={addItem}
+                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                  >
                     Add Item
                   </button>
                 </div>
@@ -377,7 +515,11 @@ const AdminPromotionsPage = () => {
                   disabled={saving}
                   className="px-5 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all disabled:opacity-60"
                 >
-                  {saving ? "Saving..." : editingId ? "Update Promotion" : "Create Promotion"}
+                  {saving
+                    ? "Saving..."
+                    : editingId
+                      ? "Update Promotion"
+                      : "Create Promotion"}
                 </button>
                 {editingId && (
                   <button

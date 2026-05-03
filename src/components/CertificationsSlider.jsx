@@ -79,8 +79,8 @@ const CertificationsSlider = () => {
         {/* Certifications Slider */}
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
-          spaceBetween={30}
-          slidesPerView={1}
+          spaceBetween={16}
+          slidesPerView={2}
           navigation
           pagination={{ clickable: true }}
           autoplay={{
@@ -91,12 +91,15 @@ const CertificationsSlider = () => {
           breakpoints={{
             640: {
               slidesPerView: 2,
+              spaceBetween: 20,
             },
             768: {
               slidesPerView: 3,
+              spaceBetween: 24,
             },
             1024: {
               slidesPerView: 4,
+              spaceBetween: 30,
             },
           }}
           className="certifications-swiper pb-12"

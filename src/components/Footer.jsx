@@ -135,7 +135,7 @@ const Footer = () => {
                 <FaYoutube className="text-lg text-white group-hover:text-white" />
               </a>
               <a
-                href="https://www.tiktok.com/@kitematchpk"
+                href="https://www.tiktok.com/@houseofkite"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-black p-3 rounded-full transition-all duration-300 active:scale-90 group"

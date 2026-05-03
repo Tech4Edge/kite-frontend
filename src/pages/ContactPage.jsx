@@ -1,4 +1,10 @@
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaBuilding } from 'react-icons/fa';
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaBuilding,
+} from "react-icons/fa";
 
 const ContactPage = () => {
   return (
@@ -7,7 +13,9 @@ const ContactPage = () => {
       <section className="relative bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Information</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Contact Information
+            </h1>
           </div>
         </div>
       </section>
@@ -20,7 +28,7 @@ const ContactPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-8 text-center">
               FMCG Division
             </h2>
-            
+
             {/* FMCG Division Head Office */}
             <div className="bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-xl shadow-lg p-8 mb-6">
               <div className="flex items-start mb-4">
@@ -28,11 +36,15 @@ const ContactPage = () => {
                   <FaBuilding className="text-white text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3">FMCG Head Office</h3>
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    FMCG Head Office
+                  </h3>
                   <div className="text-white/95 space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0" />
-                      <span>Industrial Estate, Old Jamrud Road, Peshawar, Pakistan</span>
+                      <span>
+                        Industrial Estate, Old Jamrud Road, Peshawar, Pakistan
+                      </span>
                     </p>
                     <p className="flex items-center">
                       <FaPhone className="mr-3 flex-shrink-0" />
@@ -50,12 +62,18 @@ const ContactPage = () => {
                   <FaBuilding className="text-white text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-[#222222] mb-3">Mohsin Match Factory Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Earliest Private Sector Match Manufacturer in KPK</p>
+                  <h3 className="text-2xl font-bold text-[#222222] mb-3">
+                    Mohsin Match Factory Pvt. Ltd.
+                  </h3>
+                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">
+                    Earliest Private Sector Match Manufacturer in KPK
+                  </p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
-                      <span>Industrial Estate, Old Jamrud Road, Peshawar, Pakistan</span>
+                      <span>
+                        Industrial Estate, Old Jamrud Road, Peshawar, Pakistan
+                      </span>
                     </p>
                     <p className="flex items-center">
                       <FaPhone className="text-[#ED028C] mr-3 flex-shrink-0" />
@@ -77,12 +95,19 @@ const ContactPage = () => {
                   <FaBuilding className="text-white text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-[#222222] mb-3">A.J Match Factory Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#0095CC] font-semibold mb-3">Sheikhupura Manufacturing Unit</p>
+                  <h3 className="text-2xl font-bold text-[#222222] mb-3">
+                    A.J Match Factory Pvt. Ltd.
+                  </h3>
+                  <p className="text-sm text-[#0095CC] font-semibold mb-3">
+                    Sheikhupura Manufacturing Unit
+                  </p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
-                      <span>Mill Address: 26 KM Lahore Sheikhupura Road, Distt Sheikhupura, Pakistan</span>
+                      <span>
+                        Mill Address: 26 KM Lahore Sheikhupura Road, Distt
+                        Sheikhupura, Pakistan
+                      </span>
                     </p>
                     <p className="flex items-center">
                       <FaPhone className="text-[#ED028C] mr-3 flex-shrink-0" />
@@ -90,7 +115,10 @@ const ContactPage = () => {
                     </p>
                     <p className="flex items-center">
                       <FaEnvelope className="text-[#ED028C] mr-3 flex-shrink-0" />
-                      <a href="mailto:aj.match@azizgrp.com" className="hover:text-[#00AEEF] transition-colors underline-none!">
+                      <a
+                        href="mailto:aj.match@azizgrp.com"
+                        className="hover:text-[#00AEEF] transition-colors underline-none!"
+                      >
                         E-Mail: aj.match@azizgrp.com
                       </a>
                     </p>
@@ -106,12 +134,19 @@ const ContactPage = () => {
                   <FaBuilding className="text-white text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-[#222222] mb-3">Mohsin Enterprises Pvt. Ltd.</h3>
-                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">Detergent and DishWash Bar Manufacturing Unit</p>
+                  <h3 className="text-2xl font-bold text-[#222222] mb-3">
+                    Mohsin Enterprises Pvt. Ltd.
+                  </h3>
+                  <p className="text-sm text-[#00AEEF] font-semibold mb-3">
+                    Detergent and DishWash Bar Manufacturing Unit
+                  </p>
                   <div className="text-[#666666] space-y-2">
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
-                      <span>Address: W-21, 22 Industrial Estate, Jamrud Road, Hayatabad, Peshawar</span>
+                      <span>
+                        Address: W-21, 22 Industrial Estate, Jamrud Road,
+                        Hayatabad, Peshawar
+                      </span>
                     </p>
                     <p className="flex items-center">
                       <FaPhone className="text-[#ED028C] mr-3 flex-shrink-0" />
@@ -129,8 +164,8 @@ const ContactPage = () => {
               Other Business Units
             </h2>
             <div className="grid md:grid-cols-2 gap-6"> */}
-              {/* Premier Formica */}
-              {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          {/* Premier Formica */}
+          {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
                 <h3 className="text-xl font-bold text-[#222222] mb-3">Premier Formica</h3>
                 <div className="text-sm text-[#666666] space-y-2">
                   <p className="flex items-start">
@@ -154,8 +189,8 @@ const ContactPage = () => {
                 </div>
               </div> */}
 
-              {/* A.J Textile Mills */}
-              {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          {/* A.J Textile Mills */}
+          {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
                 <h3 className="text-xl font-bold text-[#222222] mb-3">A.J Textile Mills Limited</h3>
                 <div className="text-sm text-[#666666] space-y-2">
                   <p className="flex items-start">
@@ -179,8 +214,8 @@ const ContactPage = () => {
                 </div>
               </div> */}
 
-              {/* AJ Towers */}
-              {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 md:col-span-2">
+          {/* AJ Towers */}
+          {/* <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 md:col-span-2">
                 <h3 className="text-xl font-bold text-[#222222] mb-3">AJ Towers</h3>
                 <div className="text-sm text-[#666666] space-y-2">
                   <p className="flex items-start">
@@ -208,10 +243,13 @@ const ContactPage = () => {
               <div className="bg-[#00AEEF] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaClock className="text-white text-2xl" />
               </div>
-              <h3 className="text-2xl font-bold text-[#222222] mb-4">Business Hours</h3>
+              <h3 className="text-2xl font-bold text-[#222222] mb-4">
+                Business Hours
+              </h3>
               <div className="space-y-2 text-[#666666]">
                 <p className="text-lg">
-                  <strong className="text-[#222222]">Monday - Saturday:</strong> 9:00 AM - 5:00 PM
+                  <strong className="text-[#222222]">Monday - Saturday:</strong>{" "}
+                  9:00 AM - 5:00 PM
                 </p>
                 <p className="text-lg">
                   <strong className="text-[#222222]">Sunday:</strong> Closed
@@ -235,11 +273,12 @@ const ContactPage = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="FMCG Division Head Office - Industrial Estate, Peshawar"
-                className="w-full"
+                className="w-full h-[320px] sm:h-[400px] md:h-[500px]"
               ></iframe>
             </div>
             <p className="text-center text-[#666666] mt-4 text-sm">
-              90-B Industrial estate, Jamrud Road, Hayatabad, Peshawar, Khyber Pakhtunkhwa, Peshawar, Pakistan, 25000
+              90-B Industrial estate, Jamrud Road, Hayatabad, Peshawar, Khyber
+              Pakhtunkhwa, Peshawar, Pakistan, 25000
             </p>
           </div>
         </div>
@@ -252,7 +291,8 @@ const ContactPage = () => {
             Ready to Connect with Kite Brand?
           </h2>
           <p className="text-xl text-text-white mb-8 max-w-2xl mx-auto">
-            Contact us for product inquiries, bulk orders, private labeling, or export opportunities
+            Contact us for product inquiries, bulk orders, private labeling, or
+            export opportunities
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

@@ -74,7 +74,7 @@ const AboutSection = () => {
           </p>
           <img
             src={aziz_group_logo}
-            className="w-44 h-32 md:w-48 md:h-36 mx-auto mt-3 mb-6"
+            className="w-36 h-24 sm:w-44 sm:h-32 md:w-48 md:h-36 mx-auto mt-3 mb-6 object-contain"
             alt="Aziz Group of Industries"
           />
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
@@ -108,15 +108,16 @@ const AboutSection = () => {
               <span className="font-bold text-[#222222]">
                 Kite Glow detergent
               </span>
-              , launched in 2025, has rapidly gained market recognition
-              due to its{" "}
+              , launched in 2025, has rapidly gained market recognition due to
+              its{" "}
               <span className="font-bold">
                 exceptional cleaning power, superior stain removal, and fabric
                 care
               </span>
-              . Complementing <span className="font-bold text-[#222222]">Kite Glow</span>,{" "}
-              <span className="text-[#222222]">BURQ Action</span>{" "}
-              caters to our mid-tier market segment.
+              . Complementing{" "}
+              <span className="font-bold text-[#222222]">Kite Glow</span>,{" "}
+              <span className="text-[#222222]">BURQ Action</span> caters to our
+              mid-tier market segment.
             </p>
             <p className="text-[#222222] text-lg leading-relaxed mb-6">
               <span className="font-bold text-[#222222]">
@@ -180,7 +181,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {leaders.map((leader) => (
               <div
                 key={leader.id}
@@ -190,7 +191,7 @@ const AboutSection = () => {
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 ${leader.className}`}
+                    className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 aspect-[4/5] sm:aspect-[3/4] ${leader.className}`}
                   />
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" /> */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">

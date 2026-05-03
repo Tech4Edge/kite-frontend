@@ -56,24 +56,27 @@ const brandRows = [
 
 const BrandsShowcaseSection = () => {
   return (
-    <section className="bg-neutral-100 py-12 sm:py-14 lg:py-16">
+    <section className="bg-neutral-100 py-10 sm:py-14 lg:py-16">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 text-center sm:mb-10 lg:mb-12">
-          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-rose-700 sm:text-4xl lg:text-5xl">
+        <div className="mb-6 text-center sm:mb-10 lg:mb-12">
+          <h2 className="text-balance text-2xl font-extrabold tracking-tight text-rose-700 sm:text-4xl lg:text-5xl">
             Discover Our Brands
           </h2>
         </div>
 
-        <div className="space-y-3 sm:space-y-4 lg:space-y-5">
+        <div className="space-y-4 sm:space-y-4 lg:space-y-5">
           {brandRows.map((brand, index) => (
-            <div key={brand.id} className="grid grid-cols-1 gap-3 sm:grid-cols-12 sm:gap-4 lg:gap-5">
+            <div
+              key={brand.id}
+              className="grid grid-cols-1 gap-3 sm:grid-cols-12 sm:gap-4 lg:gap-5"
+            >
               <Link
                 to={brand.link}
-                className={`group relative overflow-hidden rounded-sm border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-4 ${
+                className={`group relative overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-4 ${
                   index % 2 === 0 ? "sm:order-1" : "sm:order-2"
                 }`}
               >
-                <div className="aspect-square">
+                <div className="aspect-[4/3] sm:aspect-square">
                   <img
                     src={brand.squareImage}
                     alt={brand.squareAlt}
@@ -86,17 +89,17 @@ const BrandsShowcaseSection = () => {
 
               <Link
                 to={brand.link}
-                className={`group relative overflow-hidden rounded-sm border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-8 ${
+                className={`group relative overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-8 ${
                   index % 2 === 0 ? "sm:order-2" : "sm:order-1"
                 }`}
               >
-                <div className="aspect-18/10 sm:aspect-16/8">
+                <div className="aspect-[16/9] sm:aspect-16/8">
                   <img
                     src={brand.desktopImage}
                     alt={brand.desktopAlt}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover  transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
               </Link>

@@ -20,8 +20,8 @@ const CompanyOverview = ({ companies }) => {
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-6 ">
               Our Story
             </h2>
-            <div className="space-y-10 text-[#666666]  text-xl text-justify">
-              <p className="leading-10! ">
+            <div className="space-y-8 text-[#666666] text-base sm:text-lg md:text-xl text-justify">
+              <p className="leading-relaxed md:leading-8">
                 Aziz group is a long-established, well-reputed, and
                 multi-diversified business concern of Pakistan. It started in
                 the 50s with the trading of commodities and after having
@@ -29,13 +29,13 @@ const CompanyOverview = ({ companies }) => {
                 Manufacturing in the early sixties by setting up an ice factory
                 & cold storage.
               </p>
-              <p className="leading-10!">
+              <p className="leading-relaxed md:leading-8">
                 Now the group comprises a well-reputed textile-spinning mill,
                 the largest safety match manufacturing operation in Pakistan, a
                 laminate board (Formica) unit, a particle board (chipboard)
                 unit, a cold storage, and a Real Estate Business.
               </p>
-              <p className="leading-10!">
+              <p className="leading-relaxed md:leading-8">
                 The group is largely self-financed and has an impeccable record
                 with the financial institutions of Pakistan, exporting to
                 Europe, Asia & Africa.

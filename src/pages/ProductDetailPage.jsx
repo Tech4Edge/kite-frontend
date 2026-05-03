@@ -45,14 +45,28 @@ const ProductDetailPage = () => {
   }, [id]);
 
   const icon =
-    product?.iconType === "fire"
-      ? <FaFire className="text-6xl" />
-      : <FaLayerGroup className="text-6xl" />;
+    product?.iconType === "fire" ? (
+      <FaFire className="text-6xl" />
+    ) : (
+      <FaLayerGroup className="text-6xl" />
+    );
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
-        <p className="text-[#666666]">Loading product...</p>
+        <div className="w-full max-w-5xl px-4">
+          <div className="grid lg:grid-cols-2 gap-10 animate-pulse">
+            <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] h-[360px] sm:h-[420px]" />
+            <div className="space-y-4">
+              <div className="h-6 bg-[#E5E5E5] rounded w-1/2" />
+              <div className="h-10 bg-[#E5E5E5] rounded w-3/4" />
+              <div className="h-4 bg-[#EFEFEF] rounded w-full" />
+              <div className="h-4 bg-[#EFEFEF] rounded w-5/6" />
+              <div className="h-4 bg-[#EFEFEF] rounded w-2/3" />
+              <div className="h-12 bg-[#E5E5E5] rounded w-2/5" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -82,13 +96,22 @@ const ProductDetailPage = () => {
     ...(product.skus || []).map((s) => s.size),
   ].filter(Boolean);
   const uniqueOptions = Array.from(new Set(sizeOrSkuOptions));
-  const variantImageByName = (product.variantImages || []).reduce((acc, item) => {
-    const key = String(item?.name || "").trim().toLowerCase();
-    if (key && item?.image) acc[key] = item.image;
-    return acc;
-  }, {});
+  const variantImageByName = (product.variantImages || []).reduce(
+    (acc, item) => {
+      const key = String(item?.name || "")
+        .trim()
+        .toLowerCase();
+      if (key && item?.image) acc[key] = item.image;
+      return acc;
+    },
+    {},
+  );
   const selectedVariantImage =
-    variantImageByName[String(selectedVariant || "").trim().toLowerCase()] || "";
+    variantImageByName[
+      String(selectedVariant || "")
+        .trim()
+        .toLowerCase()
+    ] || "";
   const displayImage =
     selectedVariantImage ||
     product.image ||
@@ -96,7 +119,9 @@ const ProductDetailPage = () => {
     "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product";
 
   const getSelectedPrice = () => {
-    const variant = (product.variants || []).find((v) => v.name === selectedVariant);
+    const variant = (product.variants || []).find(
+      (v) => v.name === selectedVariant,
+    );
     if (variant?.price != null) return Number(variant.price);
     const sku = (product.skus || []).find((s) => s.size === selectedVariant);
     if (sku?.price != null) return Number(sku.price);
@@ -112,9 +137,10 @@ const ProductDetailPage = () => {
   };
 
   const handleBuyNow = () => {
-    const safeQuantity = Number.isInteger(Number(quantity)) && Number(quantity) > 0
-      ? Number(quantity)
-      : 1;
+    const safeQuantity =
+      Number.isInteger(Number(quantity)) && Number(quantity) > 0
+        ? Number(quantity)
+        : 1;
 
     navigate("/checkout", {
       state: {
@@ -134,7 +160,7 @@ const ProductDetailPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       {/* Hero Section */}
       <div
-        className="relative py-16"
+        className="relative py-10 sm:py-16"
         style={{
           background: `linear-gradient(135deg, ${product.color}15 0%, ${product.color}05 100%)`,
         }}
@@ -150,20 +176,25 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+      <div
+        ref={ref}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+      >
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
           {/* Product Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="sticky top-24 h-fit"
+            className="lg:sticky lg:top-24 h-fit"
           >
             <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
               <img
                 src={displayImage}
                 alt={product.title}
-                className="w-full h-full max-w-[640px] max-h-[640px] object-cover"
+                loading="eager"
+                decoding="async"
+                className="w-full h-full max-w-[640px] max-h-[640px] object-contain"
               />
               {selectedVariant && (
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold bg-[#00AEEF]/95 shadow-lg">
@@ -179,7 +210,7 @@ const ProductDetailPage = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="flex items-center mb-6">
+            <div className="flex items-center mb-4 sm:mb-6">
               <div className="mr-4" style={{ color: product.color }}>
                 {icon}
               </div>
@@ -190,7 +221,7 @@ const ProductDetailPage = () => {
                 >
                   {product.category}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-[#222222] mb-2">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] mb-2">
                   {product.title}
                 </h1>
               </div>
@@ -198,20 +229,20 @@ const ProductDetailPage = () => {
 
             {product.tagline && (
               <p
-                className="text-xl font-semibold mb-6 italic"
+                className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6 italic"
                 style={{ color: product.color }}
               >
                 {product.tagline}
               </p>
             )}
 
-            <p className="text-[#666666] text-lg leading-relaxed mb-8">
+            <p className="text-[#666666] text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
               {product.description}
             </p>
 
             {/* Features */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-[#222222] mb-4">
+            <div className="mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#222222] mb-4">
                 Key Features
               </h3>
               <ul className="space-y-3">
@@ -228,15 +259,17 @@ const ProductDetailPage = () => {
             </div>
 
             {(sizeOrSkuOptions.length > 0 || product.variants?.length > 0) && (
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-[#222222] mb-3">Select Variant</h3>
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-lg sm:text-xl font-bold text-[#222222] mb-3">
+                  Select Variant
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {uniqueOptions.map((opt) => (
                     <button
                       key={opt}
                       type="button"
                       onClick={() => setSelectedVariant(opt)}
-                      className={`px-4 py-2 rounded-full border text-sm font-semibold ${
+                      className={`px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-semibold ${
                         selectedVariant === opt
                           ? "bg-[#00AEEF] text-white border-[#00AEEF]"
                           : "bg-white text-[#222222] border-[#E0E0E0] hover:border-[#00AEEF]"
@@ -249,17 +282,23 @@ const ProductDetailPage = () => {
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               {getSelectedPrice() > 0 && (
-                <p className="text-2xl font-bold text-[#00AEEF]">
+                <p className="text-xl sm:text-2xl font-bold text-[#00AEEF]">
                   Rs {(getSelectedPrice() * quantity).toLocaleString()}
                 </p>
               )}
               <div className="flex items-center gap-2">
-                <label htmlFor="quantity" className="text-sm font-semibold text-[#222222]">
+                <label
+                  htmlFor="quantity"
+                  className="text-sm font-semibold text-[#222222]"
+                >
                   Qty
                 </label>
-                <div id="quantity" className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden">
+                <div
+                  id="quantity"
+                  className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden"
+                >
                   <button
                     type="button"
                     onClick={decreaseQuantity}
@@ -286,7 +325,7 @@ const ProductDetailPage = () => {
               <button
                 type="button"
                 onClick={handleBuyNow}
-                className="px-7 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all"
+                className="w-full sm:w-auto px-7 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all"
               >
                 Buy Now
               </button>
@@ -302,9 +341,11 @@ const ProductDetailPage = () => {
           className="space-y-12"
         >
           {/* Sizes/SKUs Table */}
-          {(product.sizes?.length || product.skus?.length || product.variants?.length) && (
-            <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
-              <h3 className="text-2xl font-bold text-[#222222] mb-6">
+          {(product.sizes?.length ||
+            product.skus?.length ||
+            product.variants?.length) && (
+            <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-8 border-2 border-[#E0E0E0]">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#222222] mb-6">
                 {product.sizes?.length
                   ? "Available Sizes"
                   : "Available Sizes & Pricing"}
@@ -320,31 +361,45 @@ const ProductDetailPage = () => {
                     >
                       {product.sizes?.length ? (
                         <>
-                          <th className="px-6 py-4 text-left">SIZE</th>
-                          <th className="px-6 py-4 text-center">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-left">
+                            SIZE
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center">
                             AVG STICKS PER BOX
                           </th>
-                          <th className="px-6 py-4 text-center">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center">
                             MATCHES PER COTTON
                           </th>
                         </>
                       ) : product.skus?.length ? (
                         <>
-                          <th className="px-6 py-4 text-left">SKU</th>
-                          <th className="px-6 py-4 text-left">GRAMAGE</th>
-                          <th className="px-6 py-4 text-center">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-left">
+                            SKU
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-left">
+                            GRAMAGE
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center">
                             Packing/Flexi
                           </th>
-                          <th className="px-6 py-4 text-right">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">
                             Retail Price (Rs.)
                           </th>
                         </>
                       ) : (
                         <>
-                          <th className="px-6 py-4 text-left">VARIANT</th>
-                          <th className="px-6 py-4 text-left">DETAIL</th>
-                          <th className="px-6 py-4 text-center">Packing</th>
-                          <th className="px-6 py-4 text-right">Retail Price (Rs.)</th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-left">
+                            VARIANT
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-left">
+                            DETAIL
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center">
+                            Packing
+                          </th>
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">
+                            Retail Price (Rs.)
+                          </th>
                         </>
                       )}
                     </tr>
@@ -355,13 +410,13 @@ const ProductDetailPage = () => {
                         key={idx}
                         className="border-b hover:bg-gray-50 transition-colors"
                       >
-                        <td className="px-6 py-4 font-bold text-[#222222]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-[#222222]">
                           {size.size}
                         </td>
-                        <td className="px-6 py-4 text-center text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-center text-[#666666]">
                           {size.avgSticks}
                         </td>
-                        <td className="px-6 py-4 text-center text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-center text-[#666666]">
                           {size.matchesPerCotton}
                         </td>
                       </tr>
@@ -371,17 +426,17 @@ const ProductDetailPage = () => {
                         key={idx}
                         className="border-b hover:bg-gray-50 transition-colors"
                       >
-                        <td className="px-6 py-4 font-bold text-[#222222]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-[#222222]">
                           {sku.size}
                         </td>
-                        <td className="px-6 py-4 text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-[#666666]">
                           {sku.gramage}
                         </td>
-                        <td className="px-6 py-4 text-center text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-center text-[#666666]">
                           {sku.packing}
                         </td>
                         <td
-                          className="px-6 py-4 text-right font-bold"
+                          className="px-4 sm:px-6 py-3 sm:py-4 text-right font-bold"
                           style={{ color: product.color }}
                         >
                           {sku.price
@@ -395,17 +450,17 @@ const ProductDetailPage = () => {
                         key={idx}
                         className="border-b hover:bg-gray-50 transition-colors"
                       >
-                        <td className="px-6 py-4 font-bold text-[#222222]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-[#222222]">
                           {variant.name}
                         </td>
-                        <td className="px-6 py-4 text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-[#666666]">
                           {variant.detail || "-"}
                         </td>
-                        <td className="px-6 py-4 text-center text-[#666666]">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-center text-[#666666]">
                           {variant.packing || "-"}
                         </td>
                         <td
-                          className="px-6 py-4 text-right font-bold"
+                          className="px-4 sm:px-6 py-3 sm:py-4 text-right font-bold"
                           style={{ color: product.color }}
                         >
                           {variant.price != null
@@ -488,30 +543,31 @@ const ProductDetailPage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-8 md:p-12 text-center shadow-2xl"
         >
-          <h3 className="text-white text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
-            Interested in {product.title}?
-          </h3>
-          <p className="text-white/90 text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
-            Contact us for product inquiries, bulk orders, private labeling
-            services, or export opportunities.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              to="/contact"
-              className="bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
-            >
-              Request Quote
-            </Link>
-            <a
-              href="https://wa.me/+923008592829"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95"
-            >
-              Call Us Now
-            </a>
+          <div className="mt-12 sm:mt-16 bg-gradient-to-r from-[#00AEEF] to-[#0095CC] rounded-3xl p-6 sm:p-8 md:p-12 text-center shadow-2xl">
+            <h3 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">
+              Interested in {product.title}?
+            </h3>
+            <p className="text-white/90 text-base sm:text-lg mb-8 max-w-3xl mx-auto drop-shadow-md">
+              Contact us for product inquiries, bulk orders, private labeling
+              services, or export opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                to="/contact"
+                className="bg-white text-[#00AEEF] px-8 py-4 rounded-full font-semibold hover:bg-[#F9F9F9] transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
+              >
+                Request Quote
+              </Link>
+              <a
+                href="https://wa.me/+923008592829"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95"
+              >
+                Call Us Now
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

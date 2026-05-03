@@ -134,9 +134,13 @@ const AdminProductsPage = () => {
     });
   };
 
-  const addFeature = () => setForm((prev) => ({ ...prev, features: [...prev.features, ""] }));
+  const addFeature = () =>
+    setForm((prev) => ({ ...prev, features: [...prev.features, ""] }));
   const removeFeature = (index) =>
-    setForm((prev) => ({ ...prev, features: prev.features.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      features: prev.features.filter((_, i) => i !== index),
+    }));
 
   const updateVariant = (index, key, value) => {
     setForm((prev) => {
@@ -148,15 +152,24 @@ const AdminProductsPage = () => {
   const addVariant = () =>
     setForm((prev) => ({
       ...prev,
-      variants: [...prev.variants, { name: "", detail: "", packing: "", price: "" }],
+      variants: [
+        ...prev.variants,
+        { name: "", detail: "", packing: "", price: "" },
+      ],
     }));
   const removeVariant = (index) =>
-    setForm((prev) => ({ ...prev, variants: prev.variants.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      variants: prev.variants.filter((_, i) => i !== index),
+    }));
 
   const updateVariantImage = (index, key, value) => {
     setForm((prev) => {
       const next = [...prev.variantImages];
-      next[index] = { ...(next[index] || { name: "", image: "" }), [key]: value };
+      next[index] = {
+        ...(next[index] || { name: "", image: "" }),
+        [key]: value,
+      };
       return { ...prev, variantImages: next };
     });
   };
@@ -202,7 +215,10 @@ const AdminProductsPage = () => {
       facilities: [...prev.facilities, { name: "", location: "", note: "" }],
     }));
   const removeFacility = (index) =>
-    setForm((prev) => ({ ...prev, facilities: prev.facilities.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      facilities: prev.facilities.filter((_, i) => i !== index),
+    }));
 
   const updateImageUrl = (index, value) => {
     setForm((prev) => {
@@ -211,20 +227,29 @@ const AdminProductsPage = () => {
       return { ...prev, imageUrls: next };
     });
   };
-  const addImageUrl = () => setForm((prev) => ({ ...prev, imageUrls: [...prev.imageUrls, ""] }));
+  const addImageUrl = () =>
+    setForm((prev) => ({ ...prev, imageUrls: [...prev.imageUrls, ""] }));
   const removeImageUrl = (index) =>
-    setForm((prev) => ({ ...prev, imageUrls: prev.imageUrls.filter((_, i) => i !== index) }));
+    setForm((prev) => ({
+      ...prev,
+      imageUrls: prev.imageUrls.filter((_, i) => i !== index),
+    }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setError("");
     try {
-      const normalizedVariantImages = normalizeVariantImages(form.variantImages);
-      const syncedVariantImages = normalizedVariantImages.map((entry, index) => ({
-        ...entry,
-      }));
-      const hasVariantFileAtIndex = (index) => Boolean(variantImageFiles[index]);
+      const normalizedVariantImages = normalizeVariantImages(
+        form.variantImages,
+      );
+      const syncedVariantImages = normalizedVariantImages.map(
+        (entry, index) => ({
+          ...entry,
+        }),
+      );
+      const hasVariantFileAtIndex = (index) =>
+        Boolean(variantImageFiles[index]);
       const activeVariantIndexes = syncedVariantImages
         .map((entry, index) => ({
           index,
@@ -236,10 +261,12 @@ const AdminProductsPage = () => {
       const compactVariantImages = activeVariantIndexes.map(
         (index) => syncedVariantImages[index],
       );
-      const compactVariantImageFiles = compactVariantImages.map((_, compactIndex) => {
-        const originalIndex = activeVariantIndexes[compactIndex];
-        return variantImageFiles[originalIndex] || null;
-      });
+      const compactVariantImageFiles = compactVariantImages.map(
+        (_, compactIndex) => {
+          const originalIndex = activeVariantIndexes[compactIndex];
+          return variantImageFiles[originalIndex] || null;
+        },
+      );
 
       const payload = {
         id: form.id,
@@ -316,7 +343,9 @@ const AdminProductsPage = () => {
             image: v.image ?? "",
           }))
         : [{ name: "", image: "" }],
-      facilities: p.facilities?.length ? p.facilities : [{ name: "", location: "", note: "" }],
+      facilities: p.facilities?.length
+        ? p.facilities
+        : [{ name: "", location: "", note: "" }],
       imageUrls: p.images?.length ? p.images : [""],
     });
     setProductImages([]);
@@ -338,11 +367,18 @@ const AdminProductsPage = () => {
       <AdminLayout>
         <div className="flex flex-col gap-8">
           <div>
-            <h1 className="text-2xl font-bold" style={{ color: colors.text.primary }}>
+            <h1
+              className="text-2xl font-bold"
+              style={{ color: colors.text.primary }}
+            >
               Products
             </h1>
-            <p className="mt-1 text-sm" style={{ color: colors.text.secondary }}>
-              Create, update, and delete products with variants, facilities, and images.
+            <p
+              className="mt-1 text-sm"
+              style={{ color: colors.text.secondary }}
+            >
+              Create, update, and delete products with variants, facilities, and
+              images.
             </p>
           </div>
 
@@ -351,62 +387,126 @@ const AdminProductsPage = () => {
               Loading products...
             </div>
           ) : (
-            <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6 overflow-x-auto">
-              <table className="min-w-full text-sm">
-                <thead>
-                  <tr className="border-b border-[#E0E0E0]">
-                    <th className="text-left py-3 pr-4">ID</th>
-                    <th className="text-left py-3 pr-4">Title</th>
-                    <th className="text-left py-3 pr-4">Category</th>
-                    <th className="text-left py-3 pr-4">Type</th>
-                    <th className="text-left py-3 pr-4">Updated</th>
-                    <th className="text-right py-3 pl-4">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((p) => (
-                    <tr key={p.id} className="border-b border-[#F0F0F0]">
-                      <td className="py-3 pr-4 font-mono text-xs">{p.id}</td>
-                      <td className="py-3 pr-4">{p.title}</td>
-                      <td className="py-3 pr-4">{p.category}</td>
-                      <td className="py-3 pr-4">{p.productType || "-"}</td>
-                      <td className="py-3 pr-4 text-xs text-[#666666]">
-                        {p.updatedAt ? new Date(p.updatedAt).toLocaleString() : "-"}
-                      </td>
-                      <td className="py-3 pl-4 text-right space-x-2">
-                        <button
-                          onClick={() => handleEdit(p)}
-                          className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(p.id)}
-                          className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
-                        >
-                          Delete
-                        </button>
-                      </td>
+            <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6">
+              <div className="hidden md:block overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-[#E0E0E0]">
+                      <th className="text-left py-3 pr-4">ID</th>
+                      <th className="text-left py-3 pr-4">Title</th>
+                      <th className="text-left py-3 pr-4">Category</th>
+                      <th className="text-left py-3 pr-4">Type</th>
+                      <th className="text-left py-3 pr-4">Updated</th>
+                      <th className="text-right py-3 pl-4">Actions</th>
                     </tr>
-                  ))}
-                  {products.length === 0 && (
-                    <tr>
-                      <td className="py-6 text-center text-[#666666]" colSpan={6}>
-                        No products yet. Use the form below to add one.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {products.map((p) => (
+                      <tr key={p.id} className="border-b border-[#F0F0F0]">
+                        <td className="py-3 pr-4 font-mono text-xs">{p.id}</td>
+                        <td className="py-3 pr-4">{p.title}</td>
+                        <td className="py-3 pr-4">{p.category}</td>
+                        <td className="py-3 pr-4">{p.productType || "-"}</td>
+                        <td className="py-3 pr-4 text-xs text-[#666666]">
+                          {p.updatedAt
+                            ? new Date(p.updatedAt).toLocaleString()
+                            : "-"}
+                        </td>
+                        <td className="py-3 pl-4 text-right space-x-2">
+                          <button
+                            onClick={() => handleEdit(p)}
+                            className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(p.id)}
+                            className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                    {products.length === 0 && (
+                      <tr>
+                        <td
+                          className="py-6 text-center text-[#666666]"
+                          colSpan={6}
+                        >
+                          No products yet. Use the form below to add one.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="md:hidden space-y-4">
+                {products.map((p) => (
+                  <div
+                    key={p.id}
+                    className="border border-[#E0E0E0] rounded-xl p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold">{p.title}</p>
+                        <p className="text-xs text-[#666666]">
+                          {p.category || "-"}
+                        </p>
+                      </div>
+                      <span className="text-xs font-mono text-[#666666]">
+                        {p.id}
+                      </span>
+                    </div>
+                    <div className="mt-3 text-xs text-[#666666] space-y-1">
+                      <span className="block">
+                        Type: {p.productType || "-"}
+                      </span>
+                      <span className="block">
+                        Updated:{" "}
+                        {p.updatedAt
+                          ? new Date(p.updatedAt).toLocaleString()
+                          : "-"}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <button
+                        onClick={() => handleEdit(p)}
+                        className="px-3 py-1 rounded-lg text-xs font-semibold border border-[#E0E0E0] hover:border-[#00AEEF]"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(p.id)}
+                        className="px-3 py-1 rounded-lg text-xs font-semibold border border-red-200 text-red-600 hover:bg-red-50"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                {products.length === 0 && (
+                  <p className="text-center text-sm text-[#666666] py-6">
+                    No products yet. Use the form below to add one.
+                  </p>
+                )}
+              </div>
             </div>
           )}
 
           <div className="bg-white border border-[#E0E0E0] rounded-2xl p-5 md:p-6">
-            <h2 className="text-lg font-semibold mb-4" style={{ color: colors.text.primary }}>
+            <h2
+              className="text-lg font-semibold mb-4"
+              style={{ color: colors.text.primary }}
+            >
               {editingId ? "Edit Product" : "Add New Product"}
             </h2>
             {error && <p className="text-sm text-red-600 mb-4">{error}</p>}
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm"
+            >
               <div>
                 <label className="block mb-1.5 font-medium">ID (slug)</label>
                 <input
@@ -477,7 +577,9 @@ const AdminProductsPage = () => {
                 </select>
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Primary Image URL (optional)</label>
+                <label className="block mb-1.5 font-medium">
+                  Primary Image URL (optional)
+                </label>
                 <input
                   name="image"
                   value={form.image}
@@ -486,12 +588,16 @@ const AdminProductsPage = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Upload Product Image(s)</label>
+                <label className="block mb-1.5 font-medium">
+                  Upload Product Image(s)
+                </label>
                 <input
                   type="file"
                   multiple
                   accept="image/*"
-                  onChange={(e) => setProductImages(Array.from(e.target.files || []))}
+                  onChange={(e) =>
+                    setProductImages(Array.from(e.target.files || []))
+                  }
                   className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg"
                 />
                 <p className="text-xs text-[#666666] mt-1">
@@ -508,7 +614,9 @@ const AdminProductsPage = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Display Order</label>
+                <label className="block mb-1.5 font-medium">
+                  Display Order
+                </label>
                 <input
                   name="displayOrder"
                   type="number"
@@ -518,7 +626,9 @@ const AdminProductsPage = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1.5 font-medium">Carousel Order</label>
+                <label className="block mb-1.5 font-medium">
+                  Carousel Order
+                </label>
                 <input
                   name="carouselOrder"
                   type="number"
@@ -563,7 +673,10 @@ const AdminProductsPage = () => {
                   ["showInProductsPage", "Show In Products Page"],
                   ["showInNavbar", "Show In Navbar"],
                 ].map(([key, label]) => (
-                  <label key={key} className="inline-flex items-center gap-2 text-sm">
+                  <label
+                    key={key}
+                    className="inline-flex items-center gap-2 text-sm"
+                  >
                     <input
                       type="checkbox"
                       name={key}
@@ -609,30 +722,41 @@ const AdminProductsPage = () => {
                 <label className="block mb-1.5 font-medium">Variants</label>
                 <div className="space-y-2">
                   {form.variants.map((variant, idx) => (
-                    <div key={`v-${idx}`} className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                    <div
+                      key={`v-${idx}`}
+                      className="grid grid-cols-1 md:grid-cols-5 gap-2"
+                    >
                       <input
                         placeholder="Name (e.g. 1 KG)"
                         value={variant.name}
-                        onChange={(e) => updateVariant(idx, "name", e.target.value)}
+                        onChange={(e) =>
+                          updateVariant(idx, "name", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <input
                         placeholder="Detail (e.g. 1000 g)"
                         value={variant.detail}
-                        onChange={(e) => updateVariant(idx, "detail", e.target.value)}
+                        onChange={(e) =>
+                          updateVariant(idx, "detail", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <input
                         placeholder="Packing (e.g. 12 pcs/ctn)"
                         value={variant.packing}
-                        onChange={(e) => updateVariant(idx, "packing", e.target.value)}
+                        onChange={(e) =>
+                          updateVariant(idx, "packing", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <input
                         placeholder="Price"
                         type="number"
                         value={variant.price}
-                        onChange={(e) => updateVariant(idx, "price", e.target.value)}
+                        onChange={(e) =>
+                          updateVariant(idx, "price", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <button
@@ -659,11 +783,15 @@ const AdminProductsPage = () => {
                   Variant Images (Name + Image)
                 </label>
                 <p className="text-xs text-[#666666] mb-2">
-                  Add labels like 1 KG / 500 G and upload or paste image URL for each.
+                  Add labels like 1 KG / 500 G and upload or paste image URL for
+                  each.
                 </p>
                 <div className="space-y-2">
                   {form.variantImages.map((variantImage, idx) => (
-                    <div key={`vi-${idx}`} className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div
+                      key={`vi-${idx}`}
+                      className="grid grid-cols-1 md:grid-cols-4 gap-2"
+                    >
                       <input
                         placeholder="Name (e.g. 1 KG)"
                         value={variantImage.name}
@@ -684,7 +812,10 @@ const AdminProductsPage = () => {
                         type="file"
                         accept="image/*"
                         onChange={(e) =>
-                          updateVariantImageFile(idx, e.target.files?.[0] || null)
+                          updateVariantImageFile(
+                            idx,
+                            e.target.files?.[0] || null,
+                          )
                         }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
@@ -711,23 +842,32 @@ const AdminProductsPage = () => {
                 <label className="block mb-1.5 font-medium">Facilities</label>
                 <div className="space-y-2">
                   {form.facilities.map((facility, idx) => (
-                    <div key={`fc-${idx}`} className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div
+                      key={`fc-${idx}`}
+                      className="grid grid-cols-1 md:grid-cols-4 gap-2"
+                    >
                       <input
                         placeholder="Facility Name"
                         value={facility.name}
-                        onChange={(e) => updateFacility(idx, "name", e.target.value)}
+                        onChange={(e) =>
+                          updateFacility(idx, "name", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <input
                         placeholder="Location"
                         value={facility.location}
-                        onChange={(e) => updateFacility(idx, "location", e.target.value)}
+                        onChange={(e) =>
+                          updateFacility(idx, "location", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <input
                         placeholder="Note"
                         value={facility.note}
-                        onChange={(e) => updateFacility(idx, "note", e.target.value)}
+                        onChange={(e) =>
+                          updateFacility(idx, "note", e.target.value)
+                        }
                         className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
                       />
                       <button
@@ -750,7 +890,9 @@ const AdminProductsPage = () => {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Extra Image URLs</label>
+                <label className="block mb-1.5 font-medium">
+                  Extra Image URLs
+                </label>
                 <div className="space-y-2">
                   {form.imageUrls.map((url, idx) => (
                     <div key={`u-${idx}`} className="flex gap-2">
@@ -785,7 +927,11 @@ const AdminProductsPage = () => {
                   disabled={saving}
                   className="px-5 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all disabled:opacity-60"
                 >
-                  {saving ? "Saving..." : editingId ? "Update Product" : "Create Product"}
+                  {saving
+                    ? "Saving..."
+                    : editingId
+                      ? "Update Product"
+                      : "Create Product"}
                 </button>
                 {editingId && (
                   <button

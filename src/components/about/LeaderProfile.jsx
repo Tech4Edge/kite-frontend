@@ -36,10 +36,10 @@ const LeaderProfile = ({
               <img
                 src={image}
                 alt={`${name} - ${title}`}
-                className={`h-130! w-full ${imgcls ? imgcls : ""} object-top max-w-md mx-auto rounded-2xl shadow-2xl`}
+                className={`w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto rounded-2xl shadow-2xl aspect-[3/4] object-cover ${imgcls ? imgcls : ""}`}
               />
               <div
-                className={`absolute -bottom-4 ${isLeft ? "right-20" : "left-20"} text-white px-6 py-3 rounded-xl shadow-lg`}
+                className={`absolute -bottom-4 ${isLeft ? "right-4 sm:right-8 md:right-12" : "left-4 sm:left-8 md:left-12"} text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg`}
                 style={{
                   background: `linear-gradient(to bottom right, ${accentColor}, ${accentColor}dd)`,
                 }}
