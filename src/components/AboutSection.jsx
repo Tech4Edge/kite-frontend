@@ -76,6 +76,10 @@ const AboutSection = () => {
             src={aziz_group_logo}
             className="w-36 h-24 sm:w-44 sm:h-32 md:w-48 md:h-36 mx-auto mt-3 mb-6 object-contain"
             alt="Aziz Group of Industries"
+            loading="lazy"
+            decoding="async"
+            width="192"
+            height="144"
           />
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
         </div>
@@ -191,6 +195,10 @@ const AboutSection = () => {
                   <img
                     src={leader.image}
                     alt={leader.name}
+                    loading="lazy"
+                    decoding="async"
+                    width="480"
+                    height="600"
                     className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 aspect-[4/5] sm:aspect-[3/4] ${leader.className}`}
                   />
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" /> */}

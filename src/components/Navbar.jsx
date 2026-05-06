@@ -20,15 +20,37 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    let isMounted = true;
+    let idleId;
+    let timeoutId;
+
     const load = async () => {
       try {
         const data = await getProducts();
+        if (!isMounted) return;
         setNavProducts(data.filter((p) => p.showInNavbar !== false));
       } catch {
-        setNavProducts([]);
+        if (isMounted) setNavProducts([]);
       }
     };
-    load();
+
+    const scheduleLoad = () => {
+      void load();
+    };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(scheduleLoad, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(scheduleLoad, 1200);
+    }
+
+    return () => {
+      isMounted = false;
+      if (idleId && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
   }, []);
 
   const dynamicMegaMenu = useMemo(() => {
@@ -97,12 +119,18 @@ const Navbar = () => {
             <Link to="/" className="flex items-center active:border-0">
               <img
                 src={kiteLogo1}
-                alt="Aziz Group Logo Part 1"
+                alt="Kite Brand logo icon"
+                decoding="async"
+                width="80"
+                height="80"
                 className="w-20! p-2 h-auto"
               />
               <img
                 src={kiteLogo2}
-                alt="Aziz Group Logo Part 2"
+                alt="Kite Brand wordmark"
+                decoding="async"
+                width="80"
+                height="80"
                 className="w-20! h-auto"
               />
             </Link>

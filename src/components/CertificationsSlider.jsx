@@ -3,13 +3,13 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import efs from "../assets/certificates/efs.png";
-import fbr from "../assets/certificates/fbr.png";
-import iaf from "../assets/certificates/iaf.png";
-import iso900 from "../assets/certificates/iso900.png";
-import ps from "../assets/certificates/ps.png";
-import secp from "../assets/certificates/secp.png";
-import ukas from "../assets/certificates/ukas.png";
+import efs from "../assets/certificates/efs.jpeg";
+import fbr from "../assets/certificates/fbr.jpeg";
+import iaf from "../assets/certificates/iaf.jpeg";
+import iso900 from "../assets/certificates/iso900.jpeg";
+import ps from "../assets/certificates/ps.jpeg";
+import secp from "../assets/certificates/secp.jpeg";
+import ukas from "../assets/certificates/ukas.jpeg";
 
 const CertificationsSlider = () => {
   const certifications = [

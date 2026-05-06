@@ -30,6 +30,7 @@ import MissionVisionValues from "../components/about/MissionVisionValues";
 import Timeline from "../components/about/Timeline";
 import LeaderProfile from "../components/about/LeaderProfile";
 import MembershipAchievements from "../components/about/MembershipAchievements";
+import SeoHead from "../components/seo/SeoHead";
 
 const AboutUsPage = () => {
   const timeline = [
@@ -203,9 +204,15 @@ const AboutUsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <HeroSection backgroundImage={azizgrp} />
+    <>
+      <SeoHead
+        title="About Kite Brand"
+        description="Learn about Kite Brand and Aziz Group's legacy, leadership, manufacturing strength, and mission across FMCG and exports."
+        path="/about"
+      />
+      <div className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <HeroSection backgroundImage={azizgrp} />
 
       {/* Company Overview */}
       <CompanyOverview companies={companies} />
@@ -260,8 +267,9 @@ const AboutUsPage = () => {
       />
 
       {/* Membership & Achievements - Commented Out */}
-      {/* <MembershipAchievements /> */}
-    </div>
+        {/* <MembershipAchievements /> */}
+      </div>
+    </>
   );
 };
 

@@ -5,10 +5,42 @@ import {
   FaClock,
   FaBuilding,
 } from "react-icons/fa";
+import SeoHead from "../components/seo/SeoHead";
+import StructuredData from "../components/seo/StructuredData";
+import { SITE_URL } from "../utils/seo";
 
 const ContactPage = () => {
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Kite Brand Pakistan",
+    url: `${SITE_URL}/contact`,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+92-91-5815056",
+        contactType: "customer service",
+        email: "info@kitepk.com",
+        areaServed: "PK",
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "sales@kitepk.com",
+        areaServed: "PK",
+      },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <>
+      <SeoHead
+        title="Contact Kite Brand"
+        description="Get in touch with Kite Brand for FMCG product inquiries, export opportunities, and business partnerships."
+        path="/contact"
+      />
+      <StructuredData data={contactSchema} />
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,6 +81,24 @@ const ContactPage = () => {
                     <p className="flex items-center">
                       <FaPhone className="mr-3 flex-shrink-0" />
                       <span>Tel. No: +92-91-5815056, 5815057</span>
+                    </p>
+                    <p className="flex items-center">
+                      <FaEnvelope className="mr-3 flex-shrink-0" />
+                      <a
+                        href="mailto:info@kitepk.com"
+                        className="text-white! visited:text-white! hover:text-white/90 transition-colors"
+                      >
+                        E-Mail: info@kitepk.com
+                      </a>
+                    </p>
+                    <p className="flex items-center">
+                      <FaEnvelope className="mr-3 flex-shrink-0" />
+                      <a
+                        href="mailto:sales@kitepk.com"
+                        className="text-white! visited:text-white! hover:text-white/90 transition-colors"
+                      >
+                        E-Mail: sales@kitepk.com
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -305,18 +355,28 @@ const ContactPage = () => {
               Call FMCG Division
             </a>
             <a
-              href="mailto:aj.match@azizgrp.com"
+              href="mailto:info@kitepk.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95"
             >
               <FaEnvelope className="inline mr-2" />
-              Send Email
+              Email: info@kitepk.com
+            </a>
+            <a
+              href="mailto:sales@kitepk.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#00AEEF] transition-all duration-300 active:scale-95"
+            >
+              <FaEnvelope className="inline mr-2" />
+              Email: sales@kitepk.com
             </a>
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

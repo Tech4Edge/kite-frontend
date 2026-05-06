@@ -10,13 +10,12 @@ import {
 } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-// import kite_logo from "../assets/kite_logo.png";
 import AJMatch from "../assets/divisions/ajmatch.png";
 import MohsinEnterprises from "../assets/divisions/MohsinEnterprises.png";
 import MohsinMatch from "../assets/divisions/MohsinMatch.png";
-import PremierBoards from "../assets/divisions/PremierBoards.png";
 
 const Footer = () => {
+  const primaryEmails = ["info@kitepk.com", "sales@kitepk.com"];
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
@@ -85,9 +84,11 @@ const Footer = () => {
               >
                 <img
                   src={company.logo}
-                  alt={company.alt}
+                  alt={company.name}
                   loading="lazy"
                   decoding="async"
+                  width="224"
+                  height="56"
                   className="h-10 sm:h-12 md:h-14 w-auto max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
@@ -170,6 +171,24 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6 text-[#00AEEF]">
               Contact Us
             </h3>
+            <div className="bg-white/5 p-4 rounded-lg border border-[#00AEEF]/20 mb-4">
+              <h4 className="text-white font-semibold mb-2 text-sm uppercase tracking-wide">
+                Email Contacts
+              </h4>
+              <ul className="space-y-2 text-sm">
+                {primaryEmails.map((email) => (
+                  <li key={email} className="flex items-center">
+                    <FaEnvelope className="text-[#00AEEF] mr-3 flex-shrink-0" />
+                    <a
+                      href={`mailto:${email}`}
+                      className="text-white/80 hover:text-[#00AEEF] transition-colors break-all"
+                    >
+                      {email}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="space-y-6">
               {/* FMCG Headquarters - Full Width */}
               {contactInfo

@@ -138,6 +138,10 @@ const PromotionsPackagesSection = () => {
                       <img
                         src={pkg.image}
                         alt={pkg.title}
+                        loading="lazy"
+                        decoding="async"
+                        width="640"
+                        height="640"
                         className="w-full h-full object-cover"
                       />
                     ) : (

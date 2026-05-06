@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createOrder } from "../services/api";
+import SeoHead from "../components/seo/SeoHead";
 
 const PHONE_REGEX = /^(?:\+92|92|0)3\d{9}$/;
 
@@ -48,22 +49,25 @@ const CheckoutPage = () => {
 
   if (!checkoutData) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-16">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h1 className="text-3xl font-bold text-[#222222] mb-4">
-            Checkout Not Ready
-          </h1>
-          <p className="text-[#666666] mb-6">
-            Please select a product or promotion first, then click Buy.
-          </p>
-          <Link
-            to="/products"
-            className="text-[#00AEEF] font-semibold hover:text-[#ED028C]"
-          >
-            Go to Products
-          </Link>
+      <>
+        <SeoHead title="Checkout" path="/checkout" noindex />
+        <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-16">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <h1 className="text-3xl font-bold text-[#222222] mb-4">
+              Checkout Not Ready
+            </h1>
+            <p className="text-[#666666] mb-6">
+              Please select a product or promotion first, then click Buy.
+            </p>
+            <Link
+              to="/products"
+              className="text-[#00AEEF] font-semibold hover:text-[#ED028C]"
+            >
+              Go to Products
+            </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -130,27 +134,32 @@ const CheckoutPage = () => {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-16">
-        <div className="max-w-3xl mx-auto px-4 text-center bg-white border border-[#E0E0E0] rounded-2xl p-8">
-          <h1 className="text-3xl font-bold text-[#222222] mb-3">
-            Order Placed
-          </h1>
-          <p className="text-[#666666] mb-6">
-            Your order has been submitted successfully with Cash on Delivery.
-          </p>
-          <button
-            onClick={() => navigate("/")}
-            className="px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC]"
-          >
-            Back to Home
-          </button>
+      <>
+        <SeoHead title="Checkout" path="/checkout" noindex />
+        <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-16">
+          <div className="max-w-3xl mx-auto px-4 text-center bg-white border border-[#E0E0E0] rounded-2xl p-8">
+            <h1 className="text-3xl font-bold text-[#222222] mb-3">
+              Order Placed
+            </h1>
+            <p className="text-[#666666] mb-6">
+              Your order has been submitted successfully with Cash on Delivery.
+            </p>
+            <button
+              onClick={() => navigate("/")}
+              className="px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC]"
+            >
+              Back to Home
+            </button>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-12">
+    <>
+      <SeoHead title="Checkout" path="/checkout" noindex />
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-12">
       <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white border border-[#E0E0E0] rounded-2xl p-6">
           <h1 className="text-2xl font-bold text-[#222222] mb-5">Checkout</h1>
@@ -307,7 +316,8 @@ const CheckoutPage = () => {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

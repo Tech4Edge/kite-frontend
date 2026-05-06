@@ -166,6 +166,10 @@ const WoodenSplintsExport = () => {
                 <img
                   src={splints}
                   alt="Premium Wooden Splints"
+                  loading="lazy"
+                  decoding="async"
+                  width="1280"
+                  height="720"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -184,6 +188,10 @@ const WoodenSplintsExport = () => {
                 <img
                   src={splints_2}
                   alt="Wooden Splints Manufacturing"
+                  loading="lazy"
+                  decoding="async"
+                  width="1280"
+                  height="720"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -357,6 +365,10 @@ const WoodenSplintsExport = () => {
                           <img
                             src={shipment}
                             alt="Export Shipping Container"
+                            loading="lazy"
+                            decoding="async"
+                            width="1280"
+                            height="640"
                             className="w-full object-cover"
                           />
                         </div>

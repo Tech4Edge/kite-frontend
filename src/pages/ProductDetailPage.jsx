@@ -9,6 +9,9 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { getProduct } from "../services/api";
+import SeoHead from "../components/seo/SeoHead";
+import StructuredData from "../components/seo/StructuredData";
+import { SITE_URL, toAbsoluteUrl } from "../utils/seo";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -51,41 +54,104 @@ const ProductDetailPage = () => {
       <FaLayerGroup className="text-6xl" />
     );
 
+  const productPath = `/products/${id}`;
+  const canonicalUrl = toAbsoluteUrl(productPath);
+  const productDescription =
+    product?.description ||
+    "Explore product details, features, and specifications from Kite Brand Pakistan.";
+  const productImage =
+    product?.image || product?.images?.[0] || "https://via.placeholder.com/1200x630";
+
+  const productSchema = product
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: product.title,
+        description: productDescription,
+        image: [productImage],
+        sku: product.id,
+        category: product.category,
+        brand: {
+          "@type": "Brand",
+          name: "Kite Brand",
+        },
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "PKR",
+          availability: "https://schema.org/InStock",
+          url: canonicalUrl,
+        },
+      }
+    : null;
+
+  const breadcrumbSchema = product
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: `${SITE_URL}/products`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: product.title,
+            item: canonicalUrl,
+          },
+        ],
+      }
+    : null;
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
-        <div className="w-full max-w-5xl px-4">
-          <div className="grid lg:grid-cols-2 gap-10 animate-pulse">
-            <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] h-[360px] sm:h-[420px]" />
-            <div className="space-y-4">
-              <div className="h-6 bg-[#E5E5E5] rounded w-1/2" />
-              <div className="h-10 bg-[#E5E5E5] rounded w-3/4" />
-              <div className="h-4 bg-[#EFEFEF] rounded w-full" />
-              <div className="h-4 bg-[#EFEFEF] rounded w-5/6" />
-              <div className="h-4 bg-[#EFEFEF] rounded w-2/3" />
-              <div className="h-12 bg-[#E5E5E5] rounded w-2/5" />
+      <>
+        <SeoHead title="Product Details" path={productPath} />
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
+          <div className="w-full max-w-5xl px-4">
+            <div className="grid lg:grid-cols-2 gap-10 animate-pulse">
+              <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] h-[360px] sm:h-[420px]" />
+              <div className="space-y-4">
+                <div className="h-6 bg-[#E5E5E5] rounded w-1/2" />
+                <div className="h-10 bg-[#E5E5E5] rounded w-3/4" />
+                <div className="h-4 bg-[#EFEFEF] rounded w-full" />
+                <div className="h-4 bg-[#EFEFEF] rounded w-5/6" />
+                <div className="h-4 bg-[#EFEFEF] rounded w-2/3" />
+                <div className="h-12 bg-[#E5E5E5] rounded w-2/5" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-[#222222] mb-4">
-            Product Not Found
-          </h2>
-          <Link
-            to="/products"
-            className="text-[#00AEEF] hover:text-[#ED028C] font-semibold"
-          >
-            Back to Products
-          </Link>
+      <>
+        <SeoHead title="Product Not Found" path={productPath} noindex />
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#F9F9F9]">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-[#222222] mb-4">
+              Product Not Found
+            </h2>
+            <Link
+              to="/products"
+              className="text-[#00AEEF] hover:text-[#ED028C] font-semibold"
+            >
+              Back to Products
+            </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -157,7 +223,17 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+    <>
+      <SeoHead
+        title={product.title}
+        description={productDescription}
+        path={productPath}
+        image={productImage}
+        type="product"
+      />
+      <StructuredData data={productSchema} />
+      <StructuredData data={breadcrumbSchema} />
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       {/* Hero Section */}
       <div
         className="relative py-10 sm:py-16"
@@ -571,7 +647,8 @@ const ProductDetailPage = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

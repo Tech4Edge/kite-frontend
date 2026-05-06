@@ -5,32 +5,38 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
-import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
-import ExportPage from "./pages/ExportPage";
-import SafetyMatchesPage from "./pages/SafetyMatchesPage";
-import WoodenSplintsPage from "./pages/WoodenSplintsPage";
-import ContactPage from "./pages/ContactPage";
-import AboutUsPage from "./pages/AboutUsPage";
-import PromotionsPackagesPage from "./pages/PromotionsPackagesPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import NotFoundPage from "./pages/NotFoundPage";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage"));
+const ExportPage = lazy(() => import("./pages/ExportPage"));
+const SafetyMatchesPage = lazy(() => import("./pages/SafetyMatchesPage"));
+const WoodenSplintsPage = lazy(() => import("./pages/WoodenSplintsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
+const PromotionsPackagesPage = lazy(() => import("./pages/PromotionsPackagesPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 // import KiteMatchesPage from "./pages/KiteMatchesPage";
 // import OlympiaMatchesPage from "./pages/OlympiaMatchesPage";
 // import PartyMatchesPage from "./pages/PartyMatchesPage";
 // import TangaMatchesPage from "./pages/TangaMatchesPage";
 // import BirdMatchesPage from "./pages/BirdMatchesPage";
-import AdminLoginPage from "./pages/AdminLoginPage";
-import AdminProductsPage from "./pages/AdminProductsPage";
-import AdminPromotionsPage from "./pages/AdminPromotionsPage";
-import AdminOrdersPage from "./pages/AdminOrdersPage";
+const AdminLoginPage = lazy(() => import("./pages/AdminLoginPage"));
+const AdminProductsPage = lazy(() => import("./pages/AdminProductsPage"));
+const AdminPromotionsPage = lazy(() => import("./pages/AdminPromotionsPage"));
+const AdminOrdersPage = lazy(() => import("./pages/AdminOrdersPage"));
 import "./App.css";
+
+const RouteLoadingFallback = () => (
+  <div className="py-16 px-4 text-center text-sm text-slate-500">
+    Loading page...
+  </div>
+);
 
 function AppRoutes() {
   const location = useLocation();
@@ -44,36 +50,53 @@ function AppRoutes() {
   return (
     <div className="min-h-screen bg-white app-page-compact">
       {!isAdminRoute && <Navbar />}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route
-          path="/products/tanga-matches"
-          element={<Navigate to="/products/tanga" replace />}
-        />
-        {/* <Route path="/products/tanga" element={<TangaMatchesPage />} /> */}
-        <Route path="/products/:id" element={<ProductDetailPage />} />
-        {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
-        <Route path="/products/olympia" element={<OlympiaMatchesPage />} />
-        <Route path="/products/party" element={<PartyMatchesPage />} />
-        <Route path="/products/bird" element={<BirdMatchesPage />} /> */}
-        <Route
-          path="/promotions-packages"
-          element={<PromotionsPackagesPage />}
-        />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/export" element={<ExportPage />} />
-        <Route path="/export/safety-matches" element={<SafetyMatchesPage />} />
-        <Route path="/export/wooden-splints" element={<WoodenSplintsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-
-        <Route path="/admin/login" element={<AdminLoginPage />} />
-        <Route path="/admin/products" element={<AdminProductsPage />} />
-        <Route path="/admin/promotions" element={<AdminPromotionsPage />} />
-        <Route path="/admin/orders" element={<AdminOrdersPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      {isAdminRoute ? (
+        <Suspense fallback={<RouteLoadingFallback />}>
+          <Routes>
+            <Route path="/admin/login" element={<AdminLoginPage />} />
+            <Route path="/admin/products" element={<AdminProductsPage />} />
+            <Route path="/admin/promotions" element={<AdminPromotionsPage />} />
+            <Route path="/admin/orders" element={<AdminOrdersPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      ) : (
+        <main id="main-content">
+          <Suspense fallback={<RouteLoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route
+                path="/products/tanga-matches"
+                element={<Navigate to="/products/tanga" replace />}
+              />
+              {/* <Route path="/products/tanga" element={<TangaMatchesPage />} /> */}
+              <Route path="/products/:id" element={<ProductDetailPage />} />
+              {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
+            <Route path="/products/olympia" element={<OlympiaMatchesPage />} />
+            <Route path="/products/party" element={<PartyMatchesPage />} />
+            <Route path="/products/bird" element={<BirdMatchesPage />} /> */}
+              <Route
+                path="/promotions-packages"
+                element={<PromotionsPackagesPage />}
+              />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/export" element={<ExportPage />} />
+              <Route
+                path="/export/safety-matches"
+                element={<SafetyMatchesPage />}
+              />
+              <Route
+                path="/export/wooden-splints"
+                element={<WoodenSplintsPage />}
+              />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </main>
+      )}
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <WhatsAppButton />}
     </div>

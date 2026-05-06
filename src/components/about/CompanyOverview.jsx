@@ -54,6 +54,10 @@ const CompanyOverview = ({ companies }) => {
               <img
                 src={azizGroupLogo}
                 alt="Aziz Group"
+                loading="lazy"
+                decoding="async"
+                width="192"
+                height="64"
                 className="h-12! md:h-16! object-contain"
               />
             </div>

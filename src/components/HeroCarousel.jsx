@@ -13,7 +13,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import carousel1 from "../assets/heroCarousel/1920x640allproducts.jpg";
 import carousel2 from "../assets/heroCarousel/1920x640allmatches.webp";
-import carousel3 from "../assets/heroCarousel/1920x640burq.png";
+import carousel3 from "../assets/heroCarousel/1920x640burq.jpeg";
 import carousel4 from "../assets/heroCarousel/1920x640glow.jpg";
 import carousel5 from "../assets/heroCarousel/1920x640dishwash.jpg";
 import carousel6 from "../assets/heroCarousel/1920x640vero.jpg";
@@ -152,6 +152,9 @@ const HeroCarousel = () => {
                     <img
                       src={slide.image}
                       alt={slide.title}
+                      width="1920"
+                      height="640"
+                      sizes="(max-width: 768px) 100vw, 100vw"
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
                       fetchpriority={index === 0 ? "high" : "auto"}

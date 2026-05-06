@@ -1,10 +1,16 @@
-import { motion } from "framer-motion";
 import PromotionsPackagesSection from '../components/PromotionsPackagesSection';
+import SeoHead from "../components/seo/SeoHead";
 
 const PromotionsPackagesPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
-      <div className="relative overflow-hidden">
+    <>
+      <SeoHead
+        title="Promotions & Packages"
+        description="Browse Kite Brand promotions and bundled packages designed for value, quality, and convenience."
+        path="/promotions-packages"
+      />
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+        <div className="relative overflow-hidden">
         {/* Hero Section */}
         {/* <div className="relative bg-gradient-to-r from-[#00AEEF] via-[#0095CC] to-[#00AEEF] py-20">
           <div className="absolute inset-0 bg-black/10"></div>
@@ -35,9 +41,10 @@ const PromotionsPackagesPage = () => {
             </motion.div>
           </div>
         </div> */}
+        </div>
+        <PromotionsPackagesSection />
       </div>
-      <PromotionsPackagesSection />
-    </div>
+    </>
   );
 };
 

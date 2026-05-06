@@ -1,8 +1,15 @@
 import ExportSection from '../components/ExportSection';
+import SeoHead from "../components/seo/SeoHead";
 
 const ExportPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+    <>
+      <SeoHead
+        title="Export Services"
+        description="Explore Kite Brand's export services and global distribution network for premium safety matches and FMCG products."
+        path="/export"
+      />
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       <div className="relative overflow-hidden">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-[#00AEEF] via-[#0095CC] to-[#00AEEF] py-20">
@@ -20,8 +27,9 @@ const ExportPage = () => {
           </div>
         </div>
       </div>
-      <ExportSection />
-    </div>
+        <ExportSection />
+      </div>
+    </>
   );
 };
 

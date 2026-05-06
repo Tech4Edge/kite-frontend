@@ -36,6 +36,10 @@ const LeaderProfile = ({
               <img
                 src={image}
                 alt={`${name} - ${title}`}
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="853"
                 className={`w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto rounded-2xl shadow-2xl aspect-[3/4] object-cover ${imgcls ? imgcls : ""}`}
               />
               <div
@@ -61,6 +65,10 @@ const LeaderProfile = ({
                     key={index}
                     src={uni}
                     alt="University"
+                    loading="lazy"
+                    decoding="async"
+                    width="160"
+                    height="80"
                     className="h-16 md:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                   />
                 ))}
@@ -120,6 +128,10 @@ const LeaderProfile = ({
                       <img
                         src={position.logo}
                         alt={position.title}
+                        loading="lazy"
+                        decoding="async"
+                        width="96"
+                        height="96"
                         className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>

@@ -160,6 +160,8 @@ const SafetyMatchesExport = () => {
             loading="eager"
             decoding="async"
             fetchpriority="high"
+            width="1920"
+            height="960"
             className="absolute inset-0 w-full h-full object-left object-contain sm:object-center p-2 sm:p-3 md:p-0"
           />
         </picture>
@@ -217,6 +219,10 @@ const SafetyMatchesExport = () => {
                   <img
                     src={match.image}
                     alt={match.brand}
+                    loading="lazy"
+                    decoding="async"
+                    width="360"
+                    height="480"
                     className="w-full h-full object-contain p-4"
                   />
                 </div>
@@ -242,6 +248,10 @@ const SafetyMatchesExport = () => {
             <img
               src={world_map_export_destinations}
               alt="Global Export Map"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="700"
               className="w-full object-cover"
             />
           </div>
@@ -378,6 +388,10 @@ const SafetyMatchesExport = () => {
               <img
                 src={shipment}
                 alt="Export Shipping Container"
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="640"
                 className="w-full object-cover"
               />
             </div>

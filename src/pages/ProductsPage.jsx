@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
 import ProductsSection from '../components/ProductsSection';
+import SeoHead from "../components/seo/SeoHead";
 
 const ProductsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
+    <>
+      <SeoHead
+        title="Our Products"
+        description="Explore Kite Brand's premium FMCG lineup including safety matches, detergents, and dish wash products."
+        path="/products"
+      />
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
       <div className="relative overflow-hidden">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-[#00AEEF] via-[#0095CC] to-[#00AEEF] py-20">
@@ -36,8 +43,9 @@ const ProductsPage = () => {
           </div>
         </div>
       </div>
-      <ProductsSection />
-    </div>
+        <ProductsSection />
+      </div>
+    </>
   );
 };
 
