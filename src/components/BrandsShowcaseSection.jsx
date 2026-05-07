@@ -82,6 +82,9 @@ const BrandsShowcaseSection = () => {
                     alt={brand.squareAlt}
                     loading="lazy"
                     decoding="async"
+                    width="640"
+                    height="640"
+                    sizes="(max-width: 640px) 40vw, 25vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
@@ -99,6 +102,9 @@ const BrandsShowcaseSection = () => {
                     alt={brand.desktopAlt}
                     loading="lazy"
                     decoding="async"
+                    width="1280"
+                    height="640"
+                    sizes="(max-width: 640px) 60vw, 70vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>

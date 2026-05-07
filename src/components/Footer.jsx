@@ -115,7 +115,8 @@ const Footer = () => {
                 href="https://www.facebook.com/kitematchpk/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-[#1877F2] p-3 rounded-full transition-all duration-300 active:scale-90 group"
+                aria-label="Kite Brand on Facebook"
+                className="bg-white/10 hover:bg-[#1877F2] p-3 rounded-full transition-all duration-300 active:scale-90 group w-12 h-12 flex items-center justify-center"
               >
                 <FaFacebook className="text-lg text-white group-hover:text-white" />
               </a>
@@ -123,7 +124,8 @@ const Footer = () => {
                 href="https://www.instagram.com/kitematch/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F56040] p-3 rounded-full transition-all duration-300 active:scale-90 group"
+                aria-label="Kite Brand on Instagram"
+                className="bg-white/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F56040] p-3 rounded-full transition-all duration-300 active:scale-90 group w-12 h-12 flex items-center justify-center"
               >
                 <FaInstagram className="text-lg text-white group-hover:text-white" />
               </a>
@@ -131,7 +133,8 @@ const Footer = () => {
                 href="https://www.youtube.com/@kitematch"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-[#FF0000] p-3 rounded-full transition-all duration-300 active:scale-90 group"
+                aria-label="Kite Brand on YouTube"
+                className="bg-white/10 hover:bg-[#FF0000] p-3 rounded-full transition-all duration-300 active:scale-90 group w-12 h-12 flex items-center justify-center"
               >
                 <FaYoutube className="text-lg text-white group-hover:text-white" />
               </a>
@@ -139,7 +142,8 @@ const Footer = () => {
                 href="https://www.tiktok.com/@houseofkite"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-black p-3 rounded-full transition-all duration-300 active:scale-90 group"
+                aria-label="Kite Brand on TikTok"
+                className="bg-white/10 hover:bg-black p-3 rounded-full transition-all duration-300 active:scale-90 group w-12 h-12 flex items-center justify-center"
               >
                 <FaTiktok className="text-lg text-white group-hover:text-[#00F2EA]" />
               </a>

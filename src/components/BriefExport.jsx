@@ -11,7 +11,7 @@ const BriefExport = () => {
             <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
               Global Reach
             </h2>
-            <h3 className="text-[#222222] text-justify text-4xl md:text-5xl font-bold mb-6">
+            <h3 className="text-[#222222]  text-justify text-4xl md:text-5xl font-bold mb-6">
               Mohsin Match Factory - Exporting Matches to 40+ Countries
             </h3>
             <p className="text-[#666666] text-lg leading-relaxed mb-8">

@@ -113,6 +113,8 @@ const CertificationsSlider = () => {
                     alt={cert.title}
                     loading="lazy"
                     decoding="async"
+                    width="320"
+                    height="240"
                     className="h-22 sm:h-44 md:h-48 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -121,7 +123,7 @@ const CertificationsSlider = () => {
           ))}
         </Swiper>
 
-        <style jsx>{`
+        <style>{`
           .certifications-swiper {
             padding-bottom: 40px;
           }

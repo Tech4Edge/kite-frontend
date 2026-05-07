@@ -242,6 +242,9 @@ const Navbar = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-text-primary hover:text-primary transition-colors focus:outline-none"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? (
                 <FaTimes className="h-6 w-6" />
@@ -255,7 +258,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-border-light">
+        <div
+          id="mobile-navigation"
+          className="md:hidden bg-white border-t border-border-light"
+        >
           <div className="px-4 pt-2 pb-4 space-y-2">
             {navItems.map((item) => (
               <div key={item.name}>
