@@ -107,13 +107,13 @@ const CertificationsSlider = () => {
           {certifications.map((cert) => (
             <SwiperSlide key={cert.id}>
               <div className="card-hover relative bg-white rounded-xl overflow-x-hidden border border-gray-200 group h-full">
-                <div className="relative overflow-hidden bg-white p-8">
+                <div className="relative flex items-center justify-center overflow-hidden bg-white p-8">
                   <img
                     src={cert.image}
                     alt={cert.title}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-40 sm:h-44 md:h-48 object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="h-22 sm:h-44 md:h-48 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

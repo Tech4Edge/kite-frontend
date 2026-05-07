@@ -74,10 +74,6 @@
   text-wrap: balance;
 }
 
-@utility text-white-forced {
-  color: white !important;
-}
-
 /* ============================================
    UNIVERSAL CARD HOVER EFFECT
    ============================================

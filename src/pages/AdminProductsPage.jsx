@@ -243,11 +243,9 @@ const AdminProductsPage = () => {
       const normalizedVariantImages = normalizeVariantImages(
         form.variantImages,
       );
-      const syncedVariantImages = normalizedVariantImages.map(
-        (entry, index) => ({
-          ...entry,
-        }),
-      );
+      const syncedVariantImages = normalizedVariantImages.map((entry) => ({
+        ...entry,
+      }));
       const hasVariantFileAtIndex = (index) =>
         Boolean(variantImageFiles[index]);
       const activeVariantIndexes = syncedVariantImages

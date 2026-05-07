@@ -140,10 +140,10 @@ const ProductsSection = () => {
                 <SwiperSlide key={product.id} className="h-auto">
                   <Link
                     to={`/products/${product.id}`}
-                    className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2 block h-[500px] sm:h-[520px] flex flex-col"
+                    className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-2 flex flex-col"
                   >
                     {/* Product Image */}
-                    <div className="relative h-56 sm:h-60 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                    <div className="relative  aspect-auto  sm:aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                       <img
                         src={
                           product.image ||
@@ -153,7 +153,7 @@ const ProductsSection = () => {
                         alt={product.title}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover sm:object-contain p-2 sm:p-4 group-hover:scale-105 transition-transform duration-300"
                       />
                       <div
                         className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm font-semibold shadow-lg"

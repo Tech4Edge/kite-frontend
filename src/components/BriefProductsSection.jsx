@@ -142,7 +142,7 @@ const BriefProductsSection = () => {
                     className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#E0E0E0] hover:border-[#00AEEF] transform hover:-translate-y-1 block"
                   >
                     {/* Product Image */}
-                    <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                    <div className="relative aspect-auto  sm:aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                       <img
                         src={
                           product.image ||
@@ -152,7 +152,7 @@ const BriefProductsSection = () => {
                         alt={product.title}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-contain p-2 sm:p-4 group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover sm:object-contain p-2 sm:p-4 group-hover:scale-105 transition-transform duration-300"
                       />
                       <div
                         className="absolute top-3 right-3 px-2 py-1 rounded-full text-white text-xs font-semibold shadow-lg"
@@ -207,7 +207,7 @@ const BriefProductsSection = () => {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .products-swiper :global(.swiper-button-next),
         .products-swiper :global(.swiper-button-prev) {
           color: #00aeef;

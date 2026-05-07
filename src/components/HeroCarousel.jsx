@@ -1,10 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Autoplay,
-  Pagination,
-  Navigation,
-  EffectFade,
-} from "swiper/modules";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "swiper/css";
@@ -157,7 +152,7 @@ const HeroCarousel = () => {
                       sizes="(max-width: 768px) 100vw, 100vw"
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      fetchpriority={index === 0 ? "high" : "auto"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
                       className="absolute inset-0 w-full h-full object-left object-contain sm:object-center p-2 sm:p-3 md:p-0"
                     />
                   </picture>
@@ -271,7 +266,7 @@ const HeroCarousel = () => {
         ))}
       </Swiper>
 
-      <style jsx>{`
+      <style>{`
         @keyframes ken-burns {
           0% {
             transform: scale(1.1) translateX(0) translateY(0);

@@ -33,64 +33,6 @@ const TrustSection = () => {
     },
   ];
 
-  const achievements = [
-    {
-      number: "50+",
-      label: "Years Manufacturing",
-      highlight: "Since 1974",
-    },
-    {
-      number: "10,000+",
-      label: "Employees",
-      highlight: "Nationwide",
-    },
-    {
-      number: "40+",
-      label: "Export Countries",
-      highlight: "Global Presence",
-    },
-    {
-      number: "#1",
-      label: "Match Exporter",
-      highlight: "Pakistan",
-    },
-  ];
-
-  const clients = [
-    {
-      name: "Angel",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=ANGEL",
-    },
-    {
-      name: "Blédina",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=BLEDINA",
-    },
-    {
-      name: "Colgate",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=COLGATE",
-    },
-    {
-      name: "Danone",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=DANONE",
-    },
-    {
-      name: "Johnson & Johnson",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=J&J",
-    },
-    {
-      name: "SC Johnson",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=SC+JOHNSON",
-    },
-    {
-      name: "Tiger Head",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=TIGER+HEAD",
-    },
-    {
-      name: "Compal",
-      logo: "https://via.placeholder.com/150x80/FFFFFF/666666?text=COMPAL",
-    },
-  ];
-
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

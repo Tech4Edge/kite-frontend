@@ -8,22 +8,85 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
-import shipment from '../assets/heroCarousel/1920x640shipment.jpg';
+import shipment from "../assets/heroCarousel/1920x640shipment.jpg";
 
 const ExportSection = () => {
   const safetyMatches = [
-    { brand: "Simba", country: "Congo", flag: "🇨🇬", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Simba" },
-    { brand: "Wood Flower", country: "Romania", flag: "🇷🇴", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Wood+Flower" },
-    { brand: "Al Felaij", country: "UAE", flag: "🇦🇪", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Felaij" },
-    { brand: "The Gosse", country: "Nigeria", flag: "🇳🇬", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=The+Gosse" },
-    { brand: "Football", country: "Saudi Arabia", flag: "🇸🇦", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Football" },
-    { brand: "Magia bunicii", country: "Romania", flag: "🇷🇴", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Magia+bunicii" },
-    { brand: "Zebra", country: "Lebanon", flag: "🇱🇧", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Zebra" },
-    { brand: "Zippy", country: "South Africa", flag: "🇿🇦", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Zippy" },
-    { brand: "Al Karama", country: "Sudan", flag: "🇸🇩", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Karama" },
-    { brand: "Al Moallam", country: "Sudan", flag: "🇸🇩", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Moallam" },
-    { brand: "Ziynat", country: "Uzbekistan", flag: "🇺🇿", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Ziynat" },
-    { brand: "ReD Mac", country: "Ukraine", flag: "🇺🇦", image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=ReD+Mac" },
+    {
+      brand: "Simba",
+      country: "Congo",
+      flag: "🇨🇬",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Simba",
+    },
+    {
+      brand: "Wood Flower",
+      country: "Romania",
+      flag: "🇷🇴",
+      image:
+        "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Wood+Flower",
+    },
+    {
+      brand: "Al Felaij",
+      country: "UAE",
+      flag: "🇦🇪",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Felaij",
+    },
+    {
+      brand: "The Gosse",
+      country: "Nigeria",
+      flag: "🇳🇬",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=The+Gosse",
+    },
+    {
+      brand: "Football",
+      country: "Saudi Arabia",
+      flag: "🇸🇦",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Football",
+    },
+    {
+      brand: "Magia bunicii",
+      country: "Romania",
+      flag: "🇷🇴",
+      image:
+        "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Magia+bunicii",
+    },
+    {
+      brand: "Zebra",
+      country: "Lebanon",
+      flag: "🇱🇧",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Zebra",
+    },
+    {
+      brand: "Zippy",
+      country: "South Africa",
+      flag: "🇿🇦",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Zippy",
+    },
+    {
+      brand: "Al Karama",
+      country: "Sudan",
+      flag: "🇸🇩",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Karama",
+    },
+    {
+      brand: "Al Moallam",
+      country: "Sudan",
+      flag: "🇸🇩",
+      image:
+        "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Al+Moallam",
+    },
+    {
+      brand: "Ziynat",
+      country: "Uzbekistan",
+      flag: "🇺🇿",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=Ziynat",
+    },
+    {
+      brand: "ReD Mac",
+      country: "Ukraine",
+      flag: "🇺🇦",
+      image: "https://via.placeholder.com/300x400/ED028C/FFFFFF?text=ReD+Mac",
+    },
   ];
 
   const woodenSplints = [
@@ -34,29 +97,6 @@ const ExportSection = () => {
     { country: "Egypt", flag: "🇪🇬", color: "#00AEEF" },
     { country: "Tanzania", flag: "🇹🇿", color: "#ED028C" },
   ];
-
-  const exportCountries = {
-    Europe: {
-      countries: ["Germany", "France", "Spain", "Italy", "Greece"],
-      icon: "🇪🇺",
-      color: "#00AEEF",
-    },
-    "Middle East": {
-      countries: ["Saudi Arabia", "Turkey", "Egypt"],
-      icon: "🕌",
-      color: "#ED028C",
-    },
-    Africa: {
-      countries: ["South Africa", "Kazakhstan"],
-      icon: "🌍",
-      color: "#00AEEF",
-    },
-    Asia: {
-      countries: ["Afghanistan", "and more..."],
-      icon: "🌏",
-      color: "#ED028C",
-    },
-  };
 
   const exportServices = [
     {

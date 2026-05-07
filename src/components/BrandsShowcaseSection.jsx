@@ -68,15 +68,15 @@ const BrandsShowcaseSection = () => {
           {brandRows.map((brand, index) => (
             <div
               key={brand.id}
-              className="grid grid-cols-1 gap-3 sm:grid-cols-12 sm:gap-4 lg:gap-5"
+              className="grid grid-cols-12 gap-3 sm:gap-4 lg:gap-5"
             >
               <Link
                 to={brand.link}
-                className={`group relative overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-4 ${
-                  index % 2 === 0 ? "sm:order-1" : "sm:order-2"
+                className={`group relative col-span-4 overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-4 ${
+                  index % 2 === 0 ? "order-1" : "order-2"
                 }`}
               >
-                <div className="aspect-[4/3] sm:aspect-square">
+                <div className="aspect-square">
                   <img
                     src={brand.squareImage}
                     alt={brand.squareAlt}
@@ -89,11 +89,11 @@ const BrandsShowcaseSection = () => {
 
               <Link
                 to={brand.link}
-                className={`group relative overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-8 ${
-                  index % 2 === 0 ? "sm:order-2" : "sm:order-1"
+                className={`group relative col-span-8 overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-8 ${
+                  index % 2 === 0 ? "order-2" : "order-1"
                 }`}
               >
-                <div className="aspect-[16/9] sm:aspect-16/8">
+                <div className="aspect-[16/9]">
                   <img
                     src={brand.desktopImage}
                     alt={brand.desktopAlt}

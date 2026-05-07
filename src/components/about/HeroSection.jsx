@@ -1,14 +1,6 @@
 import { motion } from "framer-motion";
-import { FaChevronDown } from "react-icons/fa";
 
 const HeroSection = ({ backgroundImage }) => {
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight - 100,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section className="relative min-h-[55svh] sm:min-h-[62svh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax Effect */}

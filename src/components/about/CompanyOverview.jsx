@@ -58,7 +58,7 @@ const CompanyOverview = ({ companies }) => {
                 decoding="async"
                 width="192"
                 height="64"
-                className="h-12! md:h-16! object-contain"
+                className="w-auto h-12! md:h-16! object-contain"
               />
             </div>
 
