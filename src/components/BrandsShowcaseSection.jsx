@@ -96,7 +96,7 @@ const BrandsShowcaseSection = () => {
                   index % 2 === 0 ? "order-2" : "order-1"
                 }`}
               >
-                <div className="aspect-[16/9]">
+                <div className="aspect-2/1">
                   <img
                     src={brand.desktopImage}
                     alt={brand.desktopAlt}
