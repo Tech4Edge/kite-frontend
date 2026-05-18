@@ -14,11 +14,13 @@ import carousel5 from "../assets/heroCarousel/1920x640dishwash.jpg";
 import carousel6 from "../assets/heroCarousel/1920x640vero.jpg";
 import carousel7 from "../assets/heroCarousel/1920x640shipment.jpg";
 
-import carousel1Mobile from "../assets/heroCarousel/640x640kite.jpg";
-import carousel2Mobile from "../assets/heroCarousel/640x640glow.jpg";
-import carousel3Mobile from "../assets/heroCarousel/640x640burq.jpg";
-import carousel4Mobile from "../assets/heroCarousel/640x640dishwash.jpg";
-import carousel5Mobile from "../assets/heroCarousel/640x640vero.jpg";
+import carousel1Mobile from "../assets/heroCarousel/Allproduct-640x640.jpeg";
+import carousel2Mobile from "../assets/heroCarousel/kite-detergents-640x640.jpeg";
+import carousel3Mobile from "../assets/heroCarousel/burqaction-640x640.jpeg";
+import carousel4Mobile from "../assets/heroCarousel/DWB-640x640.jpg";
+import carousel5Mobile from "../assets/heroCarousel/vero-640x640.jpeg";
+import carousel6Mobile from "../assets/heroCarousel/Matches-640x640.jpeg";
+import carousel7Mobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
 
 const HeroCarousel = () => {
   const [, setActiveIndex] = useState(0);
@@ -42,7 +44,7 @@ const HeroCarousel = () => {
       description:
         "From local favorites to export-ready lines, our safety matches deliver reliable ignition and consistent quality.",
       image: carousel2,
-      mobileImage: carousel1Mobile,
+      mobileImage: carousel6Mobile,
       link: "/products",
       gradient: "from-orange-900/50 via-orange-700/30 to-transparent",
       accentColor: "#EA580C",
@@ -102,7 +104,8 @@ const HeroCarousel = () => {
       description:
         "Experience the speed and reliability of Swift Delivery Services. We ensure your packages reach their destination on time, every time, with our extensive nationwide coverage.",
       image: carousel7,
-      link: "/export",
+      mobileImage: carousel7Mobile,
+      link: "/export/safety-matches",
       gradient: "from-purple-900/50 via-purple-700/30 to-transparent",
       accentColor: "#7C3AED",
     },
@@ -135,13 +138,17 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative min-h-[48vh] sm:min-h-[65vh] md:min-h-[78vh] lg:min-h-[90vh] w-full overflow-hidden">
-              {/* Background Image - Full Cover */}
-              <div className="absolute inset-0 bg-white aspect-6/6 sm:aspect-auto">
+            <div className="relative min-h-[55vh] sm:min-h-[65vh] md:min-h-[78vh] lg:min-h-[90vh] w-full overflow-hidden">
+              {/* Background Image - Responsive */}
+              <div className="absolute inset-0 bg-white">
                 <Link to={slide.link} className="block w-full h-full">
-                  <picture className="block w-full h-full">
+                  <picture className="block w-full h-full! ">
                     <source
-                      media="(max-width: 768px)"
+                      media="(max-width: 640px)"
+                      srcSet={slide.mobileImage || slide.image}
+                    />
+                    <source
+                      media="(max-width: 1024px)"
                       srcSet={slide.mobileImage || slide.image}
                     />
                     <img
@@ -149,11 +156,11 @@ const HeroCarousel = () => {
                       alt={slide.title}
                       width="1920"
                       height="640"
-                      sizes="(max-width: 768px) 100vw, 100vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
                       fetchPriority={index === 0 ? "high" : "auto"}
-                      className="absolute inset-0 w-full h-full object-left object-contain sm:object-center p-2 sm:p-3 md:p-0"
+                      className="hero-carousel-img absolute inset-0 w-full h-full object-contain object-center"
                     />
                   </picture>
                 </Link>
@@ -267,6 +274,13 @@ const HeroCarousel = () => {
       </Swiper>
 
       <style>{`
+        /* Hero carousel image - responsive and not constrained */
+        .hero-carousel-img {
+          max-height: none !important;
+          height: 100% !important;
+          width: 100% !important;
+        }
+
         @keyframes ken-burns {
           0% {
             transform: scale(1.1) translateX(0) translateY(0);

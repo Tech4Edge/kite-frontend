@@ -7,14 +7,25 @@ import {
   FaCheckCircle,
   FaCog,
 } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 
 // Import splints images
 import splints from "../assets/splints.jpg";
 import splints_2 from "../assets/splints_2.jpg";
 
-import shipment from '../assets/heroCarousel/1280x640shipment.jpg';
+import shipment from "../assets/heroCarousel/1280x640shipment.jpg";
+import shipmentWide from "../assets/heroCarousel/1920x640shipment.jpg";
+import carousel7Mobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
 
 const WoodenSplintsExport = () => {
+  const [, setActiveIndex] = useState(0);
   const woodenSplints = [
     { country: "Kenya", flag: "🇰🇪", size: "40x2.05x2.05 mm" },
     { country: "Hungary", flag: "🇭🇺", size: "42x2.1x2.1 mm" },
@@ -119,10 +130,189 @@ const WoodenSplintsExport = () => {
     },
   ];
 
+  const slides = [
+    {
+      id: 1,
+      title: "Premium Wooden Splints Export",
+      image: shipmentWide,
+      mobileImage: carousel7Mobile,
+      link: "#",
+    },
+    // {
+    //   id: 2,
+    //   title: "Precision Processing",
+    //   image: splints,
+    //   mobileImage: splints,
+    //   link: "#",
+    // },
+    // {
+    //   id: 3,
+    //   title: "Trusted Packaging & Dispatch",
+    //   image: splints_2,
+    //   mobileImage: splints_2,
+    //   link: "#",
+    // },
+  ];
+
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-[#F9F9F9]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-10 bg-gradient-to-b from-white to-[#F9F9F9]">
+      <div className="w-full relative  mb-16">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation, EffectFade]}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          speed={700}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          className="hero-swiper"
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={slide.id}>
+              <div className="relative min-h-[55vh] sm:min-h-[65vh] md:min-h-[78vh] lg:min-h-[90vh] w-full overflow-hidden bg-white">
+                <div className="absolute inset-0 bg-white">
+                  <div className="block w-full h-full">
+                    <picture className="block w-full h-full!">
+                      <source
+                        media="(max-width: 640px)"
+                        srcSet={slide.mobileImage || slide.image}
+                      />
+                      <source
+                        media="(max-width: 1024px)"
+                        srcSet={slide.mobileImage || slide.image}
+                      />
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        width="1920"
+                        height="640"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                        fetchPriority={index === 0 ? "high" : "auto"}
+                        className="hero-carousel-img absolute inset-0 w-full h-full object-contain object-center"
+                      />
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <style>{`
+            .hero-carousel-img {
+              max-height: none !important;
+              height: 100% !important;
+              width: 100% !important;
+            }
+
+            @keyframes fade-in-up {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+
+            .animate-fade-in-up {
+              animation: fade-in-up 1s ease-out;
+            }
+
+            .hero-swiper :global(.swiper-button-next),
+            .hero-swiper :global(.swiper-button-prev) {
+              color: white;
+              background: rgba(0, 174, 239, 0.2);
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.3);
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-swiper :global(.swiper-button-next:hover),
+            .hero-swiper :global(.swiper-button-prev:hover) {
+              background: rgba(0, 174, 239, 0.8);
+              border-color: rgba(255, 255, 255, 0.5);
+              transform: scale(1.15);
+              box-shadow: 0 12px 48px rgba(0, 174, 239, 0.4);
+            }
+
+            .hero-swiper :global(.swiper-button-next:after),
+            .hero-swiper :global(.swiper-button-prev:after) {
+              font-size: 22px;
+              font-weight: bold;
+            }
+
+            .hero-swiper :global(.swiper-pagination) {
+              bottom: 20px !important;
+              z-index: 30;
+            }
+
+            .hero-swiper :global(.swiper-pagination-bullet) {
+              background: rgba(255, 255, 255, 0.4);
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(255, 255, 255, 0.3);
+              opacity: 1;
+              width: 14px;
+              height: 14px;
+              margin: 0 6px !important;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .hero-swiper :global(.swiper-pagination-bullet-active) {
+              background: linear-gradient(135deg, #00aeef, #0095cc);
+              border-color: rgba(0, 174, 239, 0.8);
+              width: 40px;
+              border-radius: 8px;
+              box-shadow: 0 4px 20px rgba(0, 174, 239, 0.6);
+            }
+
+            @media (max-width: 1024px) {
+              .hero-swiper :global(.swiper-button-next),
+              .hero-swiper :global(.swiper-button-prev) {
+                display: none !important;
+              }
+            }
+
+            @media (max-width: 768px) {
+              .hero-swiper :global(.swiper-button-next),
+              .hero-swiper :global(.swiper-button-prev) {
+                width: 40px;
+                height: 40px;
+              }
+
+              .hero-swiper :global(.swiper-button-next:after),
+              .hero-swiper :global(.swiper-button-prev:after) {
+                font-size: 14px;
+              }
+
+              .hero-swiper :global(.swiper-pagination-bullet) {
+                width: 10px;
+                height: 10px;
+              }
+
+              .hero-swiper :global(.swiper-pagination-bullet-active) {
+                width: 24px;
+              }
+            }
+          `}</style>
         {/* Section Header */}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
             Wooden Splints Export
@@ -145,7 +335,7 @@ const WoodenSplintsExport = () => {
               key={index}
               className="card-hover bg-gradient-to-br from-[#00AEEF] to-[#0095CC] p-8 rounded-2xl text-center text-white shadow-xl"
             >
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+              <div className="text-3xl sm:text-5xl font-bold mb-2 drop-shadow-lg">
                 {stat.number}
               </div>
               <div className="text-lg font-semibold mb-1">{stat.label}</div>
@@ -362,16 +552,16 @@ const WoodenSplintsExport = () => {
             </div>
 
             <div className=" overflow-hidden rounded-2xl flex items-center justify-center">
-                          <img
-                            src={shipment}
-                            alt="Export Shipping Container"
-                            loading="lazy"
-                            decoding="async"
-                            width="1280"
-                            height="640"
-                            className="w-full object-cover"
-                          />
-                        </div>
+              <img
+                src={shipment}
+                alt="Export Shipping Container"
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="640"
+                className="w-full object-cover"
+              />
+            </div>
           </div>
         </div>
 

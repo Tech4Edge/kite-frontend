@@ -23,8 +23,10 @@ import magiaBunicii from "../assets/export/magia_bunicii.png";
 import zebra from "../assets/export/zebra.png";
 import zippy from "../assets/export/zippy.png";
 
-import hero from "../assets/shipment-banner-1920x960.jpeg";
+import hero from "../assets/heroCarousel/1920x640shipment.jpg";
+import heroMobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
 import shipment from "../assets/delivery.jpeg";
+import HeroCarousel from "./HeroCarousel";
 
 const SafetyMatchesExport = () => {
   const safetyMatches = [
@@ -151,18 +153,21 @@ const SafetyMatchesExport = () => {
   ];
 
   return (
-    <section className="pt-5 pb-20 bg-gradient-to-b from-white to-[#F9F9F9]">
-      <div className="relative w-full! mb-10 min-h-[48vh] sm:min-h-[58vh] md:min-h-[68vh] lg:min-h-[100vh] bg-white">
+    <section className="pt-5 pb-20 bg-gradient-to-b from-white to-[#F9F9F9] px-6">
+      <div className="relative w-full! mb-10 min-h-[48vh] sm:min-h-[58vh] md:min-h-[68vh] lg:min-h-[100vh] bg-white ">
         <picture className="block w-full h-full">
+          <source media="(max-width: 640px)" srcSet={heroMobile} />
+          <source media="(max-width: 1024px)" srcSet={heroMobile} />
           <img
             src={hero}
             alt="Safety matches export hero"
             loading="eager"
             decoding="async"
-            fetchpriority="high"
+            fetchPriority="high"
             width="1920"
             height="960"
-            className="absolute inset-0 w-full h-full object-left object-contain sm:object-center p-2 sm:p-3 md:p-0"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            className="hero-carousel-img absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
           />
         </picture>
       </div>

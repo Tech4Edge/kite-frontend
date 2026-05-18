@@ -66,9 +66,9 @@ img {
   /* object-fit: cover; */
 }
 
-/* Mobile-specific image optimization */
+/* Mobile-specific image optimization - exclude carousel images */
 @media (max-width: 640px) {
-  img {
+  img:not(.hero-carousel-img) {
     max-height: 400px;
     object-fit: cover;
   }
