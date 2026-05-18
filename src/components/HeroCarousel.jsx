@@ -14,7 +14,7 @@ import carousel5 from "../assets/heroCarousel/1920x640dishwash.jpg";
 import carousel6 from "../assets/heroCarousel/1920x640vero.jpg";
 import carousel7 from "../assets/heroCarousel/1920x640shipment.jpg";
 
-import carousel1Mobile from "../assets/heroCarousel/Allproduct-640x640.jpeg";
+import carousel1Mobile from "../assets/heroCarousel/all-matchesr-640x640.jpeg";
 import carousel2Mobile from "../assets/heroCarousel/kite-detergents-640x640.jpeg";
 import carousel3Mobile from "../assets/heroCarousel/burqaction-640x640.jpeg";
 import carousel4Mobile from "../assets/heroCarousel/DWB-640x640.jpg";
