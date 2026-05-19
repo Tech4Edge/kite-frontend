@@ -20,6 +20,9 @@ import "swiper/css/effect-fade";
 import splints from "../assets/splints.jpg";
 import splints_2 from "../assets/splints_2.jpg";
 
+import splintsHeroMobile from "../assets/heroCarousel/Wooden-Splints-banner-640x640.jpeg"
+import splintsHero from "../assets/heroCarousel/Wooden-Splints-Banner.jpeg"
+
 import shipment from "../assets/heroCarousel/1280x640shipment.jpg";
 import shipmentWide from "../assets/heroCarousel/1920x640shipment.jpg";
 import carousel7Mobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
@@ -134,8 +137,8 @@ const WoodenSplintsExport = () => {
     {
       id: 1,
       title: "Premium Wooden Splints Export",
-      image: shipmentWide,
-      mobileImage: carousel7Mobile,
+      image: splintsHero,
+      mobileImage: splintsHeroMobile,
       link: "#",
     },
     // {
@@ -155,7 +158,7 @@ const WoodenSplintsExport = () => {
   ];
 
   return (
-    <section className="py-10 bg-gradient-to-b from-white to-[#F9F9F9]">
+    <section className="py-5 sm:py-10 bg-gradient-to-b from-white to-[#F9F9F9]">
       <div className="w-full relative  mb-16">
         <Swiper
           modules={[Autoplay, Pagination, Navigation, EffectFade]}
