@@ -51,22 +51,10 @@ const HeroCarousel = () => {
     },
     {
       id: 3,
-      title: "Burq Detergent Action",
-      subtitle: "Color guard with deep cleaning power",
-      description:
-        "Advanced stain removal and color protection technology to keep fabrics fresh and bright, wash after wash.",
-      image: carousel3,
-      mobileImage: carousel3Mobile,
-      link: "/products/burq-action",
-      gradient: "from-green-800/50 via-green-600/30 to-transparent",
-      accentColor: "#059669",
-    },
-    {
-      id: 4,
       title: "Glow Product Range",
       subtitle: "Everyday care with trusted quality",
       description:
-        "A dependable household range built for routine performance, consistent results, and customer satisfaction.",
+      "A dependable household range built for routine performance, consistent results, and customer satisfaction.",
       image: carousel4,
       mobileImage: carousel2Mobile,
       link: "/products/kite-glow",
@@ -74,7 +62,7 @@ const HeroCarousel = () => {
       accentColor: "#7C3AED",
     },
     {
-      id: 5,
+      id: 4,
       title: "Kite Dishwash Bar",
       subtitle: "Extra strength for sparkling dishes",
       description:
@@ -85,6 +73,19 @@ const HeroCarousel = () => {
       gradient: "from-emerald-900/50 via-emerald-700/30 to-transparent",
       accentColor: "#047857",
     },
+    {
+      id: 5,
+      title: "Burq Detergent Action",
+      subtitle: "Color guard with deep cleaning power",
+      description:
+        "Advanced stain removal and color protection technology to keep fabrics fresh and bright, wash after wash.",
+      image: carousel3,
+      mobileImage: carousel3Mobile,
+      link: "/products/burq-action",
+      gradient: "from-green-800/50 via-green-600/30 to-transparent",
+      accentColor: "#059669",
+    },
+    
     {
       id: 6,
       title: "Vero Care Essentials",

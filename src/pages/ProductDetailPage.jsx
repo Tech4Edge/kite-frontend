@@ -187,12 +187,18 @@ const ProductDetailPage = () => {
     "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product";
 
   const responsiveImageCandidates = Array.from(
-    new Set([product.image, ...(product.images || [])].filter(Boolean)),
+    new Set(
+      [selectedVariantImage, product.image, ...(product.images || [])].filter(
+        Boolean,
+      ),
+    ),
   );
   const srcSet = responsiveImageCandidates
     .map((url, idx) => `${url} ${Math.max(400, (idx + 1) * 600)}w`)
     .join(", ");
   const sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 40vw";
+  const imageSrcSet = selectedVariantImage ? undefined : srcSet || undefined;
+  const imageSizes = selectedVariantImage ? undefined : sizes;
 
   const getSelectedPrice = () => {
     const variant = (product.variants || []).find(
@@ -280,9 +286,10 @@ const ProductDetailPage = () => {
                   style={{ minHeight: 280 }}
                 >
                   <img
+                    key={displayImage}
                     src={displayImage}
-                    srcSet={srcSet || undefined}
-                    sizes={srcSet ? sizes : undefined}
+                    srcSet={imageSrcSet}
+                    sizes={imageSizes}
                     alt={product.title}
                     loading="eager"
                     decoding="async"
