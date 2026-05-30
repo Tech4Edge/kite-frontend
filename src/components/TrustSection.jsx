@@ -16,42 +16,46 @@ import { useInView } from "react-intersection-observer";
 const videoGallery = [
   {
     title: "Video 1",
-    youtubeUrl: "https://youtu.be/nJb4jDTwKYk?si=q7GBA0YwTZEXaRkR",
+    youtubeUrl: "https://youtu.be/mNyMM9uqsYg?feature=shared",
   },
   {
     title: "Video 2",
-    youtubeUrl: "https://youtu.be/GWw0qA_7Kd4?si=OqrUswkLuUbUjFR-",
+    youtubeUrl: "https://youtu.be/nJb4jDTwKYk?si=q7GBA0YwTZEXaRkR",
   },
   {
     title: "Video 3",
-    youtubeUrl: "https://youtu.be/G02w16NXM90?si=apJ4UyQu8-PS3M_v",
+    youtubeUrl: "https://youtu.be/GWw0qA_7Kd4?si=OqrUswkLuUbUjFR-",
   },
   {
     title: "Video 4",
-    youtubeUrl: "https://youtu.be/e_NxhN6apAE?si=ScqZx4ekgAah0L_5",
+    youtubeUrl: "https://youtu.be/G02w16NXM90?si=apJ4UyQu8-PS3M_v",
   },
   {
     title: "Video 5",
-    youtubeUrl: "https://youtu.be/HHzMR1gLHUA?si=NuIxS1We-Aba6SEW",
+    youtubeUrl: "https://youtu.be/e_NxhN6apAE?si=ScqZx4ekgAah0L_5",
   },
   {
     title: "Video 6",
-    youtubeUrl: "https://youtu.be/6sggWLb856o?si=ExJVBhChanrBUrwY",
+    youtubeUrl: "https://youtu.be/HHzMR1gLHUA?si=NuIxS1We-Aba6SEW",
   },
   {
     title: "Video 7",
-    youtubeUrl: "https://youtu.be/yCn-tw_SdDs?si=x-JhzOF-Thu1IYeD",
+    youtubeUrl: "https://youtu.be/6sggWLb856o?si=ExJVBhChanrBUrwY",
   },
   {
     title: "Video 8",
-    youtubeUrl: "https://youtu.be/piALdUm40Gc?si=sVxVB50_AQ8mrCRq",
+    youtubeUrl: "https://youtu.be/yCn-tw_SdDs?si=x-JhzOF-Thu1IYeD",
   },
   {
     title: "Video 9",
-    youtubeUrl: "https://youtu.be/8hOODu43PuI?si=ykf8cyL7ahO2axrz",
+    youtubeUrl: "https://youtu.be/piALdUm40Gc?si=sVxVB50_AQ8mrCRq",
   },
   {
     title: "Video 10",
+    youtubeUrl: "https://youtu.be/8hOODu43PuI?si=ykf8cyL7ahO2axrz",
+  },
+  {
+    title: "Video 11",
     youtubeUrl: "https://youtu.be/kXqWiE1zquc?si=kqZStBq0Km9Kb9B2",
   },
 ];
