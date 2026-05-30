@@ -72,6 +72,11 @@ img {
     max-height: 400px;
     object-fit: cover;
   }
+
+  img.product-gallery-image {
+    max-height: none;
+    object-fit: contain;
+  }
 }
 
 /* Typography enhancements */

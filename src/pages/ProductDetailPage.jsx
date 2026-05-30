@@ -1,12 +1,14 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaFire,
   FaLayerGroup,
   FaArrowLeft,
   FaCheckCircle,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import { getProduct } from "../services/api";
 import SeoHead from "../components/seo/SeoHead";
@@ -19,7 +21,9 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState("");
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const touchStartXRef = useRef(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -38,6 +42,16 @@ const ProductDetailPage = () => {
           data?.skus?.[0]?.size ||
           "";
         setSelectedVariant(firstVariant);
+        const firstImageIndex = (data?.variantImages || []).findIndex(
+          (item) =>
+            String(item?.name || "")
+              .trim()
+              .toLowerCase() ===
+            String(firstVariant || "")
+              .trim()
+              .toLowerCase(),
+        );
+        setActiveImageIndex(firstImageIndex >= 0 ? firstImageIndex : 0);
       } catch {
         setProduct(null);
       } finally {
@@ -164,41 +178,111 @@ const ProductDetailPage = () => {
     ...(product.skus || []).map((s) => s.size),
   ].filter(Boolean);
   const uniqueOptions = Array.from(new Set(sizeOrSkuOptions));
-  const variantImageByName = (product.variantImages || []).reduce(
-    (acc, item) => {
-      const key = String(item?.name || "")
-        .trim()
-        .toLowerCase();
-      if (key && item?.image) acc[key] = item.image;
-      return acc;
-    },
-    {},
-  );
-  const selectedVariantImage =
-    variantImageByName[
-      String(selectedVariant || "")
-        .trim()
-        .toLowerCase()
-    ] || "";
-  const displayImage =
-    selectedVariantImage ||
-    product.image ||
-    product.images?.[0] ||
-    "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product";
+  const galleryItems =
+    (product.variantImages || [])
+      .filter((item) => item?.image)
+      .map((item, idx) => ({
+        name: item?.name || `Variant ${idx + 1}`,
+        image: item.image,
+      })) || [];
 
-  const responsiveImageCandidates = Array.from(
-    new Set(
-      [selectedVariantImage, product.image, ...(product.images || [])].filter(
-        Boolean,
-      ),
-    ),
+  const fallbackGalleryItems = Array.from(
+    new Set([product.image, ...(product.images || [])].filter(Boolean)),
+  ).map((image, idx) => ({
+    name: `${product.title} ${idx + 1}`,
+    image,
+  }));
+
+  const finalGalleryItems =
+    galleryItems.length > 0 ? galleryItems : fallbackGalleryItems;
+
+  const boundedActiveIndex = Math.min(
+    activeImageIndex,
+    Math.max(0, finalGalleryItems.length - 1),
   );
-  const srcSet = responsiveImageCandidates
-    .map((url, idx) => `${url} ${Math.max(400, (idx + 1) * 600)}w`)
-    .join(", ");
-  const sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 40vw";
-  const imageSrcSet = selectedVariantImage ? undefined : srcSet || undefined;
-  const imageSizes = selectedVariantImage ? undefined : sizes;
+
+  const activeGalleryItem = finalGalleryItems[boundedActiveIndex] || {
+    name: selectedVariant || product.title,
+    image:
+      product.image ||
+      product.images?.[0] ||
+      "https://via.placeholder.com/600x700/E0E0E0/666666?text=Product",
+  };
+
+  const displayImage = activeGalleryItem.image;
+
+  const syncVariantByImageIndex = (index) => {
+    const nextItem = finalGalleryItems[index];
+    if (!nextItem?.name) return;
+    const nextKey = String(nextItem.name).trim().toLowerCase();
+    const matchedOption = uniqueOptions.find(
+      (opt) =>
+        String(opt || "")
+          .trim()
+          .toLowerCase() === nextKey,
+    );
+    if (matchedOption) {
+      setSelectedVariant(matchedOption);
+    }
+  };
+
+  const goToNextImage = () => {
+    if (finalGalleryItems.length <= 1) return;
+    setActiveImageIndex((prev) => {
+      const nextIndex = (prev + 1) % finalGalleryItems.length;
+      syncVariantByImageIndex(nextIndex);
+      return nextIndex;
+    });
+  };
+
+  const goToPreviousImage = () => {
+    if (finalGalleryItems.length <= 1) return;
+    setActiveImageIndex((prev) => {
+      const nextIndex =
+        (prev - 1 + finalGalleryItems.length) % finalGalleryItems.length;
+      syncVariantByImageIndex(nextIndex);
+      return nextIndex;
+    });
+  };
+
+  const handleVariantSelect = (option) => {
+    setSelectedVariant(option);
+    const nextIndex = finalGalleryItems.findIndex(
+      (item) =>
+        String(item?.name || "")
+          .trim()
+          .toLowerCase() ===
+        String(option || "")
+          .trim()
+          .toLowerCase(),
+    );
+    if (nextIndex >= 0) {
+      setActiveImageIndex(nextIndex);
+    }
+  };
+
+  const handleThumbnailSelect = (index) => {
+    setActiveImageIndex(index);
+    syncVariantByImageIndex(index);
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartXRef.current = event.touches?.[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event) => {
+    const startX = touchStartXRef.current;
+    const endX = event.changedTouches?.[0]?.clientX;
+    touchStartXRef.current = null;
+    if (startX == null || endX == null) return;
+    const delta = endX - startX;
+    if (Math.abs(delta) < 45) return;
+    if (delta < 0) {
+      goToNextImage();
+      return;
+    }
+    goToPreviousImage();
+  };
 
   const getSelectedPrice = () => {
     const variant = (product.variants || []).find(
@@ -274,7 +358,7 @@ const ProductDetailPage = () => {
         >
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
             {/* Product Image */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -283,30 +367,76 @@ const ProductDetailPage = () => {
               <div className="relative mx-auto w-full bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
                 <div
                   className="w-full flex items-center justify-center"
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
                   style={{ minHeight: 280 }}
                 >
                   <img
                     key={displayImage}
                     src={displayImage}
-                    srcSet={imageSrcSet}
-                    sizes={imageSizes}
                     alt={product.title}
                     loading="eager"
                     decoding="async"
-                    className="w-full max-w-[720px] h-auto object-contain"
+                    className="product-gallery-image w-full max-w-[720px] h-auto object-contain"
                     style={{ maxHeight: "80vh" }}
                   />
                 </div>
+                {finalGalleryItems.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={goToPreviousImage}
+                      className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
+                      aria-label="Previous image"
+                    >
+                      <FaChevronLeft />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={goToNextImage}
+                      className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
+                      aria-label="Next image"
+                    >
+                      <FaChevronRight />
+                    </button>
+                  </>
+                )}
                 {selectedVariant && (
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold bg-[#00AEEF]/95 shadow-lg">
                     {selectedVariant}
                   </span>
                 )}
               </div>
-            </motion.div>
+              {finalGalleryItems.length > 1 && (
+                <div className="mt-4 grid grid-cols-4 sm:grid-cols-5 gap-2">
+                  {finalGalleryItems.map((item, idx) => (
+                    <button
+                      key={`${item.image}-${idx}`}
+                      type="button"
+                      onClick={() => handleThumbnailSelect(idx)}
+                      className={`relative rounded-lg overflow-hidden border-2 transition-all ${
+                        boundedActiveIndex === idx
+                          ? "border-[#00AEEF] ring-2 ring-[#00AEEF]/20"
+                          : "border-[#E0E0E0] hover:border-[#00AEEF]/60"
+                      }`}
+                      aria-label={`Show ${item.name}`}
+                      aria-current={boundedActiveIndex === idx}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-16 w-full object-contain bg-white"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </Motion.div>
 
             {/* Product Details */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -370,7 +500,7 @@ const ProductDetailPage = () => {
                       <button
                         key={opt}
                         type="button"
-                        onClick={() => setSelectedVariant(opt)}
+                        onClick={() => handleVariantSelect(opt)}
                         className={`px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-semibold ${
                           selectedVariant === opt
                             ? "bg-[#00AEEF] text-white border-[#00AEEF]"
@@ -432,11 +562,11 @@ const ProductDetailPage = () => {
                   Buy Now
                 </button>
               </div>
-            </motion.div>
+            </Motion.div>
           </div>
 
           {/* Additional Information Sections */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -638,10 +768,10 @@ const ProductDetailPage = () => {
                 <p className="text-lg">{product.services}</p>
               </div>
             )}
-          </motion.div>
+          </Motion.div>
 
           {/* CTA Section */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -671,7 +801,7 @@ const ProductDetailPage = () => {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </>
