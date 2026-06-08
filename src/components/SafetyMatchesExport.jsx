@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import world_map_export_destinations from "../assets/KiteExportMap1920x640.jpeg";
+import world_map_export_destinations_mobile from "../assets/Kite-Export-Map-640x640.jpeg";
 
 // Import match images
 import simba from "../assets/export/simba.png";
@@ -28,10 +29,9 @@ import magiaBunicii from "../assets/export/magia_bunicii.png";
 import zebra from "../assets/export/zebra.png";
 import zippy from "../assets/export/zippy.png";
 
-import hero from "../assets/heroCarousel/1920x640shipment.jpg";
-import heroMobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
+import hero from "../assets/Shippment-1920x640.jpeg";
+import heroMobile from "../assets/Shippment-640x640.jpeg";
 import shipment from "../assets/delivery.jpeg";
-import HeroCarousel from "./HeroCarousel";
 
 const SafetyMatchesExport = () => {
   const safetyMatches = [
@@ -179,16 +179,23 @@ const SafetyMatchesExport = () => {
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                className="w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
+                className="w-full h-full object-cover object-center p-2 sm:p-3 md:p-0"
               />
             </picture>
           </SwiperSlide>
           <SwiperSlide>
-            <img
-              src={world_map_export_destinations}
-              alt="Global Export Map"
-              className="w-full h-full object-contain object-center p-2 sm:p-3 md:p-0 bg-white"
-            />
+            <picture className="block w-full h-full">
+              <source media="(max-width: 640px)" srcSet={world_map_export_destinations_mobile} />
+              <source media="(max-width: 1024px)" srcSet={world_map_export_destinations_mobile} />
+              <img
+                src={world_map_export_destinations}
+                alt="Global Export Map"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-center p-2 sm:p-3 md:p-0"
+              />
+            </picture>
           </SwiperSlide>
         </Swiper>
       </div>
