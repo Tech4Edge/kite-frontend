@@ -50,6 +50,12 @@ const Footer = () => {
       isHeadquarter: true,
     },
     {
+      title: "Export Department",
+      address: "Industrial Estate, Old Jamrud Road, Peshawar, Pakistan",
+      phone: "+92 300 8592829",
+      email: "match.export@azizgrp.com",
+    },
+    {
       title: "Mohsin Match Factory Pvt. Ltd.",
       address: "90-B, Industrial Estate, Old Jamrud Road, Peshawar, Pakistan",
       phone: "+92 91 5812787, 5812785",
@@ -237,7 +243,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {contactInfo
               .filter((info) => !info.isHeadquarter)
               .map((info, index) => (
@@ -268,15 +274,17 @@ const Footer = () => {
                           <span className="text-white/80">Fax: {info.fax}</span>
                         </li>
                       )} */}
-                    {/* <li className="flex items-center">
-                      <FaEnvelope className="text-[#00AEEF] mr-2 flex-shrink-0 text-xs" />
-                      <a
-                        href={`mailto:${info.email}`}
-                        className="text-white/80 hover:text-[#00AEEF] transition-colors break-all"
-                      >
-                        {info.email}
-                      </a>
-                    </li> */}
+                    {info.email && (
+                      <li className="flex items-center">
+                        <FaEnvelope className="text-[#00AEEF] mr-2 flex-shrink-0 text-xs" />
+                        <a
+                          href={`mailto:${info.email}`}
+                          className="text-white/80 hover:text-[#00AEEF] transition-colors break-all"
+                        >
+                          {info.email}
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               ))}
