@@ -28,6 +28,7 @@ const emptyForm = {
   showInProductsPage: true,
   showInNavbar: true,
   features: [""],
+  brands: [],
   variants: [{ name: "", detail: "", packing: "", price: "" }],
   variantImages: [{ name: "", image: "" }],
   facilities: [{ name: "", location: "", note: "" }],
@@ -47,6 +48,16 @@ function sanitizeVariants(list = []) {
       price: v.price === "" || v.price == null ? null : Number(v.price),
     }))
     .filter((v) => v.name || v.detail || v.packing || v.price != null);
+}
+
+function sanitizeBrands(list = []) {
+  return (list || []).map(b => ({
+    name: String(b.name || "").trim(),
+    category: String(b.category || "").trim(),
+    description: String(b.description || "").trim(),
+    image: String(b.image || "").trim(),
+    variants: sanitizeVariants(b.variants),
+  })).filter(b => b.name || b.category);
 }
 
 function sanitizeFacilities(list = []) {
@@ -75,6 +86,7 @@ const AdminProductsPage = () => {
   const [editingId, setEditingId] = useState(null);
   const [productImages, setProductImages] = useState([]);
   const [variantImageFiles, setVariantImageFiles] = useState({});
+  const [brandImageFiles, setBrandImageFiles] = useState({});
 
   const load = async () => {
     try {
@@ -202,6 +214,46 @@ const AdminProductsPage = () => {
     });
   };
 
+  const updateBrand = (index, key, value) => {
+    setForm(prev => {
+      const next = [...prev.brands];
+      next[index] = { ...next[index], [key]: value };
+      return { ...prev, brands: next };
+    });
+  };
+  const addBrand = () => setForm(prev => ({ ...prev, brands: [...prev.brands, { name: "", category: "", description: "", image: "", variants: [{name: "", detail: "", packing: "", price: ""}] }] }));
+  const removeBrand = (index) => setForm(prev => ({ ...prev, brands: prev.brands.filter((_, i) => i !== index) }));
+  const updateBrandImageFile = (index, file) => {
+    setBrandImageFiles(prev => {
+      const next = { ...prev };
+      if (file) next[index] = file; else delete next[index];
+      return next;
+    });
+  };
+  const updateBrandVariant = (brandIndex, variantIndex, key, value) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      const nextVariants = [...nextBrands[brandIndex].variants];
+      nextVariants[variantIndex] = { ...nextVariants[variantIndex], [key]: value };
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], variants: nextVariants };
+      return { ...prev, brands: nextBrands };
+    });
+  };
+  const addBrandVariant = (brandIndex) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], variants: [...nextBrands[brandIndex].variants, {name: "", detail: "", packing: "", price: ""}] };
+      return { ...prev, brands: nextBrands };
+    });
+  };
+  const removeBrandVariant = (brandIndex, variantIndex) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], variants: nextBrands[brandIndex].variants.filter((_, i) => i !== variantIndex) };
+      return { ...prev, brands: nextBrands };
+    });
+  };
+
   const updateFacility = (index, key, value) => {
     setForm((prev) => {
       const next = [...prev.facilities];
@@ -286,12 +338,16 @@ const AdminProductsPage = () => {
         showInProductsPage: form.showInProductsPage,
         showInNavbar: form.showInNavbar,
         features: sanitizeStringList(form.features),
+        brands: sanitizeBrands(form.brands),
         variants: sanitizeVariants(form.variants),
         variantImages: compactVariantImages,
         facilities: sanitizeFacilities(form.facilities),
         productImages,
         variantImageFiles: compactVariantImageFiles,
       };
+
+      const compactBrandImageFiles = form.brands.map((_, i) => brandImageFiles[i] || null);
+      payload.brandImageFiles = compactBrandImageFiles;
 
       if (editingId) {
         await adminUpdateProduct(editingId, payload);
@@ -302,6 +358,7 @@ const AdminProductsPage = () => {
       setEditingId(null);
       setProductImages([]);
       setVariantImageFiles({});
+      setBrandImageFiles({});
       await load();
     } catch (err) {
       setError(err.message || "Failed to save product");
@@ -332,6 +389,7 @@ const AdminProductsPage = () => {
       showInProductsPage: p.showInProductsPage ?? true,
       showInNavbar: p.showInNavbar ?? true,
       features: p.features?.length ? p.features : [""],
+      brands: p.brands?.length ? p.brands : [],
       variants: p.variants?.length
         ? p.variants.map((v) => ({ ...v, price: v.price ?? "" }))
         : [{ name: "", detail: "", packing: "", price: "" }],
@@ -348,6 +406,7 @@ const AdminProductsPage = () => {
     });
     setProductImages([]);
     setVariantImageFiles({});
+    setBrandImageFiles({});
   };
 
   const handleDelete = async (id) => {
@@ -832,6 +891,55 @@ const AdminProductsPage = () => {
                     className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
                   >
                     Add Variant Image
+                  </button>
+                </div>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block mb-1.5 font-medium">Brands</label>
+                <div className="space-y-4">
+                  {form.brands.map((brand, bIdx) => (
+                    <div key={`b-${bIdx}`} className="border border-[#E0E0E0] p-4 rounded-xl space-y-4">
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-semibold text-[#00AEEF]">Brand {bIdx + 1}</h4>
+                        <button type="button" onClick={() => removeBrand(bIdx)} className="px-3 py-1 rounded-lg border border-red-200 text-red-600 text-xs">Remove Brand</button>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input placeholder="Name (e.g. Kite)" value={brand.name} onChange={(e) => updateBrand(bIdx, 'name', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                        <input placeholder="Category (e.g. Premium)" value={brand.category} onChange={(e) => updateBrand(bIdx, 'category', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                      </div>
+                      <textarea placeholder="Description" value={brand.description} onChange={(e) => updateBrand(bIdx, 'description', e.target.value)} rows={2} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-medium text-[#666] mb-1">Brand Image URL (optional)</label>
+                          <input placeholder="URL" value={brand.image} onChange={(e) => updateBrand(bIdx, 'image', e.target.value)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-[#666] mb-1">Upload Brand Image</label>
+                          <input type="file" accept="image/*" onChange={(e) => updateBrandImageFile(bIdx, e.target.files?.[0] || null)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                        </div>
+                      </div>
+
+                      <div className="bg-[#F9F9F9] p-3 rounded-lg space-y-2">
+                        <label className="block text-xs font-medium text-[#666]">Brand Variants</label>
+                        {brand.variants.map((v, vIdx) => (
+                          <div key={`bv-${bIdx}-${vIdx}`} className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                            <input placeholder="Name" value={v.name} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'name', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                            <input placeholder="Detail" value={v.detail} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'detail', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                            <input placeholder="Packing" value={v.packing} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'packing', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                            <input placeholder="Price" type="number" value={v.price} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'price', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                            <button type="button" onClick={() => removeBrandVariant(bIdx, vIdx)} className="px-2 py-1 rounded text-red-600 text-xs hover:bg-red-50">Remove</button>
+                          </div>
+                        ))}
+                        <button type="button" onClick={() => addBrandVariant(bIdx)} className="text-xs text-[#00AEEF] hover:underline font-medium">
+                          + Add Variant
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  <button type="button" onClick={addBrand} className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]">
+                    Add Brand
                   </button>
                 </div>
               </div>
