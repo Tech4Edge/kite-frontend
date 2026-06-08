@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createOrder } from "../services/api";
 import SeoHead from "../components/seo/SeoHead";
+import { useCart } from "../context/CartContext";
+import { colors } from "../theme";
 
 const PHONE_REGEX = /^(?:\+92|92|0)3\d{9}$/;
 
@@ -10,11 +12,16 @@ const normalizePhone = (value = "") => value.replace(/[\s()-]/g, "");
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { cartItems, cartTotal, clearCart } = useCart();
+  
+  const searchParams = new URLSearchParams(location.search);
+  const isCartCheckout = searchParams.get('type') === 'cart';
+
   const orderContext = location.state?.orderContext;
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [form, setForm] = useState({
     quantity: 1,
     customerName: "",
@@ -26,6 +33,15 @@ const CheckoutPage = () => {
   });
 
   const checkoutData = useMemo(() => {
+    if (isCartCheckout) {
+      if (cartItems.length === 0) return null;
+      return {
+        type: "cart",
+        items: cartItems,
+        total: cartTotal
+      };
+    }
+
     if (!orderContext) return null;
     const isProduct = orderContext.type === "product";
     return {
@@ -37,15 +53,15 @@ const CheckoutPage = () => {
       quantity: Number(orderContext.quantity) > 0 ? Number(orderContext.quantity) : 1,
       unitPrice: Number(orderContext.totalPrice) || 0,
     };
-  }, [orderContext]);
+  }, [isCartCheckout, cartItems, cartTotal, orderContext]);
 
   useEffect(() => {
-    if (!checkoutData) return;
+    if (!checkoutData || isCartCheckout) return;
     setForm((prev) => ({
       ...prev,
       quantity: checkoutData.quantity,
     }));
-  }, [checkoutData]);
+  }, [checkoutData, isCartCheckout]);
 
   if (!checkoutData) {
     return (
@@ -57,7 +73,7 @@ const CheckoutPage = () => {
               Checkout Not Ready
             </h1>
             <p className="text-[#666666] mb-6">
-              Please select a product or promotion first, then click Buy.
+              Please select a product or add items to your cart first.
             </p>
             <Link
               to="/products"
@@ -77,6 +93,7 @@ const CheckoutPage = () => {
   };
 
   const decreaseQuantity = () => {
+    if (isCartCheckout) return;
     setForm((prev) => ({
       ...prev,
       quantity: Math.max(1, Number(prev.quantity) - 1),
@@ -84,6 +101,7 @@ const CheckoutPage = () => {
   };
 
   const increaseQuantity = () => {
+    if (isCartCheckout) return;
     setForm((prev) => ({
       ...prev,
       quantity: Math.min(1000, Number(prev.quantity) + 1),
@@ -92,8 +110,13 @@ const CheckoutPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!acceptedTerms) {
+      setError("You must accept the Terms and Conditions to place an order.");
+      return;
+    }
+
     const parsedQuantity = Number(form.quantity);
-    if (!Number.isInteger(parsedQuantity) || parsedQuantity < 1 || parsedQuantity > 1000) {
+    if (!isCartCheckout && (!Number.isInteger(parsedQuantity) || parsedQuantity < 1 || parsedQuantity > 1000)) {
       setError("Quantity must be a whole number between 1 and 1000.");
       return;
     }
@@ -111,50 +134,51 @@ const CheckoutPage = () => {
     setSubmitting(true);
     setError("");
     try {
-      const orderPayload = {
-        type: checkoutData.type,
-        productId: checkoutData.productId,
-        promotionId: checkoutData.promotionId,
-        selectedSkuOrSize: checkoutData.selectedSkuOrSize,
-      };
-      await createOrder({
+      let orderPayload;
+      if (isCartCheckout) {
+        orderPayload = {
+          type: "cart",
+          items: checkoutData.items.map(item => ({
+            productId: item.productId,
+            brandName: item.brandName,
+            selectedVariant: item.selectedVariant,
+            quantity: item.quantity,
+            price: item.price
+          }))
+        };
+      } else {
+        orderPayload = {
+          type: checkoutData.type,
+          productId: checkoutData.productId,
+          promotionId: checkoutData.promotionId,
+          selectedSkuOrSize: checkoutData.selectedSkuOrSize,
+          quantity: parsedQuantity
+        };
+      }
+
+      const orderResult = await createOrder({
         ...orderPayload,
-        ...form,
-        quantity: parsedQuantity,
+        customerName: form.customerName,
+        email: form.email,
+        address: form.address,
+        city: form.city,
+        note: form.note,
         phone: normalizedPhone,
         paymentMethod: "COD",
       });
-      setSuccess(true);
+
+      if (isCartCheckout) {
+        clearCart();
+      }
+
+      navigate(`/order-success/${orderResult._id || orderResult.id}`, {
+        state: { orderDetails: orderResult }
+      });
     } catch (err) {
       setError(err.message || "Failed to place order");
-    } finally {
       setSubmitting(false);
     }
   };
-
-  if (success) {
-    return (
-      <>
-        <SeoHead title="Checkout" path="/checkout" noindex />
-        <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-16">
-          <div className="max-w-3xl mx-auto px-4 text-center bg-white border border-[#E0E0E0] rounded-2xl p-8">
-            <h1 className="text-3xl font-bold text-[#222222] mb-3">
-              Order Placed
-            </h1>
-            <p className="text-[#666666] mb-6">
-              Your order has been submitted successfully with Cash on Delivery.
-            </p>
-            <button
-              onClick={() => navigate("/")}
-              className="px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC]"
-            >
-              Back to Home
-            </button>
-          </div>
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -163,38 +187,40 @@ const CheckoutPage = () => {
       <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white border border-[#E0E0E0] rounded-2xl p-6">
           <h1 className="text-2xl font-bold text-[#222222] mb-5">Checkout</h1>
-          {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
+          {error && <p className="text-red-600 text-sm mb-4 bg-red-50 p-3 rounded-lg border border-red-100">{error}</p>}
           <form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 md:grid-cols-2 gap-4"
           >
-            <div>
-              <label className="block mb-1 text-sm font-medium">Quantity</label>
-              <div className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden">
-                <button
-                  type="button"
-                  onClick={decreaseQuantity}
-                  disabled={Number(form.quantity) <= 1}
-                  className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
-                  aria-label="Decrease quantity"
-                >
-                  -
-                </button>
-                <span className="w-14 text-center text-sm font-semibold text-[#222222]">
-                  {Number(form.quantity) || 1}
-                </span>
-                <button
-                  type="button"
-                  onClick={increaseQuantity}
-                  disabled={Number(form.quantity) >= 1000}
-                  className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
+            {!isCartCheckout && (
+              <div>
+                <label className="block mb-1 text-sm font-medium">Quantity</label>
+                <div className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={decreaseQuantity}
+                    disabled={Number(form.quantity) <= 1}
+                    className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                    aria-label="Decrease quantity"
+                  >
+                    -
+                  </button>
+                  <span className="w-14 text-center text-sm font-semibold text-[#222222]">
+                    {Number(form.quantity) || 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={increaseQuantity}
+                    disabled={Number(form.quantity) >= 1000}
+                    className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-            </div>
-            <div>
+            )}
+            <div className={isCartCheckout ? "md:col-span-2" : ""}>
               <label className="block mb-1 text-sm font-medium">Name</label>
               <input
                 name="customerName"
@@ -211,7 +237,6 @@ const CheckoutPage = () => {
                 value={form.phone}
                 onChange={handleChange}
                 required
-                // pattern="^(\\+92|92|0)3\\d{9}$"
                 title="Enter 03xxxxxxxxx, 923xxxxxxxxx, or +923xxxxxxxxx"
                 inputMode="tel"
                 placeholder="03xxxxxxxxx, 923xxxxxxxxx, or +923xxxxxxxxx"
@@ -230,7 +255,7 @@ const CheckoutPage = () => {
                 className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg"
               />
             </div>
-            <div>
+            <div className="md:col-span-2">
               <label className="block mb-1 text-sm font-medium">City</label>
               <input
                 name="city"
@@ -273,11 +298,27 @@ const CheckoutPage = () => {
                 className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg bg-[#F9F9F9]"
               />
             </div>
-            <div className="md:col-span-2">
+
+            {/* Terms and Conditions Checkbox */}
+            <div className="md:col-span-2 mt-2">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={acceptedTerms}
+                  onChange={(e) => setAcceptedTerms(e.target.checked)}
+                  className="mt-1 w-4 h-4 text-[#00AEEF] border-gray-300 rounded focus:ring-[#00AEEF]"
+                />
+                <span className="text-sm text-gray-600">
+                  I have read and agree to the website's <Link to="/about" className="text-[#00AEEF] hover:underline" target="_blank">Terms & Conditions</Link> and <Link to="/about" className="text-[#00AEEF] hover:underline" target="_blank">Privacy Policy</Link>.
+                </span>
+              </label>
+            </div>
+
+            <div className="md:col-span-2 mt-4">
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full px-5 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] disabled:opacity-60"
+                className="w-full px-5 py-3.5 rounded-lg text-white font-bold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] disabled:opacity-60 hover:shadow-lg transition-all"
               >
                 {submitting ? "Placing Order..." : "Place Order"}
               </button>
@@ -289,31 +330,66 @@ const CheckoutPage = () => {
           <h2 className="text-lg font-semibold text-[#222222] mb-4">
             Order Summary
           </h2>
-          <p className="text-sm text-[#666666] mb-1">Type</p>
-          <p className="font-semibold mb-3">
-            {checkoutData.type === "product" ? "Product" : "Promotion"}
-          </p>
-          <p className="text-sm text-[#666666] mb-1">Item</p>
-          <p className="font-semibold mb-3">{checkoutData.title}</p>
-          {checkoutData.selectedSkuOrSize && (
+          
+          {isCartCheckout ? (
+            <div className="space-y-4">
+              <div className="divide-y divide-[#E0E0E0] max-h-60 overflow-y-auto pr-2">
+                {checkoutData.items.map((item, idx) => (
+                  <div key={idx} className="py-3 flex justify-between gap-4">
+                    <div>
+                      <p className="font-semibold text-sm line-clamp-2">{item.productTitle} {item.brandName ? `(${item.brandName})` : ''}</p>
+                      <p className="text-xs text-gray-500 mt-1">{item.selectedVariant} x {item.quantity}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-sm">Rs {((item.price || 0) * item.quantity).toLocaleString()}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="pt-4 border-t border-[#E0E0E0]">
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-sm text-[#666666]">Total Items</p>
+                  <p className="font-semibold">{checkoutData.items.reduce((acc, item) => acc + item.quantity, 0)}</p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="text-sm font-semibold text-[#222222]">Estimated Total</p>
+                  <p className="text-2xl font-bold text-[#00AEEF]">
+                    Rs {checkoutData.total.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
             <>
-              <p className="text-sm text-[#666666] mb-1">Selected Variant</p>
+              <p className="text-sm text-[#666666] mb-1">Type</p>
               <p className="font-semibold mb-3">
-                {checkoutData.selectedSkuOrSize}
+                {checkoutData.type === "product" ? "Product" : "Promotion"}
               </p>
+              <p className="text-sm text-[#666666] mb-1">Item</p>
+              <p className="font-semibold mb-3">{checkoutData.title}</p>
+              {checkoutData.selectedSkuOrSize && (
+                <>
+                  <p className="text-sm text-[#666666] mb-1">Selected Variant</p>
+                  <p className="font-semibold mb-3">
+                    {checkoutData.selectedSkuOrSize}
+                  </p>
+                </>
+              )}
+              <p className="text-sm text-[#666666] mb-1">Quantity</p>
+              <p className="font-semibold mb-3">
+                {Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity}
+              </p>
+              <div className="pt-4 mt-4 border-t border-[#E0E0E0]">
+                <p className="text-sm text-[#666666] mb-1">Estimated Total</p>
+                <p className="text-2xl font-bold text-[#00AEEF]">
+                  Rs {(
+                    (Number(checkoutData.unitPrice) || 0) *
+                    (Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity)
+                  ).toLocaleString()}
+                </p>
+              </div>
             </>
           )}
-          <p className="text-sm text-[#666666] mb-1">Quantity</p>
-          <p className="font-semibold mb-3">
-            {Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity}
-          </p>
-          <p className="text-sm text-[#666666] mb-1">Estimated Price</p>
-          <p className="text-2xl font-bold text-[#00AEEF]">
-            Rs {(
-              (Number(checkoutData.unitPrice) || 0) *
-              (Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity)
-            ).toLocaleString()}
-          </p>
         </div>
       </div>
       </div>
