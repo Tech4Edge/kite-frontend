@@ -36,17 +36,17 @@ import HeroCarousel from "./HeroCarousel";
 const SafetyMatchesExport = () => {
   const safetyMatches = [
     { brand: "Simba", country: "Congo", image: simba },
-    { brand: "Wood Flower", country: "Romania", image: woodFlower },
+    { brand: "Wood Flowers", country: "Romania", image: woodFlower },
     { brand: "Al Felaij", country: "UAE", image: alFelaij },
-    { brand: "The Gosse", country: "Nigeria", image: theGosse },
+    { brand: "The Goose", country: "Nigeria", image: theGosse },
     { brand: "Football", country: "Saudi Arabia", image: football },
-    { brand: "Magia bunicii", country: "Romania", image: magiaBunicii },
+    { brand: "Magia Bunicii", country: "Romania", image: magiaBunicii },
     { brand: "Zebra", country: "Lebanon", image: zebra },
     { brand: "Zippy", country: "South Africa", image: zippy },
-    { brand: "Al Karama", country: "Sudan", image: alKarama },
+    { brand: "Al Karaama", country: "Sudan", image: alKarama },
     { brand: "Al Moallam", country: "Sudan", image: alMoallam },
     { brand: "Ziynat", country: "Uzbekistan", image: ziynat },
-    { brand: "ReD Mac", country: "Ukraine", image: redMac },
+    { brand: "ReD MaC", country: "Ukraine", image: redMac },
   ];
 
   const exportServices = [
@@ -400,11 +400,11 @@ const SafetyMatchesExport = () => {
           </div>
         </div> */}
 
-        
 
-        
 
-        
+
+
+
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-[#ED028C] to-[#d4027a] rounded-3xl p-8 md:p-12">
