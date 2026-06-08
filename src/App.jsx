@@ -11,6 +11,7 @@ import CartDrawer from "./components/CartDrawer";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import FloatingCartButton from "./components/FloatingCartButton";
 import ScrollToTop from "./components/ScrollToTop";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
@@ -102,6 +103,7 @@ function AppRoutes() {
         </main>
       )}
       {!isAdminRoute && <CartDrawer />}
+      {!isAdminRoute && <FloatingCartButton />}
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <WhatsAppButton />}
     </div>

@@ -27,10 +27,15 @@ export const CartProvider = ({ children }) => {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
+  const addingRef = React.useRef(false);
+
   const addToCart = (product, brandName, variant, quantity = 1) => {
+    if (addingRef.current) return;
+    addingRef.current = true;
+
     setCartItems(prev => {
       const existingIdx = prev.findIndex(
-        item => item.productId === product.id && item.brandName === brandName && item.selectedVariant === variant.name
+        item => item.productId === product.id && (item.brandName || "") === (brandName || "") && item.selectedVariant === variant.name
       );
       if (existingIdx >= 0) {
         const next = [...prev];
@@ -51,6 +56,10 @@ export const CartProvider = ({ children }) => {
       ];
     });
     openCart();
+
+    setTimeout(() => {
+      addingRef.current = false;
+    }, 300);
   };
 
   const removeFromCart = (index) => {
