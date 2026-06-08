@@ -6,6 +6,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
+import { CartProvider } from "./context/CartContext";
+import CartDrawer from "./components/CartDrawer";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -20,6 +22,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
 const PromotionsPackagesPage = lazy(() => import("./pages/PromotionsPackagesPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const OrderSummaryPage = lazy(() => import("./pages/OrderSummaryPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 // import KiteMatchesPage from "./pages/KiteMatchesPage";
 // import OlympiaMatchesPage from "./pages/OlympiaMatchesPage";
@@ -82,6 +85,7 @@ function AppRoutes() {
                 element={<PromotionsPackagesPage />}
               />
               <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/order-success/:id" element={<OrderSummaryPage />} />
               <Route path="/export" element={<ExportPage />} />
               <Route
                 path="/export/safety-matches"
@@ -97,6 +101,7 @@ function AppRoutes() {
           </Suspense>
         </main>
       )}
+      {!isAdminRoute && <CartDrawer />}
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && <WhatsAppButton />}
     </div>
@@ -105,10 +110,12 @@ function AppRoutes() {
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <AppRoutes />
-    </Router>
+    <CartProvider>
+      <Router>
+        <ScrollToTop />
+        <AppRoutes />
+      </Router>
+    </CartProvider>
   );
 }
 
