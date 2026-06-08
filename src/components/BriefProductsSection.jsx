@@ -4,7 +4,6 @@ import { FaFire, FaLayerGroup, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/api";
-import { getProducts } from "../services/api";
 
 const placeholderImage =
   "https://via.placeholder.com/400x500/E0E0E0/666666?text=Product";
