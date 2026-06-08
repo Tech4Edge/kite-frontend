@@ -7,7 +7,12 @@ import {
   FaCheckCircle,
   FaCog,
 } from "react-icons/fa";
-import world_map_export_destinations from "../assets/worldmap.jpeg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import world_map_export_destinations from "../assets/KiteExportMap1920x640.jpeg";
 
 // Import match images
 import simba from "../assets/export/simba.png";
@@ -155,38 +160,68 @@ const SafetyMatchesExport = () => {
   return (
     <section className="pt-5 pb-20 bg-gradient-to-b from-white to-[#F9F9F9] px-6">
       <div className="relative w-full! mb-10 min-h-[48vh] sm:min-h-[58vh] md:min-h-[68vh] lg:min-h-[100vh] bg-white ">
-        <picture className="block w-full h-full">
-          <source media="(max-width: 640px)" srcSet={heroMobile} />
-          <source media="(max-width: 1024px)" srcSet={heroMobile} />
-          <img
-            src={hero}
-            alt="Safety matches export hero"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            width="1920"
-            height="960"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-            className="hero-carousel-img absolute inset-0 w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
-          />
-        </picture>
+        <Swiper
+          modules={[Autoplay, Navigation, Pagination]}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop={true}
+          className="w-full h-full absolute inset-0"
+        >
+          <SwiperSlide>
+            <picture className="block w-full h-full">
+              <source media="(max-width: 640px)" srcSet={heroMobile} />
+              <source media="(max-width: 1024px)" srcSet={heroMobile} />
+              <img
+                src={hero}
+                alt="Safety matches export hero"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className="w-full h-full object-contain object-center p-2 sm:p-3 md:p-0"
+              />
+            </picture>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src={world_map_export_destinations}
+              alt="Global Export Map"
+              className="w-full h-full object-contain object-center p-2 sm:p-3 md:p-0 bg-white"
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          {/* <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
-            Safety Matches Export
-          </h2> */}
-          <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-            Export of Premium Quality Safety Matches
-          </h3>
-          <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
-          <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            Since 1995, Aziz Group has been Pakistan's largest safety match
-            exporter, serving markets across Europe, Asia, Africa, and the
-            Middle East with premium quality products.
-          </p>
+        {/* Section Header & Contact */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
+              Export of Premium Quality Safety Matches
+            </h3>
+            <div className="w-24 h-1 bg-[#ED028C] mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
+            <div>
+              <p className="text-[#666666] text-lg leading-relaxed">
+                Since 1995, Aziz Group has been Pakistan's largest safety match
+                exporter, serving markets across Europe, Asia, Africa, and the
+                Middle East with premium quality products.
+              </p>
+            </div>
+            <div className="md:border-l-2 md:border-[#E0E0E0] md:pl-8">
+              <h4 className="text-[#222222] text-xl font-bold mb-4">Export Department Contact</h4>
+              <div className="space-y-2">
+                <p className="text-[#666666]">
+                  <strong className="text-[#222222]">Email:</strong> match.export@azizgrp.com
+                </p>
+                <p className="text-[#666666]">
+                  <strong className="text-[#222222]">Phone:</strong> +92-300-8592829
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Statistics Cards */}
@@ -309,33 +344,41 @@ const SafetyMatchesExport = () => {
             Premium quality safety matches exported to countries worldwide
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {safetyMatches.map((match, index) => (
-              <div
-                key={index}
-                className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-[#E0E0E0]"
-              >
-                <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
-                  <img
-                    src={match.image}
-                    alt={match.brand}
-                    loading="lazy"
-                    decoding="async"
-                    width="360"
-                    height="480"
-                    className="w-full h-full object-contain p-4"
-                  />
-                </div>
-                <div className="p-4 text-center border-t-2 border-[#E0E0E0]">
-                  <h4 className="text-[#222222] font-bold text-lg mb-2">
-                    {match.brand}
-                  </h4>
-                  {/* <div className="flex items-center justify-center gap-2 text-[#666666]">
-                    <span className="font-medium">{match.country}</span>
-                  </div> */}
-                </div>
-              </div>
-            ))}
+          <div className="export-brands-container">
+            <Swiper
+              modules={[Autoplay, Navigation]}
+              slidesPerView={2}
+              spaceBetween={16}
+              breakpoints={{
+                640: { slidesPerView: 3, spaceBetween: 20 },
+                1024: { slidesPerView: 4, spaceBetween: 24 },
+              }}
+              navigation
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              loop={true}
+              className="export-brands-swiper pb-4 px-2"
+            >
+              {safetyMatches.map((match, index) => (
+                <SwiperSlide key={index} className="h-auto">
+                  <div className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-[#E0E0E0] h-full flex flex-col">
+                    <div className="aspect-[3/4] bg-gray-100 overflow-hidden shrink-0">
+                      <img
+                        src={match.image}
+                        alt={match.brand}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-contain p-4"
+                      />
+                    </div>
+                    <div className="p-4 text-center border-t-2 border-[#E0E0E0] mt-auto">
+                      <h4 className="text-[#222222] font-bold text-lg mb-0">
+                        {match.brand}
+                      </h4>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
 
@@ -409,27 +452,22 @@ const SafetyMatchesExport = () => {
           </div>
         </div>
 
-        {/* Contact Information */}
-        <div className="mt-16 bg-white rounded-2xl border-2 border-[#E0E0E0] p-8">
-          <h4 className="text-[#222222] text-2xl font-bold mb-6 text-center">
-            Export Department Contact
-          </h4>
-          <div className="grid md:grid-cols-2 gap-6 text-center">
-            <div>
-              <p className="text-[#666666]">
-                <strong className="text-[#222222]">Email:</strong>{" "}
-                match.export@azizgrp.com
-              </p>
-            </div>
-            <div>
-              <p className="text-[#666666]">
-                <strong className="text-[#222222]">Phone:</strong>{" "}
-                +92-300-8592829
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
+      <style jsx>{`
+        .export-brands-swiper .swiper-button-next,
+        .export-brands-swiper .swiper-button-prev {
+          color: #00aeef;
+          background: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .export-brands-swiper .swiper-button-next:after,
+        .export-brands-swiper .swiper-button-prev:after {
+          font-size: 1.2rem;
+        }
+      `}</style>
     </section>
   );
 };
