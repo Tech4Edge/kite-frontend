@@ -62,7 +62,7 @@ const CartDrawer = () => {
                   <div>
                     <div className="flex justify-between items-start">
                       <h4 className="font-semibold text-sm line-clamp-2" style={{ color: colors.text.primary }}>
-                        {item.productTitle} {item.brandName ? `(${item.brandName})` : ''}
+                        {item.brandName ? item.brandName : item.productTitle}
                       </h4>
                       <button onClick={() => removeFromCart(idx)} className="text-gray-400 hover:text-red-500 transition-colors p-1">
                         <Trash2 size={16} />

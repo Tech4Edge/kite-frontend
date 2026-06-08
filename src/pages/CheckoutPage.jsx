@@ -4,6 +4,7 @@ import { createOrder } from "../services/api";
 import SeoHead from "../components/seo/SeoHead";
 import { useCart } from "../context/CartContext";
 import { colors } from "../theme";
+import { FaTrash } from "react-icons/fa";
 
 const PHONE_REGEX = /^(?:\+92|92|0)3\d{9}$/;
 
@@ -12,7 +13,7 @@ const normalizePhone = (value = "") => value.replace(/[\s()-]/g, "");
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems, cartTotal, clearCart } = useCart();
+  const { cartItems, cartTotal, clearCart, updateQuantity, removeFromCart } = useCart();
   
   const searchParams = new URLSearchParams(location.search);
   const isCartCheckout = searchParams.get('type') === 'cart';
@@ -184,7 +185,7 @@ const CheckoutPage = () => {
     <>
       <SeoHead title="Checkout" path="/checkout" noindex />
       <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white py-12">
-      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white border border-[#E0E0E0] rounded-2xl p-6">
           <h1 className="text-2xl font-bold text-[#222222] mb-5">Checkout</h1>
           {error && <p className="text-red-600 text-sm mb-4 bg-red-50 p-3 rounded-lg border border-red-100">{error}</p>}
@@ -317,7 +318,7 @@ const CheckoutPage = () => {
             <div className="md:col-span-2 mt-4">
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || (isCartCheckout && (!checkoutData || checkoutData.items.length === 0))}
                 className="w-full px-5 py-3.5 rounded-lg text-white font-bold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] disabled:opacity-60 hover:shadow-lg transition-all"
               >
                 {submitting ? "Placing Order..." : "Place Order"}
@@ -333,31 +334,83 @@ const CheckoutPage = () => {
           
           {isCartCheckout ? (
             <div className="space-y-4">
-              <div className="divide-y divide-[#E0E0E0] max-h-60 overflow-y-auto pr-2">
-                {checkoutData.items.map((item, idx) => (
-                  <div key={idx} className="py-3 flex justify-between gap-4">
-                    <div>
-                      <p className="font-semibold text-sm line-clamp-2">{item.productTitle} {item.brandName ? `(${item.brandName})` : ''}</p>
-                      <p className="text-xs text-gray-500 mt-1">{item.selectedVariant} x {item.quantity}</p>
+              {checkoutData.items.length > 0 ? (
+                <>
+                  <div className="divide-y divide-[#E0E0E0] max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                    {checkoutData.items.map((item, idx) => (
+                      <div key={idx} className="py-4 flex gap-4">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 border border-[#E0E0E0] rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
+                          {item.image ? (
+                            <img src={item.image} alt={item.productTitle} className="w-full h-full object-contain p-1" />
+                          ) : (
+                            <span className="text-xs text-gray-400">No Img</span>
+                          )}
+                        </div>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div className="flex justify-between items-start gap-2">
+                            <div>
+                              <p className="font-bold text-sm text-[#222222] line-clamp-2 leading-snug">
+                                {item.brandName ? item.brandName : item.productTitle}
+                              </p>
+                              <p className="text-xs font-semibold text-[#00AEEF] mt-1">{item.selectedVariant}</p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFromCart(idx)}
+                              className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                              aria-label="Remove item"
+                            >
+                              <FaTrash className="text-sm" />
+                            </button>
+                          </div>
+                          
+                          <div className="flex justify-between items-end mt-2">
+                            <div className="inline-flex items-center border border-[#E0E0E0] rounded bg-white">
+                              <button
+                                type="button"
+                                onClick={() => updateQuantity(idx, -1)}
+                                className="w-7 h-7 flex items-center justify-center hover:bg-gray-100 text-[#444]"
+                              >-</button>
+                              <span className="w-8 text-center text-xs font-semibold">{item.quantity}</span>
+                              <button
+                                type="button"
+                                onClick={() => updateQuantity(idx, 1)}
+                                className="w-7 h-7 flex items-center justify-center hover:bg-gray-100 text-[#444]"
+                              >+</button>
+                            </div>
+                            <p className="font-bold text-[#222222] text-sm">
+                              Rs {((item.price || 0) * item.quantity).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pt-4 border-t border-[#E0E0E0]">
+                    <div className="flex justify-between items-center mb-2 text-[#666666]">
+                      <p className="text-sm">Total Items</p>
+                      <p className="font-semibold">{checkoutData.items.reduce((acc, item) => acc + item.quantity, 0)}</p>
                     </div>
-                    <div className="text-right">
-                      <p className="font-semibold text-sm">Rs {((item.price || 0) * item.quantity).toLocaleString()}</p>
+                    <div className="flex justify-between items-center mb-4 text-[#666666]">
+                      <p className="text-sm">Shipping</p>
+                      <p className="font-semibold text-[#222222]">Calculated at next step</p>
+                    </div>
+                    <div className="flex justify-between items-center border-t border-[#E0E0E0] pt-4">
+                      <p className="text-base font-bold text-[#222222]">Estimated Total</p>
+                      <p className="text-2xl font-black text-[#00AEEF]">
+                        Rs {cartTotal.toLocaleString()}
+                      </p>
                     </div>
                   </div>
-                ))}
-              </div>
-              <div className="pt-4 border-t border-[#E0E0E0]">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-sm text-[#666666]">Total Items</p>
-                  <p className="font-semibold">{checkoutData.items.reduce((acc, item) => acc + item.quantity, 0)}</p>
+                </>
+              ) : (
+                <div className="py-8 text-center">
+                  <p className="text-[#666] mb-4">Your cart is empty.</p>
+                  <Link to="/products" className="text-[#00AEEF] hover:underline font-semibold">
+                    Continue Shopping
+                  </Link>
                 </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-sm font-semibold text-[#222222]">Estimated Total</p>
-                  <p className="text-2xl font-bold text-[#00AEEF]">
-                    Rs {checkoutData.total.toLocaleString()}
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
           ) : (
             <>
