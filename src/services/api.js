@@ -189,6 +189,11 @@ function buildProductFormData(data = {}) {
       if (file) fd.append(`variantImageFile_${index}`, file);
     });
   }
+  if (Array.isArray(data.brandImageFiles)) {
+    data.brandImageFiles.forEach((file, index) => {
+      if (file) fd.append(`brandImageFile_${index}`, file);
+    });
+  }
   return fd;
 }
 

@@ -56,6 +56,8 @@ function sanitizeBrands(list = []) {
     category: String(b.category || "").trim(),
     description: String(b.description || "").trim(),
     image: String(b.image || "").trim(),
+    tagline: String(b.tagline || "").trim(),
+    features: sanitizeStringList(b.features),
     variants: sanitizeVariants(b.variants),
   })).filter(b => b.name || b.category);
 }
@@ -221,8 +223,32 @@ const AdminProductsPage = () => {
       return { ...prev, brands: next };
     });
   };
-  const addBrand = () => setForm(prev => ({ ...prev, brands: [...prev.brands, { name: "", category: "", description: "", image: "", variants: [{name: "", detail: "", packing: "", price: ""}] }] }));
+  const addBrand = () => setForm(prev => ({ ...prev, brands: [...prev.brands, { name: "", category: "", description: "", image: "", tagline: "", features: [""], variants: [{name: "", detail: "", packing: "", price: ""}] }] }));
   const removeBrand = (index) => setForm(prev => ({ ...prev, brands: prev.brands.filter((_, i) => i !== index) }));
+  
+  const updateBrandFeature = (brandIndex, featureIndex, value) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      const nextFeatures = [...(nextBrands[brandIndex].features || [])];
+      nextFeatures[featureIndex] = value;
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], features: nextFeatures };
+      return { ...prev, brands: nextBrands };
+    });
+  };
+  const addBrandFeature = (brandIndex) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], features: [...(nextBrands[brandIndex].features || []), ""] };
+      return { ...prev, brands: nextBrands };
+    });
+  };
+  const removeBrandFeature = (brandIndex, featureIndex) => {
+    setForm(prev => {
+      const nextBrands = [...prev.brands];
+      nextBrands[brandIndex] = { ...nextBrands[brandIndex], features: (nextBrands[brandIndex].features || []).filter((_, i) => i !== featureIndex) };
+      return { ...prev, brands: nextBrands };
+    });
+  };
   const updateBrandImageFile = (index, file) => {
     setBrandImageFiles(prev => {
       const next = { ...prev };
@@ -745,204 +771,249 @@ const AdminProductsPage = () => {
                 ))}
               </div>
 
-              <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Key Features</label>
-                <div className="space-y-2">
-                  {form.features.map((feature, idx) => (
-                    <div key={`f-${idx}`} className="flex gap-2">
-                      <input
-                        value={feature}
-                        onChange={(e) => updateFeature(idx, e.target.value)}
-                        placeholder={`Feature ${idx + 1}`}
-                        className="flex-1 px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeFeature(idx)}
-                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={addFeature}
-                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
-                  >
-                    Add Feature
-                  </button>
-                </div>
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Variants</label>
-                <div className="space-y-2">
-                  {form.variants.map((variant, idx) => (
-                    <div
-                      key={`v-${idx}`}
-                      className="grid grid-cols-1 md:grid-cols-5 gap-2"
-                    >
-                      <input
-                        placeholder="Name (e.g. 1 KG)"
-                        value={variant.name}
-                        onChange={(e) =>
-                          updateVariant(idx, "name", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <input
-                        placeholder="Detail (e.g. 1000 g)"
-                        value={variant.detail}
-                        onChange={(e) =>
-                          updateVariant(idx, "detail", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <input
-                        placeholder="Packing (e.g. 12 pcs/ctn)"
-                        value={variant.packing}
-                        onChange={(e) =>
-                          updateVariant(idx, "packing", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <input
-                        placeholder="Price"
-                        type="number"
-                        value={variant.price}
-                        onChange={(e) =>
-                          updateVariant(idx, "price", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeVariant(idx)}
-                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={addVariant}
-                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
-                  >
-                    Add Variant
-                  </button>
-                </div>
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">
-                  Variant Images (Name + Image)
-                </label>
-                <p className="text-xs text-[#666666] mb-2">
-                  Add labels like 1 KG / 500 G and upload or paste image URL for
-                  each.
-                </p>
-                <div className="space-y-2">
-                  {form.variantImages.map((variantImage, idx) => (
-                    <div
-                      key={`vi-${idx}`}
-                      className="grid grid-cols-1 md:grid-cols-4 gap-2"
-                    >
-                      <input
-                        placeholder="Name (e.g. 1 KG)"
-                        value={variantImage.name}
-                        onChange={(e) =>
-                          updateVariantImage(idx, "name", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <input
-                        placeholder="Image URL (optional)"
-                        value={variantImage.image}
-                        onChange={(e) =>
-                          updateVariantImage(idx, "image", e.target.value)
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) =>
-                          updateVariantImageFile(
-                            idx,
-                            e.target.files?.[0] || null,
-                          )
-                        }
-                        className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeVariantImage(idx)}
-                        className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={addVariantImage}
-                    className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
-                  >
-                    Add Variant Image
-                  </button>
-                </div>
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block mb-1.5 font-medium">Brands</label>
-                <div className="space-y-4">
-                  {form.brands.map((brand, bIdx) => (
-                    <div key={`b-${bIdx}`} className="border border-[#E0E0E0] p-4 rounded-xl space-y-4">
-                      <div className="flex justify-between items-center">
-                        <h4 className="font-semibold text-[#00AEEF]">Brand {bIdx + 1}</h4>
-                        <button type="button" onClick={() => removeBrand(bIdx)} className="px-3 py-1 rounded-lg border border-red-200 text-red-600 text-xs">Remove Brand</button>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input placeholder="Name (e.g. Kite)" value={brand.name} onChange={(e) => updateBrand(bIdx, 'name', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
-                        <input placeholder="Category (e.g. Premium)" value={brand.category} onChange={(e) => updateBrand(bIdx, 'category', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
-                      </div>
-                      <textarea placeholder="Description" value={brand.description} onChange={(e) => updateBrand(bIdx, 'description', e.target.value)} rows={2} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                          <label className="block text-xs font-medium text-[#666] mb-1">Brand Image URL (optional)</label>
-                          <input placeholder="URL" value={brand.image} onChange={(e) => updateBrand(bIdx, 'image', e.target.value)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+              {form.productType !== "matches" && (
+                <>
+                  <div className="md:col-span-2">
+                    <label className="block mb-1.5 font-medium">Key Features</label>
+                    <div className="space-y-2">
+                      {form.features.map((feature, idx) => (
+                        <div key={`f-${idx}`} className="flex gap-2">
+                          <input
+                            value={feature}
+                            onChange={(e) => updateFeature(idx, e.target.value)}
+                            placeholder={`Feature ${idx + 1}`}
+                            className="flex-1 px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeFeature(idx)}
+                            className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                          >
+                            Remove
+                          </button>
                         </div>
-                        <div>
-                          <label className="block text-xs font-medium text-[#666] mb-1">Upload Brand Image</label>
-                          <input type="file" accept="image/*" onChange={(e) => updateBrandImageFile(bIdx, e.target.files?.[0] || null)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
-                        </div>
-                      </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={addFeature}
+                        className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                      >
+                        Add Feature
+                      </button>
+                    </div>
+                  </div>
 
-                      <div className="bg-[#F9F9F9] p-3 rounded-lg space-y-2">
-                        <label className="block text-xs font-medium text-[#666]">Brand Variants</label>
-                        {brand.variants.map((v, vIdx) => (
-                          <div key={`bv-${bIdx}-${vIdx}`} className="grid grid-cols-1 md:grid-cols-5 gap-2">
-                            <input placeholder="Name" value={v.name} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'name', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
-                            <input placeholder="Detail" value={v.detail} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'detail', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
-                            <input placeholder="Packing" value={v.packing} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'packing', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
-                            <input placeholder="Price" type="number" value={v.price} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'price', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
-                            <button type="button" onClick={() => removeBrandVariant(bIdx, vIdx)} className="px-2 py-1 rounded text-red-600 text-xs hover:bg-red-50">Remove</button>
+                  <div className="md:col-span-2">
+                    <label className="block mb-1.5 font-medium">Variants</label>
+                    <div className="space-y-2">
+                      {form.variants.map((variant, idx) => (
+                        <div
+                          key={`v-${idx}`}
+                          className="grid grid-cols-1 md:grid-cols-5 gap-2"
+                        >
+                          <input
+                            placeholder="Name (e.g. 1 KG)"
+                            value={variant.name}
+                            onChange={(e) =>
+                              updateVariant(idx, "name", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <input
+                            placeholder="Detail (e.g. 1000 g)"
+                            value={variant.detail}
+                            onChange={(e) =>
+                              updateVariant(idx, "detail", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <input
+                            placeholder="Packing (e.g. 12 pcs/ctn)"
+                            value={variant.packing}
+                            onChange={(e) =>
+                              updateVariant(idx, "packing", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <input
+                            placeholder="Price"
+                            type="number"
+                            value={variant.price}
+                            onChange={(e) =>
+                              updateVariant(idx, "price", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeVariant(idx)}
+                            className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={addVariant}
+                        className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                      >
+                        Add Variant
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block mb-1.5 font-medium">
+                      Variant Images (Name + Image)
+                    </label>
+                    <p className="text-xs text-[#666666] mb-2">
+                      Add labels like 1 KG / 500 G and upload or paste image URL for
+                      each.
+                    </p>
+                    <div className="space-y-2">
+                      {form.variantImages.map((variantImage, idx) => (
+                        <div
+                          key={`vi-${idx}`}
+                          className="grid grid-cols-1 md:grid-cols-4 gap-2"
+                        >
+                          <input
+                            placeholder="Name (e.g. 1 KG)"
+                            value={variantImage.name}
+                            onChange={(e) =>
+                              updateVariantImage(idx, "name", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <input
+                            placeholder="Image URL (optional)"
+                            value={variantImage.image}
+                            onChange={(e) =>
+                              updateVariantImage(idx, "image", e.target.value)
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) =>
+                              updateVariantImageFile(
+                                idx,
+                                e.target.files?.[0] || null,
+                              )
+                            }
+                            className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeVariantImage(idx)}
+                            className="px-3 py-2 rounded-lg border border-red-200 text-red-600"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={addVariantImage}
+                        className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]"
+                      >
+                        Add Variant Image
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {form.productType === "matches" && (
+                <div className="md:col-span-2">
+                  <label className="block mb-1.5 font-medium">Matches List</label>
+                  <div className="space-y-4">
+                    {form.brands.map((brand, bIdx) => (
+                      <div key={`b-${bIdx}`} className="border border-[#E0E0E0] p-4 rounded-xl space-y-4 bg-white shadow-sm">
+                        <div className="flex justify-between items-center border-b pb-2">
+                          <h4 className="font-semibold text-[#00AEEF]">Match #{bIdx + 1}</h4>
+                          <button type="button" onClick={() => removeBrand(bIdx)} className="px-3 py-1 rounded-lg border border-red-200 text-red-600 text-xs hover:bg-red-50">Remove Match</button>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-medium text-[#666] mb-1">Brand Name</label>
+                            <input placeholder="e.g. Kite Safety Matches" value={brand.name} onChange={(e) => updateBrand(bIdx, 'name', e.target.value)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
                           </div>
-                        ))}
-                        <button type="button" onClick={() => addBrandVariant(bIdx)} className="text-xs text-[#00AEEF] hover:underline font-medium">
-                          + Add Variant
-                        </button>
+                          <div>
+                            <label className="block text-xs font-medium text-[#666] mb-1">Tagline (Urdu/English)</label>
+                            <input placeholder="e.g. پل میں روشن دیر پا شعلہ" value={brand.tagline || ''} onChange={(e) => updateBrand(bIdx, 'tagline', e.target.value)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" dir="auto" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-medium text-[#666] mb-1">Description</label>
+                          <textarea placeholder="Description" value={brand.description} onChange={(e) => updateBrand(bIdx, 'description', e.target.value)} rows={2} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-medium text-[#666] mb-1">Match Image URL (optional)</label>
+                            <input placeholder="URL" value={brand.image} onChange={(e) => updateBrand(bIdx, 'image', e.target.value)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-medium text-[#666] mb-1">Upload Match Image</label>
+                            <input type="file" accept="image/*" onChange={(e) => updateBrandImageFile(bIdx, e.target.files?.[0] || null)} className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm" />
+                          </div>
+                        </div>
+
+                        <div className="bg-[#F9F9F9] p-3 rounded-lg space-y-2 border border-[#E0E0E0]">
+                          <label className="block text-sm font-medium text-[#222]">Key Features</label>
+                          {(brand.features || []).map((feature, fIdx) => (
+                            <div key={`bf-${bIdx}-${fIdx}`} className="flex gap-2">
+                              <input
+                                value={feature}
+                                onChange={(e) => updateBrandFeature(bIdx, fIdx, e.target.value)}
+                                placeholder="e.g. Premium Quality"
+                                className="flex-1 px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => removeBrandFeature(bIdx, fIdx)}
+                                className="px-3 py-1 rounded text-red-600 text-xs border border-red-200 hover:bg-red-50"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => addBrandFeature(bIdx)}
+                            className="text-xs text-[#00AEEF] hover:underline font-medium"
+                          >
+                            + Add Feature
+                          </button>
+                        </div>
+
+                        <div className="bg-[#F9F9F9] p-3 rounded-lg space-y-2 border border-[#E0E0E0]">
+                          <label className="block text-sm font-medium text-[#222]">Match Variants</label>
+                          {brand.variants.map((v, vIdx) => (
+                            <div key={`bv-${bIdx}-${vIdx}`} className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                              <input placeholder="Name (e.g. LARGE)" value={v.name} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'name', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                              <input placeholder="Detail" value={v.detail} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'detail', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                              <input placeholder="Packing" value={v.packing} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'packing', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                              <input placeholder="Price" type="number" value={v.price} onChange={(e) => updateBrandVariant(bIdx, vIdx, 'price', e.target.value)} className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm bg-white" />
+                              <button type="button" onClick={() => removeBrandVariant(bIdx, vIdx)} className="px-2 py-1 rounded text-red-600 text-xs border border-red-200 hover:bg-red-50">Remove</button>
+                            </div>
+                          ))}
+                          <button type="button" onClick={() => addBrandVariant(bIdx)} className="text-xs text-[#00AEEF] hover:underline font-medium">
+                            + Add Variant
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                  <button type="button" onClick={addBrand} className="px-3 py-2 rounded-lg border border-[#E0E0E0] hover:bg-[#F9F9F9]">
-                    Add Brand
-                  </button>
+                    ))}
+                    <button type="button" onClick={addBrand} className="px-4 py-2 rounded-lg font-semibold text-white bg-[#00AEEF] hover:bg-[#0095CC] transition-colors">
+                      + Add Another Match
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="md:col-span-2">
                 <label className="block mb-1.5 font-medium">Facilities</label>
