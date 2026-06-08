@@ -39,7 +39,10 @@ export const CartProvider = ({ children }) => {
       );
       if (existingIdx >= 0) {
         const next = [...prev];
-        next[existingIdx].quantity += quantity;
+        next[existingIdx] = { 
+          ...next[existingIdx], 
+          quantity: next[existingIdx].quantity + quantity 
+        };
         return next;
       }
       return [
@@ -69,11 +72,14 @@ export const CartProvider = ({ children }) => {
   const updateQuantity = (index, delta) => {
     setCartItems(prev => {
       const next = [...prev];
+      if (!next[index]) return prev;
+      
       const newQty = next[index].quantity + delta;
       if (newQty <= 0) {
         return next.filter((_, i) => i !== index);
       }
-      next[index].quantity = newQty;
+      
+      next[index] = { ...next[index], quantity: newQty };
       return next;
     });
   };
