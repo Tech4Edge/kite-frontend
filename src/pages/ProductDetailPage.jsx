@@ -27,6 +27,8 @@ const ProductDetailPage = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [brandVariantQuantities, setBrandVariantQuantities] = useState({});
+  const [brandSelectedVariants, setBrandSelectedVariants] = useState({});
+  const [addingToCart, setAddingToCart] = useState(false);
   const touchStartXRef = useRef(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -307,21 +309,28 @@ const ProductDetailPage = () => {
   };
 
   const handleMainAddToCart = () => {
+    if (addingToCart) return;
+    setAddingToCart(true);
     addToCart(product, null, { name: selectedVariant, price: getSelectedPrice() }, quantity);
+    setTimeout(() => setAddingToCart(false), 500);
   };
 
-  const handleBrandVariantQtyChange = (brandIndex, variantIndex, delta) => {
+  const handleBrandVariantQtyChange = (brandIndex, delta) => {
     setBrandVariantQuantities(prev => {
-      const key = `${brandIndex}-${variantIndex}`;
-      const current = prev[key] || 1;
+      const current = prev[brandIndex] || 1;
       const next = Math.max(1, Math.min(1000, current + delta));
-      return { ...prev, [key]: next };
+      return { ...prev, [brandIndex]: next };
     });
   };
 
-  const handleBrandVariantAddToCart = (brand, variant, brandIndex, variantIndex) => {
-    const qty = brandVariantQuantities[`${brandIndex}-${variantIndex}`] || 1;
+  const handleBrandVariantAddToCart = (brand, brandIndex) => {
+    if (addingToCart) return;
+    const variantName = brandSelectedVariants[brandIndex] || brand.variants?.[0]?.name;
+    const variant = brand.variants?.find(v => v.name === variantName) || { name: variantName, price: 0 };
+    const qty = brandVariantQuantities[brandIndex] || 1;
+    setAddingToCart(true);
     addToCart(product, brand.name, variant, qty);
+    setTimeout(() => setAddingToCart(false), 500);
   };
 
   return (
@@ -358,218 +367,249 @@ const ProductDetailPage = () => {
           ref={ref}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
         >
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
-            {/* Product Image */}
-            <Motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="lg:sticky lg:top-24 h-fit"
-            >
-              <div className="relative mx-auto w-full bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
+          {product.productType === 'matches' ? (
+            <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+              <Motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              >
                 <div
-                  className="w-full flex items-center justify-center"
-                  onTouchStart={handleTouchStart}
-                  onTouchEnd={handleTouchEnd}
-                  style={{ minHeight: 280 }}
+                  className="inline-block px-4 py-1.5 rounded-full text-white text-sm font-bold tracking-wider uppercase mb-4"
+                  style={{ backgroundColor: product.color }}
                 >
-                  <img
-                    key={displayImage}
-                    src={displayImage}
-                    alt={product.title}
-                    loading="eager"
-                    decoding="async"
-                    className="product-gallery-image w-full max-w-[720px] h-auto object-contain"
-                    style={{ maxHeight: "80vh" }}
-                  />
+                  {product.category}
+                </div>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#222222] mb-6">
+                  {product.title}
+                </h1>
+                {product.tagline && (
+                  <p
+                    className="font-amiri text-2xl sm:text-3xl font-bold mb-6"
+                    style={{ color: product.color }}
+                  >
+                    {product.tagline}
+                  </p>
+                )}
+                <p className="text-lg sm:text-xl text-[#666666] leading-relaxed mx-auto max-w-3xl">
+                  {product.description}
+                </p>
+              </Motion.div>
+            </div>
+          ) : (
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
+              {/* Product Image */}
+              <Motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8 }}
+                className="lg:sticky lg:top-24 h-fit"
+              >
+                <div className="relative mx-auto w-full bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#E0E0E0]">
+                  <div
+                    className="w-full flex items-center justify-center"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    style={{ minHeight: 280 }}
+                  >
+                    <img
+                      key={displayImage}
+                      src={displayImage}
+                      alt={product.title}
+                      loading="eager"
+                      decoding="async"
+                      className="product-gallery-image w-full max-w-[720px] h-auto object-contain"
+                      style={{ maxHeight: "80vh" }}
+                    />
+                  </div>
+                  {finalGalleryItems.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={goToPreviousImage}
+                        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
+                        aria-label="Previous image"
+                      >
+                        <FaChevronLeft />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={goToNextImage}
+                        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
+                        aria-label="Next image"
+                      >
+                        <FaChevronRight />
+                      </button>
+                    </>
+                  )}
+                  {selectedVariant && (
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold bg-[#00AEEF]/95 shadow-lg">
+                      {selectedVariant}
+                    </span>
+                  )}
                 </div>
                 {finalGalleryItems.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={goToPreviousImage}
-                      className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
-                      aria-label="Previous image"
-                    >
-                      <FaChevronLeft />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={goToNextImage}
-                      className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center rounded-full bg-black/45 text-white hover:bg-black/65 transition-colors"
-                      aria-label="Next image"
-                    >
-                      <FaChevronRight />
-                    </button>
-                  </>
-                )}
-                {selectedVariant && (
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold bg-[#00AEEF]/95 shadow-lg">
-                    {selectedVariant}
-                  </span>
-                )}
-              </div>
-              {finalGalleryItems.length > 1 && (
-                <div className="mt-4 grid grid-cols-4 sm:grid-cols-5 gap-2">
-                  {finalGalleryItems.map((item, idx) => (
-                    <button
-                      key={`${item.image}-${idx}`}
-                      type="button"
-                      onClick={() => handleThumbnailSelect(idx)}
-                      className={`relative rounded-lg overflow-hidden border-2 transition-all ${
-                        boundedActiveIndex === idx
-                          ? "border-[#00AEEF] ring-2 ring-[#00AEEF]/20"
-                          : "border-[#E0E0E0] hover:border-[#00AEEF]/60"
-                      }`}
-                      aria-label={`Show ${item.name}`}
-                      aria-current={boundedActiveIndex === idx}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-16 w-full object-contain bg-white"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </Motion.div>
-
-            {/* Product Details */}
-            <Motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="flex items-center mb-4 sm:mb-6">
-                <div className="mr-4" style={{ color: product.color }}>
-                  {icon}
-                </div>
-                <div>
-                  <div
-                    className="inline-block px-3 py-1 rounded-full text-white text-sm font-semibold mb-2"
-                    style={{ backgroundColor: product.color }}
-                  >
-                    {product.category}
-                  </div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] mb-2">
-                    {product.title}
-                  </h1>
-                </div>
-              </div>
-
-              {product.tagline && (
-                <p
-                  className="font-amiri text-xl sm:text-2xl font-bold mb-5 sm:mb-6"
-                  style={{ color: product.color }}
-                >
-                  {product.tagline}
-                </p>
-              )}
-
-              <p className="text-[#666666] text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
-                {product.description}
-              </p>
-
-              {/* Features */}
-              <div className="mb-6 sm:mb-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#222222] mb-4">
-                  Key Features
-                </h3>
-                <ul className="space-y-3">
-                  {(product.features || []).map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <FaCheckCircle
-                        className="mr-3 mt-1 flex-shrink-0"
-                        style={{ color: product.color }}
-                      />
-                      <span className="text-[#666666]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Only show main product variants if there are NO brands. If brands exist, they will be handled row-by-row below. */}
-              {!(product.brands?.length > 0) && (sizeOrSkuOptions.length > 0 || product.variants?.length > 0) && (
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="text-lg sm:text-xl font-bold text-[#222222] mb-3">
-                    Select Variant
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {uniqueOptions.map((opt) => (
+                  <div className="mt-4 grid grid-cols-4 sm:grid-cols-5 gap-2">
+                    {finalGalleryItems.map((item, idx) => (
                       <button
-                        key={opt}
+                        key={`${item.image}-${idx}`}
                         type="button"
-                        onClick={() => handleVariantSelect(opt)}
-                        className={`px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-semibold ${
-                          selectedVariant === opt
-                            ? "bg-[#00AEEF] text-white border-[#00AEEF]"
-                            : "bg-white text-[#222222] border-[#E0E0E0] hover:border-[#00AEEF]"
+                        onClick={() => handleThumbnailSelect(idx)}
+                        className={`relative rounded-lg overflow-hidden border-2 transition-all ${
+                          boundedActiveIndex === idx
+                            ? "border-[#00AEEF] ring-2 ring-[#00AEEF]/20"
+                            : "border-[#E0E0E0] hover:border-[#00AEEF]/60"
                         }`}
+                        aria-label={`Show ${item.name}`}
+                        aria-current={boundedActiveIndex === idx}
                       >
-                        {opt}
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-16 w-full object-contain bg-white"
+                        />
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
+              </Motion.div>
 
-              {/* Main Add to Cart (Only if NO brands) */}
-              {!(product.brands?.length > 0) && (
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-8 pt-8 border-t border-[#E0E0E0]">
-                  {getSelectedPrice() > 0 && (
-                    <p className="text-xl sm:text-2xl font-bold text-[#00AEEF]">
-                      Rs {(getSelectedPrice() * quantity).toLocaleString()}
-                    </p>
-                  )}
-                  <div className="flex items-center gap-2">
-                    <label
-                      htmlFor="quantity"
-                      className="text-sm font-semibold text-[#222222]"
-                    >
-                      Qty
-                    </label>
+              {/* Product Details */}
+              <Motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="flex items-center mb-4 sm:mb-6">
+                  <div className="mr-4" style={{ color: product.color }}>
+                    {icon}
+                  </div>
+                  <div>
                     <div
-                      id="quantity"
-                      className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden"
+                      className="inline-block px-3 py-1 rounded-full text-white text-sm font-semibold mb-2"
+                      style={{ backgroundColor: product.color }}
                     >
-                      <button
-                        type="button"
-                        onClick={decreaseQuantity}
-                        disabled={quantity <= 1}
-                        className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
-                        aria-label="Decrease quantity"
-                      >
-                        -
-                      </button>
-                      <span className="w-12 text-center text-sm font-semibold text-[#222222]">
-                        {quantity}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={increaseQuantity}
-                        disabled={quantity >= 1000}
-                        className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
-                        aria-label="Increase quantity"
-                      >
-                        +
-                      </button>
+                      {product.category}
+                    </div>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] mb-2">
+                      {product.title}
+                    </h1>
+                  </div>
+                </div>
+
+                {product.tagline && (
+                  <p
+                    className="font-amiri text-xl sm:text-2xl font-bold mb-5 sm:mb-6"
+                    style={{ color: product.color }}
+                  >
+                    {product.tagline}
+                  </p>
+                )}
+
+                <p className="text-[#666666] text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
+                  {product.description}
+                </p>
+
+                {/* Features */}
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#222222] mb-4">
+                    Key Features
+                  </h3>
+                  <ul className="space-y-3">
+                    {(product.features || []).map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <FaCheckCircle
+                          className="mr-3 mt-1 flex-shrink-0"
+                          style={{ color: product.color }}
+                        />
+                        <span className="text-[#666666]">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Only show main product variants if there are NO brands. If brands exist, they will be handled row-by-row below. */}
+                {!(product.brands?.length > 0) && (sizeOrSkuOptions.length > 0 || product.variants?.length > 0) && (
+                  <div className="mb-6 sm:mb-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#222222] mb-3">
+                      Select Variant
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {uniqueOptions.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => handleVariantSelect(opt)}
+                          className={`px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-semibold ${
+                            selectedVariant === opt
+                              ? "bg-[#00AEEF] text-white border-[#00AEEF]"
+                              : "bg-white text-[#222222] border-[#E0E0E0] hover:border-[#00AEEF]"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      ))}
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={handleMainAddToCart}
-                    className="flex-1 sm:flex-none sm:w-auto px-7 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all flex items-center justify-center gap-2"
-                  >
-                    <FaShoppingCart />
-                    Add to Cart
-                  </button>
-                </div>
-              )}
-            </Motion.div>
-          </div>
+                )}
+
+                {/* Main Add to Cart (Only if NO brands) */}
+                {!(product.brands?.length > 0) && (
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-8 pt-8 border-t border-[#E0E0E0]">
+                    {getSelectedPrice() > 0 && (
+                      <p className="text-xl sm:text-2xl font-bold text-[#00AEEF]">
+                        Rs {(getSelectedPrice() * quantity).toLocaleString()}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <label
+                        htmlFor="quantity"
+                        className="text-sm font-semibold text-[#222222]"
+                      >
+                        Qty
+                      </label>
+                      <div
+                        id="quantity"
+                        className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden"
+                      >
+                        <button
+                          type="button"
+                          onClick={decreaseQuantity}
+                          disabled={quantity <= 1}
+                          className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                          aria-label="Decrease quantity"
+                        >
+                          -
+                        </button>
+                        <span className="w-12 text-center text-sm font-semibold text-[#222222]">
+                          {quantity}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={increaseQuantity}
+                          disabled={quantity >= 1000}
+                          className="w-9 h-9 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-50"
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleMainAddToCart}
+                      className="flex-1 sm:flex-none sm:w-auto px-7 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] hover:shadow-lg hover:shadow-[#00AEEF]/30 transition-all flex items-center justify-center gap-2"
+                    >
+                      <FaShoppingCart />
+                      Add to Cart
+                    </button>
+                  </div>
+                )}
+              </Motion.div>
+            </div>
+          )}
 
           {/* Additional Information Sections */}
           <Motion.div
@@ -581,89 +621,133 @@ const ProductDetailPage = () => {
             {/* Brands (for matches) */}
             {product.brands?.length > 0 && (
               <div className="space-y-6">
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] mb-6 text-center sr-only">
                   Available Brands & Variants
                 </h3>
-                <div className="flex flex-col space-y-6">
+                <div className="flex flex-col">
                   {product.brands.map((brand, bIdx) => (
-                    <div key={bIdx} className="bg-white rounded-2xl shadow-md border border-[#E0E0E0] overflow-hidden">
-                      <div className="flex flex-col md:flex-row">
-                        {/* Brand Image & Info */}
-                        <div className="w-full md:w-1/3 bg-gray-50 p-6 border-b md:border-b-0 md:border-r border-[#E0E0E0] flex flex-col items-center justify-center text-center">
-                          {brand.image && (
-                            <img src={brand.image} alt={brand.name} className="w-32 h-32 object-contain mb-4" />
-                          )}
-                          <h4 className="text-xl font-bold text-[#222222]">{brand.name}</h4>
-                          {brand.category && (
-                            <span className="inline-block mt-2 px-3 py-1 bg-white border border-[#E0E0E0] rounded-full text-xs font-semibold text-[#666]">
-                              {brand.category}
-                            </span>
-                          )}
-                          {brand.description && (
-                            <p className="text-sm text-[#666] mt-3 line-clamp-3">{brand.description}</p>
-                          )}
+                    <div key={bIdx}>
+                      <div className="flex flex-col md:flex-row mb-12 items-start gap-8 md:gap-12 transition-transform hover:-translate-y-1 duration-300">
+                        {/* Left: Image Box */}
+                        <div className="w-full md:w-5/12 relative">
+                          <div className="bg-white rounded-[2rem] shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-[#F0F0F0] p-8 sm:p-12 flex items-center justify-center">
+                            <div className="absolute top-4 left-4 bg-[#ED028C] px-3 py-1 rounded-full shadow-md text-xs font-bold text-white z-10">
+                              {brandSelectedVariants[bIdx] || brand.variants?.[0]?.name || "Select Variant"}
+                            </div>
+                            {brand.image ? (
+                              <img src={brand.image} alt={brand.name} className="w-full max-w-[320px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
+                            ) : (
+                              <div className="w-full max-w-[320px] aspect-[3/4] flex items-center justify-center bg-gray-100 rounded-xl text-gray-400 font-medium">Image coming soon</div>
+                            )}
+                          </div>
                         </div>
 
-                        {/* Brand Variants List */}
-                        <div className="w-full md:w-2/3 p-0">
-                          {brand.variants && brand.variants.length > 0 ? (
-                            <div className="divide-y divide-[#E0E0E0]">
-                              {brand.variants.map((variant, vIdx) => {
-                                const qtyKey = `${bIdx}-${vIdx}`;
-                                const vQty = brandVariantQuantities[qtyKey] || 1;
-                                return (
-                                  <div key={vIdx} className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-gray-50 transition-colors">
-                                    <div className="flex-1">
-                                      <h5 className="font-bold text-[#222222] text-lg">{variant.name}</h5>
-                                      {(variant.detail || variant.packing) && (
-                                        <p className="text-sm text-[#666] mt-1">
-                                          {variant.detail && <span className="mr-3">{variant.detail}</span>}
-                                          {variant.packing && <span>Packing: {variant.packing}</span>}
-                                        </p>
-                                      )}
-                                    </div>
-                                    <div className="flex flex-wrap items-center gap-4">
-                                      <div className="text-right sm:mr-2">
-                                        {variant.price != null ? (
-                                          <p className="font-bold text-lg text-[#00AEEF]">Rs {variant.price}</p>
-                                        ) : (
-                                          <p className="text-sm text-[#666] italic">Contact for price</p>
-                                        )}
-                                      </div>
-                                      <div className="flex items-center gap-2">
-                                        <div className="inline-flex items-center border border-[#E0E0E0] rounded-lg bg-white overflow-hidden">
-                                          <button
-                                            type="button"
-                                            onClick={() => handleBrandVariantQtyChange(bIdx, vIdx, -1)}
-                                            className="w-8 h-8 flex items-center justify-center hover:bg-gray-100"
-                                          >-</button>
-                                          <span className="w-8 text-center text-sm font-semibold">{vQty}</span>
-                                          <button
-                                            type="button"
-                                            onClick={() => handleBrandVariantQtyChange(bIdx, vIdx, 1)}
-                                            className="w-8 h-8 flex items-center justify-center hover:bg-gray-100"
-                                          >+</button>
-                                        </div>
-                                        <button
-                                          onClick={() => handleBrandVariantAddToCart(brand, variant, bIdx, vIdx)}
-                                          className="p-2 sm:px-4 sm:py-2 bg-[#00AEEF] text-white rounded-lg font-semibold hover:bg-[#0095CC] transition-colors flex items-center gap-2 text-sm shadow-sm"
-                                        >
-                                          <FaShoppingCart />
-                                          <span className="hidden sm:inline">Add</span>
-                                        </button>
-                                      </div>
-                                    </div>
+                        {/* Right: Details Box */}
+                        <div className="w-full md:w-7/12 flex flex-col justify-center">
+                          <div>
+                            <span className="inline-block mb-3 px-3 py-1 bg-[#ED028C] text-white rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
+                              {brand.category || "Safety Matches"}
+                            </span>
+                            <h4 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#222222] mb-3 tracking-tight">{brand.name}</h4>
+                            {brand.tagline && (
+                              <p className="text-[#ED028C] text-xl sm:text-2xl font-medium mb-4 font-amiri leading-normal" dir="auto">
+                                {brand.tagline}
+                              </p>
+                            )}
+                            {brand.description && (
+                              <p className="text-[#555] text-lg leading-relaxed mb-8">
+                                {brand.description}
+                              </p>
+                            )}
+                            
+                            {brand.features?.length > 0 && (
+                              <div className="mb-8">
+                                <h5 className="font-bold text-[#222] mb-3 text-lg">Key Features</h5>
+                                <ul className="space-y-2">
+                                  {brand.features.filter(Boolean).map((feature, fIdx) => (
+                                    <li key={fIdx} className="flex items-start text-base text-[#444]">
+                                      <FaCheckCircle className="text-[#ED028C] mt-1.5 mr-3 flex-shrink-0" />
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Variant Selection & Add to Cart */}
+                          {brand.variants?.length > 0 && (
+                            <div className="pt-8 border-t border-[#E0E0E0]">
+                              <p className="text-sm font-bold text-[#222] mb-3 uppercase tracking-wide">Select Variant</p>
+                              <div className="flex flex-wrap gap-2.5 mb-8">
+                                {brand.variants.map((variant, vIdx) => {
+                                  const isSelected = (brandSelectedVariants[bIdx] || brand.variants[0]?.name) === variant.name;
+                                  return (
+                                    <button
+                                      key={vIdx}
+                                      onClick={() => setBrandSelectedVariants(prev => ({ ...prev, [bIdx]: variant.name }))}
+                                      className={`px-5 py-2.5 rounded-full border-2 text-sm font-bold transition-all duration-300 ${
+                                        isSelected 
+                                          ? "bg-[#00AEEF] text-white border-[#00AEEF] shadow-lg shadow-[#00AEEF]/30" 
+                                          : "bg-white text-[#555] border-[#E0E0E0] hover:border-[#00AEEF] hover:text-[#00AEEF]"
+                                      }`}
+                                    >
+                                      {variant.name}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div>
+                                  {brand.variants.find(v => v.name === (brandSelectedVariants[bIdx] || brand.variants[0]?.name))?.price != null ? (
+                                    <p className="text-2xl font-bold text-[#00AEEF]">
+                                      Rs {brand.variants.find(v => v.name === (brandSelectedVariants[bIdx] || brand.variants[0]?.name)).price}
+                                    </p>
+                                  ) : (
+                                    <p className="text-sm text-[#666] italic">Contact for price</p>
+                                  )}
+                                  <p className="text-xs text-[#888] mt-1">
+                                    {brand.variants.find(v => v.name === (brandSelectedVariants[bIdx] || brand.variants[0]?.name))?.detail}
+                                    {brand.variants.find(v => v.name === (brandSelectedVariants[bIdx] || brand.variants[0]?.name))?.packing && ` • ${brand.variants.find(v => v.name === (brandSelectedVariants[bIdx] || brand.variants[0]?.name)).packing}`}
+                                  </p>
+                                </div>
+                                
+                                <div className="flex items-center gap-3">
+                                  <div className="inline-flex items-center border border-[#E0E0E0] rounded-lg bg-white overflow-hidden">
+                                    <button
+                                      type="button"
+                                      onClick={() => handleBrandVariantQtyChange(bIdx, -1)}
+                                      className="w-10 h-10 flex items-center justify-center hover:bg-gray-100"
+                                    >-</button>
+                                    <span className="w-12 text-center text-sm font-semibold">
+                                      {brandVariantQuantities[bIdx] || 1}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleBrandVariantQtyChange(bIdx, 1)}
+                                      className="w-10 h-10 flex items-center justify-center hover:bg-gray-100"
+                                    >+</button>
                                   </div>
-                                );
-                              })}
-                            </div>
-                          ) : (
-                            <div className="p-6 text-center text-[#666]">
-                              No variants available for this brand.
+                                  <button
+                                    onClick={() => handleBrandVariantAddToCart(brand, bIdx)}
+                                    disabled={addingToCart}
+                                    className="px-6 py-3 bg-[#00AEEF] text-white rounded-lg font-bold hover:bg-[#0095CC] transition-colors flex items-center gap-2 shadow-md disabled:opacity-70"
+                                  >
+                                    <FaShoppingCart />
+                                    <span>{addingToCart ? "Adding..." : "Add"}</span>
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </div>
                       </div>
+                      
+                      {/* Divider for all but the last item */}
+                      {bIdx < product.brands.length - 1 && (
+                        <hr className="border-[#E0E0E0] my-8 mb-16 mx-auto w-3/4" />
+                      )}
                     </div>
                   ))}
                 </div>
