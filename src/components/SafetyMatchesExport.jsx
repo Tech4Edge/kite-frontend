@@ -175,11 +175,11 @@ const SafetyMatchesExport = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
+          {/* <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
             Safety Matches Export
-          </h2>
+          </h2> */}
           <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-            Premium Quality Safety Matches
+            Export of Premium Quality Safety Matches
           </h3>
           <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
           <p className="text-[#666666] text-lg max-w-3xl mx-auto">
@@ -205,60 +205,21 @@ const SafetyMatchesExport = () => {
           ))}
         </div>
 
-        {/* Export Brands */}
-        <div className="mb-20">
-          <h3 className="text-[#222222] text-3xl font-bold text-center mb-4">
-            Our Export Brands
-          </h3>
-          <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
-            Premium quality safety matches exported to countries worldwide
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {safetyMatches.map((match, index) => (
-              <div
-                key={index}
-                className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-[#E0E0E0]"
-              >
-                <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
-                  <img
-                    src={match.image}
-                    alt={match.brand}
-                    loading="lazy"
-                    decoding="async"
-                    width="360"
-                    height="480"
-                    className="w-full h-full object-contain p-4"
-                  />
-                </div>
-                <div className="p-4 text-center border-t-2 border-[#E0E0E0]">
-                  <h4 className="text-[#222222] font-bold text-lg mb-2">
-                    {match.brand}
-                  </h4>
-                  <div className="flex items-center justify-center gap-2 text-[#666666]">
-                    <span className="font-medium">{match.country}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Global Presence Map */}
-        <div className="mb-20">
+        {/* Trust Cards */}
+        <div className="mb-16">
           <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
-            Our Global Presence
+            Why Choose Us for Export?
           </h3>
-          <div className="relative bg-gray-500 rounded-3xl flex items-center justify-center overflow-hidden">
-            <img
-              src={world_map_export_destinations}
-              alt="Global Export Map"
-              loading="lazy"
-              decoding="async"
-              width="1400"
-              height="700"
-              className="w-full object-cover"
-            />
+
+          <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] p-8 md:p-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {trustCards.map((card, index) => (
+                <div key={index} className="flex items-start">
+                  <FaAward className="text-2xl text-[#ED028C] mr-4 flex-shrink-0 mt-1" />
+                  <p className="text-[#666666] font-medium">{card}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -339,23 +300,68 @@ const SafetyMatchesExport = () => {
           </div>
         </div>
 
-        {/* Trust Cards */}
-        <div className="mb-16">
-          <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
-            Why Choose Us for Export?
+        {/* Export Brands */}
+        <div className="mb-20">
+          <h3 className="text-[#222222] text-3xl font-bold text-center mb-4">
+            Our Export Brands
           </h3>
+          <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
+            Premium quality safety matches exported to countries worldwide
+          </p>
 
-          <div className="bg-white rounded-2xl border-2 border-[#E0E0E0] p-8 md:p-12">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trustCards.map((card, index) => (
-                <div key={index} className="flex items-start">
-                  <FaAward className="text-2xl text-[#ED028C] mr-4 flex-shrink-0 mt-1" />
-                  <p className="text-[#666666] font-medium">{card}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {safetyMatches.map((match, index) => (
+              <div
+                key={index}
+                className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-[#E0E0E0]"
+              >
+                <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
+                  <img
+                    src={match.image}
+                    alt={match.brand}
+                    loading="lazy"
+                    decoding="async"
+                    width="360"
+                    height="480"
+                    className="w-full h-full object-contain p-4"
+                  />
                 </div>
-              ))}
-            </div>
+                <div className="p-4 text-center border-t-2 border-[#E0E0E0]">
+                  <h4 className="text-[#222222] font-bold text-lg mb-2">
+                    {match.brand}
+                  </h4>
+                  {/* <div className="flex items-center justify-center gap-2 text-[#666666]">
+                    <span className="font-medium">{match.country}</span>
+                  </div> */}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* Global Presence Map */}
+        {/* <div className="mb-20">
+          <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
+            Our Global Presence
+          </h3>
+          <div className="relative bg-gray-500 rounded-3xl flex items-center justify-center overflow-hidden">
+            <img
+              src={world_map_export_destinations}
+              alt="Global Export Map"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="700"
+              className="w-full object-cover"
+            />
+          </div>
+        </div> */}
+
+        
+
+        
+
+        
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-[#ED028C] to-[#d4027a] rounded-3xl p-8 md:p-12">
