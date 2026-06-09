@@ -12,7 +12,7 @@ import carousel3 from "../assets/heroCarousel/1920x640burq.jpeg";
 import carousel4 from "../assets/heroCarousel/1920x640glow.jpg";
 import carousel5 from "../assets/heroCarousel/1920x640dishwash.jpg";
 import carousel6 from "../assets/heroCarousel/1920x640vero.jpg";
-import carousel7 from "../assets/heroCarousel/1920x640shipment.jpg";
+import carousel7 from "../assets/Shippment-1920x640.jpeg";
 
 import carousel1Mobile from "../assets/heroCarousel/all-matchesr-640x640.jpeg";
 import carousel2Mobile from "../assets/heroCarousel/kite-detergents-640x640.jpeg";
@@ -20,7 +20,7 @@ import carousel3Mobile from "../assets/heroCarousel/burqaction-640x640.jpeg";
 import carousel4Mobile from "../assets/heroCarousel/DWB-640x640.jpg";
 import carousel5Mobile from "../assets/heroCarousel/vero-640x640.jpeg";
 import carousel6Mobile from "../assets/heroCarousel/Matches-640x640.jpeg";
-import carousel7Mobile from "../assets/heroCarousel/Shippment-640x640.jpeg";
+import carousel7Mobile from "../assets/Shippment-640x640.jpeg";
 
 const HeroCarousel = () => {
   const [, setActiveIndex] = useState(0);
