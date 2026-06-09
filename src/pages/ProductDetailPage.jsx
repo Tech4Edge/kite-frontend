@@ -333,6 +333,61 @@ const ProductDetailPage = () => {
     setTimeout(() => setAddingToCart(false), 500);
   };
 
+  let allBrandsShareSameVariants = false;
+  let unifiedVariants = [];
+
+  if (product?.brands?.length > 0) {
+    const firstBrandVariants = product.brands[0]?.variants || [];
+    const getVariantsSignature = (variants) => 
+      JSON.stringify((variants || []).map(v => ({ name: v.name, detail: v.detail, packing: v.packing, price: v.price })));
+    
+    const firstVariantsString = getVariantsSignature(firstBrandVariants);
+    
+    allBrandsShareSameVariants = product.brands.length > 0 && product.brands.every(b => {
+      return getVariantsSignature(b.variants) === firstVariantsString;
+    });
+
+    if (allBrandsShareSameVariants) {
+      unifiedVariants = firstBrandVariants;
+    }
+  }
+
+  const renderVariantsTable = (variants, title = "Available Sizes & Pricing", themeColor) => {
+    if (!variants || variants.length === 0) return null;
+    const color = themeColor || product.color || "#ED028C";
+    return (
+      <div className="mt-8 mb-8 bg-[#F8F8F8] rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="px-6 py-5 pb-4">
+          <h4 className="text-lg font-bold text-[#333]">{title}</h4>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[600px]">
+            <thead>
+              <tr style={{ backgroundColor: color }}>
+                <th className="py-3 px-6 font-bold text-white uppercase tracking-wider text-xs">Variant</th>
+                <th className="py-3 px-6 font-bold text-white uppercase tracking-wider text-xs">Detail</th>
+                <th className="py-3 px-6 font-bold text-white text-xs tracking-wider">Packing</th>
+                <th className="py-3 px-6 font-bold text-white text-xs tracking-wider">Retail Price (Rs.)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#E5E5E5]">
+              {variants.map((v, i) => (
+                <tr key={i} className="hover:bg-black/5 transition-colors">
+                  <td className="py-4 px-6 text-[#222222] font-extrabold text-xs tracking-wide uppercase">{v.name || "-"}</td>
+                  <td className="py-4 px-6 text-[#666666] text-sm">{v.detail || "-"}</td>
+                  <td className="py-4 px-6 text-[#666666] text-sm">{v.packing || "-"}</td>
+                  <td className="py-4 px-6 text-sm font-semibold" style={{ color: color }}>
+                    {v.price != null ? `Rs ${v.price}` : "Contact for pricing"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <SeoHead
@@ -611,6 +666,9 @@ const ProductDetailPage = () => {
             </div>
           )}
 
+          {/* Render Product Variants Table if no brands, below the flex container */}
+          {product && !(product.brands?.length > 0) && renderVariantsTable(product.variants)}
+
           {/* Additional Information Sections */}
           <Motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -744,6 +802,9 @@ const ProductDetailPage = () => {
                         </div>
                       </div>
                       
+                      {/* Brand Variants Table placed below the flex container */}
+                      {!allBrandsShareSameVariants && renderVariantsTable(brand.variants, "Available Sizes & Pricing")}
+                      
                       {/* Divider for all but the last item */}
                       {bIdx < product.brands.length - 1 && (
                         <hr className="border-[#E0E0E0] my-8 mb-16 mx-auto w-3/4" />
@@ -751,6 +812,7 @@ const ProductDetailPage = () => {
                     </div>
                   ))}
                 </div>
+                {allBrandsShareSameVariants && renderVariantsTable(unifiedVariants, "Available Sizes & Pricing")}
               </div>
             )}
 
