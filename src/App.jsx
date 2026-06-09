@@ -34,6 +34,7 @@ const AdminLoginPage = lazy(() => import("./pages/AdminLoginPage"));
 const AdminProductsPage = lazy(() => import("./pages/AdminProductsPage"));
 const AdminPromotionsPage = lazy(() => import("./pages/AdminPromotionsPage"));
 const AdminOrdersPage = lazy(() => import("./pages/AdminOrdersPage"));
+const AdminSettingsPage = lazy(() => import("./pages/AdminSettingsPage"));
 import "./App.css";
 
 const RouteLoadingFallback = () => (
@@ -61,6 +62,7 @@ function AppRoutes() {
             <Route path="/admin/products" element={<AdminProductsPage />} />
             <Route path="/admin/promotions" element={<AdminPromotionsPage />} />
             <Route path="/admin/orders" element={<AdminOrdersPage />} />
+            <Route path="/admin/settings" element={<AdminSettingsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

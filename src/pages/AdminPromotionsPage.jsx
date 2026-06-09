@@ -19,6 +19,7 @@ const emptyForm = {
   items: [{ product: "", quantity: 1, price: "" }],
   totalQuantity: 0,
   totalPrice: 0,
+  shippingCost: "",
   displayOrder: 0,
   isActive: true,
 };
@@ -121,6 +122,7 @@ const AdminPromotionsPage = () => {
       items: cleanedItems,
       totalQuantity,
       totalPrice,
+      shippingCost: form.shippingCost === "" || form.shippingCost == null ? null : Number(form.shippingCost),
       displayOrder: Number(form.displayOrder) || 0,
       isActive: form.isActive,
       promotionImages,
@@ -156,6 +158,7 @@ const AdminPromotionsPage = () => {
         : [{ product: "", quantity: 1, price: "" }],
       totalQuantity: p.totalQuantity ?? 0,
       totalPrice: p.totalPrice ?? 0,
+      shippingCost: p.shippingCost ?? "",
       displayOrder: p.displayOrder ?? 0,
       isActive: p.isActive ?? true,
     });
@@ -394,6 +397,18 @@ const AdminPromotionsPage = () => {
                 <p className="text-xs text-[#666666] mt-1">
                   Upload one or many. First image is used as primary.
                 </p>
+              </div>
+              <div>
+                <label className="block mb-1.5 font-medium">Shipping Cost (Rs)</label>
+                <input
+                  name="shippingCost"
+                  type="number"
+                  min="0"
+                  placeholder="Leave empty for default"
+                  value={form.shippingCost}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF]"
+                />
               </div>
               <div>
                 <label className="block mb-1.5 font-medium">

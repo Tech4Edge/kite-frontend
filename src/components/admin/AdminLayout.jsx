@@ -9,6 +9,7 @@ const AdminLayout = ({ children }) => {
     { to: "/admin/products", label: "Products" },
     { to: "/admin/promotions", label: "Promotions" },
     { to: "/admin/orders", label: "Orders" },
+    { to: "/admin/settings", label: "Settings" },
   ];
 
   const handleLogout = () => {

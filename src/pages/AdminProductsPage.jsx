@@ -21,6 +21,7 @@ const emptyForm = {
   color: colors.primary.main,
   tagline: "",
   services: "",
+  shippingCost: "",
   displayOrder: 0,
   carouselOrder: 0,
   isActive: true,
@@ -357,6 +358,7 @@ const AdminProductsPage = () => {
         color: form.color,
         tagline: form.tagline,
         services: form.services,
+        shippingCost: form.shippingCost === "" || form.shippingCost == null ? null : Number(form.shippingCost),
         displayOrder: Number(form.displayOrder) || 0,
         carouselOrder: Number(form.carouselOrder) || 0,
         isActive: form.isActive,
@@ -408,6 +410,7 @@ const AdminProductsPage = () => {
       color: p.color ?? colors.primary.main,
       tagline: p.tagline ?? "",
       services: p.services ?? "",
+      shippingCost: p.shippingCost ?? "",
       displayOrder: p.displayOrder ?? 0,
       carouselOrder: p.carouselOrder ?? p.displayOrder ?? 0,
       isActive: p.isActive ?? true,
@@ -692,6 +695,18 @@ const AdminProductsPage = () => {
                 <input
                   name="color"
                   value={form.color}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF]"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 font-medium">Shipping Cost (Rs)</label>
+                <input
+                  name="shippingCost"
+                  type="number"
+                  min="0"
+                  placeholder="Leave empty for default"
+                  value={form.shippingCost}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00AEEF]"
                 />

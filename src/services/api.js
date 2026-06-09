@@ -344,6 +344,20 @@ export async function getPromotions() {
   return handleResponse(res);
 }
 
+export async function getSettings() {
+  const res = await fetch(`${API_BASE_URL}/settings`);
+  return handleResponse(res);
+}
+
+export async function adminUpdateSettings(data) {
+  const res = await fetch(`${API_BASE_URL}/settings`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+    body: JSON.stringify(data),
+  });
+  return handleResponse(res);
+}
+
 export async function createOrder(payload) {
   const res = await fetch(`${API_BASE_URL}/orders`, {
     method: "POST",
