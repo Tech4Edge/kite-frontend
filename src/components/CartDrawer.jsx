@@ -51,7 +51,7 @@ const CartDrawer = () => {
               <div key={idx} className="flex gap-4 p-4 border border-[#E0E0E0] rounded-xl bg-gray-50/50">
                 <div className="w-20 h-20 rounded-lg overflow-hidden bg-white shrink-0">
                   {item.image ? (
-                    <img src={item.image} alt={item.productTitle} className="w-full h-full object-cover" />
+                    <img src={item.image} alt={item.itemType === 'promotion' ? item.promotionTitle : item.productTitle} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
                       Img
@@ -62,13 +62,15 @@ const CartDrawer = () => {
                   <div>
                     <div className="flex justify-between items-start">
                       <h4 className="font-semibold text-sm line-clamp-2" style={{ color: colors.text.primary }}>
-                        {item.brandName ? item.brandName : item.productTitle}
+                        {item.itemType === 'promotion' ? item.promotionTitle : (item.brandName ? item.brandName : item.productTitle)}
                       </h4>
                       <button onClick={() => removeFromCart(idx)} className="text-gray-400 hover:text-red-500 transition-colors p-1">
                         <Trash2 size={16} />
                       </button>
                     </div>
-                    <p className="text-xs mt-1" style={{ color: colors.text.secondary }}>Variant: {item.selectedVariant}</p>
+                    {item.itemType !== 'promotion' && (
+                      <p className="text-xs mt-1" style={{ color: colors.text.secondary }}>Variant: {item.selectedVariant}</p>
+                    )}
                     {item.price > 0 && <p className="text-xs font-semibold mt-1" style={{ color: colors.text.primary }}>Rs. {item.price}</p>}
                   </div>
                   <div className="flex items-center gap-3 mt-2">

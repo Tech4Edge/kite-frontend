@@ -54,7 +54,44 @@ export const CartProvider = ({ children }) => {
           selectedVariant: variant.name,
           price: variant.price || 0,
           quantity,
-          image: product.image
+          image: product.image,
+          shippingCost: product.shippingCost
+        }
+      ];
+    });
+    openCart();
+
+    setTimeout(() => {
+      addingRef.current = false;
+    }, 300);
+  };
+
+  const addPromotionToCart = (promotion, price, quantity = 1) => {
+    if (addingRef.current) return;
+    addingRef.current = true;
+
+    setCartItems(prev => {
+      const existingIdx = prev.findIndex(
+        item => item.itemType === 'promotion' && item.promotionId === promotion.id
+      );
+      if (existingIdx >= 0) {
+        const next = [...prev];
+        next[existingIdx] = { 
+          ...next[existingIdx], 
+          quantity: next[existingIdx].quantity + quantity 
+        };
+        return next;
+      }
+      return [
+        ...prev,
+        {
+          itemType: 'promotion',
+          promotionId: promotion.id,
+          promotionTitle: promotion.title,
+          price: price || 0,
+          quantity,
+          image: promotion.image,
+          shippingCost: promotion.shippingCost
         }
       ];
     });
@@ -94,6 +131,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider value={{
       cartItems,
       addToCart,
+      addPromotionToCart,
       removeFromCart,
       updateQuantity,
       clearCart,

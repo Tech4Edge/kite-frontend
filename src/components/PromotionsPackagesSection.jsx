@@ -4,9 +4,11 @@ import { FaShoppingCart, FaCheckCircle, FaGift } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getPromotions } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const PromotionsPackagesSection = () => {
   const navigate = useNavigate();
+  const { addPromotionToCart } = useCart();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -25,7 +27,6 @@ const PromotionsPackagesSection = () => {
     };
     load();
   }, []);
-
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-PK", {
@@ -54,18 +55,7 @@ const PromotionsPackagesSection = () => {
 
   const handleBuyPromotion = (pkg) => {
     const totals = getComputedTotals(pkg);
-    navigate("/checkout", {
-      state: {
-        orderContext: {
-          type: "promotion",
-          id: pkg.id,
-          title: pkg.title,
-          quantity: 1,
-          selectedOption: "",
-          totalPrice: totals.totalPrice,
-        },
-      },
-    });
+    addPromotionToCart(pkg, totals.totalPrice, 1);
   };
 
   return (
@@ -201,7 +191,7 @@ const PromotionsPackagesSection = () => {
                         className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-6 md:px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#00AEEF]/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
                       >
                         <FaShoppingCart className="text-sm" />
-                        <span>Order Now</span>
+                        <span>Add to Cart</span>
                       </button>
                     </div>
                   </div>

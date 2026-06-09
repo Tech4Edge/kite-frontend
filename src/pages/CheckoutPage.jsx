@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { createOrder } from "../services/api";
+import { createOrder, getSettings } from "../services/api";
 import SeoHead from "../components/seo/SeoHead";
 import { useCart } from "../context/CartContext";
 import { colors } from "../theme";
@@ -23,6 +23,7 @@ const CheckoutPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [settings, setSettings] = useState(null);
   const [form, setForm] = useState({
     quantity: 1,
     customerName: "",
@@ -63,6 +64,42 @@ const CheckoutPage = () => {
       quantity: checkoutData.quantity,
     }));
   }, [checkoutData, isCartCheckout]);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const data = await getSettings();
+        setSettings(data);
+      } catch (err) {
+        console.error("Failed to load settings:", err);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  const applicableShippingCost = useMemo(() => {
+    if (!settings) return 0;
+    let maxCost = -1;
+    if (isCartCheckout && checkoutData && checkoutData.items.length > 0) {
+      for (const item of checkoutData.items) {
+        if (item.shippingCost !== null && item.shippingCost !== undefined) {
+          if (item.shippingCost > maxCost) maxCost = item.shippingCost;
+        }
+      }
+    } else if (!isCartCheckout && orderContext) {
+      if (orderContext.shippingCost !== null && orderContext.shippingCost !== undefined) {
+        maxCost = orderContext.shippingCost;
+      }
+    }
+    return maxCost >= 0 ? maxCost : (settings.defaultShippingCost ?? 150);
+  }, [settings, isCartCheckout, checkoutData, orderContext]);
+
+  const grandTotal = useMemo(() => {
+    if (isCartCheckout) {
+      return (checkoutData?.total || 0) + applicableShippingCost;
+    }
+    return ((Number(checkoutData?.unitPrice) || 0) * (Number(form.quantity) || 1)) + applicableShippingCost;
+  }, [isCartCheckout, checkoutData, form.quantity, applicableShippingCost]);
 
   if (!checkoutData) {
     return (
@@ -140,7 +177,9 @@ const CheckoutPage = () => {
         orderPayload = {
           type: "cart",
           items: checkoutData.items.map(item => ({
+            itemType: item.itemType || 'product',
             productId: item.productId,
+            promotionId: item.promotionId,
             brandName: item.brandName,
             selectedVariant: item.selectedVariant,
             quantity: item.quantity,
@@ -156,6 +195,9 @@ const CheckoutPage = () => {
           quantity: parsedQuantity
         };
       }
+      
+      orderPayload.shippingCost = applicableShippingCost;
+      orderPayload.totalAmount = grandTotal;
 
       const orderResult = await createOrder({
         ...orderPayload,
@@ -341,7 +383,7 @@ const CheckoutPage = () => {
                       <div key={idx} className="py-4 flex gap-4">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 border border-[#E0E0E0] rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
                           {item.image ? (
-                            <img src={item.image} alt={item.productTitle} className="w-full h-full object-contain p-1" />
+                            <img src={item.image} alt={item.itemType === 'promotion' ? item.promotionTitle : item.productTitle} className="w-full h-full object-contain p-1" />
                           ) : (
                             <span className="text-xs text-gray-400">No Img</span>
                           )}
@@ -350,9 +392,11 @@ const CheckoutPage = () => {
                           <div className="flex justify-between items-start gap-2">
                             <div>
                               <p className="font-bold text-sm text-[#222222] line-clamp-2 leading-snug">
-                                {item.brandName ? item.brandName : item.productTitle}
+                                {item.itemType === 'promotion' ? item.promotionTitle : (item.brandName ? item.brandName : item.productTitle)}
                               </p>
-                              <p className="text-xs font-semibold text-[#00AEEF] mt-1">{item.selectedVariant}</p>
+                              {item.itemType !== 'promotion' && (
+                                <p className="text-xs font-semibold text-[#00AEEF] mt-1">{item.selectedVariant}</p>
+                              )}
                             </div>
                             <button
                               type="button"
@@ -391,14 +435,18 @@ const CheckoutPage = () => {
                       <p className="text-sm">Total Items</p>
                       <p className="font-semibold">{checkoutData.items.reduce((acc, item) => acc + item.quantity, 0)}</p>
                     </div>
+                    <div className="flex justify-between items-center mb-2 text-[#666666]">
+                      <p className="text-sm">Subtotal</p>
+                      <p className="font-semibold">Rs {cartTotal.toLocaleString()}</p>
+                    </div>
                     <div className="flex justify-between items-center mb-4 text-[#666666]">
                       <p className="text-sm">Shipping</p>
-                      <p className="font-semibold text-[#222222]">Calculated at next step</p>
+                      <p className="font-semibold">Rs {applicableShippingCost}</p>
                     </div>
                     <div className="flex justify-between items-center border-t border-[#E0E0E0] pt-4">
                       <p className="text-base font-bold text-[#222222]">Estimated Total</p>
                       <p className="text-2xl font-black text-[#00AEEF]">
-                        Rs {cartTotal.toLocaleString()}
+                        Rs {grandTotal.toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -432,14 +480,23 @@ const CheckoutPage = () => {
               <p className="font-semibold mb-3">
                 {Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity}
               </p>
-              <div className="pt-4 mt-4 border-t border-[#E0E0E0]">
-                <p className="text-sm text-[#666666] mb-1">Estimated Total</p>
-                <p className="text-2xl font-bold text-[#00AEEF]">
-                  Rs {(
-                    (Number(checkoutData.unitPrice) || 0) *
-                    (Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity)
-                  ).toLocaleString()}
-                </p>
+              <div className="pt-4 mt-4 border-t border-[#E0E0E0] space-y-2">
+                <div className="flex justify-between text-[#666666] text-sm">
+                  <span>Subtotal</span>
+                  <span className="font-semibold">
+                    Rs {((Number(checkoutData.unitPrice) || 0) * (Number(form.quantity) > 0 ? Number(form.quantity) : checkoutData.quantity)).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between text-[#666666] text-sm">
+                  <span>Shipping</span>
+                  <span className="font-semibold">Rs {applicableShippingCost}</span>
+                </div>
+                <div className="flex justify-between items-center pt-2 mt-2 border-t border-[#E0E0E0]">
+                  <p className="text-sm font-semibold text-[#222222]">Estimated Total</p>
+                  <p className="text-2xl font-bold text-[#00AEEF]">
+                    Rs {grandTotal.toLocaleString()}
+                  </p>
+                </div>
               </div>
             </>
           )}
