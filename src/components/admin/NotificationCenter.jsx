@@ -4,11 +4,34 @@ import { Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const NotificationCenter = () => {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState(() => {
+    try {
+      const saved = localStorage.getItem('admin_notifications');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   const [isOpen, setIsOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadCount, setUnreadCount] = useState(() => {
+    try {
+      const saved = localStorage.getItem('admin_notifications');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.filter(n => !n.read).length;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return 0;
+  });
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  // Save to localStorage whenever notifications change
+  useEffect(() => {
+    localStorage.setItem('admin_notifications', JSON.stringify(notifications));
+  }, [notifications]);
 
   useEffect(() => {
     // Check if pusher key is present
@@ -55,21 +78,28 @@ const NotificationCenter = () => {
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) {
-      setUnreadCount(0);
-      setNotifications(notifications.map(n => ({ ...n, read: true })));
-    }
   };
 
-  const navigateToOrders = () => {
+  const navigateToOrders = (id) => {
+    setNotifications((prev) => {
+      const isUnread = prev.find(n => n.id === id && !n.read);
+      if (isUnread) {
+        setUnreadCount((count) => Math.max(0, count - 1));
+      }
+      return prev.map(n => n.id === id ? { ...n, read: true } : n);
+    });
     setIsOpen(false);
     navigate('/admin/orders');
+  };
+
+  const handleClearSeen = () => {
+    setNotifications((prev) => prev.filter(n => !n.read));
   };
 
   const formatTime = (date) => {
     return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric', minute: 'numeric', hour12: true
-    }).format(date);
+    }).format(new Date(date));
   };
 
   return (
@@ -90,12 +120,12 @@ const NotificationCenter = () => {
         <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
             <h3 className="font-semibold text-gray-800">Notifications</h3>
-            {notifications.length > 0 && (
+            {notifications.some(n => n.read) && (
               <button 
-                onClick={() => setNotifications([])}
+                onClick={handleClearSeen}
                 className="text-xs text-gray-500 hover:text-red-500 transition-colors"
               >
-                Clear all
+                Clear seen
               </button>
             )}
           </div>
@@ -108,8 +138,8 @@ const NotificationCenter = () => {
               notifications.map((notif) => (
                 <div 
                   key={notif.id} 
-                  onClick={navigateToOrders}
-                  className={`p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors ${!notif.read ? 'bg-blue-50/30' : ''}`}
+                  onClick={() => navigateToOrders(notif.id)}
+                  className={`p-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors ${!notif.read ? 'bg-blue-50/30' : 'opacity-60'}`}
                 >
                   <div className="flex justify-between items-start mb-1">
                     <span className="font-medium text-sm text-gray-800">{notif.title}</span>
