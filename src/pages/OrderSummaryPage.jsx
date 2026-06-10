@@ -96,6 +96,35 @@ const OrderSummaryPage = () => {
                     </div>
                   </div>
                 )}
+
+                {/* Bill Summary */}
+                {orderDetails.totalAmount != null && (
+                  <div>
+                    <h3 className="text-lg font-bold mb-4" style={{ color: colors.text.primary }}>Bill Summary</h3>
+                    <div className="bg-gray-50 rounded-xl p-6 border border-[#E0E0E0]">
+                      <div className="space-y-3">
+                        <div className="flex justify-between text-gray-600">
+                          <span>Subtotal</span>
+                          <span className="font-semibold text-gray-800">
+                            Rs {(orderDetails.totalAmount - (orderDetails.shippingCost || 0)).toLocaleString()}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-gray-600">
+                          <span>Shipping Cost</span>
+                          <span className="font-semibold text-gray-800">
+                            Rs {orderDetails.shippingCost || 0}
+                          </span>
+                        </div>
+                        <div className="pt-3 border-t border-[#E0E0E0] flex justify-between items-center">
+                          <span className="font-bold text-gray-800 text-lg">Total</span>
+                          <span className="font-bold text-[#00AEEF] text-xl">
+                            Rs {orderDetails.totalAmount.toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="text-center py-8">
