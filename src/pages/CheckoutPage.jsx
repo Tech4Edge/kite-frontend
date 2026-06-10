@@ -288,13 +288,14 @@ const CheckoutPage = () => {
             </div>
             <div>
               <label className="block mb-1 text-sm font-medium">
-                Email (optional)
+                Email
               </label>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
+                required
                 className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg"
               />
             </div>
