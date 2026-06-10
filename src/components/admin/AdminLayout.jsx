@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../theme";
+import NotificationCenter from "./NotificationCenter";
 
 const AdminLayout = ({ children }) => {
   const location = useLocation();
@@ -51,8 +52,13 @@ const AdminLayout = ({ children }) => {
           </button>
         </nav>
       </aside>
-      <main className="flex-1 p-6 md:p-8">
-        <div className="max-w-7xl">{children}</div>
+      <main className="flex-1 flex flex-col">
+        <div className="flex justify-end p-4 md:px-8 border-b border-transparent md:border-[#E0E0E0] bg-white/50 backdrop-blur">
+          <NotificationCenter />
+        </div>
+        <div className="flex-1 p-6 md:p-8">
+          <div className="max-w-7xl">{children}</div>
+        </div>
       </main>
     </div>
   );
