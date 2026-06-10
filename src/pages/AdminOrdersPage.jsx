@@ -3,6 +3,7 @@ import AdminLayout from "../components/admin/AdminLayout";
 import RequireAdminAuth from "../components/admin/RequireAdminAuth";
 import { adminGetOrders, adminUpdateOrderStatus } from "../services/api";
 import { colors } from "../theme";
+import toast from "react-hot-toast";
 
 const statuses = ["pending", "confirmed", "shipped", "cancelled"];
 
@@ -35,8 +36,10 @@ const AdminOrdersPage = () => {
     setError("");
     try {
       await adminUpdateOrderStatus(orderId, status);
+      toast.success(`Order status updated to ${status}`);
       await load();
     } catch (err) {
+      toast.error(err.message || "Failed to update status");
       setError(err.message || "Failed to update status");
     } finally {
       setUpdatingId("");

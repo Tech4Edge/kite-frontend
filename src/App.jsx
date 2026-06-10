@@ -112,11 +112,14 @@ function AppRoutes() {
   );
 }
 
+import { Toaster } from 'react-hot-toast';
+
 function App() {
   return (
     <CartProvider>
       <Router>
         <ScrollToTop />
+        <Toaster position="top-right" />
         <AppRoutes />
       </Router>
     </CartProvider>
