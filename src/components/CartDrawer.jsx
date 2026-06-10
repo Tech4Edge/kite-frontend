@@ -18,10 +18,10 @@ const CartDrawer = () => {
   return (
     <>
       <div 
-        className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm animate-fade-in"
         onClick={closeCart}
       />
-      <div className="fixed inset-y-0 right-0 w-full max-w-md bg-white z-50 shadow-2xl flex flex-col transform transition-transform duration-300">
+      <div className="fixed inset-y-0 right-0 w-full max-w-md bg-white z-50 shadow-2xl flex flex-col transform animate-slide-in-right">
         <div className="flex items-center justify-between p-4 md:p-6 border-b border-[#E0E0E0]">
           <h2 className="text-xl font-bold" style={{ color: colors.text.primary }}>Your Cart</h2>
           <button onClick={closeCart} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
