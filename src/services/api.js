@@ -390,3 +390,10 @@ export async function adminUpdateOrderStatus(id, status) {
   });
   return handleResponse(res);
 }
+
+export async function adminGetOrder(id) {
+  const res = await fetch(`${API_BASE_URL}/admin/orders/${id}`, {
+    headers: { ...getAuthHeaders() },
+  });
+  return handleResponse(res);
+}
