@@ -5,6 +5,7 @@ import SeoHead from "../components/seo/SeoHead";
 import { useCart } from "../context/CartContext";
 import { colors } from "../theme";
 import { FaTrash } from "react-icons/fa";
+import OrderConfirmModal from "../components/checkout/OrderConfirmModal";
 
 const PHONE_REGEX = /^(?:\+92|92|0)3\d{9}$/;
 
@@ -24,6 +25,7 @@ const CheckoutPage = () => {
   const [error, setError] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [settings, setSettings] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [form, setForm] = useState({
     quantity: 1,
     customerName: "",
@@ -146,7 +148,8 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  // Step 1: validate form → show confirmation modal
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!acceptedTerms) {
       setError("You must accept the Terms and Conditions to place an order.");
@@ -168,6 +171,15 @@ const CheckoutPage = () => {
       setError("Name, city, and address are required.");
       return;
     }
+
+    setError("");
+    setShowConfirmModal(true);
+  };
+
+  // Step 2: called when user clicks "Confirm Order" in the modal
+  const handleConfirmOrder = async () => {
+    const parsedQuantity = Number(form.quantity);
+    const normalizedPhone = normalizePhone(form.phone);
 
     setSubmitting(true);
     setError("");
@@ -195,7 +207,7 @@ const CheckoutPage = () => {
           quantity: parsedQuantity
         };
       }
-      
+
       orderPayload.shippingCost = applicableShippingCost;
       orderPayload.totalAmount = grandTotal;
 
@@ -214,11 +226,14 @@ const CheckoutPage = () => {
         clearCart();
       }
 
-      navigate(`/order-success/${orderResult._id || orderResult.id}`, {
+      setShowConfirmModal(false);
+      const orderId = orderResult._id || orderResult.id || 'confirmed';
+      navigate(`/order-success/${orderId}`, {
         state: { orderDetails: orderResult }
       });
     } catch (err) {
       setError(err.message || "Failed to place order");
+      setShowConfirmModal(false);
       setSubmitting(false);
     }
   };
@@ -364,7 +379,7 @@ const CheckoutPage = () => {
                 disabled={submitting || (isCartCheckout && (!checkoutData || checkoutData.items.length === 0))}
                 className="w-full px-5 py-3.5 rounded-lg text-white font-bold bg-gradient-to-r from-[#00AEEF] to-[#0095CC] disabled:opacity-60 hover:shadow-lg transition-all"
               >
-                {submitting ? "Placing Order..." : "Place Order"}
+                Review Order →
               </button>
             </div>
           </form>
@@ -504,6 +519,42 @@ const CheckoutPage = () => {
         </div>
       </div>
       </div>
+
+      {/* Order Confirmation Modal */}
+      {showConfirmModal && (
+        <OrderConfirmModal
+          items={
+            isCartCheckout
+              ? checkoutData.items
+              : [{
+                  image: null,
+                  itemType: checkoutData.type,
+                  productTitle: checkoutData.title,
+                  brandName: checkoutData.title,
+                  promotionTitle: checkoutData.title,
+                  selectedVariant: checkoutData.selectedSkuOrSize,
+                  quantity: Number(form.quantity) || 1,
+                  price: checkoutData.unitPrice,
+                }]
+          }
+          customerInfo={{
+            customerName: form.customerName,
+            phone: form.phone,
+            city: form.city,
+            address: form.address,
+          }}
+          totals={{
+            subtotal: isCartCheckout
+              ? checkoutData.total
+              : (checkoutData.unitPrice || 0) * (Number(form.quantity) || 1),
+            shipping: applicableShippingCost,
+            grand: grandTotal,
+          }}
+          onConfirm={handleConfirmOrder}
+          onCancel={() => setShowConfirmModal(false)}
+          submitting={submitting}
+        />
+      )}
     </>
   );
 };

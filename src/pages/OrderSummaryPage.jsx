@@ -22,14 +22,16 @@ const OrderSummaryPage = () => {
               <CheckCircle2 size={40} className="text-white" />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Order Confirmed!</h1>
-            <p className="text-white/90 text-lg">Thank you for your order. We'll be in touch shortly.</p>
+            <p className="text-white/90 text-lg">Your order has been confirmed. Thank you for choosing us.</p>
           </div>
 
           <div className="p-6 md:p-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-[#E0E0E0] pb-6 mb-8 gap-4">
               <div>
-                <p className="text-sm text-gray-500 mb-1">Order ID</p>
-                <p className="font-mono font-semibold text-lg" style={{ color: colors.text.primary }}>{id}</p>
+                <p className="text-sm text-gray-500 mb-1">Order No.</p>
+                <p className="font-mono font-semibold text-lg" style={{ color: colors.text.primary }}>
+                  {orderDetails?.orderNumber || (id && id !== 'confirmed' ? id.slice(-8).toUpperCase() : '—')}
+                </p>
               </div>
               <div className="md:text-right">
                 <p className="text-sm text-gray-500 mb-1">Date</p>
@@ -81,7 +83,9 @@ const OrderSummaryPage = () => {
                           {orderDetails.items.map((item, idx) => (
                             <tr key={idx} className="bg-white">
                               <td className="py-3 px-4" style={{ color: colors.text.primary }}>
-                                {item.productId} {item.brandName ? `(${item.brandName})` : ''}
+                                {item.itemType === 'promotion'
+                                  ? `Promotion: ${item.promotionId}`
+                                  : (item.brandName || `Product: ${item.productId}`)}
                               </td>
                               <td className="py-3 px-4" style={{ color: colors.text.secondary }}>
                                 {item.selectedVariant || 'N/A'}
