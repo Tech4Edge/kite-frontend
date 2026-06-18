@@ -53,9 +53,19 @@ const PromotionsPackagesSection = () => {
     };
   };
 
+  const [quantities, setQuantities] = useState({});
+
+  const getQty = (pkgId) => quantities[pkgId] ?? 1;
+
+  const increaseQty = (pkgId) =>
+    setQuantities((prev) => ({ ...prev, [pkgId]: Math.min(1000, (prev[pkgId] ?? 1) + 1) }));
+
+  const decreaseQty = (pkgId) =>
+    setQuantities((prev) => ({ ...prev, [pkgId]: Math.max(1, (prev[pkgId] ?? 1) - 1) }));
+
   const handleBuyPromotion = (pkg) => {
     const totals = getComputedTotals(pkg);
-    addPromotionToCart(pkg, totals.totalPrice, 1);
+    addPromotionToCart(pkg, totals.totalPrice, getQty(pkg.id));
   };
 
   return (
@@ -186,13 +196,39 @@ const PromotionsPackagesSection = () => {
                           </span>
                         </div>
                       </div>
-                      <button
-                        onClick={() => handleBuyPromotion(pkg)}
-                        className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-6 md:px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#00AEEF]/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
-                      >
-                        <FaShoppingCart className="text-sm" />
-                        <span>Add to Cart</span>
-                      </button>
+                      <div className="flex items-center gap-4">
+                        {/* Quantity stepper */}
+                        <div className="inline-flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden shadow-sm">
+                          <button
+                            type="button"
+                            onClick={() => decreaseQty(pkg.id)}
+                            disabled={getQty(pkg.id) <= 1}
+                            className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-40 text-lg font-bold transition-colors"
+                            aria-label="Decrease quantity"
+                          >
+                            −
+                          </button>
+                          <span className="w-12 text-center text-sm font-semibold text-[#222222]">
+                            {getQty(pkg.id)}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => increaseQty(pkg.id)}
+                            disabled={getQty(pkg.id) >= 1000}
+                            className="w-10 h-10 flex items-center justify-center bg-white text-[#222222] hover:bg-[#F5F5F5] disabled:opacity-40 text-lg font-bold transition-colors"
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => handleBuyPromotion(pkg)}
+                          className="bg-gradient-to-r from-[#00AEEF] to-[#0095CC] text-white px-6 md:px-8 py-3.5 rounded-lg font-semibold hover:shadow-lg hover:shadow-[#00AEEF]/25 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                        >
+                          <FaShoppingCart className="text-sm" />
+                          <span>Add to Cart</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
