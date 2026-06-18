@@ -316,19 +316,37 @@ const WoodenSplintsExport = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
-            Wooden Splints Export
-          </h2>
-          <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
-            Premium Quality Wooden Splints
-          </h3>
-          <div className="w-24 h-1 bg-[#ED028C] mx-auto mb-8"></div>
-          <p className="text-[#666666] text-lg max-w-3xl mx-auto">
-            High-quality wooden splints delivered to multiple countries across
-            Africa, Europe, and Central America. Trusted by manufacturers
-            worldwide.
-          </p>
+        {/* Section Header & Contact */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-[#00AEEF] text-lg font-semibold mb-2 uppercase tracking-wide">
+              Wooden Splints Export
+            </h2>
+            <h3 className="text-[#222222] text-4xl md:text-5xl font-bold mb-6">
+              Premium Quality Wooden Splints
+            </h3>
+            <div className="w-24 h-1 bg-[#ED028C] mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]">
+            <div>
+              <p className="text-[#666666] text-lg leading-relaxed">
+                High-quality wooden splints delivered to multiple countries across
+                Africa, Europe, and Central America. Trusted by manufacturers
+                worldwide.
+              </p>
+            </div>
+            <div className="md:border-l-2 md:border-[#E0E0E0] md:pl-8">
+              <h4 className="text-[#222222] text-xl font-bold mb-4">Export Department Contact</h4>
+              <div className="space-y-2">
+                <p className="text-[#666666]">
+                  <strong className="text-[#222222]">Email:</strong> match.export@azizgrp.com
+                </p>
+                <p className="text-[#666666]">
+                  <strong className="text-[#222222]">Phone:</strong> +92-300-8592829
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Statistics Cards */}
@@ -568,26 +586,6 @@ const WoodenSplintsExport = () => {
           </div>
         </div>
 
-        {/* Contact Information */}
-        <div className="mt-16 bg-white rounded-2xl border-2 border-[#E0E0E0] p-8">
-          <h4 className="text-[#222222] text-2xl font-bold mb-6 text-center">
-            Export Department Contact
-          </h4>
-          <div className="grid md:grid-cols-2 gap-6 text-center">
-            <div>
-              <p className="text-[#666666]">
-                <strong className="text-[#222222]">Email:</strong>{" "}
-                match.export@azizgrp.com
-              </p>
-            </div>
-            <div>
-              <p className="text-[#666666]">
-                <strong className="text-[#222222]">Phone:</strong>{" "}
-                +92-300-8592829
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
