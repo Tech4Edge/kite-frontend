@@ -12,8 +12,8 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import world_map_export_destinations from "../assets/KiteExportMap1920x640.jpeg";
-import world_map_export_destinations_mobile from "../assets/Kite-Export-Map-640x640.jpeg";
+import world_map_export_destinations from "../assets/Kite-Export-Map1920x640.jpeg";
+import world_map_export_destinations_mobile from "../assets/kite-Map-640x640.jpeg";
 
 // Import match images
 import simba from "../assets/export/simba.png";
