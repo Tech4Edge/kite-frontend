@@ -12,7 +12,7 @@ const AboutSection = () => {
       title: "Chairman",
       image: chairman,
       className:
-        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-100! group-hover:scale-105! transition-transform duration-500! object-center sm:object-[20%_5%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-100! group-hover:scale-105! transition-transform duration-500! object-[0%_5%]! sm:object-[20%_5%]!",
       bio: "Senator in the Senate of Pakistan (2021-2027 & 2015-2021). Chairman of the Senate Standing Committee on Power. Former Director on the Board of the State Bank of Pakistan (2 terms), board member at HBL and PPL. Chairman of APTMA (2 terms) and President of Sarhad Chamber of Commerce & Industry.",
     },
     {
@@ -21,7 +21,7 @@ const AboutSection = () => {
       title: "CEO",
       image: ceo,
       className:
-        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-center sm:object-[20%_4%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-105! group-hover:scale-110! transition-transform duration-500! object-[0%_10%]! sm:object-[20%_4%]!",
       bio: "Leads the Textile and Real Estate Divisions. Graduate of the London School of Economics (First Class Honours). Honorary Consul of South Korea for KPK. Member of UNICEF Pakistan Advisory Council. President of Sarhad Chamber (2011-12), Vice President of APTMA.",
     },
     {
@@ -30,7 +30,7 @@ const AboutSection = () => {
       title: "Managing Director - FMCG",
       image: waleed,
       className:
-        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-center sm:object-[50%_25%]!",
+        "h-[24rem]! md:h-[27rem]! lg:h-84! scale-120! group-hover:scale-125! transition-transform duration-500! object-[0%_25%]! sm:object-[50%_25%]!",
       bio: "Over 20 years in Marketing, Sales, and Distribution. MD of FMCG Division for 10 years. Graduate of University of Wisconsin-Madison; MBA from LUMS (Bronze Medalist). Previous experience with Pakistan Tobacco Company.",
     },
   ];
@@ -185,7 +185,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {leaders.map((leader) => (
               <div
                 key={leader.id}
@@ -199,7 +199,7 @@ const AboutSection = () => {
                     decoding="async"
                     width="480"
                     height="600"
-                    className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 aspect-[4/5] sm:aspect-[3/4] ${leader.className}`}
+                    className={`w-full object-cover transition-transform duration-500 sm group-hover:scale-110 aspect-[4/5] sm:aspect-[3/4] ${leader.className}`}
                   />
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" /> */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
