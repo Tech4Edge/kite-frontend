@@ -308,28 +308,59 @@ const ContactPage = () => {
             </div>
           </div>
 
-          {/* Google Map - Peshawar Head Office */}
+          {/* Google Maps - Locations */}
           <div className="mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-[#222222] mb-8 text-center">
               Find Us on the Map
             </h2>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13232.858554352488!2d71.41792789616898!3d33.98702021911197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d9105461e898f5%3A0xb2fcd597d83cf69a!2sMohsin%20Match%20Factory%20Pvt%20Ltd!5e0!3m2!1sen!2s!4v1771568110439!5m2!1sen!2s"
-                width="100%"
-                height="500"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="FMCG Division Head Office - Industrial Estate, Peshawar"
-                className="w-full h-[320px] sm:h-[400px] md:h-[500px]"
-              ></iframe>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Peshawar Head Office Map */}
+              <div>
+                <h3 className="text-xl font-bold text-[#222222] mb-4 text-center">
+                  Mohsin Match Factory Pvt. Ltd.
+                </h3>
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13232.858554352488!2d71.41792789616898!3d33.98702021911197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d9105461e898f5%3A0xb2fcd597d83cf69a!2sMohsin%20Match%20Factory%20Pvt%20Ltd!5e0!3m2!1sen!2s!4v1771568110439!5m2!1sen!2s"
+                    width="100%"
+                    height="500"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Mohsin Match Factory - Industrial Estate, Peshawar"
+                    className="w-full h-[320px] sm:h-[400px] md:h-[500px]"
+                  ></iframe>
+                </div>
+                <p className="text-center text-[#666666] mt-4 text-sm px-4">
+                  90-B Industrial estate, Jamrud Road, Hayatabad, Peshawar, Khyber
+                  Pakhtunkhwa, Pakistan, 25000
+                </p>
+              </div>
+
+              {/* Sheikhupura Unit Map */}
+              <div>
+                <h3 className="text-xl font-bold text-[#222222] mb-4 text-center">
+                  A.J Match Factory Pvt. Ltd.
+                </h3>
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <iframe
+                    src="https://maps.google.com/maps?q=AJ%20Match%20Factory%20Sheikhupura&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="500"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="A.J Match Factory - Sheikhupura"
+                    className="w-full h-[320px] sm:h-[400px] md:h-[500px]"
+                  ></iframe>
+                </div>
+                <p className="text-center text-[#666666] mt-4 text-sm px-4">
+                  Mill Address: 26 KM Lahore Sheikhupura Road, Distt Sheikhupura, Pakistan
+                </p>
+              </div>
             </div>
-            <p className="text-center text-[#666666] mt-4 text-sm">
-              90-B Industrial estate, Jamrud Road, Hayatabad, Peshawar, Khyber
-              Pakhtunkhwa, Peshawar, Pakistan, 25000
-            </p>
           </div>
         </div>
       </section>
