@@ -224,7 +224,7 @@ const AboutUsPage = () => {
       <MissionVisionValues />
 
       {/* Timeline */}
-      <Timeline timeline={timeline} />
+      {/* <Timeline timeline={timeline} /> */}
 
       {/* Chairman Section */}
       <LeaderProfile

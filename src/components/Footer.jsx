@@ -46,7 +46,7 @@ const Footer = () => {
       title: "FMCG Division Head Office",
       address: "Industrial Estate, Old Jamrud Road, Peshawar, Pakistan",
       phone: "+92 91 5815056, 5815057",
-      // email: "fd@kitematchpk.com",
+      email: "info@kitepk.com",
       isHeadquarter: true,
     },
     {
@@ -60,12 +60,12 @@ const Footer = () => {
       address: "90-B, Industrial Estate, Old Jamrud Road, Peshawar, Pakistan",
       phone: "+92 91 5812787, 5812785",
       fax: "+92 91 5837646",
-      // email: "fd@kitematchpk.com",
+      email: "sales@kitepk.com",
     },
     {
       title: "A.J Match Factory Pvt. Ltd.",
       address:
-        "Mill Address: 26 KM Lahore Sheikhupura Road, Distt Sheikhupura Pakistan",
+        "26 KM Lahore Sheikhupura Road, Distt Sheikhupura Pakistan",
       phone: "+92 42 37332711-12",
       email: "aj.match@azizgrp.com",
     },
@@ -181,7 +181,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6 text-[#00AEEF]">
               Contact Us
             </h3>
-            <div className="bg-white/5 p-4 rounded-lg border border-[#00AEEF]/20 mb-4">
+            {/* <div className="bg-white/5 p-4 rounded-lg border border-[#00AEEF]/20 mb-4">
               <h4 className="text-white font-semibold mb-2 text-sm uppercase tracking-wide">
                 Email Contacts
               </h4>
@@ -198,7 +198,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div className="space-y-6">
               {/* FMCG Headquarters - Full Width */}
               {contactInfo
@@ -225,7 +225,7 @@ const Footer = () => {
                           {info.phone}
                         </a>
                       </li>
-                      {/* <li className="flex items-center">
+                      <li className="flex items-center">
                         <FaEnvelope className="text-[#00AEEF] mr-3 flex-shrink-0" />
                         <a
                           href={`mailto:${info.email}`}
@@ -233,7 +233,7 @@ const Footer = () => {
                         >
                           {info.email}
                         </a>
-                      </li> */}
+                      </li>
                     </ul>
                   </div>
                 ))}

@@ -91,15 +91,6 @@ const ContactPage = () => {
                         E-Mail: info@kitepk.com
                       </a>
                     </p>
-                    <p className="flex items-center">
-                      <FaEnvelope className="mr-3 flex-shrink-0" />
-                      <a
-                        href="mailto:sales@kitepk.com"
-                        className="text-white! visited:text-white! hover:text-white/90 transition-colors"
-                      >
-                        E-Mail: sales@kitepk.com
-                      </a>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -133,6 +124,15 @@ const ContactPage = () => {
                       <FaPhone className="text-[#ED028C] mr-3 flex-shrink-0" />
                       <span>Fax No: +92-91-5837648</span>
                     </p>
+                    <p className="flex items-center">
+                      <FaEnvelope className="text-[#ED028C] mr-3 flex-shrink-0" />
+                      <a
+                        href="mailto:sales@kitepk.com"
+                        className=" visited:text-white! hover:text-white/90 transition-colors"
+                      >
+                        E-Mail: sales@kitepk.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@ const ContactPage = () => {
                     <p className="flex items-start">
                       <FaMapMarkerAlt className="text-[#ED028C] mr-3 mt-1 flex-shrink-0" />
                       <span>
-                        Mill Address: 26 KM Lahore Sheikhupura Road, Distt
+                        26 KM Lahore Sheikhupura Road, Distt
                         Sheikhupura, Pakistan
                       </span>
                     </p>
@@ -357,7 +357,7 @@ const ContactPage = () => {
                   ></iframe>
                 </div>
                 <p className="text-center text-[#666666] mt-4 text-sm px-4">
-                  Mill Address: 26 KM Lahore Sheikhupura Road, Distt Sheikhupura, Pakistan
+                  26 KM Lahore Sheikhupura Road, Distt Sheikhupura, Pakistan
                 </p>
               </div>
             </div>
