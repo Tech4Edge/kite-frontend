@@ -315,6 +315,7 @@ const ProductDetailPage = () => {
     if (addingToCart) return;
     setAddingToCart(true);
     addToCart(product, null, { name: selectedVariant, price: getSelectedPrice() }, quantity);
+    setQuantity(1);
     setTimeout(() => setAddingToCart(false), 500);
   };
 
@@ -333,6 +334,7 @@ const ProductDetailPage = () => {
     const qty = brandVariantQuantities[brandIndex] || 1;
     setAddingToCart(true);
     addToCart(product, brand.name, variant, qty);
+    setBrandVariantQuantities(prev => ({ ...prev, [brandIndex]: 1 }));
     setTimeout(() => setAddingToCart(false), 500);
   };
 
