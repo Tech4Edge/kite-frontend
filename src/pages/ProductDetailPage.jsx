@@ -39,6 +39,9 @@ const ProductDetailPage = () => {
     const load = async () => {
       try {
         setLoading(true);
+        setQuantity(1);
+        setBrandVariantQuantities({});
+        setBrandSelectedVariants({});
         const data = await getProduct(id);
         setProduct(data);
         const firstVariant =
