@@ -115,44 +115,68 @@ const SafetyMatchesExport = () => {
     "Competitive pricing with flexible terms",
   ];
 
-  const customizationOptions = [
+  const strikingSurfaces = [
     {
-      title: "Custom Striking Surface",
-      options: [
-        // "Red phosphorus striking surface",
-        // "Standard striking surface",
-        // "Custom formulations available",
-        "Lines Striking surface",
-        "Dotted Striking surface",
-        "Plain strip striking surface",
-        "VIP Patti striking surface",
-      ],
+      id: "lines",
+      name: "Lines Striking Surface",
+      tag: "Linear Friction Grooves",
+      description: "Evenly spaced parallel micro-ridges engineered for rapid, clean spark ignition with minimal phosphorus dust and extended box life.",
+      feature: "Instant Spark • Zero Flaking",
+      patternType: "lines",
     },
     {
-      title: "Box Sizes",
+      id: "dots",
+      name: "Dotted Striking Surface",
+      tag: "Honeycomb Stipple Matrix",
+      description: "High-density embossed dot-matrix friction pattern delivering superior grip traction and reliable damp-proof lighting in humid conditions.",
+      feature: "High Traction • Damp Proof",
+      patternType: "dots",
+    },
+    {
+      id: "plain",
+      name: "Plain Strip Striking Surface",
+      tag: "Solid Continuous Band",
+      description: "Uniform, smooth dark red-phosphorus friction strip covering the entire matchbox sidewall edge-to-edge for maximum striking surface area.",
+      feature: "Full Coverage • Classic Reliability",
+      patternType: "plain",
+    },
+    {
+      id: "vip",
+      name: "VIP Patti Striking Surface",
+      tag: "Export Premium Standard",
+      description: "Specialized export formulation with decorative border and dual-friction compound engineered specifically for luxury and hospitality matchboxes.",
+      feature: "Reinforced Edge • Dual Compound",
+      patternType: "vip",
+    },
+  ];
+
+  const otherCustomizationOptions = [
+    {
+      title: "Box Sizes & Stick Counts",
       options: [
         "Small boxes (26-32 sticks)",
         "Regular boxes (avg 42 sticks)",
         "Classic boxes (avg 45 sticks)",
         "Large boxes (avg 56 sticks)",
-        "Customized number of sticks in boxes available",
+        "Customized sticks count per box available",
       ],
     },
     {
-      title: "Packing Material",
+      title: "Outer Packing Material",
       options: [
-        "Cellophane wrapping",
-        "Paper wrapping",
-        // "Dozen packing",
-        // "Gross packing",
+        "Moisture-proof Cellophane wrapping",
+        "Export Kraft Paper wrapping",
+        "Poly-pack bundling",
+        "Shrink-wrapped dozens & grosses",
       ],
     },
     {
-      title: "Carton Packing",
+      title: "Master Carton Packing",
       options: [
-        "500 boxes per carton",
-        "1000 boxes per carton",
-        "1200 boxes per carton",
+        "500 boxes per master carton",
+        "1,000 boxes per master carton",
+        "1,200 boxes per master carton",
+        "Heavy-duty 5-ply export corrugation",
       ],
     },
   ];
@@ -265,40 +289,138 @@ const SafetyMatchesExport = () => {
           </div>
         </div>
 
-        {/* Custom Order Options */}
+        {/* Custom Striking Surface Visual Showcase (Point 2) */}
         <div className="mb-20">
-          <h3 className="text-[#222222] text-3xl font-bold text-center mb-4">
-            Custom Order Options
-          </h3>
-          <p className="text-[#666666] text-center mb-12 max-w-2xl mx-auto">
-            Tailor-made solutions to meet your specific requirements
-          </p>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-[#EAF8FE] text-[#0095CC] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+              <span>Manufacturing Customization</span>
+            </div>
+            <h3 className="text-[#222222] text-3xl sm:text-4xl font-black mb-3">
+              Custom <span className="text-[#00AEEF]">Striking Surface</span> Options
+            </h3>
+            <p className="text-[#666666] text-base max-w-2xl mx-auto">
+              Visual friction band configurations engineered for superior spark sensitivity, all-weather damp proofing, and luxury box aesthetics.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {customizationOptions.map((option, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {strikingSurfaces.map((surface) => (
               <div
-                key={index}
-                className="card-hover bg-white rounded-2xl shadow-lg p-8 border-2 border-[#E0E0E0]"
+                key={surface.id}
+                className="bg-white rounded-2xl border-2 border-[#E5E5E5] hover:border-[#00AEEF] hover:shadow-xl transition-all duration-300 p-5 flex flex-col justify-between group"
               >
-                <div className="flex items-start gap-4 mb-6">
-                  <FaCog className="text-4xl text-[#00AEEF] flex-shrink-0" />
-                  <div>
-                    <h4 className="text-[#222222] text-xl font-bold mb-4">
-                      {option.title}
-                    </h4>
-                    <ul className="space-y-3">
-                      {option.options.map((opt, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center text-[#666666]"
+                <div>
+                  <div className="bg-[#1A1A1A] p-3 rounded-xl mb-4 shadow-inner">
+                    <div className="flex items-center justify-between text-[10px] text-[#888888] font-mono uppercase mb-2">
+                      <span>Friction Band</span>
+                      <span className="text-amber-400 font-bold">{surface.feature.split('•')[0].trim()}</span>
+                    </div>
+
+                    <div className="w-full bg-[#E8DCB8] rounded border border-[#C5B48D] p-1.5 shadow-sm">
+                      {surface.patternType === "lines" && (
+                        <div 
+                          className="w-full h-11 rounded border border-[#301306] shadow-inner relative overflow-hidden"
+                          style={{
+                            background: "repeating-linear-gradient(90deg, #4A1F0D 0px, #4A1F0D 3px, #6B3016 3px, #6B3016 6px)"
+                          }}
                         >
-                          <FaCheckCircle className="text-[#ED028C] mr-3 flex-shrink-0" />
-                          {opt}
-                        </li>
-                      ))}
-                    </ul>
+                          <div className="absolute inset-0 bg-black/10"></div>
+                        </div>
+                      )}
+
+                      {surface.patternType === "dots" && (
+                        <div 
+                          className="w-full h-11 rounded border border-[#301306] shadow-inner relative overflow-hidden bg-[#381607]"
+                          style={{
+                            backgroundImage: "radial-gradient(#D27D46 30%, transparent 31%)",
+                            backgroundSize: "6px 6px"
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-black/10"></div>
+                        </div>
+                      )}
+
+                      {surface.patternType === "plain" && (
+                        <div 
+                          className="w-full h-11 rounded border border-[#301306] shadow-inner relative overflow-hidden bg-gradient-to-r from-[#4A1F0D] via-[#632B13] to-[#4A1F0D]"
+                        >
+                          <div className="absolute inset-0 bg-black/5"></div>
+                        </div>
+                      )}
+
+                      {surface.patternType === "vip" && (
+                        <div 
+                          className="w-full h-11 rounded border-2 border-[#ED028C] shadow-inner relative overflow-hidden"
+                          style={{
+                            background: "repeating-linear-gradient(45deg, #2D1005 0px, #2D1005 5px, #52220E 5px, #52220E 10px)"
+                          }}
+                        >
+                          <div className="absolute top-0 right-0 bg-[#ED028C] text-white text-[8px] font-bold px-1.5 py-0.2 rounded-bl">
+                            VIP
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#00AEEF] bg-[#EAF8FE] px-2.5 py-0.5 rounded-full inline-block mb-2">
+                    {surface.tag}
+                  </span>
+
+                  <h4 className="text-lg font-bold text-[#222222] mb-2 leading-tight">
+                    {surface.name}
+                  </h4>
+
+                  <p className="text-xs text-[#666666] leading-relaxed mb-4">
+                    {surface.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-[#F0F0F0]">
+                  <div className="flex items-center text-xs font-semibold text-[#00AEEF]">
+                    <FaCheckCircle className="text-[#ED028C] mr-2 flex-shrink-0" />
+                    <span>{surface.feature}</span>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Other Custom Order Options */}
+        <div className="mb-20">
+          <h3 className="text-[#222222] text-2xl sm:text-3xl font-bold text-center mb-3">
+            Box Sizes &amp; Packaging Specifications
+          </h3>
+          <p className="text-[#666666] text-center mb-10 max-w-xl mx-auto text-sm">
+            Tailor-made packaging dimensions and export configurations to suit your destination market standards.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {otherCustomizationOptions.map((option, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-sm hover:shadow-md p-6 border-2 border-[#E5E5E5] transition-all"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-[#EAF8FE] text-[#00AEEF] flex items-center justify-center text-xl flex-shrink-0">
+                    <FaCog />
+                  </div>
+                  <h4 className="text-[#222222] text-lg font-bold">
+                    {option.title}
+                  </h4>
+                </div>
+                <ul className="space-y-2.5">
+                  {option.options.map((opt, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start text-xs sm:text-sm text-[#555555]"
+                    >
+                      <FaCheckCircle className="text-[#ED028C] mr-2.5 mt-0.5 flex-shrink-0 text-xs" />
+                      <span>{opt}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -389,23 +511,39 @@ const SafetyMatchesExport = () => {
           </div>
         </div>
 
-        {/* Global Presence Map */}
-        {/* <div className="mb-20">
-          <h3 className="text-[#222222] text-3xl font-bold text-center mb-12">
-            Our Global Presence
-          </h3>
-          <div className="relative bg-gray-500 rounded-3xl flex items-center justify-center overflow-hidden">
-            <img
-              src={world_map_export_destinations}
-              alt="Global Export Map"
-              loading="lazy"
-              decoding="async"
-              width="1400"
-              height="700"
-              className="w-full object-cover"
-            />
+        {/* Global Presence Map & Revised Country Sequence (Point 1) */}
+        <div className="mb-20">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#EAF8FE] text-[#0095CC] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+              <span>Worldwide Footprint</span>
+            </div>
+            <h3 className="text-[#222222] text-3xl sm:text-4xl font-black mb-3">
+              Our <span className="text-[#00AEEF]">Global Presence</span> &amp; Export Map
+            </h3>
+            <p className="text-[#666666] text-base max-w-2xl mx-auto">
+              Exporting reliable safety matches and premium wooden splints to over 40+ countries across 4 continents.
+            </p>
           </div>
-        </div> */}
+
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#00AEEF]/20 mb-10 bg-[#0F172A]">
+            <picture>
+              <source media="(max-width: 640px)" srcSet={world_map_export_destinations_mobile} />
+              <img
+                src={world_map_export_destinations}
+                alt="Kite Group Worldwide Export Map"
+                loading="lazy"
+                decoding="async"
+                width="1920"
+                height="640"
+                className="w-full h-auto object-cover hover:scale-102 transition-transform duration-700"
+              />
+            </picture>
+            <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-white px-4 py-2 rounded-xl border border-white/20">
+              <p className="text-[10px] text-sky-400 font-bold uppercase tracking-wider">International Reach</p>
+              <p className="text-sm font-black">40+ Active Destination Markets</p>
+            </div>
+          </div>
+        </div>
 
 
 

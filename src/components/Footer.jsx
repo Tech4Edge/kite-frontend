@@ -18,8 +18,9 @@ const Footer = () => {
   const primaryEmails = ["info@kitepk.com", "sales@kitepk.com"];
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "Online Order", href: "/online-order" },
     { name: "Products", href: "/products" },
+    { name: "About Us", href: "/about" },
     { name: "Export", href: "/export/safety-matches" },
   ];
 

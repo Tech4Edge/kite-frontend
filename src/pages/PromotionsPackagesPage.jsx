@@ -5,9 +5,9 @@ const PromotionsPackagesPage = () => {
   return (
     <>
       <SeoHead
-        title="Promotions & Packages"
-        description="Browse Kite Brand promotions and bundled packages designed for value, quality, and convenience."
-        path="/promotions-packages"
+        title="Online Order - Kite Detergents & Safety Matches"
+        description="Order Kite Glow, BURQ, Vero Detergents, Dish Wash Bar, Safety Matches and bundled packages directly from the factory online."
+        path="/online-order"
       />
       <div className="min-h-screen bg-gradient-to-b from-white via-[#F9F9F9] to-white">
         <div className="relative overflow-hidden">

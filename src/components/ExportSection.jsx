@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 
 import shipment from "../assets/heroCarousel/1920x640shipment.jpg";
+import world_map_export_destinations from "../assets/Kite-Export-Map1920x640.jpeg";
+import world_map_export_destinations_mobile from "../assets/kite-Map-640x640.jpeg";
 
 const ExportSection = () => {
   const safetyMatches = [
@@ -332,45 +334,25 @@ const ExportSection = () => {
             Our Global Presence
           </h3>
 
-          {/* Map Placeholder */}
-          <div className="relative bg-gradient-to-br from-[#00AEEF] to-[#0095CC] rounded-3xl flex items-center justify-center mb-12 overflow-hidden group h-64 sm:h-80 md:h-96">
-            <img
-              src="https://via.placeholder.com/1200x600/00AEEF/FFFFFF?text=Global+Export+Map"
-              alt="Global Export Map"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
+          {/* Authentic Global Export Map */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#00AEEF]/20 mb-12 bg-[#0F172A]">
+            <picture>
+              <source media="(max-width: 640px)" srcSet={world_map_export_destinations_mobile} />
+              <img
+                src={world_map_export_destinations}
+                alt="Global Export Map"
+                loading="lazy"
+                decoding="async"
+                width="1920"
+                height="640"
+                className="w-full h-auto object-cover hover:scale-102 transition-transform duration-700"
+              />
+            </picture>
+            <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-white px-4 py-2 rounded-xl border border-white/20">
+              <p className="text-[10px] text-sky-400 font-bold uppercase tracking-wider">Worldwide Reach</p>
+              <p className="text-sm font-black">40+ Active Destination Markets</p>
+            </div>
           </div>
-
-          {/* Countries Grid */}
-          {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Object.entries(exportCountries).map(([region, data]) => (
-              <div
-                key={region}
-                className="bg-white p-6 rounded-xl border-2 border-[#E0E0E0] hover:border-[#FF8ACE] hover:shadow-xl transition-all duration-300"
-              >
-                <div className="text-5xl mb-4 text-center">{data.icon}</div>
-                <h4
-                  className="text-[#222222] text-xl font-bold mb-4 text-center"
-                  style={{ color: data.color }}
-                >
-                  {region}
-                </h4>
-                <ul className="space-y-2">
-                  {data.countries.map((country, idx) => (
-                    <li key={idx} className="flex items-center text-[#666666]">
-                      <span
-                        className="w-2 h-2 rounded-full mr-3"
-                        style={{ backgroundColor: data.color }}
-                      ></span>
-                      {country}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div> */}
         </div>
 
         {/* Export Services */}

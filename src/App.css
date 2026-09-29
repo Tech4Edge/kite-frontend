@@ -192,6 +192,22 @@ section {
   }
 }
 
+/* Ensure Admin Panel is strictly 100% unscaled full-screen */
+body.admin-route,
+body.admin-route .app-page-compact,
+.admin-route .app-page-compact,
+.admin-route {
+  zoom: 1 !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+body.admin-route {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+
 /* Mobile responsiveness improvements */
 @media (max-width: 768px) {
   /* Reduce heading sizes on mobile */

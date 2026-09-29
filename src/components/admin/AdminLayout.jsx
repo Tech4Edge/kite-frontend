@@ -10,6 +10,7 @@ const AdminLayout = ({ children }) => {
     { to: "/admin/products", label: "Products" },
     { to: "/admin/promotions", label: "Promotions" },
     { to: "/admin/orders", label: "Orders" },
+    { to: "/admin/analytics", label: "Traffic & Analytics" },
     { to: "/admin/settings", label: "Settings" },
   ];
 

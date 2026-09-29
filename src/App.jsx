@@ -35,6 +35,8 @@ const AdminProductsPage = lazy(() => import("./pages/AdminProductsPage"));
 const AdminPromotionsPage = lazy(() => import("./pages/AdminPromotionsPage"));
 const AdminOrdersPage = lazy(() => import("./pages/AdminOrdersPage"));
 const AdminSettingsPage = lazy(() => import("./pages/AdminSettingsPage"));
+const AdminAnalyticsPage = lazy(() => import("./pages/AdminAnalyticsPage"));
+import VisitorTracker from "./components/VisitorTracker";
 import "./App.css";
 
 const RouteLoadingFallback = () => (
@@ -53,7 +55,7 @@ function AppRoutes() {
   }, [isAdminRoute]);
 
   return (
-    <div className="min-h-screen bg-white app-page-compact">
+    <div className={isAdminRoute ? "min-h-screen" : "min-h-screen bg-white flex flex-col"}>
       {!isAdminRoute && <Navbar />}
       {isAdminRoute ? (
         <Suspense fallback={<RouteLoadingFallback />}>
@@ -62,51 +64,58 @@ function AppRoutes() {
             <Route path="/admin/products" element={<AdminProductsPage />} />
             <Route path="/admin/promotions" element={<AdminPromotionsPage />} />
             <Route path="/admin/orders" element={<AdminOrdersPage />} />
+            <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
             <Route path="/admin/settings" element={<AdminSettingsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       ) : (
-        <main id="main-content">
-          <Suspense fallback={<RouteLoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutUsPage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route
-                path="/products/tanga-matches"
-                element={<Navigate to="/products/tanga" replace />}
-              />
-              {/* <Route path="/products/tanga" element={<TangaMatchesPage />} /> */}
-              <Route path="/products/:id" element={<ProductDetailPage />} />
-              {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
-            <Route path="/products/olympia" element={<OlympiaMatchesPage />} />
-            <Route path="/products/party" element={<PartyMatchesPage />} />
-            <Route path="/products/bird" element={<BirdMatchesPage />} /> */}
-              <Route
-                path="/promotions-packages"
-                element={<PromotionsPackagesPage />}
-              />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/order-success/:id" element={<OrderSummaryPage />} />
-              <Route path="/export" element={<ExportPage />} />
-              <Route
-                path="/export/safety-matches"
-                element={<SafetyMatchesPage />}
-              />
-              <Route
-                path="/export/wooden-splints"
-                element={<WoodenSplintsPage />}
-              />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-        </main>
+        <div className="flex-1 app-page-compact">
+          <main id="main-content">
+            <Suspense fallback={<RouteLoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route
+                  path="/products/tanga-matches"
+                  element={<Navigate to="/products/tanga" replace />}
+                />
+                {/* <Route path="/products/tanga" element={<TangaMatchesPage />} /> */}
+                <Route path="/products/:id" element={<ProductDetailPage />} />
+                {/* <Route path="/products/kite-matches" element={<KiteMatchesPage />} />
+              <Route path="/products/olympia" element={<OlympiaMatchesPage />} />
+              <Route path="/products/party" element={<PartyMatchesPage />} />
+              <Route path="/products/bird" element={<BirdMatchesPage />} /> */}
+                <Route
+                  path="/online-order"
+                  element={<PromotionsPackagesPage />}
+                />
+                <Route
+                  path="/promotions-packages"
+                  element={<PromotionsPackagesPage />}
+                />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/order-success/:id" element={<OrderSummaryPage />} />
+                <Route path="/export" element={<ExportPage />} />
+                <Route
+                  path="/export/safety-matches"
+                  element={<SafetyMatchesPage />}
+                />
+                <Route
+                  path="/export/wooden-splints"
+                  element={<WoodenSplintsPage />}
+                />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <Footer />
+        </div>
       )}
       {!isAdminRoute && <CartDrawer />}
       {!isAdminRoute && <FloatingCartButton />}
-      {!isAdminRoute && <Footer />}
       {!isAdminRoute && <WhatsAppButton />}
     </div>
   );
@@ -118,6 +127,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
+        <VisitorTracker />
         <ScrollToTop />
         <Toaster position="top-right" />
         <AppRoutes />

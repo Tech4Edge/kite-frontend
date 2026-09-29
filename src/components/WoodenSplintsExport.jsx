@@ -540,6 +540,62 @@ const WoodenSplintsExport = () => {
           </div>
         </div>
 
+        {/* Detergents & FMCG Division Showcase Banner */}
+        <div className="mb-20 bg-gradient-to-br from-[#00AEEF]/10 via-white to-pink-50 rounded-3xl p-8 md:p-12 border-2 border-[#00AEEF]/20 shadow-lg">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 bg-[#00AEEF] text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-4 shadow-sm">
+                <span>Consumer Goods Division</span>
+              </div>
+              <h3 className="text-[#222222] text-3xl sm:text-4xl font-black mb-4">
+                Explore Our <span className="text-[#00AEEF]">Detergents</span> &amp; Cleaning Range
+              </h3>
+              <p className="text-[#666666] text-base sm:text-lg leading-relaxed mb-6">
+                In addition to industrial wooden splints and export safety matches, Kite Group manufactures Pakistan's leading laundry &amp; hygiene brands — including <strong>Kite Glow</strong>, <strong>BURQ Action</strong>, <strong>Vero Detergent</strong>, and <strong>Kite Dish Wash Bar</strong>.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/online-order"
+                  className="bg-[#ED028C] hover:bg-[#D4027D] text-white px-6 py-3 rounded-full text-sm font-bold shadow-md shadow-[#ED028C]/25 transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  Order Detergents Online
+                </Link>
+                <Link
+                  to="/fmcg-division"
+                  className="bg-white hover:bg-[#F5F5F5] text-[#00AEEF] border-2 border-[#00AEEF] px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  View FMCG Division
+                </Link>
+                <Link
+                  to="/products?category=Detergents"
+                  className="bg-white hover:bg-[#F5F5F5] text-[#222222] border border-[#CCCCCC] px-5 py-3 rounded-full text-sm font-medium transition-all duration-300"
+                >
+                  Detergent Products
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full lg:w-auto">
+              <div className="bg-white p-4 rounded-2xl border border-[#E5E5E5] shadow-xs text-center min-w-[140px]">
+                <div className="text-xl sm:text-2xl font-black text-[#00AEEF]">Kite Glow</div>
+                <div className="text-xs text-[#777777] mt-1">Triple Enzyme</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-[#E5E5E5] shadow-xs text-center min-w-[140px]">
+                <div className="text-xl sm:text-2xl font-black text-[#ED028C]">BURQ Action</div>
+                <div className="text-xs text-[#777777] mt-1">Colour Guard</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-[#E5E5E5] shadow-xs text-center min-w-[140px]">
+                <div className="text-xl sm:text-2xl font-black text-[#059669]">Dish Wash</div>
+                <div className="text-xs text-[#777777] mt-1">Lemon Super Bar</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-[#E5E5E5] shadow-xs text-center min-w-[140px]">
+                <div className="text-xl sm:text-2xl font-black text-[#6366F1]">Vero Care</div>
+                <div className="text-xs text-[#777777] mt-1">Bulk &amp; Wholesale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-[#ED028C] to-[#d4027a] rounded-3xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
